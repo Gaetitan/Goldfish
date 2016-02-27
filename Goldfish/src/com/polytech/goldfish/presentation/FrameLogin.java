@@ -7,7 +7,11 @@ import java.sql.*;
 
 public class FrameLogin extends JFrame implements ActionListener
 {
-    JLabel l1, l2, l3;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	JLabel l1, l2, l3;
     JTextField tf1;
     JButton btn1;
     JPasswordField p1;
@@ -15,8 +19,8 @@ public class FrameLogin extends JFrame implements ActionListener
     FrameLogin()
     {
         setTitle("Login");
-        setVisible(true);
-        setSize(800, 800);
+        
+        setSize(600, 600);
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
@@ -44,6 +48,8 @@ public class FrameLogin extends JFrame implements ActionListener
         add(p1);
         add(btn1);
         btn1.addActionListener(this);
+        
+        setVisible(true);
     }
  
     public void actionPerformed(ActionEvent e)
@@ -102,94 +108,3 @@ public class FrameLogin extends JFrame implements ActionListener
         new FrameLogin();
     }
 }
-
-
-
-
-
-
-
-/*
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.*;
-
-public class FrameLogin extends JDialog implements ActionListener {
-	
-	public static boolean authenticate(String username, String password) {
-        // hardcoded username and password
-        if (username.equals("bob") && password.equals("secret")) {
-            return true;
-        }
-        return false;
-    }
-	
-        final JFrame frame = new JFrame();
- 
-        // Create OK button
-        JButton btnOK = new JButton("OK");
-        // Add event handler for OK button
-    
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub	
-		}
-        btnOK.addActionListener(
-                new ActionListener(){
-                    public void actionPerformed(ActionEvent e) {
-                        JOptionPane.showMessageDialog(frame,
-                                "You've clicked OK button"
-                                );
-                    }
-                });
-        // Create Cancel button
-        JButton btnCancel = new JButton("Cancel");
-        btnCancel.addActionListener(
-                new ActionListener(){
-                    public void actionPerformed(ActionEvent e) {
-                        JOptionPane.showMessageDialog(frame,
-                                "You've clicked Cancel button"
-                                );
-                    }
-                });
- 
-        // Add buttons to a panel
-        JPanel buttonPanel = new JPanel( );
-        buttonPanel.add(btnOK);
-        buttonPanel.add(btnCancel);
- 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300, 200);
-        frame.getContentPane( ).add(buttonPanel,BorderLayout.SOUTH);
-        frame.setVisible(true);
-    }
-	
-    public static void main(String[] args) {
-    	
-   	 final JFrame frame = new JFrame("JTextField Demo");
-   	 
-        JLabel lblFName = new JLabel("First Name:");
-        JTextField tfFName = new JTextField(20);
-        lblFName.setLabelFor(tfFName);
- 
-        JLabel lblLName = new JLabel("Last Name:");
-        JTextField tfLName = new JTextField(20);
-        lblLName.setLabelFor(tfLName);
- 
-        JPanel panel = new JPanel();
-        panel.setLayout(new SpringLayout());
- 
-        panel.add(lblFName);
-        panel.add(tfFName);
-        panel.add(lblLName);
-        panel.add(tfLName);
- 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300, 100);
-        frame.getContentPane().add(panel);
-        frame.setVisible(true);
-   }
-
-}
-
-*/
