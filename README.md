@@ -1,8 +1,10 @@
 # Goldfish
 Software engineering project - IG4.
+
 This project is currently in development.
 
 Language: JAVA
+
 Architecture: 3-tier
 
 Team is composed of four fourth year engineering students of Polytech Montpellier majoring Computer Science and Management.
