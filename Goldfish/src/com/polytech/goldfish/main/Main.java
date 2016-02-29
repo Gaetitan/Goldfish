@@ -9,7 +9,7 @@ public class Main {
 	public static void main(String[] args) {
 		MainFrame myFrame = new MainFrame();
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		myFrame.setTitle("Goldfish project");
+		myFrame.setTitle("Goldfish");
 		myFrame.setSize(600, 500);
 		myFrame.setVisible(true);
 	}
