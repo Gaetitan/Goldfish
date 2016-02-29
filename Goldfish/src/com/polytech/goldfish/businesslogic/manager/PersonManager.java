@@ -1,6 +1,8 @@
 package com.polytech.goldfish.businesslogic.manager;
 
-import com.polytech.goldfish.persistence.jdbc.PersonJDBC;
+import com.polytech.goldfish.businesslogic.business.Person;
+import com.polytech.goldfish.businesslogic.factory.Factory;
+import com.polytech.goldfish.persistence.factoryjdbc.FactoryJDBC;
 
 
 /**
@@ -11,13 +13,13 @@ import com.polytech.goldfish.persistence.jdbc.PersonJDBC;
  */
 public class PersonManager {
 	
-	private final PersonJDBC personPersistence;
+	private final Factory factory;
 	
 	public PersonManager(){
-		this.personPersistence = new PersonJDBC();
+		this.factory = new FactoryJDBC();
 	}
 	
-	public boolean login(String email, String password){
-		return personPersistence.queryLogin(email, password);
+	public Person login(String email, String password){
+		return this.factory.createPersonByLogin(email, password);
 	}	
 }

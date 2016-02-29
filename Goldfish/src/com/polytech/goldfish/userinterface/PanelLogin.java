@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -88,12 +89,15 @@ public class PanelLogin extends JPanel {
 					new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							if(personFacade.login(tfEmail.getText(), tfPassword.getText())) {
-								System.out.println("OK PELO POMPELOP");
+							if(personFacade.login(tfEmail.getText(), tfPassword.getText()) == null){
+								JOptionPane.showMessageDialog(null, "The written email/password is invalid.", "Invalid email/password",JOptionPane.WARNING_MESSAGE);
 							}
 							else{
-								System.out.println("TA MERE");
-								//JOptionPane.showMessageDialog(th, "TA MERE", "Invalid email/password", JOptionPane.WARNING_MESSAGE);
+								JOptionPane.showMessageDialog(null, "Welcome " + personFacade.login(tfEmail.getText(), tfPassword.getText()).getEmail() + 
+										", you have the id " + personFacade.login(tfEmail.getText(), tfPassword.getText()).getId() + 
+										" and your password is " + personFacade.login(tfEmail.getText(), tfPassword.getText()).getPassword() + 
+										" :) #TESMAPUUUUTE",
+										"Welcome aboard!",JOptionPane.INFORMATION_MESSAGE);
 							}
 						}
 					}
