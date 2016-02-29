@@ -1,4 +1,4 @@
-package com.polytech.goldfish.presentation;
+package com.polytech.goldfish.userinterface;
 
 import javax.swing.JFrame;
 

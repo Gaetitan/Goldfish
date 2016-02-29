@@ -1,4 +1,4 @@
-package com.polytech.goldfish.presentation;
+package com.polytech.goldfish.userinterface;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import com.polytech.goldfish.application.Login;
+import com.polytech.goldfish.businesslogic.facade.PersonFacade;
 
 /**
  * Class for the login user interface
@@ -22,7 +22,7 @@ public class PanelLogin extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 
-	private final Login ctrlLogin;
+	private final PersonFacade personFacade;
 
 	private final JTextField tfEmail;
 	private final JPasswordField tfPassword;
@@ -32,7 +32,7 @@ public class PanelLogin extends JPanel {
 	 * Constructor of class PanelLogin
 	 */
 	public PanelLogin(){
-		ctrlLogin = new Login();
+		personFacade = new PersonFacade();
 		
 		JPanel mainPanel = new JPanel();
 		this.add(mainPanel);
@@ -88,11 +88,12 @@ public class PanelLogin extends JPanel {
 					new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							if(ctrlLogin.authenticate(tfEmail.getText(), tfPassword.getText())) {
+							if(personFacade.login(tfEmail.getText(), tfPassword.getText())) {
 								System.out.println("OK PELO POMPELOP");
 							}
 							else{
 								System.out.println("TA MERE");
+								//JOptionPane.showMessageDialog(th, "TA MERE", "Invalid email/password", JOptionPane.WARNING_MESSAGE);
 							}
 						}
 					}

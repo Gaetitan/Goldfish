@@ -2,7 +2,7 @@ package com.polytech.goldfish.main;
 
 import javax.swing.JFrame;
 
-import com.polytech.goldfish.presentation.MainFrame;
+import com.polytech.goldfish.userinterface.MainFrame;
 
 public class Main {
 
