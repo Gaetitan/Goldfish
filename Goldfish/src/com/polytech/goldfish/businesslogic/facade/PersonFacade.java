@@ -3,6 +3,12 @@ package com.polytech.goldfish.businesslogic.facade;
 import com.polytech.goldfish.businesslogic.business.Person;
 import com.polytech.goldfish.businesslogic.manager.PersonManager;
 
+/**
+ * Facade for a Person
+ * 
+ * @author Gaëtan FRANÇOIS
+ *
+ */
 public class PersonFacade {
 
 	private final PersonManager personManager;

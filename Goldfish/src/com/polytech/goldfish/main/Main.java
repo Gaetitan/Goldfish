@@ -4,6 +4,12 @@ import javax.swing.JFrame;
 
 import com.polytech.goldfish.userinterface.MainFrame;
 
+/**
+ * Main class of our application
+ *
+ * @author Gaëtan FRANÇOIS
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) {

@@ -17,7 +17,7 @@ import com.polytech.goldfish.businesslogic.facade.PersonFacade;
 
 /**
  * Class for the login user interface
- * @author Gaetitano
+ * @author Gaëtan FRANÇOIS
  */
 public class PanelLogin extends JPanel {
 	

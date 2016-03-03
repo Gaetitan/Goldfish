@@ -8,14 +8,29 @@ import java.sql.SQLException;
 import com.polytech.goldfish.businesslogic.business.Person;
 import com.polytech.goldfish.util.Connect;
 
+/**.
+ * Persitence class for a Person
+ * @author Gaëtan FRANÇOIS
+ *
+ */
 public class PersonJDBC extends Person {
 
+	// Queries
 	private static final String queryLogin = "SELECT * FROM login WHERE email = ?;";
 	
-	public PersonJDBC(Integer id, String email, String password) {
-		super(id, email, password);
+	// Constructors
+	public PersonJDBC(Integer id, String name, String surname, String phone_number, String email, String password) {
+		super(id, name, surname, phone_number, email, password);
 	}
 
+	// Other methods
+	/**
+	 * This methods finds a Person in the database thanks to his login information
+	 * 
+	 * @param email the Person's email
+	 * @param password the Person's password
+	 * @return the Person found in the database with his information
+	 */
 	public static PersonJDBC findPersonByLogin(String email, String password) {
 		PersonJDBC person = null;
 		try{
@@ -27,7 +42,7 @@ public class PersonJDBC extends Person {
 			
 			while(rs.next()){
 				if(rs.getString(3).equals(password)){
-					person = new PersonJDBC(rs.getInt(1), rs.getString(2), rs.getString(3));
+					person = new PersonJDBC(rs.getInt(1), null, null, null, rs.getString(2), rs.getString(3));
 				}
 			}	
 		}
