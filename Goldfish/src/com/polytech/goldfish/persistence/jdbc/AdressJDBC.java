@@ -13,9 +13,9 @@ public class AdressJDBC extends Adress{
 	
 	
 	// Constructors
-	public AdressJDBC(String street, String street_number, String zip_code,
+	public AdressJDBC(Integer id, String street, String street_number, String zip_code,
 			String city) {
-		super(street, street_number, zip_code, city);
+		super(id, street, street_number, zip_code, city);
 	}
 	
 	// Other methods

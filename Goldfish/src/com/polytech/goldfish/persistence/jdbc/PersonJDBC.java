@@ -16,7 +16,7 @@ import com.polytech.goldfish.util.Connect;
 public class PersonJDBC extends Person {
 
 	// Queries
-	private static final String queryLogin = "SELECT * FROM login WHERE email = ?;";
+	private static final String queryLogin = "SELECT * FROM person WHERE email = ?;";
 	
 	// Constructors
 	public PersonJDBC(Integer id, String name, String surname, String phone_number, String email, String password) {

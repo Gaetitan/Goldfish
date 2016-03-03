@@ -15,7 +15,6 @@ public class AdministratorJDBC extends Administrator {
 	public AdministratorJDBC(Integer id, String name, String surname,
 			String phone_number, String email, String password) {
 		super(id, name, surname, phone_number, email, password);
-		// TODO Auto-generated constructor stub
 	}
 	
 	// Other methods
