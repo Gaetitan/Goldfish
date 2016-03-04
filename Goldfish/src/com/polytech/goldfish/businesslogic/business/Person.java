@@ -10,19 +10,20 @@ public class Person {
 
 	// Attributes
 	private Integer id;
-	private String name;
+
 	private String surname;
+	private String name;
 	private String phone_number;
 	private String email;
 	private String password;
 
 	// Constructors
-	public Person(Integer id, String name, String surname, String phone_number,
+	public Person(Integer id, String surname, String name, String phone_number,
 			String email, String password) {
 		super();
 		this.id = id;
-		this.name = name;
 		this.surname = surname;
+		this.name = name;
 		this.phone_number = phone_number;
 		this.email = email;
 		this.password = password;
@@ -37,20 +38,20 @@ public class Person {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getSurname() {
 		return surname;
 	}
 
 	public void setSurname(String surname) {
 		this.surname = surname;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getPhone_number() {

@@ -20,4 +20,9 @@ public class PersonFacade {
 	public Person login(String email, String password){
 		return this.personManager.login(email, password);
 	}
+	
+	public void createPerson(String surname, String name, String phone_number,
+			String email, String password){
+		this.personManager.createPerson(surname, name, phone_number, email, password);
+	}
 }

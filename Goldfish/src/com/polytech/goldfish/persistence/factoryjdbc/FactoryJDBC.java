@@ -13,8 +13,14 @@ import com.polytech.goldfish.persistence.jdbc.PersonJDBC;
 public class FactoryJDBC extends Factory {
 
 	@Override
-	public Person createPersonByLogin(String email, String password) {
+	public Person getPersonByLogin(String email, String password) {
 		return PersonJDBC.findPersonByLogin(email, password);
+	}
+
+	@Override
+	public void createPerson(String surname, String name,
+			String phone_number, String email, String password) {
+		PersonJDBC.createPerson(surname, name, phone_number, email, password);
 	}
 
 }

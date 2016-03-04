@@ -13,12 +13,23 @@ import com.polytech.goldfish.businesslogic.business.Person;
 public abstract class Factory {
 
 	/**
-	 * This method creates a Person thanks to his login
+	 * This method gets a Person thanks to his login
 	 * 
 	 * @param email
 	 * @param password
 	 * @return a Person
 	 */
-	public abstract Person createPersonByLogin(String email, String password);
+	public abstract Person getPersonByLogin(String email, String password);
 	
+	/**
+	 * This method creates a new Person
+	 * 
+	 * @param name
+	 * @param surname
+	 * @param phone_number
+	 * @param email
+	 * @param password
+	 * @return a Person
+	 */
+	public abstract void createPerson(String surname, String name, String phone_number,String email, String password);
 }

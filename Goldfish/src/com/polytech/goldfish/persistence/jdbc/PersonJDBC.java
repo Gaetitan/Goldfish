@@ -16,16 +16,17 @@ import com.polytech.goldfish.util.Connect;
 public class PersonJDBC extends Person {
 
 	// Queries
-	private static final String queryLogin = "SELECT * FROM person WHERE email = ?;";
+	private static final String queryGetPersonByEmail = "SELECT * FROM person WHERE email = ?;";
+	private static final String queryInsertOne = "INSERT INTO person (surname, name, phonenumber, email, password) VALUES(?,?,?,?,?);";
 	
 	// Constructors
-	public PersonJDBC(Integer id, String name, String surname, String phone_number, String email, String password) {
-		super(id, name, surname, phone_number, email, password);
+	public PersonJDBC(Integer id, String surname, String name, String phone_number, String email, String password) {
+		super(id, surname, name, phone_number, email, password);
 	}
 
 	// Other methods
 	/**
-	 * This methods finds a Person in the database thanks to his login information
+	 * This methods finds a Person in the database thanks to its login information
 	 * 
 	 * @param email the Person's email
 	 * @param password the Person's password
@@ -36,7 +37,7 @@ public class PersonJDBC extends Person {
 		try{
 			Connection connect = Connect.getInstance().getConnection();
 			
-			PreparedStatement instruction = connect.prepareCall(queryLogin);
+			PreparedStatement instruction = connect.prepareCall(queryGetPersonByEmail);
 			instruction.setString(1, email);
 			ResultSet rs = instruction.executeQuery();
 			
@@ -44,6 +45,59 @@ public class PersonJDBC extends Person {
 				if(rs.getString(6).equals(password)){
 					person = new PersonJDBC(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
 				}
+			}	
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		return person;
+	}
+	
+	
+	/**
+	 * This methods inserts a Person in the database
+	 * @param surname
+	 * @param name
+	 * @param phone_number
+	 * @param email
+	 * @param password
+	 * @return the new Person
+	 */
+	public static void createPerson(String surname, String name, String phone_number, String email, String password) {
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareCall(queryInsertOne);
+			instruction.setString(1, surname);
+			instruction.setString(2, name);
+			instruction.setString(3, phone_number);
+			instruction.setString(4, email);
+			instruction.setString(5, password);
+			instruction.executeUpdate();
+			connect.commit();
+
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * This method finds a Person thanks to its email
+	 * @param email
+	 * @return a Person
+	 */
+	public static PersonJDBC findPersonByEmail(String email) {
+		PersonJDBC person = null;
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareCall(queryGetPersonByEmail);
+			instruction.setString(1, email);
+			ResultSet rs = instruction.executeQuery();
+			
+			while(rs.next()){
+				person = new PersonJDBC(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
 			}	
 		}
 		catch(SQLException e){
