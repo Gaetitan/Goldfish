@@ -6,7 +6,7 @@ package com.polytech.goldfish.businesslogic.business;
  * @author Gaëtan FRANÇOIS
  *
  */
-public class Adress {
+public class Address {
 
 	// Attributes
 	private Integer id;
@@ -16,7 +16,7 @@ public class Adress {
 	private String city;
 	
 	// Constructors
-	public Adress(Integer id, String street, String street_number, String zip_code,
+	public Address(Integer id, String street, String street_number, String zip_code,
 			String city) {
 		super();
 		this.id = id;

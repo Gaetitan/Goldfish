@@ -93,10 +93,7 @@ public class PanelLogin extends JPanel {
 								JOptionPane.showMessageDialog(null, "The written email/password is invalid.", "Invalid email/password",JOptionPane.WARNING_MESSAGE);
 							}
 							else{
-								JOptionPane.showMessageDialog(null, "Welcome " + personFacade.login(tfEmail.getText(), tfPassword.getText()).getEmail() + 
-										", you have the id " + personFacade.login(tfEmail.getText(), tfPassword.getText()).getId() + 
-										" and your password is " + personFacade.login(tfEmail.getText(), tfPassword.getText()).getPassword() + 
-										" :) #TESMAPUUUUTE",
+								JOptionPane.showMessageDialog(null, "Welcome " + personFacade.login(tfEmail.getText(), tfPassword.getText()).getSurname() + " " + personFacade.login(tfEmail.getText(), tfPassword.getText()).getName() + "!",
 										"Welcome aboard!",JOptionPane.INFORMATION_MESSAGE);
 							}
 						}

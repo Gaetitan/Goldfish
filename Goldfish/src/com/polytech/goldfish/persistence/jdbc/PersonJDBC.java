@@ -41,8 +41,8 @@ public class PersonJDBC extends Person {
 			ResultSet rs = instruction.executeQuery();
 			
 			while(rs.next()){
-				if(rs.getString(3).equals(password)){
-					person = new PersonJDBC(rs.getInt(1), null, null, null, rs.getString(2), rs.getString(3));
+				if(rs.getString(6).equals(password)){
+					person = new PersonJDBC(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
 				}
 			}	
 		}
