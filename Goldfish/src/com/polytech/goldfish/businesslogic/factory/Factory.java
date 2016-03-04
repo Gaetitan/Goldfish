@@ -22,6 +22,13 @@ public abstract class Factory {
 	public abstract Person getPersonByLogin(String email, String password);
 	
 	/**
+	 * This methods gets a Person thanks to its id
+	 * @param id
+	 * @return a Person
+	 */
+	public abstract Person getPersonById(Integer id);
+	
+	/**
 	 * This method creates a new Person
 	 * 
 	 * @param name
@@ -31,5 +38,5 @@ public abstract class Factory {
 	 * @param password
 	 * @return a Person
 	 */
-	public abstract void createPerson(String surname, String name, String phone_number,String email, String password);
+	public abstract int createPerson(String surname, String name, String phone_number,String email, String password);
 }

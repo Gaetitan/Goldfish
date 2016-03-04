@@ -18,9 +18,14 @@ public class FactoryJDBC extends Factory {
 	}
 
 	@Override
-	public void createPerson(String surname, String name,
+	public int createPerson(String surname, String name,
 			String phone_number, String email, String password) {
-		PersonJDBC.createPerson(surname, name, phone_number, email, password);
+		return PersonJDBC.createPerson(surname, name, phone_number, email, password);
+	}
+
+	@Override
+	public Person getPersonById(Integer id) {
+		return PersonJDBC.findPersonById(id);
 	}
 
 }

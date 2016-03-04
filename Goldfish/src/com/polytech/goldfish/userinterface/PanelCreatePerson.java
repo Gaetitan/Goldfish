@@ -132,8 +132,9 @@ public class PanelCreatePerson extends JPanel {
 					new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							personFacade.createPerson(tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText());
-							JOptionPane.showMessageDialog(null, "New person created.",
+							int id;
+							id = personFacade.createPerson(tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText());
+							JOptionPane.showMessageDialog(null, personFacade.findPersonById(id).getSurname() + " " + personFacade.findPersonById(id).getName() + " has been created.",
 									"Person created.",JOptionPane.INFORMATION_MESSAGE);
 						}
 					}

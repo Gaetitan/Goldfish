@@ -23,8 +23,12 @@ public class PersonManager {
 		return this.factory.getPersonByLogin(email, password);
 	}
 	
-	public void createPerson(String surname, String name, String phone_number,
+	public int createPerson(String surname, String name, String phone_number,
 			String email, String password){
-		this.factory.createPerson(surname, name, phone_number, email, password);
+		return this.factory.createPerson(surname, name, phone_number, email, password);
+	}
+	
+	public Person findPersonById(Integer id){
+		return this.factory.getPersonById(id);
 	}
 }
