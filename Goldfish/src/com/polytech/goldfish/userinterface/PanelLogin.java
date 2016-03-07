@@ -14,6 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.polytech.goldfish.businesslogic.facade.PersonFacade;
+import com.polytech.goldfish.util.GoldfishException;
 
 /**
  * Class for the login user interface
@@ -89,12 +90,13 @@ public class PanelLogin extends JPanel {
 					new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							if(personFacade.login(tfEmail.getText(), tfPassword.getText()) == null){
-								JOptionPane.showMessageDialog(null, "The written email/password is invalid.", "Invalid email/password",JOptionPane.WARNING_MESSAGE);
-							}
-							else{
+							try{
+								personFacade.login(tfEmail.getText(), tfPassword.getText());
 								JOptionPane.showMessageDialog(null, "Welcome " + personFacade.login(tfEmail.getText(), tfPassword.getText()).getSurname() + " " + personFacade.login(tfEmail.getText(), tfPassword.getText()).getName() + "!",
 										"Welcome aboard!",JOptionPane.INFORMATION_MESSAGE);
+							}
+							catch (GoldfishException e1){
+								JOptionPane.showMessageDialog(null, e1.toString(), "Invalid email/password",JOptionPane.WARNING_MESSAGE);
 							}
 						}
 					}

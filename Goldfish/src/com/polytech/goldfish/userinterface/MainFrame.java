@@ -17,7 +17,7 @@ public class MainFrame extends JFrame {
 	public MainFrame(){
 		panelLogin = new PanelLogin();
 		panelCreatePerson = new PanelCreatePerson();
-		this.getContentPane().add(panelCreatePerson);
+		this.getContentPane().add(panelLogin);
 	}
 	
 }

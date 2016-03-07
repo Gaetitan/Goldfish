@@ -1,8 +1,9 @@
 package com.polytech.goldfish.businesslogic.manager;
 
 import com.polytech.goldfish.businesslogic.business.Person;
-import com.polytech.goldfish.businesslogic.factory.Factory;
-import com.polytech.goldfish.persistence.factoryjdbc.FactoryJDBC;
+import com.polytech.goldfish.businesslogic.factory.PersonFactory;
+import com.polytech.goldfish.persistence.factoryjdbc.PersonFactoryJDBC;
+import com.polytech.goldfish.util.GoldfishException;
 
 
 /**
@@ -13,14 +14,19 @@ import com.polytech.goldfish.persistence.factoryjdbc.FactoryJDBC;
  */
 public class PersonManager {
 	
-	private final Factory factory;
+	private final PersonFactory factory;
 	
 	public PersonManager(){
-		this.factory = new FactoryJDBC();
+		this.factory = new PersonFactoryJDBC();
 	}
 	
-	public Person login(String email, String password){
-		return this.factory.getPersonByLogin(email, password);
+	public Person login(String email, String password) throws GoldfishException {
+		if (this.factory.getPersonByLogin(email, password) == null) {
+			throw new GoldfishException("The written email/password is invalid.");
+		}
+		else{
+			return this.factory.getPersonByLogin(email, password);
+		}
 	}
 	
 	public int createPerson(String surname, String name, String phone_number,

@@ -5,12 +5,12 @@ import com.polytech.goldfish.businesslogic.business.Person;
 
 /**
  * Factory class
- * This class provides the methods necessary to create the objects used in the application
+ * This class provides the methods necessary to create the Persons used in the application
  * 
  * @author Gaëtan FRANÇOIS
  *
  */
-public abstract class Factory {
+public abstract class PersonFactory {
 
 	/**
 	 * This method gets a Person thanks to his login
@@ -38,5 +38,5 @@ public abstract class Factory {
 	 * @param password
 	 * @return a Person
 	 */
-	public abstract int createPerson(String surname, String name, String phone_number,String email, String password);
+	public abstract int createPerson(String surname, String name, String phone_number, String email, String password);
 }

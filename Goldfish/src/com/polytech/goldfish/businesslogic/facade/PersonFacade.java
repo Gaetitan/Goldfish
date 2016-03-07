@@ -2,6 +2,7 @@ package com.polytech.goldfish.businesslogic.facade;
 
 import com.polytech.goldfish.businesslogic.business.Person;
 import com.polytech.goldfish.businesslogic.manager.PersonManager;
+import com.polytech.goldfish.util.GoldfishException;
 
 /**
  * Facade for a Person
@@ -17,7 +18,7 @@ public class PersonFacade {
 		this.personManager = new PersonManager();
 	}
 	
-	public Person login(String email, String password){
+	public Person login(String email, String password) throws GoldfishException{
 		return this.personManager.login(email, password);
 	}
 	
