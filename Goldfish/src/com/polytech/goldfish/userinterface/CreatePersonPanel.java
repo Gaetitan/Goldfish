@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 
 import com.polytech.goldfish.businesslogic.facade.PersonFacade;
 
-public class PanelCreatePerson extends JPanel {
+public class CreatePersonPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -34,7 +34,7 @@ public class PanelCreatePerson extends JPanel {
 	/**
 	 * Constructor of class PanelCratePerson
 	 */
-	public PanelCreatePerson() {
+	public CreatePersonPanel() {
 		personFacade = new PersonFacade();
 		
 		JPanel mainPanel = new JPanel();

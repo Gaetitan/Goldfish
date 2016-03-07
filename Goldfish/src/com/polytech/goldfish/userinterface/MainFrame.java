@@ -11,12 +11,12 @@ import javax.swing.JFrame;
 public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private final PanelLogin panelLogin;
-	private final PanelCreatePerson panelCreatePerson;
+	private final LoginPanel panelLogin;
+	private final CreatePersonPanel panelCreatePerson;
 
 	public MainFrame(){
-		panelLogin = new PanelLogin();
-		panelCreatePerson = new PanelCreatePerson();
+		panelLogin = new LoginPanel();
+		panelCreatePerson = new CreatePersonPanel();
 		this.getContentPane().add(panelLogin);
 	}
 	

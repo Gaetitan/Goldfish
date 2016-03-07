@@ -20,7 +20,7 @@ import com.polytech.goldfish.util.GoldfishException;
  * Class for the login user interface
  * @author Gaëtan FRANÇOIS
  */
-public class PanelLogin extends JPanel {
+public class LoginPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -33,7 +33,7 @@ public class PanelLogin extends JPanel {
 	/**
 	 * Constructor of class PanelLogin
 	 */
-	public PanelLogin(){
+	public LoginPanel(){
 		personFacade = new PersonFacade();
 		
 		JPanel mainPanel = new JPanel();
