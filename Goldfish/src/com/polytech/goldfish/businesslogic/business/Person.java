@@ -10,7 +10,6 @@ public class Person {
 
 	// Attributes
 	private Integer id;
-
 	private String surname;
 	private String name;
 	private String phone_number;

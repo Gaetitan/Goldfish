@@ -9,7 +9,7 @@ import java.sql.Statement;
 import com.polytech.goldfish.businesslogic.business.Person;
 import com.polytech.goldfish.util.Connect;
 
-/**.
+/**
  * Persistence class for a Person
  * @author Gaëtan FRANÇOIS
  *
