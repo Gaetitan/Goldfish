@@ -12,11 +12,11 @@ public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private final LoginPanel panelLogin;
-	private final CreatePersonPanel panelCreatePerson;
+	private final CreateActivityPanel panelCreateActivity;
 
 	public MainFrame(){
 		panelLogin = new LoginPanel();
-		panelCreatePerson = new CreatePersonPanel();
+		panelCreateActivity = new CreateActivityPanel();
 		this.getContentPane().add(panelLogin);
 	}
 	
