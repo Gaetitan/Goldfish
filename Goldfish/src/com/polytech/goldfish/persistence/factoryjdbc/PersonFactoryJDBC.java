@@ -1,5 +1,8 @@
 package com.polytech.goldfish.persistence.factoryjdbc;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import com.polytech.goldfish.businesslogic.business.Person;
 import com.polytech.goldfish.businesslogic.factory.PersonFactory;
 import com.polytech.goldfish.persistence.jdbc.PersonJDBC;
@@ -26,6 +29,20 @@ public class PersonFactoryJDBC extends PersonFactory {
 	@Override
 	public Person getPersonById(Integer id) {
 		return PersonJDBC.findPersonById(id);
+	}
+
+	@Override
+	public Collection<Person> getAllPersons() {
+		// Creation of a collection of Person
+		Collection<Person> listPersons = new ArrayList<Person>();
+		
+		// Put the PersonJDBC as Person in a new list
+		for(Person person : PersonJDBC.findAllPersons()) {
+			listPersons.add(person);
+		}
+
+		// Return the new list
+		return listPersons;
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.polytech.goldfish.businesslogic.factory;
 
+import java.util.Collection;
+
 import com.polytech.goldfish.businesslogic.business.Person;
 
 
@@ -39,4 +41,12 @@ public abstract class PersonFactory {
 	 * @return a Person
 	 */
 	public abstract int createPerson(String surname, String name, String phone_number, String email, String password);
+
+	/**
+	 * This methods gets all existing Persons
+	 * 
+	 * @return all existing Persons
+	 */
+	public abstract Collection <Person> getAllPersons();
+
 }

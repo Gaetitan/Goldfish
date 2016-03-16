@@ -1,5 +1,7 @@
 package com.polytech.goldfish.businesslogic.facade;
 
+import java.util.Collection;
+
 import com.polytech.goldfish.businesslogic.business.Person;
 import com.polytech.goldfish.businesslogic.manager.PersonManager;
 import com.polytech.goldfish.util.GoldfishException;
@@ -29,5 +31,9 @@ public class PersonFacade {
 	
 	public Person findPersonById(Integer id){
 		return this.personManager.findPersonById(id);
+	}
+	
+	public Collection<Person> findAllPersons(){
+		return this.personManager.findAllPersons();
 	}
 }

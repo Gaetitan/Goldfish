@@ -1,5 +1,7 @@
 package com.polytech.goldfish.businesslogic.manager;
 
+import java.util.Collection;
+
 import com.polytech.goldfish.businesslogic.business.Person;
 import com.polytech.goldfish.businesslogic.factory.PersonFactory;
 import com.polytech.goldfish.persistence.factoryjdbc.PersonFactoryJDBC;
@@ -36,5 +38,9 @@ public class PersonManager {
 	
 	public Person findPersonById(Integer id){
 		return this.factory.getPersonById(id);
+	}
+	
+	public Collection<Person> findAllPersons(){
+		return this.factory.getAllPersons();
 	}
 }

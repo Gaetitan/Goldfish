@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import com.polytech.goldfish.businesslogic.business.Person;
 import com.polytech.goldfish.util.Connect;
@@ -20,6 +22,7 @@ public class PersonJDBC extends Person {
 	private static final String queryGetPersonByEmail = "SELECT * FROM person WHERE email = ?;";
 	private static final String queryGetPersonById = "SELECT * FROM person WHERE idperson = ?;";
 	private static final String queryInsertOne = "INSERT INTO person (surname, name, phonenumber, email, password) VALUES(?,?,?,?,?);";
+	private static final String queryGetAllPersons = "SELECT * FROM person;";
 	
 	// Constructors
 	public PersonJDBC(Integer id, String surname, String name, String phone_number, String email, String password) {
@@ -147,6 +150,32 @@ public class PersonJDBC extends Person {
 			e.printStackTrace();
 		}
 		return person;
+	}
+	
+	/**
+	 * This methods get all Persons in the database
+	 * 
+	 * @return all Persons in the database
+	 */
+	public static Collection<PersonJDBC> findAllPersons() {
+		Collection<PersonJDBC> listPersons = null;
+		try{
+			listPersons = new ArrayList<PersonJDBC>();
+			
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareCall(queryGetAllPersons);
+			ResultSet rs = instruction.executeQuery();
+			
+			while(rs.next()){
+				listPersons.add(new PersonJDBC(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+			}	
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return listPersons;
 	}
 	
 }
