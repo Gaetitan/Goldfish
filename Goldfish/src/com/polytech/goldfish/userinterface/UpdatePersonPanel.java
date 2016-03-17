@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -93,19 +92,19 @@ public class UpdatePersonPanel extends JPanel {
 		
 		tfSurname = new JTextField();
 		tfSurname.setColumns(20);
-		tfSurname.setText(personFacade.findPersonById(5).getSurname());
+		//tfSurname.setText(personFacade.findPersonById(5).getSurname());
 		panelTextInfo.add(tfSurname);
 		
 		tfName = new JTextField();
-		tfName.setText(personFacade.findPersonById(5).getName());
+		//tfName.setText(personFacade.findPersonById(5).getName());
 		panelTextInfo.add(tfName);
 
 		tfPhoneNumber = new JTextField();
-		tfPhoneNumber.setText(personFacade.findPersonById(5).getPhone_number());
+		//tfPhoneNumber.setText(personFacade.findPersonById(5).getPhone_number());
 		panelTextInfo.add(tfPhoneNumber);
 		
 		tfEmail = new JTextField();
-		tfEmail.setText(personFacade.findPersonById(5).getEmail());
+		//tfEmail.setText(personFacade.findPersonById(5).getEmail());
 		panelTextInfo.add(tfEmail);
 	
 		tfPassword = new JPasswordField();
@@ -132,18 +131,24 @@ public class UpdatePersonPanel extends JPanel {
 		panelButton.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		JButton btnOk = new JButton("OK");
-		btnOk.addActionListener(
+		/*btnOk.addActionListener(
 					new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							int id;
-							id = personFacade.updatePerson(5, tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText());
-							JOptionPane.showMessageDialog(null, personFacade.findPersonById(id).getSurname() + " " + personFacade.findPersonById(id).getName() + " has been created.",
-									"Person created.",JOptionPane.INFORMATION_MESSAGE);
+							Integer id;
+							try {
+								id = personFacade.updatePerson(5, tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText());
+								JOptionPane.showMessageDialog(null, personFacade.findPersonById(id).getSurname() + " " + personFacade.findPersonById(id).getName() + " has been created.",
+										"Person created.",JOptionPane.INFORMATION_MESSAGE);
+							} catch (GoldfishException blankFields) {
+								JOptionPane.showMessageDialog(null, blankFields.toString(),
+										"Blank fields.",JOptionPane.INFORMATION_MESSAGE);
+							}
+							
 						}
 					}
 				);
-
+		 */
 		panelButton.add(btnOk);
 		
 		JButton btnCancel = new JButton("Cancel");

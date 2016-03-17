@@ -13,13 +13,18 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import com.polytech.goldfish.businesslogic.facade.AddressFacade;
+import com.polytech.goldfish.businesslogic.facade.HaveAddressFacade;
 import com.polytech.goldfish.businesslogic.facade.PersonFacade;
+import com.polytech.goldfish.util.GoldfishException;
 
 public class CreatePersonPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
 	private final PersonFacade personFacade;
+	private final AddressFacade addressFacade;
+	private final HaveAddressFacade haveAddressFacade;
 
 	private final JTextField tfName;
 	private final JTextField tfSurname;
@@ -36,6 +41,8 @@ public class CreatePersonPanel extends JPanel {
 	 */
 	public CreatePersonPanel() {
 		personFacade = new PersonFacade();
+		addressFacade = new AddressFacade();
+		haveAddressFacade = new HaveAddressFacade();
 		
 		JPanel mainPanel = new JPanel();
 		this.add(mainPanel);
@@ -132,10 +139,19 @@ public class CreatePersonPanel extends JPanel {
 					new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							int id;
-							id = personFacade.createPerson(tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText());
-							JOptionPane.showMessageDialog(null, personFacade.findPersonById(id).getSurname() + " " + personFacade.findPersonById(id).getName() + " has been created.",
-									"Person created.",JOptionPane.INFORMATION_MESSAGE);
+							Integer idPerson = null;
+							Integer idAddress = null;
+							try {
+								idPerson = personFacade.createPerson(tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText());
+								idAddress = addressFacade.createAddress(tfStreet.getText(), tfStreetNumber.getText(), tfZipCode.getText(), tfCity.getText());
+								haveAddressFacade.insertOne(idPerson, idAddress);
+								JOptionPane.showMessageDialog(null, personFacade.findPersonById(idPerson).getSurname() + " " + personFacade.findPersonById(idPerson).getName() + " has been created.",
+										"Person created.",JOptionPane.INFORMATION_MESSAGE);
+							} catch (GoldfishException blankFields) {
+								JOptionPane.showMessageDialog(null, blankFields.toString(),
+										"Blank fields.",JOptionPane.INFORMATION_MESSAGE);
+							}
+							
 						}
 					}
 				);

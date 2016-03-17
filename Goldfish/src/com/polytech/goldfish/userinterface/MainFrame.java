@@ -21,7 +21,7 @@ public class MainFrame extends JFrame {
 		createPersonPanel = new CreatePersonPanel();
 		listPersonsPanel = new ListPersonsPanel();
 		updatePersonPanel = new UpdatePersonPanel();
-		this.getContentPane().add(listPersonsPanel);
+		this.getContentPane().add(createPersonPanel);
 	}
 	
 }

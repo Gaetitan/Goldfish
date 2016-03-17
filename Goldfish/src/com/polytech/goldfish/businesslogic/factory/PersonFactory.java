@@ -40,7 +40,7 @@ public abstract class PersonFactory {
 	 * @param password
 	 * @return the Person's id
 	 */
-	public abstract int createPerson(String surname, String name, String phone_number, String email, String password);
+	public abstract Integer createPerson(String surname, String name, String phone_number, String email, String password);
 
 	
 	/**
@@ -53,7 +53,7 @@ public abstract class PersonFactory {
 	 * @param password
 	 * @return the Person's id
 	 */
-	public abstract int updatePerson(Integer id, String surname, String name, String phone_number, String email, String password);
+	public abstract Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String password);
 
 	/**
 	 * This methods gets all existing Persons

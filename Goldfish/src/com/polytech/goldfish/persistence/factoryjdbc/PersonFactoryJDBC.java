@@ -21,7 +21,7 @@ public class PersonFactoryJDBC extends PersonFactory {
 	}
 
 	@Override
-	public int createPerson(String surname, String name,
+	public Integer createPerson(String surname, String name,
 			String phone_number, String email, String password) {
 		return PersonJDBC.createPerson(surname, name, phone_number, email, password);
 	}
@@ -46,7 +46,7 @@ public class PersonFactoryJDBC extends PersonFactory {
 	}
 
 	@Override
-	public int updatePerson(Integer id, String surname, String name, String phone_number,
+	public Integer updatePerson(Integer id, String surname, String name, String phone_number,
 			String email, String password) {
 		return PersonJDBC.updatePerson(id, surname, name, phone_number, email, password);
 	}

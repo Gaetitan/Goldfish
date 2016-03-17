@@ -24,13 +24,13 @@ public class PersonFacade {
 		return this.personManager.login(email, password);
 	}
 	
-	public int createPerson(String surname, String name, String phone_number,
-			String email, String password){
+	public Integer createPerson(String surname, String name, String phone_number,
+			String email, String password) throws GoldfishException {
 		return this.personManager.createPerson(surname, name, phone_number, email, password);
 	}
 	
-	public int updatePerson(Integer id, String surname, String name, String phone_number,
-			String email, String password){
+	public Integer updatePerson(Integer id, String surname, String name, String phone_number,
+			String email, String password) throws GoldfishException {
 		return this.personManager.updatePerson(id, surname, name, phone_number, email, password);
 	}
 	

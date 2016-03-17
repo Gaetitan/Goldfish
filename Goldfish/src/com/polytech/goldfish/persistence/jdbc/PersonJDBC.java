@@ -68,10 +68,10 @@ public class PersonJDBC extends Person {
 	 * @param email
 	 * @param password
 	 * @return 
-	 * @return the new Person
+	 * @return the id the new Person
 	 */
-	public static int createPerson(String surname, String name, String phone_number, String email, String password) {
-		int idToReturn = -1;
+	public static Integer createPerson(String surname, String name, String phone_number, String email, String password) {
+		Integer idToReturn = null;
 		try{
 			Connection connect = Connect.getInstance().getConnection();
 			
@@ -114,7 +114,7 @@ public class PersonJDBC extends Person {
 	 * @param password
 	 * @return the updated Person's id
 	 */
-	public static int updatePerson(Integer id, String surname, String name, String phone_number, String email, String password) {
+	public static Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String password) {
 		int idToReturn = -1;
 		try{
 			Connection connect = Connect.getInstance().getConnection();
