@@ -16,8 +16,9 @@ public class ProductJDBC extends Product {
 	// Queries
 	private static final String queryGetProductById = "SELECT * FROM product WHERE idproduct = ?;";
 	private static final String queryInsertOne = "INSERT INTO product (name, descripiton) VALUES(?,?);";
-	private static final String queryUpdateOne = "UPDATE product SET name = ?, description = ? WHERE idperson = ?;";
+	private static final String queryUpdateOne = "UPDATE product SET name = ?, description = ? WHERE idproduct = ?;";
 	private static final String queryGetAllProducts = "SELECT * FROM product;";
+	private static final String queryDeleteOne ="DELETE FROM product WHERE idproduct = ?;";
 	
 	
 	// Constructors
@@ -120,6 +121,35 @@ public class ProductJDBC extends Product {
 				}
 				else{
 					throw new SQLException("Updating product failed, no ID obtained.");
+				}
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		return idToReturn;
+	}
+	
+	public static int deleteProduct(Integer id){
+		int idToReturn = -1;
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareStatement(queryDeleteOne, Statement.RETURN_GENERATED_KEYS);
+			instruction.setInt(1, id);
+			int affectedRows = instruction.executeUpdate();
+			connect.commit();
+			
+			if(affectedRows == 0){
+				throw new SQLException("Deleting product failed, no rows affected.");
+			}
+			
+			try(ResultSet generatedKeys = instruction.getGeneratedKeys()){
+				if(generatedKeys.next()){
+					idToReturn = generatedKeys.getInt(1);
+				}
+				else{
+					throw new SQLException("Deleting product failed, no ID obtained.");
 				}
 			}
 		}

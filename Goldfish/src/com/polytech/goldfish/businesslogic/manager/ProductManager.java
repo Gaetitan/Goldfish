@@ -30,4 +30,9 @@ public class ProductManager {
 		
 		return this.factory.updateProduct(id, name, description);
 	}
+	
+	public int deleteProduct(Integer id){
+		
+		return this.factory.updateProduct(id)
+	}
 }

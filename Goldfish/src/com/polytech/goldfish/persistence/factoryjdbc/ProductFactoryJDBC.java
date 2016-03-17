@@ -37,4 +37,9 @@ public class ProductFactoryJDBC extends ProductFactory{
 	public int updateProduct(Integer id,String name, String description){
 		return ProductJDBC.updateProduct(id, name, description);
 	}
+	
+	@Override
+	public int deleteProduct(Integer id){
+		return ProductJDBC.deleteProduct(id);
+	}
 }

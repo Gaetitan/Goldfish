@@ -28,5 +28,9 @@ public class ProductFacade {
 	public int updateProduct(Integer id, String name, String description){
 		return this.productManager.updateProduct(id,name,description);
 	}
+	
+	public int deleteProduct(Integer id){
+		return this.productManager.updateProduct(id)
+	}
 
 }
