@@ -11,13 +11,17 @@ import javax.swing.JFrame;
 public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private final LoginPanel panelLogin;
-	private final CreatePersonPanel panelCreatePerson;
-
+	private final LoginPanel loginPanel;
+	private final CreatePersonPanel createPersonPanel;
+	private final ListPersonsPanel listPersonsPanel;
+	private final UpdatePersonPanel updatePersonPanel;
+	
 	public MainFrame(){
-		panelLogin = new LoginPanel();
-		panelCreatePerson = new CreatePersonPanel();
-		this.getContentPane().add(panelLogin);
+		loginPanel = new LoginPanel();
+		createPersonPanel = new CreatePersonPanel();
+		listPersonsPanel = new ListPersonsPanel();
+		updatePersonPanel = new UpdatePersonPanel();
+		this.getContentPane().add(createPersonPanel);
 	}
 	
 }
