@@ -1,8 +1,9 @@
 package com.polytech.goldfish.businesslogic.facade;
 
+import java.util.Collection;
+
 import com.polytech.goldfish.businesslogic.business.Product;
 import com.polytech.goldfish.businesslogic.manager.ProductManager;
-import com.polytech.goldfish.util.GoldfishException;
 
 public class ProductFacade {
 
@@ -18,6 +19,14 @@ public class ProductFacade {
 
 	public Product findProductById(Integer id){
 		return this.productManager.findProductById(id);
+	}
+	
+	public Collection<Product> findAllProducts(){
+		return this.productManager.findAllProducts();
+	}
+	
+	public int updateProduct(Integer id, String name, String description){
+		return this.productManager.updateProduct(id,name,description);
 	}
 
 }
