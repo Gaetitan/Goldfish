@@ -45,4 +45,10 @@ public class PersonFactoryJDBC extends PersonFactory {
 		return listPersons;
 	}
 
+	@Override
+	public int updatePerson(Integer id, String surname, String name, String phone_number,
+			String email, String password) {
+		return PersonJDBC.updatePerson(id, surname, name, phone_number, email, password);
+	}
+
 }

@@ -23,6 +23,7 @@ public class PersonJDBC extends Person {
 	private static final String queryGetPersonById = "SELECT * FROM person WHERE idperson = ?;";
 	private static final String queryInsertOne = "INSERT INTO person (surname, name, phonenumber, email, password) VALUES(?,?,?,?,?);";
 	private static final String queryGetAllPersons = "SELECT * FROM person;";
+	private static final String queryUpdateOne = "UPDATE person SET surname = ?, name = ?, phonenumber = ?, email = ?, password = ? WHERE idperson = ?;";
 	
 	// Constructors
 	public PersonJDBC(Integer id, String surname, String name, String phone_number, String email, String password) {
@@ -102,6 +103,49 @@ public class PersonJDBC extends Person {
 		return idToReturn;
 		
 		
+	}
+	
+	/**
+	 * This method updates a Person in the database
+	 * @param surname
+	 * @param name
+	 * @param phone_number
+	 * @param email
+	 * @param password
+	 * @return the updated Person's id
+	 */
+	public static int updatePerson(Integer id, String surname, String name, String phone_number, String email, String password) {
+		int idToReturn = -1;
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareStatement(queryUpdateOne, Statement.RETURN_GENERATED_KEYS);
+			instruction.setString(1, surname);
+			instruction.setString(2, name);
+			instruction.setString(3, phone_number);
+			instruction.setString(4, email);
+			instruction.setString(5, password);
+			instruction.setInt(6, id);
+			int affectedRows = instruction.executeUpdate();
+			connect.commit();
+			
+			if(affectedRows == 0){
+				throw new SQLException("Creating person failed, no rows affected.");
+			}
+			
+			try(ResultSet generatedKeys = instruction.getGeneratedKeys()){
+				if(generatedKeys.next()){
+					idToReturn = generatedKeys.getInt(1);
+				}
+				else{
+					throw new SQLException("Creating person failed, no ID obtained.");
+				}
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		return idToReturn;
 	}
 	
 	/**

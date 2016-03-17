@@ -14,11 +14,13 @@ public class MainFrame extends JFrame {
 	private final LoginPanel loginPanel;
 	private final CreatePersonPanel createPersonPanel;
 	private final ListPersonsPanel listPersonsPanel;
+	private final UpdatePersonPanel updatePersonPanel;
 	
 	public MainFrame(){
 		loginPanel = new LoginPanel();
 		createPersonPanel = new CreatePersonPanel();
 		listPersonsPanel = new ListPersonsPanel();
+		updatePersonPanel = new UpdatePersonPanel();
 		this.getContentPane().add(listPersonsPanel);
 	}
 	

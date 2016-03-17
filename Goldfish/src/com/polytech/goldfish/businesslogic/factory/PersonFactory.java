@@ -38,9 +38,22 @@ public abstract class PersonFactory {
 	 * @param phone_number
 	 * @param email
 	 * @param password
-	 * @return a Person
+	 * @return the Person's id
 	 */
 	public abstract int createPerson(String surname, String name, String phone_number, String email, String password);
+
+	
+	/**
+	 * This method updates a Person
+	 * 
+	 * @param surname
+	 * @param name
+	 * @param phone_number
+	 * @param email
+	 * @param password
+	 * @return the Person's id
+	 */
+	public abstract int updatePerson(Integer id, String surname, String name, String phone_number, String email, String password);
 
 	/**
 	 * This methods gets all existing Persons

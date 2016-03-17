@@ -29,6 +29,11 @@ public class PersonFacade {
 		return this.personManager.createPerson(surname, name, phone_number, email, password);
 	}
 	
+	public int updatePerson(Integer id, String surname, String name, String phone_number,
+			String email, String password){
+		return this.personManager.updatePerson(id, surname, name, phone_number, email, password);
+	}
+	
 	public Person findPersonById(Integer id){
 		return this.personManager.findPersonById(id);
 	}

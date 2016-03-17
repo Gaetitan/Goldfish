@@ -36,6 +36,11 @@ public class PersonManager {
 		return this.factory.createPerson(surname, name, phone_number, email, password);
 	}
 	
+	public int updatePerson(Integer id, String surname, String name, String phone_number,
+			String email, String password){
+		return this.factory.updatePerson(id, surname, name, phone_number, email, password);
+	}
+	
 	public Person findPersonById(Integer id){
 		return this.factory.getPersonById(id);
 	}
