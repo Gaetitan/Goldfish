@@ -8,7 +8,7 @@ import javax.swing.JFrame;
  * @author Gaëtan FRANÇOIS
  * 
  */
-public class MainFrame extends JFrame {
+public class MainFrameOLD extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private final LoginPanel loginPanel;
@@ -16,7 +16,7 @@ public class MainFrame extends JFrame {
 	private final ListPersonsPanel listPersonsPanel;
 	private final UpdatePersonPanel updatePersonPanel;
 
-	public MainFrame() {
+	public MainFrameOLD() {
 		loginPanel = new LoginPanel();
 		createPersonPanel = new CreatePersonPanel();
 		listPersonsPanel = new ListPersonsPanel();
