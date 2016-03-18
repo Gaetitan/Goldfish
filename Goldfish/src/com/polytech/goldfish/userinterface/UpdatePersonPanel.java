@@ -8,23 +8,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import com.polytech.goldfish.businesslogic.facade.AddressFacade;
-import com.polytech.goldfish.businesslogic.facade.HaveAddressFacade;
 import com.polytech.goldfish.businesslogic.facade.PersonFacade;
-import com.polytech.goldfish.util.GoldfishException;
 
-public class CreatePersonPanel extends JPanel {
+public class UpdatePersonPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
 	private final PersonFacade personFacade;
-	private final AddressFacade addressFacade;
-	private final HaveAddressFacade haveAddressFacade;
 
 	private final JTextField tfName;
 	private final JTextField tfSurname;
@@ -39,10 +33,8 @@ public class CreatePersonPanel extends JPanel {
 	/**
 	 * Constructor of class PanelCratePerson
 	 */
-	public CreatePersonPanel() {
+	public UpdatePersonPanel() {
 		personFacade = new PersonFacade();
-		addressFacade = new AddressFacade();
-		haveAddressFacade = new HaveAddressFacade();
 		
 		JPanel mainPanel = new JPanel();
 		this.add(mainPanel);
@@ -100,15 +92,19 @@ public class CreatePersonPanel extends JPanel {
 		
 		tfSurname = new JTextField();
 		tfSurname.setColumns(20);
+		//tfSurname.setText(personFacade.findPersonById(5).getSurname());
 		panelTextInfo.add(tfSurname);
 		
 		tfName = new JTextField();
+		//tfName.setText(personFacade.findPersonById(5).getName());
 		panelTextInfo.add(tfName);
 
 		tfPhoneNumber = new JTextField();
+		//tfPhoneNumber.setText(personFacade.findPersonById(5).getPhone_number());
 		panelTextInfo.add(tfPhoneNumber);
 		
 		tfEmail = new JTextField();
+		//tfEmail.setText(personFacade.findPersonById(5).getEmail());
 		panelTextInfo.add(tfEmail);
 	
 		tfPassword = new JPasswordField();
@@ -135,17 +131,14 @@ public class CreatePersonPanel extends JPanel {
 		panelButton.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		JButton btnOk = new JButton("OK");
-		btnOk.addActionListener(
+		/*btnOk.addActionListener(
 					new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							Integer idPerson = null;
-							Integer idAddress = null;
+							Integer id;
 							try {
-								idPerson = personFacade.createPerson(tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText());
-								idAddress = addressFacade.createAddress(tfStreet.getText(), tfStreetNumber.getText(), tfZipCode.getText(), tfCity.getText());
-								haveAddressFacade.insertOne(idPerson, idAddress);
-								JOptionPane.showMessageDialog(null, personFacade.findPersonById(idPerson).getSurname() + " " + personFacade.findPersonById(idPerson).getName() + " has been created.",
+								id = personFacade.updatePerson(5, tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText());
+								JOptionPane.showMessageDialog(null, personFacade.findPersonById(id).getSurname() + " " + personFacade.findPersonById(id).getName() + " has been created.",
 										"Person created.",JOptionPane.INFORMATION_MESSAGE);
 							} catch (GoldfishException blankFields) {
 								JOptionPane.showMessageDialog(null, blankFields.toString(),
@@ -155,7 +148,7 @@ public class CreatePersonPanel extends JPanel {
 						}
 					}
 				);
-
+		 */
 		panelButton.add(btnOk);
 		
 		JButton btnCancel = new JButton("Cancel");

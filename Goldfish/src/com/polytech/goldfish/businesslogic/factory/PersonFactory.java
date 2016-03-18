@@ -1,5 +1,7 @@
 package com.polytech.goldfish.businesslogic.factory;
 
+import java.util.Collection;
+
 import com.polytech.goldfish.businesslogic.business.Person;
 
 
@@ -36,7 +38,28 @@ public abstract class PersonFactory {
 	 * @param phone_number
 	 * @param email
 	 * @param password
-	 * @return a Person
+	 * @return the Person's id
 	 */
-	public abstract int createPerson(String surname, String name, String phone_number, String email, String password);
+	public abstract Integer createPerson(String surname, String name, String phone_number, String email, String password);
+
+	
+	/**
+	 * This method updates a Person
+	 * 
+	 * @param surname
+	 * @param name
+	 * @param phone_number
+	 * @param email
+	 * @param password
+	 * @return the Person's id
+	 */
+	public abstract Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String password);
+
+	/**
+	 * This methods gets all existing Persons
+	 * 
+	 * @return all existing Persons
+	 */
+	public abstract Collection <Person> getAllPersons();
+
 }

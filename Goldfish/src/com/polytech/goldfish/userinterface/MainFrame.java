@@ -11,13 +11,57 @@ import javax.swing.JFrame;
 public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private final LoginPanel panelLogin;
-	private final CreateActivityPanel panelCreateActivity;
-
+	private final LoginPanel loginPanel;
+	private final CreatePersonPanel createPersonPanel;
+	private final ListPersonsPanel listPersonsPanel;
+	private final UpdatePersonPanel updatePersonPanel;
+	
+	public MainFrame(){
+		loginPanel = new LoginPanel();
+		createPersonPanel = new CreatePersonPanel();
+		listPersonsPanel = new ListPersonsPanel();
+		updatePersonPanel = new UpdatePersonPanel();
+		this.getContentPane().add(createPersonPanel);
+	}
+	
+}	
+	private final LoginPanel loginPanel;
+	private final CreatePersonPanel createPersonPanel;
+	private final ListPersonsPanel listPersonsPanel;
+	private final UpdatePersonPanel updatePersonPanel;
+	public MainFrame(){
+		loginPanel = new LoginPanel();
+		createPersonPanel = new CreatePersonPanel();
+		listPersonsPanel = new ListPersonsPanel();
+		updatePersonPanel = new UpdatePersonPanel();
+		this.getContentPane().add(createPersonPanel);
+	}
+	
+}
+	
+	private final LoginPanel loginPanel;
+	private final CreatePersonPanel createPersonPanel;
+	private final ListPersonsPanel listPersonsPanel;
+	private final UpdatePersonPanel updatePersonPanel;
+	public MainFrame(){
+		loginPanel = new LoginPanel();
+		createPersonPanel = new CreatePersonPanel();
+		listPersonsPanel = new ListPersonsPanel();
+		updatePersonPanel = new UpdatePersonPanel();
+		this.getContentPane().add(createPersonPanel);
+	}
+	
+}
+	
 	public MainFrame(){
 		panelLogin = new LoginPanel();
 		panelCreateActivity = new CreateActivityPanel();
 		this.getContentPane().add(panelLogin);
+		loginPanel = new LoginPanel();
+		createPersonPanel = new CreatePersonPanel();
+		listPersonsPanel = new ListPersonsPanel();
+		updatePersonPanel = new UpdatePersonPanel();
+		this.getContentPane().add(createPersonPanel);
 	}
 	
 }

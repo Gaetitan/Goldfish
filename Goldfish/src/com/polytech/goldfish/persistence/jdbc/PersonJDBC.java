@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import com.polytech.goldfish.businesslogic.business.Person;
 import com.polytech.goldfish.util.Connect;
@@ -20,6 +22,8 @@ public class PersonJDBC extends Person {
 	private static final String queryGetPersonByEmail = "SELECT * FROM person WHERE email = ?;";
 	private static final String queryGetPersonById = "SELECT * FROM person WHERE idperson = ?;";
 	private static final String queryInsertOne = "INSERT INTO person (surname, name, phonenumber, email, password) VALUES(?,?,?,?,?);";
+	private static final String queryGetAllPersons = "SELECT * FROM person;";
+	private static final String queryUpdateOne = "UPDATE person SET surname = ?, name = ?, phonenumber = ?, email = ?, password = ? WHERE idperson = ?;";
 	
 	// Constructors
 	public PersonJDBC(Integer id, String surname, String name, String phone_number, String email, String password) {
@@ -64,10 +68,10 @@ public class PersonJDBC extends Person {
 	 * @param email
 	 * @param password
 	 * @return 
-	 * @return the new Person
+	 * @return the id the new Person
 	 */
-	public static int createPerson(String surname, String name, String phone_number, String email, String password) {
-		int idToReturn = -1;
+	public static Integer createPerson(String surname, String name, String phone_number, String email, String password) {
+		Integer idToReturn = null;
 		try{
 			Connection connect = Connect.getInstance().getConnection();
 			
@@ -99,6 +103,49 @@ public class PersonJDBC extends Person {
 		return idToReturn;
 		
 		
+	}
+	
+	/**
+	 * This method updates a Person in the database
+	 * @param surname
+	 * @param name
+	 * @param phone_number
+	 * @param email
+	 * @param password
+	 * @return the updated Person's id
+	 */
+	public static Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String password) {
+		int idToReturn = -1;
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareStatement(queryUpdateOne, Statement.RETURN_GENERATED_KEYS);
+			instruction.setString(1, surname);
+			instruction.setString(2, name);
+			instruction.setString(3, phone_number);
+			instruction.setString(4, email);
+			instruction.setString(5, password);
+			instruction.setInt(6, id);
+			int affectedRows = instruction.executeUpdate();
+			connect.commit();
+			
+			if(affectedRows == 0){
+				throw new SQLException("Creating person failed, no rows affected.");
+			}
+			
+			try(ResultSet generatedKeys = instruction.getGeneratedKeys()){
+				if(generatedKeys.next()){
+					idToReturn = generatedKeys.getInt(1);
+				}
+				else{
+					throw new SQLException("Creating person failed, no ID obtained.");
+				}
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		return idToReturn;
 	}
 	
 	/**
@@ -147,6 +194,32 @@ public class PersonJDBC extends Person {
 			e.printStackTrace();
 		}
 		return person;
+	}
+	
+	/**
+	 * This methods get all Persons in the database
+	 * 
+	 * @return all Persons in the database
+	 */
+	public static Collection<PersonJDBC> findAllPersons() {
+		Collection<PersonJDBC> listPersons = null;
+		try{
+			listPersons = new ArrayList<PersonJDBC>();
+			
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareCall(queryGetAllPersons);
+			ResultSet rs = instruction.executeQuery();
+			
+			while(rs.next()){
+				listPersons.add(new PersonJDBC(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+			}	
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return listPersons;
 	}
 	
 }
