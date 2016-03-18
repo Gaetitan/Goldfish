@@ -1,23 +1,17 @@
 package com.polytech.goldfish.main;
 
-import javax.swing.JFrame;
-
-import com.polytech.goldfish.userinterface.LoginFrame;
+import com.polytech.goldfish.userinterface.LoginPopup;
 
 /**
  * Main class of our application
  *
- * @author Gaëtan FRANÇOIS
+ * @author Gaï¿½tan FRANï¿½OIS
  *
  */
 public class Main {
 
 	public static void main(String[] args) {
-		LoginFrame myFrame = new LoginFrame();
-		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		myFrame.setTitle("Goldfish");
-		myFrame.setSize(600, 500);
-		myFrame.setVisible(true);
+		LoginPopup login = new LoginPopup();
 	}
 
 }
