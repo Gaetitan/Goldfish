@@ -24,6 +24,8 @@ public class LoginPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 
+	private MainFrame mainFrame;
+	
 	private final PersonFacade personFacade;
 
 	private final JTextField tfEmail;
@@ -94,6 +96,7 @@ public class LoginPanel extends JPanel {
 								personFacade.login(tfEmail.getText(), tfPassword.getText());
 								JOptionPane.showMessageDialog(null, "Welcome " + personFacade.login(tfEmail.getText(), tfPassword.getText()).getSurname() + " " + personFacade.login(tfEmail.getText(), tfPassword.getText()).getName() + "!",
 										"Welcome aboard!",JOptionPane.INFORMATION_MESSAGE);
+								mainFrame = new MainFrame();
 							}
 							catch (GoldfishException e1){
 								JOptionPane.showMessageDialog(null, e1.toString(), "Invalid email/password",JOptionPane.WARNING_MESSAGE);

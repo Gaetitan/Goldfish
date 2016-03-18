@@ -2,7 +2,7 @@ package com.polytech.goldfish.main;
 
 import javax.swing.JFrame;
 
-import com.polytech.goldfish.userinterface.MainFrameOLD;
+import com.polytech.goldfish.userinterface.LoginFrame;
 
 /**
  * Main class of our application
@@ -13,7 +13,7 @@ import com.polytech.goldfish.userinterface.MainFrameOLD;
 public class Main {
 
 	public static void main(String[] args) {
-		MainFrameOLD myFrame = new MainFrameOLD();
+		LoginFrame myFrame = new LoginFrame();
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		myFrame.setTitle("Goldfish");
 		myFrame.setSize(600, 500);
