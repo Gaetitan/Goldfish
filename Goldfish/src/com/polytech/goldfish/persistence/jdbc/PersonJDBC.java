@@ -115,7 +115,7 @@ public class PersonJDBC extends Person {
 	 * @return the updated Person's id
 	 */
 	public static Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String password) {
-		int idToReturn = -1;
+		Integer idToReturn = null;
 		try{
 			Connection connect = Connect.getInstance().getConnection();
 			
