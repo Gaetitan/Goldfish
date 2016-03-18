@@ -35,10 +35,10 @@ public class ActivityTableModel  extends AbstractTableModel {
 
 		@Override
 		public Object getValueAt(int rowIndex, int columnIndex) {
-			Activity user = (Activity) data.toArray()[rowIndex];
+			Activity activity = (Activity) data.toArray()[rowIndex];
 			switch(columnIndex){
-				case 0 : return user.getName();
-				case 1 : return user.getDescription();
+				case 0 : return activity.getName();
+				case 1 : return activity.getDescription();
 				default : throw new IllegalArgumentException("Unknown column " + columnIndex);
 			}
 		}

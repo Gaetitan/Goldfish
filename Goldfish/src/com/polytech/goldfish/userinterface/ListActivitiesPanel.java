@@ -8,7 +8,7 @@ import com.polytech.goldfish.businesslogic.facade.ActivityFacade;
 
 public class ListActivitiesPanel extends JPanel{
 	
-private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	private final ActivityFacade activityFacade;
 	

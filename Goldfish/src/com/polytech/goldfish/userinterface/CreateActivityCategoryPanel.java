@@ -12,21 +12,22 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.polytech.goldfish.businesslogic.facade.ActivityFacade;
+import com.polytech.goldfish.businesslogic.facade.ActivityCategoryFacade;
 import com.polytech.goldfish.util.GoldfishException;
 
-public class CreateActivityPanel extends JPanel {
+public class CreateActivityCategoryPanel  extends JPanel {
 
-	private final ActivityFacade activityFacade;
+private final ActivityCategoryFacade activityCategoryFacade;
 	
 	private final JTextField tfName;
-	private final JTextField tfDescription;
+	private final JTextField tfShortDescription;
+	private final JTextField tfDetailledDescription;
 	
 	/**
-	 * Constructor of class PanelCreateActivity
+	 * Constructor of class PanelCreateActivityCategory
 	 */
-	public CreateActivityPanel() {
-		activityFacade = new ActivityFacade();
+	public CreateActivityCategoryPanel() {
+		activityCategoryFacade = new ActivityCategoryFacade();
 		
 		JPanel mainPanel = new JPanel();
 		this.add(mainPanel);
@@ -36,7 +37,7 @@ public class CreateActivityPanel extends JPanel {
 		mainPanel.add(panelNorth, BorderLayout.NORTH);
 		panelNorth.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel lblWelcome = new JLabel("Add a new activity");
+		JLabel lblWelcome = new JLabel("Add a new activity category");
 		panelNorth.add(lblWelcome);
 		
 		JPanel panelCenter = new JPanel();
@@ -54,8 +55,11 @@ public class CreateActivityPanel extends JPanel {
 		JLabel lblName = new JLabel("Name:");
 		panelLabelInfo.add(lblName);
 		
-		JLabel lblDescription = new JLabel("Description:");
-		panelLabelInfo.add(lblDescription);
+		JLabel lblShortDescription = new JLabel("Short Description:");
+		panelLabelInfo.add(lblShortDescription);
+		
+		JLabel lblDetailledDescription = new JLabel("Detailled Description:");
+		panelLabelInfo.add(lblDetailledDescription);
 		
 		JPanel panelTextInfo = new JPanel();
 		panelInfo.add(panelTextInfo, BorderLayout.CENTER);
@@ -65,8 +69,11 @@ public class CreateActivityPanel extends JPanel {
 		tfName.setColumns(20);
 		panelTextInfo.add(tfName);
 		
-		tfDescription = new JTextField();
-		panelTextInfo.add(tfDescription);
+		tfShortDescription = new JTextField();
+		panelTextInfo.add(tfShortDescription);
+		
+		tfDetailledDescription = new JTextField();
+		panelTextInfo.add(tfDetailledDescription);
 		
 		JPanel panelSouth = new JPanel();
 		mainPanel.add(panelSouth, BorderLayout.SOUTH);
@@ -81,11 +88,11 @@ public class CreateActivityPanel extends JPanel {
 					new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							Integer idActivity = null;
+							Integer idActivityCategory = null;
 							try {
-								idActivity = activityFacade.createActivity(tfName.getText(), tfDescription.getText());
-								JOptionPane.showMessageDialog(null,"The activity " + activityFacade.findActivityById(idActivity).getName() + " has been created.",
-										"Activity created.",JOptionPane.INFORMATION_MESSAGE);
+								idActivityCategory = activityCategoryFacade.createActivityCategory(tfName.getText(), tfShortDescription.getText(), tfDetailledDescription.getText());
+								JOptionPane.showMessageDialog(null,"The activity category" + activityCategoryFacade.findActivityCategoryById(idActivityCategory).getName() + " has been created.",
+										"Activity category created.",JOptionPane.INFORMATION_MESSAGE);
 							} catch (GoldfishException blankFields) {
 								JOptionPane.showMessageDialog(null, blankFields.toString(),
 										"Blank fields.",JOptionPane.INFORMATION_MESSAGE);
@@ -112,8 +119,8 @@ public class CreateActivityPanel extends JPanel {
 	
 	public void reinitPanel(){
 		tfName.setText("");
-		tfDescription.setText("");
+		tfShortDescription.setText("");
+		tfDetailledDescription.setText("");
 		//this.setVisible(false);
 	}
 }
-
