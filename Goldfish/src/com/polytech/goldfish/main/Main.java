@@ -1,6 +1,6 @@
 package com.polytech.goldfish.main;
 
-import com.polytech.goldfish.userinterface.LoginPopup;
+import com.polytech.goldfish.userinterface.LoginFrame;
 
 /**
  * Main class of our application
@@ -11,7 +11,7 @@ import com.polytech.goldfish.userinterface.LoginPopup;
 public class Main {
 
 	public static void main(String[] args) {
-		LoginPopup login = new LoginPopup();
+		LoginFrame login = new LoginFrame();
 	}
 
 }

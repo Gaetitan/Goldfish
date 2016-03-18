@@ -209,7 +209,6 @@ public class MainFrame extends JFrame implements AbstractView {
 				JOptionPane.showMessageDialog(null,
 						"You have been successfully logged out.");
 				dispose();
-				new LoginPanel();
 			}
 		});
 
