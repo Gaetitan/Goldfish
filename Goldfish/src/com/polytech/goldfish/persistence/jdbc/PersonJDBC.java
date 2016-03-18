@@ -115,7 +115,7 @@ public class PersonJDBC extends Person {
 	 * @return the updated Person's id
 	 */
 	public static Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String password) {
-		int idToReturn = -1;
+		Integer idToReturn = null;
 		try{
 			Connection connect = Connect.getInstance().getConnection();
 			
@@ -130,7 +130,7 @@ public class PersonJDBC extends Person {
 			connect.commit();
 			
 			if(affectedRows == 0){
-				throw new SQLException("Creating person failed, no rows affected.");
+				throw new SQLException("Updating a person failed, no rows affected.");
 			}
 			
 			try(ResultSet generatedKeys = instruction.getGeneratedKeys()){
@@ -138,7 +138,7 @@ public class PersonJDBC extends Person {
 					idToReturn = generatedKeys.getInt(1);
 				}
 				else{
-					throw new SQLException("Creating person failed, no ID obtained.");
+					throw new SQLException("Updating person failed, no ID obtained.");
 				}
 			}
 		}

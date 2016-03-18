@@ -1,5 +1,7 @@
 package com.polytech.goldfish.businesslogic.factory;
 
+import java.util.Collection;
+
 import com.polytech.goldfish.businesslogic.business.Activity;
 
 /**
@@ -24,5 +26,22 @@ public abstract class ActivityFactory {
 	 * @param name
 	 * @param description
 	 */
-	public abstract int createActivity(String name, String description);
+	public abstract Integer createActivity(String name, String description);
+	
+	/**
+	 * This method updates an Activity
+	 * 
+	 * @param name
+	 * @param description
+	 * @return the Person's id
+	 */
+	public abstract Integer updateActivity(Integer id, String name, String description);
+	
+	/**
+	 * This methods gets all existing Activities
+	 * 
+	 * @return all existing Activities
+	 */
+	public abstract Collection <Activity> getAllActivities();
+
 }
