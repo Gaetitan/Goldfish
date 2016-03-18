@@ -10,6 +10,7 @@ import java.util.Collection;
 
 import com.polytech.goldfish.businesslogic.business.Person;
 import com.polytech.goldfish.util.Connect;
+import com.polytech.goldfish.util.Passwords;
 
 /**
  * Persistence class for a Person
@@ -21,7 +22,7 @@ public class PersonJDBC extends Person {
 	// Queries
 	private static final String queryGetPersonByEmail = "SELECT * FROM person WHERE email = ?;";
 	private static final String queryGetPersonById = "SELECT * FROM person WHERE idperson = ?;";
-	private static final String queryInsertOne = "INSERT INTO person (surname, name, phonenumber, email, password) VALUES(?,?,?,?,?);";
+	private static final String queryInsertOne = "INSERT INTO person (surname, name, phonenumber, email, password, salt) VALUES(?,?,?,?,?,?);";
 	private static final String queryGetAllPersons = "SELECT * FROM person;";
 	private static final String queryUpdateOne = "UPDATE person SET surname = ?, name = ?, phonenumber = ?, email = ?, password = ? WHERE idperson = ?;";
 	
@@ -48,7 +49,7 @@ public class PersonJDBC extends Person {
 			ResultSet rs = instruction.executeQuery();
 			
 			while(rs.next()){
-				if(rs.getString(6).equals(password)){
+				if(Passwords.isExpectedPassword(password.toCharArray(), rs.getBytes(7), rs.getBytes(6))){
 					person = new PersonJDBC(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
 				}
 			}	
@@ -72,6 +73,8 @@ public class PersonJDBC extends Person {
 	 */
 	public static Integer createPerson(String surname, String name, String phone_number, String email, String password) {
 		Integer idToReturn = null;
+		byte[] salt = Passwords.getNextSalt();
+		
 		try{
 			Connection connect = Connect.getInstance().getConnection();
 			
@@ -80,7 +83,9 @@ public class PersonJDBC extends Person {
 			instruction.setString(2, name);
 			instruction.setString(3, phone_number);
 			instruction.setString(4, email);
-			instruction.setString(5, password);
+			instruction.setBytes(5, Passwords.hash(password.toCharArray(), salt));
+			instruction.setBytes(6, salt);
+			
 			int affectedRows = instruction.executeUpdate();
 			connect.commit();
 			

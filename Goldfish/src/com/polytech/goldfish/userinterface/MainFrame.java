@@ -6,7 +6,7 @@ import javax.swing.JFrame;
  * Main frame of our application
  * 
  * @author Gaëtan FRANÇOIS
- *
+ * 
  */
 public class MainFrame extends JFrame {
 
@@ -15,13 +15,13 @@ public class MainFrame extends JFrame {
 	private final CreatePersonPanel createPersonPanel;
 	private final ListPersonsPanel listPersonsPanel;
 	private final UpdatePersonPanel updatePersonPanel;
-	
-	public MainFrame(){
+
+	public MainFrame() {
 		loginPanel = new LoginPanel();
 		createPersonPanel = new CreatePersonPanel();
 		listPersonsPanel = new ListPersonsPanel();
 		updatePersonPanel = new UpdatePersonPanel();
-		this.getContentPane().add(createPersonPanel);
+		this.getContentPane().add(loginPanel);
 	}
-	
+
 }
