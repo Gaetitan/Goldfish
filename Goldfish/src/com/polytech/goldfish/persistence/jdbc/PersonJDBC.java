@@ -10,6 +10,8 @@ import java.util.Collection;
 
 import com.polytech.goldfish.businesslogic.business.Person;
 import com.polytech.goldfish.util.Connect;
+import com.polytech.goldfish.util.GoldfishException;
+import com.polytech.goldfish.util.Passwords;
 
 /**
  * Persistence class for a Person
@@ -21,9 +23,11 @@ public class PersonJDBC extends Person {
 	// Queries
 	private static final String queryGetPersonByEmail = "SELECT * FROM person WHERE email = ?;";
 	private static final String queryGetPersonById = "SELECT * FROM person WHERE idperson = ?;";
-	private static final String queryInsertOne = "INSERT INTO person (surname, name, phonenumber, email, password) VALUES(?,?,?,?,?);";
+	private static final String queryInsertOne = "INSERT INTO person (surname, name, phonenumber, email, password, salt) VALUES(?,?,?,?,?,?);";
 	private static final String queryGetAllPersons = "SELECT * FROM person;";
 	private static final String queryUpdateOne = "UPDATE person SET surname = ?, name = ?, phonenumber = ?, email = ?, password = ? WHERE idperson = ?;";
+	private static final String queryGetUserById = "SELECT * FROM \"user\" u, person p WHERE u.idperson=p.idperson AND p.idperson = ?;";
+	private static final String queryGetAdministratorById = "SELECT * FROM admin a, person p WHERE a.idperson=p.idperson AND p.idperson = ?;";
 	
 	// Constructors
 	public PersonJDBC(Integer id, String surname, String name, String phone_number, String email, String password) {
@@ -48,7 +52,7 @@ public class PersonJDBC extends Person {
 			ResultSet rs = instruction.executeQuery();
 			
 			while(rs.next()){
-				if(rs.getString(6).equals(password)){
+				if(Passwords.isExpectedPassword(password.toCharArray(), rs.getBytes(7), rs.getBytes(6))){
 					person = new PersonJDBC(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
 				}
 			}	
@@ -69,31 +73,60 @@ public class PersonJDBC extends Person {
 	 * @param password
 	 * @return 
 	 * @return the id the new Person
+	 * @throws GoldfishException 
 	 */
-	public static Integer createPerson(String surname, String name, String phone_number, String email, String password) {
+	public static Integer createPerson(Object typePerson, String surname, String name, String phone_number, String email, String password, String street, Integer street_number, Integer zip_code, String city) throws GoldfishException {
 		Integer idToReturn = null;
+		
+		// salt to mix with password
+		byte[] salt = Passwords.getNextSalt();
+		
 		try{
 			Connection connect = Connect.getInstance().getConnection();
 			
-			PreparedStatement instruction = connect.prepareStatement(queryInsertOne, Statement.RETURN_GENERATED_KEYS);
-			instruction.setString(1, surname);
-			instruction.setString(2, name);
-			instruction.setString(3, phone_number);
-			instruction.setString(4, email);
-			instruction.setString(5, password);
-			int affectedRows = instruction.executeUpdate();
-			connect.commit();
-			
-			if(affectedRows == 0){
-				throw new SQLException("Creating person failed, no rows affected.");
+			// Verifying if a Person using the email already exists
+			if(PersonJDBC.findPersonByEmail(email) != null) {
+				throw new GoldfishException("A person with this email already exists.");
 			}
-			
-			try(ResultSet generatedKeys = instruction.getGeneratedKeys()){
-				if(generatedKeys.next()){
-					idToReturn = generatedKeys.getInt(1);
+			else {
+				PreparedStatement instruction = connect.prepareStatement(queryInsertOne, Statement.RETURN_GENERATED_KEYS);
+				instruction.setString(1, surname);
+				instruction.setString(2, name);
+				instruction.setString(3, phone_number);
+				instruction.setString(4, email);
+				instruction.setBytes(5, Passwords.hash(password.toCharArray(), salt));
+				instruction.setBytes(6, salt);
+				
+				// Insert Person in databse
+				int affectedRows = instruction.executeUpdate();
+				connect.commit();
+				
+				
+				if(affectedRows == 0){
+					throw new SQLException("Creating person failed, no rows affected.");
 				}
-				else{
-					throw new SQLException("Creating person failed, no ID obtained.");
+				
+				try(ResultSet generatedKeys = instruction.getGeneratedKeys()){
+					if(generatedKeys.next()){
+						idToReturn = generatedKeys.getInt(1);
+					}
+					else{
+						throw new SQLException("Creating person failed, no ID obtained.");
+					}
+				}
+				// Insert Address and link between Person and Address in database
+				HaveAddressJDBC.insertOne(idToReturn, AddressJDBC.createAddress(street, street_number, zip_code, city));
+			
+				// Insert Person as a User or an Administrator
+				switch (typePerson.toString()) {
+					case "Administrator":
+						AdministratorJDBC.createAdministrator(idToReturn);
+						break;
+					case "User":
+						UserJDBC.createUser(idToReturn);
+						break;
+					default:
+						throw new GoldfishException("Cannot determine type of person.");
 				}
 			}
 		}
@@ -101,8 +134,6 @@ public class PersonJDBC extends Person {
 			e.printStackTrace();
 		}
 		return idToReturn;
-		
-		
 	}
 	
 	/**
@@ -114,8 +145,8 @@ public class PersonJDBC extends Person {
 	 * @param password
 	 * @return the updated Person's id
 	 */
-	public static Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String password) {
-		int idToReturn = -1;
+	public static Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String password){
+		Integer idToReturn = null;
 		try{
 			Connection connect = Connect.getInstance().getConnection();
 			
@@ -222,4 +253,59 @@ public class PersonJDBC extends Person {
 		return listPersons;
 	}
 	
+	/**
+	 * This method checks if a Person is a User
+	 * @param idPerson
+	 * @return true if the Person is a User, false otherwise
+	 */
+	public static boolean isUser(Integer idPerson){
+		Integer myId = null;
+		boolean bool = false;
+		
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareCall(queryGetUserById);
+			instruction.setInt(1, idPerson);
+			ResultSet rs = instruction.executeQuery();
+			while(rs.next()){
+				myId = rs.getInt(1);
+			}	
+			bool = myId != null;
+			
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return bool;
+	}
+	
+	/**
+	 * This method checks if a Person is an Administrator
+	 * @param idPerson
+	 * @return true if the Person is an Administrator, false otherwise
+	 */
+	public static boolean isAdministrator(Integer idPerson){
+		Integer myId = null;
+		boolean bool = false;
+		
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareCall(queryGetAdministratorById);
+			instruction.setInt(1, idPerson);
+			ResultSet rs = instruction.executeQuery();
+			while(rs.next()){
+				myId = rs.getInt(1);
+			}	
+			bool = myId != (null);
+			
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return bool;
+	}
 }
