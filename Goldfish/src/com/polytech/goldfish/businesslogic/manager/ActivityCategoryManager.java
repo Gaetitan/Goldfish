@@ -40,6 +40,10 @@ public class ActivityCategoryManager {
 		}
 	}
 	
+	public Integer deleteActivityCategory(Integer id) throws GoldfishException {
+		return this.factory.deleteActivityCategory(id);
+	}
+	
 	public ActivityCategory findActivityCategoryById(Integer id){
 		return this.factory.getActivityCategoryById(id);
 	}

@@ -28,6 +28,10 @@ public class ActivityFacade {
 		return this.activityManager.updateActivity(id, name, description);
 	}
 	
+	public Integer deleteActivity(Integer id) throws GoldfishException {
+		return this.activityManager.deleteActivity(id);
+	}
+	
 	public Activity findActivityById(Integer id){
 		return this.activityManager.findActivityById(id);
 	}

@@ -17,7 +17,12 @@ import com.polytech.goldfish.util.GoldfishException;
 
 public class CreateActivityCategoryPanel  extends JPanel {
 
-private final ActivityCategoryFacade activityCategoryFacade;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private final ActivityCategoryFacade activityCategoryFacade;
 	
 	private final JTextField tfName;
 	private final JTextField tfShortDescription;

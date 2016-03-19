@@ -38,6 +38,14 @@ public abstract class ActivityFactory {
 	public abstract Integer updateActivity(Integer id, String name, String description);
 	
 	/**
+	 * This method deletes an Activity
+	 * 
+	 * @param id
+	 * @return the Person's id
+	 */
+	public abstract Integer deleteActivity(Integer id);
+	
+	/**
 	 * This methods gets all existing Activities
 	 * 
 	 * @return all existing Activities

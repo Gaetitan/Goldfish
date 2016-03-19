@@ -40,6 +40,10 @@ public class ActivityManager {
 		}
 	}
 	
+	public Integer deleteActivity(Integer id) throws GoldfishException {
+			return this.factory.deleteActivity(id);
+	}
+	
 	public Activity findActivityById(Integer id){
 		return this.factory.getActivityById(id);
 	}

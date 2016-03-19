@@ -35,9 +35,17 @@ public abstract class ActivityCategoryFactory {
 	 * @param name
 	 * @param shortDescription
 	 * @param detailledDescription
-	 * @return the Person's id
+	 * @return the ActivityCategory's id
 	 */
 	public abstract Integer updateActivityCategory(Integer id, String name, String shortDescription, String detailledDescription);
+	
+	/**
+	 * This method deletes an ActivityCategory
+	 * 
+	 * @param id
+	 * @return the ActivityCategory's id
+	 */
+	public abstract Integer deleteActivityCategory(Integer id);
 	
 	/**
 	 * This methods gets all existing ActivitiesCategories

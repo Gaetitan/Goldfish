@@ -31,6 +31,11 @@ public class ActivityCategoryFactoryJDBC extends ActivityCategoryFactory  {
 	}
 	
 	@Override
+	public Integer deleteActivityCategory(Integer id) {
+		return ActivityCategoryJDBC.deleteActivityCategory(id);
+	}
+	
+	@Override
 	public Collection<ActivityCategory> getAllActivitiesCategories() {
 		// Creation of a collection of ActivitiesCategories
 		Collection<ActivityCategory> listActivitiesCategories = new ArrayList<ActivityCategory>();

@@ -23,6 +23,7 @@ public class ActivityCategoryJDBC extends ActivityCategory{
 	private static final String queryInsertOne = "INSERT INTO activityCategory (name, shortDescription, detailledDescription) VALUES(?,?,?);";
 	private static final String queryUpdateOne = "UPDATE activityCategory SET name = ?, shortDescription = ?, detailledDescription = ? WHERE idactivityCategory = ?;";
 	private static final String queryGetAllActivitiesCategories = "SELECT * FROM activityCategory;";
+	private static final String queryDeleteOne = "DELETE FROM activityCategory WHERE idactivityCategory = ?;";
 	
 	// Constructors
 	public ActivityCategoryJDBC(Integer id, String name,
@@ -101,6 +102,40 @@ public class ActivityCategoryJDBC extends ActivityCategory{
 					}
 					else{
 						throw new SQLException("Updating an activityCategory failed, no ID obtained.");
+					}
+				}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+			return idToReturn;
+		}
+		
+		/**
+		 * This method deletes an activityCategory from the database
+		 * @param id
+		 * @return the deleted Activity's id
+		 */
+		public static Integer deleteActivityCategory(Integer id) {
+			Integer idToReturn = null;
+			try{
+				Connection connect = Connect.getInstance().getConnection();
+				
+				PreparedStatement instruction = connect.prepareStatement(queryDeleteOne, Statement.RETURN_GENERATED_KEYS);
+				instruction.setInt(1, id);
+				int affectedRows = instruction.executeUpdate();
+				connect.commit();
+				
+				if(affectedRows == 0){
+					throw new SQLException("Deleting an activityCategory failed, no rows affected.");
+				}
+				
+				try(ResultSet generatedKeys = instruction.getGeneratedKeys()){
+					if(generatedKeys.next()){
+						idToReturn = generatedKeys.getInt(1);
+					}
+					else{
+						throw new SQLException("Deleting an activityCategory failed, no ID obtained.");
 					}
 				}
 			}

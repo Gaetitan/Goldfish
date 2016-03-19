@@ -23,6 +23,7 @@ public class ActivityJDBC extends Activity {
 	private static final String queryInsertOne = "INSERT INTO activity (name, description) VALUES(?,?);";
 	private static final String queryUpdateOne = "UPDATE activity SET name = ?, description = ? WHERE idactivity = ?;";
 	private static final String queryGetAllActivities = "SELECT * FROM activity;";
+	private static final String queryDeleteOne = "DELETE FROM activity WHERE idactivity = ?;";
 	
 	// Constructors
 	public ActivityJDBC(Integer id, String name, String description) {
@@ -97,6 +98,40 @@ public class ActivityJDBC extends Activity {
 				}
 				else{
 					throw new SQLException("Updating an activity failed, no ID obtained.");
+				}
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		return idToReturn;
+	}
+	
+	/**
+	 * This method deletes an activity from the database
+	 * @param id
+	 * @return the deleted Activity's id
+	 */
+	public static Integer deleteActivity(Integer id) {
+		Integer idToReturn = null;
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareStatement(queryDeleteOne, Statement.RETURN_GENERATED_KEYS);
+			instruction.setInt(1, id);
+			int affectedRows = instruction.executeUpdate();
+			connect.commit();
+			
+			if(affectedRows == 0){
+				throw new SQLException("Deleting an activity failed, no rows affected.");
+			}
+			
+			try(ResultSet generatedKeys = instruction.getGeneratedKeys()){
+				if(generatedKeys.next()){
+					idToReturn = generatedKeys.getInt(1);
+				}
+				else{
+					throw new SQLException("Deleting an activity failed, no ID obtained.");
 				}
 			}
 		}
