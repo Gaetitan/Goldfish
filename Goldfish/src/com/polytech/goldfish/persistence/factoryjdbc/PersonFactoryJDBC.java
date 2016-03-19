@@ -52,4 +52,14 @@ public class PersonFactoryJDBC extends PersonFactory {
 		return PersonJDBC.updatePerson(id, surname, name, phone_number, email, password);
 	}
 
+	@Override
+	public boolean isUser(Integer idPerson) {
+		return PersonJDBC.isUser(idPerson);
+	}
+
+	@Override
+	public boolean isAdministrator(Integer idPerson) {
+		return PersonJDBC.isAdministrator(idPerson);
+	}
+
 }

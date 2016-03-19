@@ -127,7 +127,7 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
 										.getName() + "!", "Welcome aboard!",
 						JOptionPane.INFORMATION_MESSAGE);
 				dispose();
-				new MainFrame();
+				new MainFrame(personFacade.login(textFieldLogin.getText(), passwordFieldPassword.getText()).getId());
 			}
 			catch (GoldfishException e1) {
 				JOptionPane.showMessageDialog(null, e1.toString(),

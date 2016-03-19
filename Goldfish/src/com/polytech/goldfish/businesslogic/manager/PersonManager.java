@@ -89,4 +89,12 @@ public class PersonManager {
 	public Collection<Person> findAllPersons(){
 		return this.factory.getAllPersons();
 	}
+	
+	public boolean isUser(Integer idPerson) {
+		return this.factory.isUser(idPerson);
+	}
+
+	public boolean isAdministrator(Integer idPerson) {
+		return this.factory.isAdministrator(idPerson);
+	}
 }

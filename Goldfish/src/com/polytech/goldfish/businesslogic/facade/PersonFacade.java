@@ -41,4 +41,12 @@ public class PersonFacade {
 	public Collection<Person> findAllPersons(){
 		return this.personManager.findAllPersons();
 	}
+	
+	public boolean isUser(Integer idPerson) {
+		return this.personManager.isUser(idPerson);
+	}
+
+	public boolean isAdministrator(Integer idPerson) {
+		return this.personManager.isAdministrator(idPerson);
+	}
 }

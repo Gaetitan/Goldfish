@@ -64,4 +64,16 @@ public abstract class PersonFactory {
 	 */
 	public abstract Collection <Person> getAllPersons();
 
+	
+	/**
+	 * This method determines if a Person is a user
+	 * @return true if the Person is a User, false otherwise
+	 */
+	public abstract boolean isUser(Integer idPerson);
+	
+	/**
+	 * This method determines if a Person is an Administrator
+	 * @return true if the Person is an Administrator, false otherwise
+	 */
+	public abstract boolean isAdministrator(Integer idPerson);
 }

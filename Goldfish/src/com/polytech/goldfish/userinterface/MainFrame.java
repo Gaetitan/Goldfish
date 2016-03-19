@@ -19,6 +19,8 @@ import javax.swing.border.LineBorder;
 import org.w3c.dom.views.AbstractView;
 import org.w3c.dom.views.DocumentView;
 
+import com.polytech.goldfish.businesslogic.facade.PersonFacade;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class HomeUI.
@@ -31,9 +33,7 @@ import org.w3c.dom.views.DocumentView;
  */
 public class MainFrame extends JFrame implements AbstractView {
 
-	// Simulation de si c'est un user ou un admin on peut rajouter seller si besoin est
-	private final Integer isUser = 0;
-	private final Integer isAdmin = 1;
+	private final PersonFacade personFacade;
 	
 	/** The content panel. */
 	private JPanel contentPanel;
@@ -52,7 +52,9 @@ public class MainFrame extends JFrame implements AbstractView {
 	/**
 	 * Instantiates a new home ui.
 	 */
-	public MainFrame() {
+	public MainFrame(Integer idPerson) {
+		personFacade = new PersonFacade();
+		
 		window = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Goldfish");
@@ -114,7 +116,7 @@ public class MainFrame extends JFrame implements AbstractView {
 			}
 		});
 
-		if (isUser == 1) { // C'est un user clasique
+		if (this.personFacade.isUser(idPerson)) { // C'est un user clasique
 
 			JButton btnMyProducts = new JButton("My products");
 			sl_sidePanel.putConstraint(SpringLayout.NORTH, btnMyProducts, 10,
@@ -153,7 +155,7 @@ public class MainFrame extends JFrame implements AbstractView {
 			});
 		}
 
-		if (isAdmin == 1) { // Si c'est un admin
+		if (this.personFacade.isAdministrator(idPerson)) { // Si c'est un admin
 			JButton btnMyActivities = new JButton("My activities");
 			sl_sidePanel.putConstraint(SpringLayout.NORTH, btnMyActivities, 10,
 					SpringLayout.SOUTH, btnMyAccount);
@@ -309,7 +311,7 @@ public class MainFrame extends JFrame implements AbstractView {
 		});
 		menuPanel.add(btnShop);
 
-		if (isAdmin == 1) {
+		if (this.personFacade.isAdministrator(idPerson)) {
 
 			JButton btnUsers = new JButton("Users");
 			sl_menuPanel.putConstraint(SpringLayout.NORTH, btnUsers, 10,
