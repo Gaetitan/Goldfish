@@ -30,7 +30,7 @@ public class ProductFacade {
 	}
 	
 	public int deleteProduct(Integer id){
-		return this.productManager.updateProduct(id)
+		return this.productManager.deleteProduct(id);
 	}
 
 }
