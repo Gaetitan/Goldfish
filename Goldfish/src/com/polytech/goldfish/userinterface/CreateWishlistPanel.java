@@ -12,25 +12,25 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.polytech.goldfish.businesslogic.facade.ProductFacade;
+import com.polytech.goldfish.businesslogic.facade.WishlistFacade;
 
-public class CreateProductPanel extends JPanel{
+public class CreateWishlistPanel extends JPanel{
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 975513339528945208L;
+	private static final long serialVersionUID = 1L;
 
-	private final ProductFacade productFacade;
+	private final WishlistFacade wishlistFacade;
 
 	private final JTextField tfName;
-	private final JTextField tfDescription;
+	private final JTextField tfQuantity;
 	
 	/**
-	 * Constructor of class PanelCreateProduct
+	 * Constructor of class PanelCreateWishlist
 	 */
-	public CreateProductPanel() {
-		productFacade = new ProductFacade();
+	public CreateWishlistPanel() {
+		wishlistFacade = new WishlistFacade();
 		
 		JPanel mainPanel = new JPanel();
 		this.add(mainPanel);
@@ -40,7 +40,7 @@ public class CreateProductPanel extends JPanel{
 		mainPanel.add(panelNorth, BorderLayout.NORTH);
 		panelNorth.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel lblWelcome = new JLabel("Add a new product");
+		JLabel lblWelcome = new JLabel("Add a new wishlist");
 		panelNorth.add(lblWelcome);
 		
 		JPanel panelCenter = new JPanel();
@@ -58,8 +58,8 @@ public class CreateProductPanel extends JPanel{
 		JLabel lblName = new JLabel("Name:");
 		panelLabelInfo.add(lblName);
 		
-		JLabel lblDescription = new JLabel("Description:");
-		panelLabelInfo.add(lblDescription);
+		JLabel lblQuantity = new JLabel("Quantity:");
+		panelLabelInfo.add(lblQuantity);
 		
 		JPanel panelTextInfo = new JPanel();
 		panelInfo.add(panelTextInfo, BorderLayout.CENTER);
@@ -69,8 +69,8 @@ public class CreateProductPanel extends JPanel{
 		tfName.setColumns(20);
 		panelTextInfo.add(tfName);
 		
-		tfDescription = new JTextField();
-		panelTextInfo.add(tfDescription);
+		tfQuantity = new JTextField();
+		panelTextInfo.add(tfQuantity);
 		
 		JPanel panelSouth = new JPanel();
 		mainPanel.add(panelSouth, BorderLayout.SOUTH);
@@ -86,9 +86,9 @@ public class CreateProductPanel extends JPanel{
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							int id;
-							id = productFacade.createProduct(tfName.getText(), tfDescription.getText());
-							JOptionPane.showMessageDialog(null, productFacade.findProductById(id).getName() + " has been created.",
-									"Product created.",JOptionPane.INFORMATION_MESSAGE);
+							id = wishlistFacade.createWishlist(tfName.getText(), Integer.parseInt(tfQuantity.getText()));
+							JOptionPane.showMessageDialog(null, wishlistFacade.findWishlistById(id).getName() + " has been created.",
+									"Wishlist created.",JOptionPane.INFORMATION_MESSAGE);
 						}
 					}
 				);
@@ -111,7 +111,7 @@ public class CreateProductPanel extends JPanel{
 	public void reinitPanel(){
 		
 		tfName.setText("");
-		tfDescription.setText("");
+		tfQuantity.setText("");
 		
 	}
 

@@ -12,25 +12,22 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.polytech.goldfish.businesslogic.facade.ProductFacade;
+import com.polytech.goldfish.businesslogic.facade.ProductCategoryFacade;
 
-public class CreateProductPanel extends JPanel{
-	
+
+public class CreateProductCategoryPanel extends JPanel{
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 975513339528945208L;
+	private static final long serialVersionUID = 1L;
 
-	private final ProductFacade productFacade;
+	private final ProductCategoryFacade productCategoryFacade;
 
 	private final JTextField tfName;
-	private final JTextField tfDescription;
 	
-	/**
-	 * Constructor of class PanelCreateProduct
-	 */
-	public CreateProductPanel() {
-		productFacade = new ProductFacade();
+	public CreateProductCategoryPanel() {
+		productCategoryFacade = new ProductCategoryFacade();
 		
 		JPanel mainPanel = new JPanel();
 		this.add(mainPanel);
@@ -40,7 +37,7 @@ public class CreateProductPanel extends JPanel{
 		mainPanel.add(panelNorth, BorderLayout.NORTH);
 		panelNorth.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel lblWelcome = new JLabel("Add a new product");
+		JLabel lblWelcome = new JLabel("Add a new product category");
 		panelNorth.add(lblWelcome);
 		
 		JPanel panelCenter = new JPanel();
@@ -58,9 +55,6 @@ public class CreateProductPanel extends JPanel{
 		JLabel lblName = new JLabel("Name:");
 		panelLabelInfo.add(lblName);
 		
-		JLabel lblDescription = new JLabel("Description:");
-		panelLabelInfo.add(lblDescription);
-		
 		JPanel panelTextInfo = new JPanel();
 		panelInfo.add(panelTextInfo, BorderLayout.CENTER);
 		panelTextInfo.setLayout(new GridLayout(0, 1, 0, 0));
@@ -68,9 +62,6 @@ public class CreateProductPanel extends JPanel{
 		tfName = new JTextField();
 		tfName.setColumns(20);
 		panelTextInfo.add(tfName);
-		
-		tfDescription = new JTextField();
-		panelTextInfo.add(tfDescription);
 		
 		JPanel panelSouth = new JPanel();
 		mainPanel.add(panelSouth, BorderLayout.SOUTH);
@@ -86,9 +77,9 @@ public class CreateProductPanel extends JPanel{
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							int id;
-							id = productFacade.createProduct(tfName.getText(), tfDescription.getText());
-							JOptionPane.showMessageDialog(null, productFacade.findProductById(id).getName() + " has been created.",
-									"Product created.",JOptionPane.INFORMATION_MESSAGE);
+							id = productCategoryFacade.createProductCategory(tfName.getText());
+							JOptionPane.showMessageDialog(null, productCategoryFacade.findProductCategoryById(id).getName() + " has been created.",
+									"Product category created.",JOptionPane.INFORMATION_MESSAGE);
 						}
 					}
 				);
@@ -111,8 +102,6 @@ public class CreateProductPanel extends JPanel{
 	public void reinitPanel(){
 		
 		tfName.setText("");
-		tfDescription.setText("");
 		
 	}
-
 }
