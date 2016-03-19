@@ -24,9 +24,9 @@ public class PersonFacade {
 		return this.personManager.login(email, password);
 	}
 	
-	public Integer createPerson(String surname, String name, String phone_number,
+	public Integer createPerson(Object typePerson, String surname, String name, String phone_number,
 			String email, String password, String street, String street_number, String zip_code, String city) throws GoldfishException {
-		return this.personManager.createPerson(surname, name, phone_number, email, password, street, street_number, zip_code, city);
+		return this.personManager.createPerson(typePerson, surname, name, phone_number, email, password, street, street_number, zip_code, city);
 	}
 	
 	public Integer updatePerson(Integer id, String surname, String name, String phone_number,

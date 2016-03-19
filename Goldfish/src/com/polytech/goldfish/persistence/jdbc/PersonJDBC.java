@@ -73,18 +73,20 @@ public class PersonJDBC extends Person {
 	 * @return the id the new Person
 	 * @throws GoldfishException 
 	 */
-	public static Integer createPerson(String surname, String name, String phone_number, String email, String password, String street, Integer street_number, Integer zip_code, String city) throws GoldfishException {
+	public static Integer createPerson(Object typePerson, String surname, String name, String phone_number, String email, String password, String street, Integer street_number, Integer zip_code, String city) throws GoldfishException {
 		Integer idToReturn = null;
+		
+		// salt to mix with password
 		byte[] salt = Passwords.getNextSalt();
 		
 		try{
 			Connection connect = Connect.getInstance().getConnection();
 			
+			// Verifying if a Person using the email already exists
 			if(PersonJDBC.findPersonByEmail(email) != null) {
 				throw new GoldfishException("A person with this email already exists.");
 			}
 			else {
-			
 				PreparedStatement instruction = connect.prepareStatement(queryInsertOne, Statement.RETURN_GENERATED_KEYS);
 				instruction.setString(1, surname);
 				instruction.setString(2, name);
@@ -93,6 +95,7 @@ public class PersonJDBC extends Person {
 				instruction.setBytes(5, Passwords.hash(password.toCharArray(), salt));
 				instruction.setBytes(6, salt);
 				
+				// Insert Person in databse
 				int affectedRows = instruction.executeUpdate();
 				connect.commit();
 				
@@ -109,15 +112,26 @@ public class PersonJDBC extends Person {
 						throw new SQLException("Creating person failed, no ID obtained.");
 					}
 				}
+				// Insert Address and link between Person and Address in database
 				HaveAddressJDBC.insertOne(idToReturn, AddressJDBC.createAddress(street, street_number, zip_code, city));
+			
+				// Insert Person as a User or an Administrator
+				switch (typePerson.toString()) {
+					case "Administrator":
+						AdministratorJDBC.createAdministrator(idToReturn);
+						break;
+					case "User":
+						UserJDBC.createUser(idToReturn);
+						break;
+					default:
+						throw new GoldfishException("Cannot determine type of person.");
+				}
 			}
 		}
 		catch(SQLException e){
 			e.printStackTrace();
 		}
 		return idToReturn;
-		
-		
 	}
 	
 	/**
@@ -236,5 +250,4 @@ public class PersonJDBC extends Person {
 		
 		return listPersons;
 	}
-	
 }

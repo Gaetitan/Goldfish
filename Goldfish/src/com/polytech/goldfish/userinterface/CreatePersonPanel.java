@@ -6,7 +6,9 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -60,7 +62,10 @@ public class CreatePersonPanel extends JPanel {
 		JPanel panelLabelInfo = new JPanel();
 		panelInfo.add(panelLabelInfo, BorderLayout.WEST);
 		panelLabelInfo.setLayout(new GridLayout(0, 1, 0, 0));
-				
+			
+		JLabel lblTypePerson = new JLabel("Type:");
+		panelLabelInfo.add(lblTypePerson);
+		
 		JLabel lblSurname = new JLabel("Surname:");
 		panelLabelInfo.add(lblSurname);
 		
@@ -91,6 +96,11 @@ public class CreatePersonPanel extends JPanel {
 		JPanel panelTextInfo = new JPanel();
 		panelInfo.add(panelTextInfo, BorderLayout.CENTER);
 		panelTextInfo.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		final JComboBox<String> cbTypePerson = new JComboBox<>();
+		cbTypePerson.setModel(new DefaultComboBoxModel<String>(new String[] {"Administrator",  "User"}));
+		cbTypePerson.setSelectedIndex(1);
+		panelTextInfo.add(cbTypePerson);
 		
 		tfSurname = new JTextField();
 		tfSurname.setColumns(20);
@@ -134,12 +144,11 @@ public class CreatePersonPanel extends JPanel {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							Integer idPerson = null;
-							Integer idAddress = null;
 							
 							if(!(tfSurname.getText().isEmpty() || tfName.getText().isEmpty() || tfPhoneNumber.getText().isEmpty() || tfEmail.getText().isEmpty() || tfPassword.getText().isEmpty() 
 									|| tfStreet.getText().isEmpty() || tfStreetNumber.getText().isEmpty() || tfZipCode.getText().isEmpty() || tfCity.getText().isEmpty())){
 								try {
-									idPerson = personFacade.createPerson(tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText(), tfStreet.getText(), tfStreetNumber.getText(), tfZipCode.getText(), tfCity.getText());
+									idPerson = personFacade.createPerson(cbTypePerson.getSelectedItem(), tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText(), tfStreet.getText(), tfStreetNumber.getText(), tfZipCode.getText(), tfCity.getText());
 									JOptionPane.showMessageDialog(null, personFacade.findPersonById(idPerson).getSurname() + " " + personFacade.findPersonById(idPerson).getName() + " has been created.",
 											"Person created.",JOptionPane.INFORMATION_MESSAGE);
 									reinitPanel();
