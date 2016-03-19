@@ -15,7 +15,7 @@ public class ProductJDBC extends Product {
 
 	// Queries
 	private static final String queryGetProductById = "SELECT * FROM product WHERE idproduct = ?;";
-	private static final String queryInsertOne = "INSERT INTO product (name, descripiton) VALUES(?,?);";
+	private static final String queryInsertOne = "INSERT INTO product (name, description) VALUES(?,?);";
 	private static final String queryUpdateOne = "UPDATE product SET name = ?, description = ? WHERE idproduct = ?;";
 	private static final String queryGetAllProducts = "SELECT * FROM product;";
 	private static final String queryDeleteOne ="DELETE FROM product WHERE idproduct = ?;";

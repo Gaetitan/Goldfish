@@ -33,6 +33,6 @@ public class ProductManager {
 	
 	public int deleteProduct(Integer id){
 		
-		return this.factory.updateProduct(id)
+		return this.factory.deleteProduct(id);
 	}
 }

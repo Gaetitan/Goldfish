@@ -1,11 +1,12 @@
 package com.polytech.goldfish.userinterface;
 
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import com.polytech.goldfish.businesslogic.facade.ProductFacade;
 
-public class ListProductsPanel {
+public class ListProductsPanel extends JPanel{
 	
 	private final ProductFacade productFacade;
 	

@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 
 import com.polytech.goldfish.businesslogic.facade.ProductFacade;
 
-public class UpdateProductPanel {
+public class UpdateProductPanel extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 
