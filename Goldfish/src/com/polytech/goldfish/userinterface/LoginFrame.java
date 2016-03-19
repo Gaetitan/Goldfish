@@ -27,24 +27,23 @@ import com.polytech.goldfish.util.GoldfishException;
 // TODO: Auto-generated Javadoc
 /**
  * The Class LoginPopup.
- *
+ * 
  * @author RedaM
  */
-public class LoginFrame extends JFrame implements ActionListener,
-		KeyListener {
-	
+public class LoginFrame extends JFrame implements ActionListener, KeyListener {
+
 	private static final long serialVersionUID = 1L;
 
 	private final PersonFacade personFacade;
-	
+
 	private MainFrame mainFrame;
-	
+
 	/** The password field password. */
 	private final JPasswordField passwordFieldPassword;
-	
+
 	/** The text field login. */
 	private final JTextField textFieldLogin;
-	
+
 	/** The btn login. */
 	private final JButton btnLogin;
 
@@ -53,7 +52,7 @@ public class LoginFrame extends JFrame implements ActionListener,
 	 */
 	public LoginFrame() {
 		personFacade = new PersonFacade();
-		
+
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setTitle("Log In");
 
@@ -102,26 +101,41 @@ public class LoginFrame extends JFrame implements ActionListener,
 		setResizable(false);
 	}
 
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (((JButton) e.getSource()).getText().equals("Login") && textFieldLogin.getText().length() > 0 && passwordFieldPassword.getPassword().length > 0) {
-			try{
-				personFacade.login(textFieldLogin.getText(), passwordFieldPassword.getText());
-				JOptionPane.showMessageDialog(null, "Welcome " + personFacade.login(textFieldLogin.getText(), passwordFieldPassword.getText()).getSurname() + " " + personFacade.login(textFieldLogin.getText(), passwordFieldPassword.getText()).getName() + "!",
-						"Welcome aboard!",JOptionPane.INFORMATION_MESSAGE);
-				
+		if (((JButton) e.getSource()).getText().equals("Login")
+				&& textFieldLogin.getText().length() > 0
+				&& passwordFieldPassword.getPassword().length > 0) {
+			try {
+				personFacade.login(textFieldLogin.getText(),
+						passwordFieldPassword.getText());
+				JOptionPane.showMessageDialog(
+						null,
+						"Welcome "
+								+ personFacade.login(textFieldLogin.getText(),
+										passwordFieldPassword.getText())
+										.getSurname()
+								+ " "
+								+ personFacade.login(textFieldLogin.getText(),
+										passwordFieldPassword.getText())
+										.getName() + "!", "Welcome aboard!",
+						JOptionPane.INFORMATION_MESSAGE);
 				dispose();
 				new MainFrame();
 			}
-			catch (GoldfishException e1){
-				JOptionPane.showMessageDialog(null, e1.toString(), "Invalid email/password",JOptionPane.WARNING_MESSAGE);
+			catch (GoldfishException e1) {
+				JOptionPane.showMessageDialog(null, e1.toString(),
+						"Invalid email/password", JOptionPane.WARNING_MESSAGE);
 			}
 		} else if (((JButton) e.getSource()).getText().equals("Register")) {
-			dispose();
-			// register pop up to display here
+			JOptionPane.showMessageDialog(
+					null, new CreatePersonPanel(), "Sign up", JOptionPane.DEFAULT_OPTION);
 		}
 	}
 
@@ -146,7 +160,9 @@ public class LoginFrame extends JFrame implements ActionListener,
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
 	 */
 	@Override
@@ -155,7 +171,9 @@ public class LoginFrame extends JFrame implements ActionListener,
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
 	 */
 	@Override
@@ -165,7 +183,9 @@ public class LoginFrame extends JFrame implements ActionListener,
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
 	 */
 	@Override

@@ -10,6 +10,7 @@ import java.util.Collection;
 
 import com.polytech.goldfish.businesslogic.business.Person;
 import com.polytech.goldfish.util.Connect;
+import com.polytech.goldfish.util.GoldfishException;
 import com.polytech.goldfish.util.Passwords;
 
 /**
@@ -70,36 +71,45 @@ public class PersonJDBC extends Person {
 	 * @param password
 	 * @return 
 	 * @return the id the new Person
+	 * @throws GoldfishException 
 	 */
-	public static Integer createPerson(String surname, String name, String phone_number, String email, String password) {
+	public static Integer createPerson(String surname, String name, String phone_number, String email, String password, String street, Integer street_number, Integer zip_code, String city) throws GoldfishException {
 		Integer idToReturn = null;
 		byte[] salt = Passwords.getNextSalt();
 		
 		try{
 			Connection connect = Connect.getInstance().getConnection();
 			
-			PreparedStatement instruction = connect.prepareStatement(queryInsertOne, Statement.RETURN_GENERATED_KEYS);
-			instruction.setString(1, surname);
-			instruction.setString(2, name);
-			instruction.setString(3, phone_number);
-			instruction.setString(4, email);
-			instruction.setBytes(5, Passwords.hash(password.toCharArray(), salt));
-			instruction.setBytes(6, salt);
-			
-			int affectedRows = instruction.executeUpdate();
-			connect.commit();
-			
-			if(affectedRows == 0){
-				throw new SQLException("Creating person failed, no rows affected.");
+			if(PersonJDBC.findPersonByEmail(email) != null) {
+				throw new GoldfishException("A person with this email already exists.");
 			}
+			else {
 			
-			try(ResultSet generatedKeys = instruction.getGeneratedKeys()){
-				if(generatedKeys.next()){
-					idToReturn = generatedKeys.getInt(1);
+				PreparedStatement instruction = connect.prepareStatement(queryInsertOne, Statement.RETURN_GENERATED_KEYS);
+				instruction.setString(1, surname);
+				instruction.setString(2, name);
+				instruction.setString(3, phone_number);
+				instruction.setString(4, email);
+				instruction.setBytes(5, Passwords.hash(password.toCharArray(), salt));
+				instruction.setBytes(6, salt);
+				
+				int affectedRows = instruction.executeUpdate();
+				connect.commit();
+				
+				
+				if(affectedRows == 0){
+					throw new SQLException("Creating person failed, no rows affected.");
 				}
-				else{
-					throw new SQLException("Creating person failed, no ID obtained.");
+				
+				try(ResultSet generatedKeys = instruction.getGeneratedKeys()){
+					if(generatedKeys.next()){
+						idToReturn = generatedKeys.getInt(1);
+					}
+					else{
+						throw new SQLException("Creating person failed, no ID obtained.");
+					}
 				}
+				HaveAddressJDBC.insertOne(idToReturn, AddressJDBC.createAddress(street, street_number, zip_code, city));
 			}
 		}
 		catch(SQLException e){

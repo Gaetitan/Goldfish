@@ -25,12 +25,12 @@ public class PersonFacade {
 	}
 	
 	public Integer createPerson(String surname, String name, String phone_number,
-			String email, String password) throws GoldfishException {
-		return this.personManager.createPerson(surname, name, phone_number, email, password);
+			String email, String password, String street, String street_number, String zip_code, String city) throws GoldfishException {
+		return this.personManager.createPerson(surname, name, phone_number, email, password, street, street_number, zip_code, city);
 	}
 	
 	public Integer updatePerson(Integer id, String surname, String name, String phone_number,
-			String email, String password) throws GoldfishException {
+			String email, String password) {
 		return this.personManager.updatePerson(id, surname, name, phone_number, email, password);
 	}
 	
