@@ -14,8 +14,13 @@ import javax.swing.JTextField;
 
 import com.polytech.goldfish.businesslogic.facade.ProductFacade;
 
-public class CreateProductPanel {
+public class CreateProductPanel extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 975513339528945208L;
+
 	private final ProductFacade productFacade;
 
 	private final JTextField tfName;

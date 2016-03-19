@@ -10,7 +10,7 @@ public class ListProductsPanel extends JPanel{
 	
 	private final ProductFacade productFacade;
 	
-	private final PersonTableModel myTableModel;
+	private final ProductTableModel myTableModel;
 	private final JTable myTable;
 	private final JScrollPane myScrollPane;
 	

@@ -15,7 +15,7 @@ public class ProductTableModel extends AbstractTableModel {
 		private final String[] columnNames = {"Name", "Description"};
 		
 		// Constructor
-		public ProductTableModel(Collection <Product> data){
+		public ProductTableModel(Collection<Product> data){
 			this.data = data;
 		}
 		
