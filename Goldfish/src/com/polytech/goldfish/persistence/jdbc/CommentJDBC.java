@@ -8,19 +8,16 @@ import com.polytech.goldfish.businesslogic.business.Comment;
 public class CommentJDBC extends Comment{
 	// Queries
 		private static final String queryGetCommentById = "SELECT * FROM comment WHERE idcomment = ?;";
-		private static final String queryInsertComment = "INSERT INTO comment (id, text, date) VALUES(?,?,?,?,?,?);";
-		private static final String queryGetAllPersons = "SELECT * FROM person;";
-		private static final String queryUpdateOne = "UPDATE person SET surname = ?, name = ?, phonenumber = ?, email = ?, password = ? WHERE idperson = ?;";
-		private static final String queryGetUserById = "SELECT * FROM \"user\" u, person p WHERE u.idperson=p.idperson AND p.idperson = ?;";
-		private static final String queryGetAdministratorById = "SELECT * FROM admin a, person p WHERE a.idperson=p.idperson AND p.idperson = ?;";
+		private static final String queryInsertComment = "INSERT INTO comment (id, text, date) VALUES(?,?,?);";
+		private static final String queryGetAllComments = "SELECT * FROM comment;";
+		private static final String queryUpdateComment = "UPDATE comment SET text = ?, date = ? WHERE idcomment = ?;";
 		
 	// Constructors
 	public CommentJDBC(Integer id, String text, Date date) {
 		super(id, text, date);
 	}
 
-	public static Comment createComment(String text) {
-		// TODO Auto-generated method stub
+	public static Comment createComment(String text, Integer poster, Integer concernedPerson) {
 		return null;
 	}
 

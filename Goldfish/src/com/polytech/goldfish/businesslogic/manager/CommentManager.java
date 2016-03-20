@@ -17,12 +17,12 @@ public class CommentManager {
 		this.factory = new CommentFactoryJDBC();
 	}
 	
-	public Comment createComment(String text) throws GoldfishException{
+	public Comment createComment(String text, Integer poster, Integer concernedPerson) throws GoldfishException{
 		if(text.isEmpty() || text == ""){
 			throw new GoldfishException("Comment cannot be empty.");
 		}
 		else{
-			return this.factory.createComment(text);	
+			return this.factory.createComment(text, poster, concernedPerson);	
 		}
 	}
 
