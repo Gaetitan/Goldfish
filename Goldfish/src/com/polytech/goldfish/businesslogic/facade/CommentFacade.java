@@ -18,15 +18,15 @@ public class CommentFacade {
 		this.commentManager = new CommentManager();
 	}
 	
-	public Comment createComment(String text, Integer poster, Integer concernedPerson) throws GoldfishException{
-		return this.commentManager.createComment(text);
+	public Integer createComment(String text, Integer poster, Integer concernedPerson) throws GoldfishException{
+		return this.commentManager.createComment(text, poster, concernedPerson);
 	}
 	
-	public boolean updateComment(String id, String newText) throws GoldfishException{
+	public Integer updateComment(Integer id, String newText) throws GoldfishException{
 		return this.commentManager.updateComment(id, newText);
 	}
 	
-	public boolean deleteComment(String id) throws GoldfishException{
+	public Integer deleteComment(Integer id) throws GoldfishException{
 		return this.commentManager.deleteComment(id);
 	}
 	

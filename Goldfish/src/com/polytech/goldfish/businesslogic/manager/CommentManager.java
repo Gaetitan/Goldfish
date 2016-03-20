@@ -17,7 +17,7 @@ public class CommentManager {
 		this.factory = new CommentFactoryJDBC();
 	}
 	
-	public Comment createComment(String text, Integer poster, Integer concernedPerson) throws GoldfishException{
+	public Integer createComment(String text, Integer poster, Integer concernedPerson) throws GoldfishException{
 		if(text.isEmpty() || text == ""){
 			throw new GoldfishException("Comment cannot be empty.");
 		}
@@ -26,25 +26,17 @@ public class CommentManager {
 		}
 	}
 
-	public boolean updateComment(String id, String newText) throws GoldfishException{
+	public Integer updateComment(Integer id, String newText) throws GoldfishException{
 		if(newText.isEmpty() || newText == ""){
 			throw new GoldfishException("Comment cannot be empty.");
-		}
-		else if (id.isEmpty() || id == ""){
-			throw new GoldfishException("You must specify an ID for the comment to change.");
 		}
 		else{
 			return this.factory.updateComment(id, newText);	
 		}
 	}
 
-	public boolean deleteComment(String id) throws GoldfishException{
-		if (id.isEmpty() || id == ""){
-			throw new GoldfishException("You must specify an ID for the comment to delete.");
-		}
-		else{
-			return this.factory.deleteComment(id);
-		}
+	public Integer deleteComment(Integer id) throws GoldfishException{
+		return this.factory.deleteComment(id);
 	}
 
 	public Collection<Comment> findAllComments(){

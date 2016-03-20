@@ -16,7 +16,7 @@ import com.polytech.goldfish.util.GoldfishException;
 public class CommentFactoryJDBC extends CommentFactory {
 
 	@Override
-	public Comment createComment(String text, Integer poster, Integer concernedPerson) {
+	public Integer createComment(String text, Integer poster, Integer concernedPerson) {
 		return CommentJDBC.createComment(text, poster, concernedPerson);
 	}
 
@@ -35,12 +35,12 @@ public class CommentFactoryJDBC extends CommentFactory {
 	}
 
 	@Override
-	public boolean updateComment(String id, String newText) throws GoldfishException {
+	public Integer updateComment(Integer id, String newText) throws GoldfishException {
 		return CommentJDBC.updateComment(id, newText);
 	}
 
 	@Override
-	public boolean deleteComment(String id) throws GoldfishException {
+	public Integer deleteComment(Integer id) throws GoldfishException {
 		return CommentJDBC.deleteCommet(id);
 	}
 
