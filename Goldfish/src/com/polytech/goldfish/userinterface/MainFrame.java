@@ -154,23 +154,6 @@ public class MainFrame extends JFrame implements AbstractView {
 				}
 			});
 			
-			JButton btnMyComments = new JButton("My comments");
-			sl_sidePanel.putConstraint(SpringLayout.NORTH, btnMyComments, 10,
-					SpringLayout.SOUTH, btnMyDiary);
-			sl_sidePanel.putConstraint(SpringLayout.WEST, btnMyComments, 10,
-					SpringLayout.WEST, sidePanel);
-			sl_sidePanel.putConstraint(SpringLayout.SOUTH, btnMyComments, 40,
-					SpringLayout.SOUTH, btnMyDiary);
-			sl_sidePanel.putConstraint(SpringLayout.EAST, btnMyComments, -10,
-					SpringLayout.EAST, sidePanel);
-			sidePanel.add(btnMyComments);
-			btnMyComments.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("own comments"); // TRACE
-					// List of own diary entrys
-				}
-			});
 		}
 
 		if (this.personFacade.isAdministrator(idPerson)) { // Si c'est un admin
