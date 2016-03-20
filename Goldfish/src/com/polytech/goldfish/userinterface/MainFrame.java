@@ -69,11 +69,11 @@ public class MainFrame extends JFrame implements AbstractView {
 		sidePanel = new JPanel();
 		springLayout.putConstraint(SpringLayout.NORTH, sidePanel, 10,
 				SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, sidePanel, 10,
+		springLayout.putConstraint(SpringLayout.WEST, sidePanel, 200,
 				SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, sidePanel, -10,
 				SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, sidePanel, 200,
+		springLayout.putConstraint(SpringLayout.EAST, sidePanel, 10,
 				SpringLayout.WEST, getContentPane());
 		sidePanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		getContentPane().add(sidePanel);
@@ -187,7 +187,10 @@ public class MainFrame extends JFrame implements AbstractView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("own comments "); // TRACE
-				//  List of own notifications
+				contentPanel.removeAll(); // Les 4 lignes sont le "squelette" de ce qu'il
+				contentPanel.add(new CommentPanel()); // faut faire pour
+				contentPanel.revalidate();  // pour charger un panel
+				contentPanel.repaint(); // dans la home page 
 			}
 		});
 
@@ -328,8 +331,7 @@ public class MainFrame extends JFrame implements AbstractView {
 			btnUsers.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("List of users "); // TRACE
-					// List of users of our app
+					System.out.println("List of users A"); // TRACE
 				}
 			});
 
