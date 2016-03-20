@@ -58,7 +58,8 @@ public class PersonManager {
 	}
 	
 	public Integer createPerson(Object typePerson, String surname, String name, String phone_number,
-			String email, String password, String street, String street_number, String zip_code, String city) throws GoldfishException{
+			String email, String password, String street, String street_number, String zip_code, String city,
+			String shopname, String description, String siret, String activity_domain, String web_address) throws GoldfishException{
 		if(!checkEmail(email)) {
 			throw new GoldfishException("Please enter a valid email.");
 		}
@@ -71,8 +72,12 @@ public class PersonManager {
 		else if(!checkZipCode(zip_code)){
 			throw new GoldfishException("Please enter a valid zip code.");
 		}
+		else if(!checkNumber(siret)){
+			throw new GoldfishException("Please enter a valid SIRET.");
+		}
 		else {
-			return this.factory.createPerson(typePerson, surname, name, phone_number, email, password, street, Integer.parseInt(street_number), Integer.parseInt(zip_code), city);
+			return this.factory.createPerson(typePerson, surname, name, phone_number, email, password, street, Integer.parseInt(street_number), Integer.parseInt(zip_code), city,
+					shopname, description, Integer.parseInt(siret), activity_domain, web_address);
 		}
 		
 	}

@@ -97,6 +97,9 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
 		// btnLogin.doClick();
 
 		setResizable(false);
+		
+		textFieldLogin.setText("gaetan@goldfish.com");
+		passwordFieldPassword.setText("el manager");
 	}
 
 	/*

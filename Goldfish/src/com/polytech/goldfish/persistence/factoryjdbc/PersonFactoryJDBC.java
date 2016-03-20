@@ -23,8 +23,10 @@ public class PersonFactoryJDBC extends PersonFactory {
 
 	@Override
 	public Integer createPerson(Object typePerson, String surname, String name,
-			String phone_number, String email, String password, String street, Integer street_number, Integer zip_code, String city) throws GoldfishException {
-		return PersonJDBC.createPerson(typePerson, surname, name, phone_number, email, password, street, street_number, zip_code, city);
+			String phone_number, String email, String password, String street, Integer street_number, Integer zip_code, String city,
+			String shopname, String description, Integer siret, String activity_domain, String web_address) throws GoldfishException {
+		return PersonJDBC.createPerson(typePerson, surname, name, phone_number, email, password, street, street_number, zip_code, city,
+				shopname, description, siret, activity_domain, web_address);
 	}
 
 	@Override

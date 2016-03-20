@@ -42,7 +42,8 @@ public abstract class PersonFactory {
 	 * @return the Person's id
 	 * @throws GoldfishException
 	 */
-	public abstract Integer createPerson(Object typePerson, String surname, String name, String phone_number, String email, String password, String street, Integer street_number, Integer zip_code, String city) throws GoldfishException;
+	public abstract Integer createPerson(Object typePerson, String surname, String name, String phone_number, String email, String password, String street, Integer street_number, Integer zip_code, String city,
+			String shopname, String description, Integer siret, String activity_domain, String web_address) throws GoldfishException;
 
 	
 	/**

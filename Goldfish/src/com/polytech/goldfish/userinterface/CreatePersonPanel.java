@@ -24,6 +24,9 @@ public class CreatePersonPanel extends JPanel {
 
 	private final PersonFacade personFacade;
 
+	JPanel panelLabelInfo;
+	JPanel panelTextInfo;
+	
 	private final JTextField tfName;
 	private final JTextField tfSurname;
 	private final JTextField tfPhoneNumber;
@@ -33,6 +36,11 @@ public class CreatePersonPanel extends JPanel {
 	private final JTextField tfStreet;
 	private final JTextField tfZipCode;
 	private final JTextField tfCity;
+	private final JTextField tfShopname;
+	private final JTextField tfDescription;
+	private final JTextField tfSiret;
+	private final JTextField tfActivitydomain;
+	private final JTextField tfWebAddress;
 	
 	/**
 	 * Constructor of class PanelCratePerson
@@ -59,47 +67,47 @@ public class CreatePersonPanel extends JPanel {
 		panelCenter.add(panelInfo, BorderLayout.NORTH);
 		panelInfo.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panelLabelInfo = new JPanel();
+		panelLabelInfo = new JPanel();
 		panelInfo.add(panelLabelInfo, BorderLayout.WEST);
 		panelLabelInfo.setLayout(new GridLayout(0, 1, 0, 0));
 			
-		JLabel lblTypePerson = new JLabel("Type:");
+		final JLabel lblTypePerson = new JLabel("Type:");
 		panelLabelInfo.add(lblTypePerson);
 		
-		JLabel lblSurname = new JLabel("Surname:");
+		final JLabel lblSurname = new JLabel("Surname:");
 		panelLabelInfo.add(lblSurname);
 		
-		JLabel lblName = new JLabel("Name:");
+		final JLabel lblName = new JLabel("Name:");
 		panelLabelInfo.add(lblName);
 		
-		JLabel lblPhoneNumber = new JLabel("Phone number:");
+		final JLabel lblPhoneNumber = new JLabel("Phone number:");
 		panelLabelInfo.add(lblPhoneNumber);
 		
-		JLabel lblEmail = new JLabel("Email:");
+		final JLabel lblEmail = new JLabel("Email:");
 		panelLabelInfo.add(lblEmail);
 		
-		JLabel lblPassword = new JLabel("Password:");
+		final JLabel lblPassword = new JLabel("Password:");
 		panelLabelInfo.add(lblPassword);
 		
-		JLabel lblStreetNumber = new JLabel("Street number:");
+		final JLabel lblStreetNumber = new JLabel("Street number:");
 		panelLabelInfo.add(lblStreetNumber);
 		
-		JLabel lblStreet = new JLabel("Street:");
+		final JLabel lblStreet = new JLabel("Street:");
 		panelLabelInfo.add(lblStreet);
 		
-		JLabel lblZipCode = new JLabel("Zip code:");
+		final JLabel lblZipCode = new JLabel("Zip code:");
 		panelLabelInfo.add(lblZipCode);
 		
-		JLabel lblCity = new JLabel("City:");
+		final JLabel lblCity = new JLabel("City:");
 		panelLabelInfo.add(lblCity);
 		
-		JPanel panelTextInfo = new JPanel();
+		panelTextInfo = new JPanel();
 		panelInfo.add(panelTextInfo, BorderLayout.CENTER);
 		panelTextInfo.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		final JComboBox<String> cbTypePerson = new JComboBox<>();
-		cbTypePerson.setModel(new DefaultComboBoxModel<String>(new String[] {"Administrator",  "User"}));
-		cbTypePerson.setSelectedIndex(1);
+		cbTypePerson.setModel(new DefaultComboBoxModel<String>(new String[] {"Administrator", "Seller", "User"}));
+		cbTypePerson.setSelectedIndex(2);
 		panelTextInfo.add(cbTypePerson);
 		
 		tfSurname = new JTextField();
@@ -130,6 +138,104 @@ public class CreatePersonPanel extends JPanel {
 		tfCity = new JTextField();
 		panelTextInfo.add(tfCity);
 		
+		// For a seller
+		final JLabel lblShopname = new JLabel("Shop name:");
+		final JLabel lblDescription = new JLabel("Description:");
+		final JLabel lblSiret = new JLabel("SIRET:");
+		final JLabel lblActivitydomain = new JLabel("Activity domain:");
+		final JLabel lblWebAddress = new JLabel("Web address:");
+		tfShopname = new JTextField();
+		tfDescription = new JTextField();
+		tfSiret = new JTextField();
+		tfActivitydomain = new JTextField();
+		tfWebAddress = new JTextField();
+		
+		cbTypePerson.addActionListener(
+				new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if(cbTypePerson.getSelectedItem().equals("Seller")){
+							panelLabelInfo.add(lblTypePerson);
+							panelLabelInfo.add(lblSurname);
+							panelLabelInfo.add(lblName);
+							panelLabelInfo.add(lblPhoneNumber);
+							panelLabelInfo.add(lblEmail);
+							panelLabelInfo.add(lblPassword);
+							panelLabelInfo.add(lblStreetNumber);
+							panelLabelInfo.add(lblStreet);
+							panelLabelInfo.add(lblZipCode);
+							panelLabelInfo.add(lblCity);
+							panelLabelInfo.add(lblShopname);
+							panelLabelInfo.add(lblDescription);
+							panelLabelInfo.add(lblSiret);
+							panelLabelInfo.add(lblActivitydomain);
+							panelLabelInfo.add(lblWebAddress);
+							panelTextInfo.add(cbTypePerson);
+							tfSurname.setColumns(20);
+							panelTextInfo.add(tfSurname);
+							panelTextInfo.add(tfName);
+							panelTextInfo.add(tfPhoneNumber);
+							panelTextInfo.add(tfEmail);
+							panelTextInfo.add(tfPassword);
+							panelTextInfo.add(tfStreetNumber);
+							panelTextInfo.add(tfStreet);
+							panelTextInfo.add(tfZipCode);
+							panelTextInfo.add(tfCity);
+							panelTextInfo.add(tfShopname);
+							panelTextInfo.add(tfDescription);
+							panelTextInfo.add(tfSiret);
+							panelTextInfo.add(tfActivitydomain);
+							panelTextInfo.add(tfWebAddress);
+							
+							panelLabelInfo.revalidate();
+							panelLabelInfo.repaint();
+							panelTextInfo.revalidate();
+							panelTextInfo.repaint();
+						}
+						else {
+							panelLabelInfo.add(lblTypePerson);
+							panelLabelInfo.add(lblSurname);
+							panelLabelInfo.add(lblName);
+							panelLabelInfo.add(lblPhoneNumber);
+							panelLabelInfo.add(lblEmail);
+							panelLabelInfo.add(lblPassword);
+							panelLabelInfo.add(lblStreetNumber);
+							panelLabelInfo.add(lblStreet);
+							panelLabelInfo.add(lblZipCode);
+							panelLabelInfo.add(lblCity);
+							panelTextInfo.add(cbTypePerson);
+							panelLabelInfo.remove(lblShopname);
+							panelLabelInfo.remove(lblDescription);
+							panelLabelInfo.remove(lblSiret);
+							panelLabelInfo.remove(lblActivitydomain);
+							panelLabelInfo.remove(lblWebAddress);
+							panelTextInfo.add(cbTypePerson);
+							tfSurname.setColumns(20);
+							panelTextInfo.add(tfSurname);
+							panelTextInfo.add(tfName);
+							panelTextInfo.add(tfPhoneNumber);
+							panelTextInfo.add(tfEmail);
+							panelTextInfo.add(tfPassword);
+							panelTextInfo.add(tfStreetNumber);
+							panelTextInfo.add(tfStreet);
+							panelTextInfo.add(tfZipCode);
+							panelTextInfo.add(tfCity);
+							panelTextInfo.remove(tfShopname);
+							panelTextInfo.remove(tfDescription);
+							panelTextInfo.remove(tfSiret);
+							panelTextInfo.remove(tfActivitydomain);
+							panelTextInfo.remove(tfWebAddress);
+							
+							panelLabelInfo.revalidate();
+							panelLabelInfo.repaint();
+							panelTextInfo.revalidate();
+							panelTextInfo.repaint();
+						}
+						
+					}
+				});
+		
 		JPanel panelSouth = new JPanel();
 		mainPanel.add(panelSouth, BorderLayout.SOUTH);
 		panelSouth.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -144,23 +250,46 @@ public class CreatePersonPanel extends JPanel {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							Integer idPerson = null;
-							
-							if(!(tfSurname.getText().isEmpty() || tfName.getText().isEmpty() || tfPhoneNumber.getText().isEmpty() || tfEmail.getText().isEmpty() || tfPassword.getText().isEmpty() 
-									|| tfStreet.getText().isEmpty() || tfStreetNumber.getText().isEmpty() || tfZipCode.getText().isEmpty() || tfCity.getText().isEmpty())){
-								try {
-									idPerson = personFacade.createPerson(cbTypePerson.getSelectedItem(), tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText(), tfStreet.getText(), tfStreetNumber.getText(), tfZipCode.getText(), tfCity.getText());
-									JOptionPane.showMessageDialog(null, personFacade.findPersonById(idPerson).getSurname() + " " + personFacade.findPersonById(idPerson).getName() + " has been created.",
-											"Person created.",JOptionPane.INFORMATION_MESSAGE);
-									reinitPanel();
+							if(cbTypePerson.getSelectedItem().equals("Seller")){
+								if(!(tfSurname.getText().isEmpty() || tfName.getText().isEmpty() || tfPhoneNumber.getText().isEmpty() || tfEmail.getText().isEmpty() || tfPassword.getText().isEmpty() 
+										|| tfStreet.getText().isEmpty() || tfStreetNumber.getText().isEmpty() || tfZipCode.getText().isEmpty() || tfCity.getText().isEmpty()
+										|| tfShopname.getText().isEmpty() || tfDescription.getText().isEmpty() || tfSiret.getText().isEmpty() || tfActivitydomain.getText().isEmpty() || tfWebAddress.getText().isEmpty())){
+									try {
+										idPerson = personFacade.createPerson(cbTypePerson.getSelectedItem(), tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText(), tfStreet.getText(), tfStreetNumber.getText(), tfZipCode.getText(), tfCity.getText(),
+												tfShopname.getText(), tfDescription.getText(), tfSiret.getText(), tfActivitydomain.getText(), tfWebAddress.getText());
+										JOptionPane.showMessageDialog(null, personFacade.findPersonById(idPerson).getSurname() + " " + personFacade.findPersonById(idPerson).getName() + " has been created.",
+												"Person created.",JOptionPane.INFORMATION_MESSAGE);
+										reinitPanel();
+									}
+									catch (GoldfishException e1) {
+										JOptionPane.showMessageDialog(null, e1.toString(),
+												"Error.",JOptionPane.ERROR_MESSAGE);
+									}
 								}
-								catch (GoldfishException e1) {
-									JOptionPane.showMessageDialog(null, e1.toString(),
-											"Error.",JOptionPane.ERROR_MESSAGE);
+								else {
+									JOptionPane.showMessageDialog(null, "Please fill all the fields.",
+											"Blank fields.",JOptionPane.ERROR_MESSAGE);
 								}
 							}
-							else {
-								JOptionPane.showMessageDialog(null, "Please fill all the fields.",
-										"Blank fields.",JOptionPane.ERROR_MESSAGE);
+							else{
+								if(!(tfSurname.getText().isEmpty() || tfName.getText().isEmpty() || tfPhoneNumber.getText().isEmpty() || tfEmail.getText().isEmpty() || tfPassword.getText().isEmpty() 
+										|| tfStreet.getText().isEmpty() || tfStreetNumber.getText().isEmpty() || tfZipCode.getText().isEmpty() || tfCity.getText().isEmpty())){
+									try {
+										idPerson = personFacade.createPerson(cbTypePerson.getSelectedItem(), tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText(), tfStreet.getText(), tfStreetNumber.getText(), tfZipCode.getText(), tfCity.getText(),
+												null, null, null, null, null);
+										JOptionPane.showMessageDialog(null, personFacade.findPersonById(idPerson).getSurname() + " " + personFacade.findPersonById(idPerson).getName() + " has been created.",
+												"Person created.",JOptionPane.INFORMATION_MESSAGE);
+										reinitPanel();
+									}
+									catch (GoldfishException e1) {
+										JOptionPane.showMessageDialog(null, e1.toString(),
+												"Error.",JOptionPane.ERROR_MESSAGE);
+									}
+								}
+								else {
+									JOptionPane.showMessageDialog(null, "Please fill all the fields.",
+											"Blank fields.",JOptionPane.ERROR_MESSAGE);
+								}
 							}
 						}
 					}
@@ -179,5 +308,10 @@ public class CreatePersonPanel extends JPanel {
 		tfStreetNumber.setText("");
 		tfSurname.setText("");
 		tfZipCode.setText("");
+		tfShopname.setText("");
+		tfDescription.setText("");
+		tfSiret.setText("");
+		tfActivitydomain.setText("");
+		tfWebAddress.setText("");
 	}
 }

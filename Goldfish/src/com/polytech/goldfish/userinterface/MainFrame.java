@@ -58,7 +58,7 @@ public class MainFrame extends JFrame implements AbstractView {
 		window = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Goldfish");
-		setSize(new Dimension(1024, 500));
+		setSize(new Dimension(1024, 600));
 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height
@@ -285,7 +285,10 @@ public class MainFrame extends JFrame implements AbstractView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Goals "); // TRACE
-				// Liste de tous les goals
+				contentPanel.removeAll(); // Les 4 lignes sont le "squelette" de ce qu'il
+				contentPanel.add(new CreatePersonPanel()); // faut faire pour
+				contentPanel.revalidate();  // pour charger un panel
+				contentPanel.repaint(); // dans la home page 
 			}
 		});
 
