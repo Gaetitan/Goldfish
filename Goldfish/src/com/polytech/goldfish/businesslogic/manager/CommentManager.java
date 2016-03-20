@@ -1,100 +1,53 @@
 package com.polytech.goldfish.businesslogic.manager;
 
 import java.util.Collection;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import com.polytech.goldfish.businesslogic.business.Person;
-import com.polytech.goldfish.businesslogic.factory.PersonFactory;
-import com.polytech.goldfish.persistence.factoryjdbc.PersonFactoryJDBC;
+import com.polytech.goldfish.businesslogic.business.Comment;
+import com.polytech.goldfish.businesslogic.factory.CommentFactory;
+import com.polytech.goldfish.persistence.factoryjdbc.CommentFactoryJDBC;
 import com.polytech.goldfish.util.GoldfishException;
 
 
-/**
- * This class manages a Person
- * 
- * @author Ga�tan FRAN�OIS
- *
- */
+
 public class CommentManager {
 	
-	private final PersonFactory factory;
-	
-	boolean checkTel(String tel){
-		Pattern p = Pattern.compile("\\d{10}");
-		Matcher m = p.matcher(tel);
-		return m.matches();
-	}
-
-	boolean checkEmail(String email){
-		Pattern p = Pattern.compile("^[\\w._%+-]+@[\\w.-]+\\.[\\p{Alpha}]{2,6}$");
-		Matcher m = p.matcher(email);
-		return m.matches();
-	}
-	
-	boolean checkZipCode(String zipCode){
-		Pattern p = Pattern.compile("\\d{5}");
-		Matcher m = p.matcher(zipCode);
-		return m.matches();
-	}
-	
-	boolean checkNumber(String number){
-		Pattern p = Pattern.compile("\\d+");
-		Matcher m = p.matcher(number);
-		return m.matches();
-	}
+	private final CommentFactory factory;
 	
 	public CommentManager(){
-		this.factory = new PersonFactoryJDBC();
+		this.factory = new CommentFactoryJDBC();
 	}
 	
-	public Person login(String email, String password) throws GoldfishException {
-		if (this.factory.getPersonByLogin(email, password) == null) {
-			throw new GoldfishException("The written email/password is invalid.");
+	public Comment createComment(String text) throws GoldfishException{
+		if(text.isEmpty() || text == ""){
+			throw new GoldfishException("Comment cannot be empty.");
 		}
 		else{
-			return this.factory.getPersonByLogin(email, password);
+			return this.factory.createComment(text);	
 		}
-	}
-	
-	public Integer createPerson(Object typePerson, String surname, String name, String phone_number,
-			String email, String password, String street, String street_number, String zip_code, String city) throws GoldfishException{
-		if(!checkEmail(email)) {
-			throw new GoldfishException("Please enter a valid email.");
-		}
-		else if(!checkTel(phone_number)){
-			throw new GoldfishException("Please enter a valid phone number.");
-		}
-		else if(!checkNumber(street_number)){
-			throw new GoldfishException("Please enter a valid street number.");
-		}
-		else if(!checkZipCode(zip_code)){
-			throw new GoldfishException("Please enter a valid zip code.");
-		}
-		else {
-			return this.factory.createPerson(typePerson, surname, name, phone_number, email, password, street, Integer.parseInt(street_number), Integer.parseInt(zip_code), city);
-		}
-		
-	}
-	
-	public Integer updatePerson(Integer id, String surname, String name, String phone_number,
-			String email, String password) {
-		return this.factory.updatePerson(id, surname, name, phone_number, email, password);
-	}
-	
-	public Person findPersonById(Integer id){
-		return this.factory.getPersonById(id);
-	}
-	
-	public Collection<Person> findAllPersons(){
-		return this.factory.getAllPersons();
-	}
-	
-	public boolean isUser(Integer idPerson) {
-		return this.factory.isUser(idPerson);
 	}
 
-	public boolean isAdministrator(Integer idPerson) {
-		return this.factory.isAdministrator(idPerson);
+	public boolean updateComment(String id, String newText) throws GoldfishException{
+		if(newText.isEmpty() || newText == ""){
+			throw new GoldfishException("Comment cannot be empty.");
+		}
+		else if (id.isEmpty() || id == ""){
+			throw new GoldfishException("You must specify an ID for the comment to change.");
+		}
+		else{
+			return this.factory.updateComment(id, newText);	
+		}
+	}
+
+	public boolean deleteComment(String id) throws GoldfishException{
+		if (id.isEmpty() || id == ""){
+			throw new GoldfishException("You must specify an ID for the comment to delete.");
+		}
+		else{
+			return this.factory.deleteComment(id);
+		}
+	}
+
+	public Collection<Comment> findAllComments(){
+		return this.factory.getAllComments();
 	}
 }

@@ -3,9 +3,9 @@ package com.polytech.goldfish.persistence.factoryjdbc;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.polytech.goldfish.businesslogic.business.Person;
-import com.polytech.goldfish.businesslogic.factory.PersonFactory;
-import com.polytech.goldfish.persistence.jdbc.PersonJDBC;
+import com.polytech.goldfish.businesslogic.business.Comment;
+import com.polytech.goldfish.businesslogic.factory.CommentFactory;
+import com.polytech.goldfish.persistence.jdbc.CommentJDBC;
 import com.polytech.goldfish.util.GoldfishException;
 
 
@@ -13,52 +13,37 @@ import com.polytech.goldfish.util.GoldfishException;
  * @author RedaM
  *
  */
-public class CommentFactoryJDBC extends PersonFactory {
+public class CommentFactoryJDBC extends CommentFactory {
 
 	@Override
-	public Person getPersonByLogin(String email, String password) {
-		return PersonJDBC.findPersonByLogin(email, password);
+	public Comment createComment(String text) {
+		return CommentJDBC.createComment(text);
 	}
 
 	@Override
-	public Integer createPerson(Object typePerson, String surname, String name,
-			String phone_number, String email, String password, String street, Integer street_number, Integer zip_code, String city) throws GoldfishException {
-		return PersonJDBC.createPerson(typePerson, surname, name, phone_number, email, password, street, street_number, zip_code, city);
-	}
-
-	@Override
-	public Person getPersonById(Integer id) {
-		return PersonJDBC.findPersonById(id);
-	}
-
-	@Override
-	public Collection<Person> getAllPersons() {
-		// Creation of a collection of Person
-		Collection<Person> listPersons = new ArrayList<Person>();
+	public Collection<Comment> getAllComments() {
+		// Creation of a collection of Comments
+		Collection<Comment> listComments = new ArrayList<Comment>();
 		
-		// Put the PersonJDBC as Person in a new list
-		for(Person person : PersonJDBC.findAllPersons()) {
-			listPersons.add(person);
+		// Put the CommentJDBC as Comment in a new list
+		for(Comment comment : CommentJDBC.findAllComments()) {
+			listComments.add(comment);
 		}
 
 		// Return the new list
-		return listPersons;
+		return listComments;
 	}
 
 	@Override
-	public Integer updatePerson(Integer id, String surname, String name, String phone_number,
-			String email, String password) {
-		return PersonJDBC.updatePerson(id, surname, name, phone_number, email, password);
+	public boolean updateComment(String id, String newText) throws GoldfishException {
+		return CommentJDBC.updateComment(id, newText);
 	}
 
 	@Override
-	public boolean isUser(Integer idPerson) {
-		return PersonJDBC.isUser(idPerson);
+	public boolean deleteComment(String id) throws GoldfishException {
+		return CommentJDBC.deleteCommet(id);
 	}
 
-	@Override
-	public boolean isAdministrator(Integer idPerson) {
-		return PersonJDBC.isAdministrator(idPerson);
-	}
+
 
 }
