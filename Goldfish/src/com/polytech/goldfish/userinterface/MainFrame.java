@@ -285,10 +285,6 @@ public class MainFrame extends JFrame implements AbstractView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Goals "); // TRACE
-				contentPanel.removeAll(); // Les 4 lignes sont le "squelette" de ce qu'il
-				contentPanel.add(new CreatePersonPanel()); // faut faire pour
-				contentPanel.revalidate();  // pour charger un panel
-				contentPanel.repaint(); // dans la home page 
 				// Liste de tous les goals
 			}
 		});
@@ -327,7 +323,10 @@ public class MainFrame extends JFrame implements AbstractView {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					System.out.println("List of users "); // TRACE
-					// List of users of our app
+					contentPanel.removeAll(); // Les 4 lignes sont le "squelette" de ce qu'il
+					contentPanel.add(new ListPersonsPanel()); // faut faire pour
+					contentPanel.revalidate();  // pour charger un panel
+					contentPanel.repaint(); // dans la home page 
 				}
 			});
 
@@ -407,7 +406,7 @@ public class MainFrame extends JFrame implements AbstractView {
 		btnCart.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("My cart "); // TRACE
+				System.out.println("My cart"); // TRACE
 				// Create or update new cart
 			}
 		});

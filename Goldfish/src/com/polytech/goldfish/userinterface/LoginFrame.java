@@ -93,9 +93,7 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
 		getContentPane().add(lblLogo);
 
 		setVisible(true);
-
-		textFieldLogin.setText("test");
-		passwordFieldPassword.setText("test");
+		
 		// btnLogin.doClick();
 
 		setResizable(false);
@@ -134,8 +132,7 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
 						"Invalid email/password", JOptionPane.WARNING_MESSAGE);
 			}
 		} else if (((JButton) e.getSource()).getText().equals("Register")) {
-			JOptionPane.showMessageDialog(
-					null, new CreatePersonPanel(), "Sign up", JOptionPane.DEFAULT_OPTION);
+			new SignUpFrame();
 		}
 	}
 
