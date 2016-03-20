@@ -46,6 +46,12 @@ public class Comment {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
+	public String getConcerned() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	// Other methods
 	
