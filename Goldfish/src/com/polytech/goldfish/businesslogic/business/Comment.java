@@ -1,10 +1,10 @@
 package com.polytech.goldfish.businesslogic.business;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Business class Comment
- * @author Gaëtan FRANÇOIS
+ * @author Gaï¿½tan FRANï¿½OIS
  *
  */
 public class Comment {
@@ -15,7 +15,7 @@ public class Comment {
 	private Date date;
 	
 	// Constructors
-	public Comment(Integer id, String text, Date date) {
+	public Comment(Integer id, String text,Date date) {
 		super();
 		this.id = id;
 		this.text = text;
