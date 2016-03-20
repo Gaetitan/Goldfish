@@ -155,13 +155,13 @@ public class MainFrame extends JFrame implements AbstractView {
 			});
 			
 			JButton btnMyComments = new JButton("My comments");
-			sl_sidePanel.putConstraint(SpringLayout.NORTH, btnMyDiary, 10,
+			sl_sidePanel.putConstraint(SpringLayout.NORTH, btnMyComments, 10,
 					SpringLayout.SOUTH, btnMyDiary);
-			sl_sidePanel.putConstraint(SpringLayout.WEST, btnMyDiary, 10,
+			sl_sidePanel.putConstraint(SpringLayout.WEST, btnMyComments, 10,
 					SpringLayout.WEST, sidePanel);
-			sl_sidePanel.putConstraint(SpringLayout.SOUTH, btnMyDiary, 40,
+			sl_sidePanel.putConstraint(SpringLayout.SOUTH, btnMyComments, 40,
 					SpringLayout.SOUTH, btnMyDiary);
-			sl_sidePanel.putConstraint(SpringLayout.EAST, btnMyDiary, -10,
+			sl_sidePanel.putConstraint(SpringLayout.EAST, btnMyComments, -10,
 					SpringLayout.EAST, sidePanel);
 			sidePanel.add(btnMyComments);
 			btnMyComments.addActionListener(new ActionListener() {
@@ -190,29 +190,30 @@ public class MainFrame extends JFrame implements AbstractView {
 					System.out.println("own activity "); // TRACE
 					// List of own activity
 				}
-			});
+			});		
+		
 		}
 
-		JButton btnMyNotifications = new JButton("My notifications");
-		sl_sidePanel.putConstraint(SpringLayout.WEST, btnMyNotifications, 10,
+		JButton btnMyComments = new JButton("My comments");
+		sl_sidePanel.putConstraint(SpringLayout.WEST, btnMyComments, 10,
 				SpringLayout.WEST, sidePanel);
-		sl_sidePanel.putConstraint(SpringLayout.EAST, btnMyNotifications, -10,
+		sl_sidePanel.putConstraint(SpringLayout.EAST, btnMyComments, -10,
 				SpringLayout.EAST, sidePanel);
-		sidePanel.add(btnMyNotifications);
-		btnMyNotifications.addActionListener(new ActionListener() {
+		sidePanel.add(btnMyComments);
+		btnMyComments.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("own notif "); // TRACE
+				System.out.println("own comments "); // TRACE
 				//  List of own notifications
 			}
 		});
 
 		JButton btnLogoff = new JButton("Log Out");
-		sl_sidePanel.putConstraint(SpringLayout.NORTH, btnMyNotifications, -40,
+		sl_sidePanel.putConstraint(SpringLayout.NORTH, btnMyComments, -40,
 				SpringLayout.NORTH, btnLogoff);
 		sl_sidePanel.putConstraint(SpringLayout.SOUTH, btnLogoff, -10,
 				SpringLayout.SOUTH, sidePanel);
-		sl_sidePanel.putConstraint(SpringLayout.SOUTH, btnMyNotifications, -10,
+		sl_sidePanel.putConstraint(SpringLayout.SOUTH, btnMyComments, -10,
 				SpringLayout.NORTH, btnLogoff);
 		sl_sidePanel.putConstraint(SpringLayout.NORTH, btnLogoff, -40,
 				SpringLayout.SOUTH, sidePanel);
