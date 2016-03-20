@@ -69,11 +69,11 @@ public class MainFrame extends JFrame implements AbstractView {
 		sidePanel = new JPanel();
 		springLayout.putConstraint(SpringLayout.NORTH, sidePanel, 10,
 				SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, sidePanel, 200,
+		springLayout.putConstraint(SpringLayout.WEST, sidePanel, 10,
 				SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, sidePanel, -10,
 				SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, sidePanel, 10,
+		springLayout.putConstraint(SpringLayout.EAST, sidePanel, 200,
 				SpringLayout.WEST, getContentPane());
 		sidePanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		getContentPane().add(sidePanel);
