@@ -6,21 +6,20 @@ import java.sql.SQLException;
 
 /**
  * This class connects the application to a database
- * @author Gaëtan FRANÇOIS
+ * @author Gaï¿½tan FRANï¿½OIS
  *
  */
 public class Connect {
 	private static Connect instance = null;
-	private String driverName = "org.postgresql.Driver";
-	private String url;
-	private String user;
-	private String password;
+	private final String driverName = "org.postgresql.Driver";
+	private final String url;
+	private final String user;
+	private final String password;
 	
 	private Connect() {
 		this.url = "jdbc:postgresql://ec2-107-20-153-141.compute-1.amazonaws.com:5432/deo26s6g50b66u?sslmode=require";
 		this.user = "neuakxuifmnrfv";
 		this.password = "tlK7w4GuufFaIzOyvaoTmu8KkK";
-		
 		try{
 			Class.forName(this.driverName);
 		}
