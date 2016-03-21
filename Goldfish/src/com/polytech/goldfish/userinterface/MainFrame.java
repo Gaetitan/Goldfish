@@ -327,6 +327,31 @@ public class MainFrame extends JFrame implements AbstractView {
 			}
 		});
 		menuPanel.add(btnShop);
+		
+		if (this.personFacade.isUser(idPerson)) { // C'est un user classique
+			
+			JButton btnMyWish = new JButton("WishList");
+			sl_sidePanel.putConstraint(SpringLayout.NORTH, btnMyWish, 10,
+					SpringLayout.NORTH, menuPanel);
+			sl_sidePanel.putConstraint(SpringLayout.WEST, btnMyWish, 10,
+					SpringLayout.EAST, btnShop);
+			sl_sidePanel.putConstraint(SpringLayout.SOUTH, btnMyWish, 40,
+					SpringLayout.NORTH, menuPanel);
+			sl_sidePanel.putConstraint(SpringLayout.EAST, btnMyWish, 110,
+					SpringLayout.EAST, btnShop);
+			btnMyWish.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					System.out.println("List of wishlists "); // TRACE
+					contentPanel.removeAll(); // Les 4 lignes sont le "squelette" de ce qu'il
+					contentPanel.add(new ListWishlistPanel()); // faut faire pour
+					contentPanel.revalidate();  // pour charger un panel
+					contentPanel.repaint(); // dans la home page 
+					System.out.println("List of wishlist"); // TRACE
+				}
+			});
+			menuPanel.add(btnMyWish);
+			}
 
 		if (this.personFacade.isAdministrator(idPerson)) {
 
@@ -352,7 +377,7 @@ public class MainFrame extends JFrame implements AbstractView {
 				}
 			});
 
-/*			JButton btnWish = new JButton("wishList");
+			JButton btnWish = new JButton("WishList");
 			sl_menuPanel.putConstraint(SpringLayout.NORTH, btnWish, 10,
 					SpringLayout.NORTH, menuPanel);
 			sl_menuPanel.putConstraint(SpringLayout.WEST, btnWish, 10,
@@ -364,11 +389,17 @@ public class MainFrame extends JFrame implements AbstractView {
 			btnWish.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					//
+					System.out.println("List of wishlists "); // TRACE
+					contentPanel.removeAll(); // Les 4 lignes sont le "squelette" de ce qu'il
+					contentPanel.add(new ListWishlistPanel()); // faut faire pour
+					contentPanel.revalidate();  // pour charger un panel
+					contentPanel.repaint(); // dans la home page 
+					System.out.println("List of wishlist"); // TRACE
 				}
 			});
 			menuPanel.add(btnWish);
-*/
+			
+
 
 			JButton btnCategories = new JButton("My categories");
 			sl_sidePanel.putConstraint(SpringLayout.NORTH, btnCategories, 170,
@@ -417,6 +448,8 @@ public class MainFrame extends JFrame implements AbstractView {
 		sl_menuPanel.putConstraint(SpringLayout.EAST, btnCart, -10,
 				SpringLayout.EAST, menuPanel);
 		menuPanel.add(btnCart);
+		
+		
 
 		contentPanel = new JPanel();
 		getContentPane().add(contentPanel);

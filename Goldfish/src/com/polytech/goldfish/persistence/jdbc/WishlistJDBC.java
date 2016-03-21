@@ -14,10 +14,10 @@ import com.polytech.goldfish.util.Connect;
 public class WishlistJDBC extends Wishlist {
 
 	// Queries
-	private static final String queryGetWishlistById = "SELECT * FROM Wishlist WHERE idWishlist = ?;";
+	private static final String queryGetWishlistById = "SELECT w.idwishlist, cp.name, wc.quantity  FROM WishListContainsCatProduct wc, user u, whishlit w, categoryproduct cp WHERE u.idPerson = ? AND u.idperson = w.idperson AND w.idwishlist = wc.idwishlist AND wc.idcatProduct = cp.idcatProduct;";
 	private static final String queryInsertOne = "INSERT INTO Wishlist (name, quantity) VALUES(?,?);";
-	private static final String queryUpdateOne = "UPDATE Wishlist SET name = ?, quantity = ? WHERE idWishlist = ?;";
-	private static final String queryGetAllWishlists = "SELECT * FROM Wishlist;";
+	private static final String queryUpdateOne = "UPDATE WishListContainsCatProduct SET IDCatProduct = (SELECT IDCatProduct FROM categoryProduct WHERE name = ?), quantity = ? WHERE idWishlist = ?;";
+	private static final String queryGetAllWishlists = "SELECT wc.idWishlist, cp.name, wc.quantity FROM WishListContainsCatProduct wc, categoryProduct cp WHERE wc.IDCatProduct = cp.IDCatProduct;";
 	private static final String queryDeleteOne ="DELETE FROM Wishlist WHERE idWishlist = ?;";
 	
 	
@@ -58,9 +58,10 @@ public class WishlistJDBC extends Wishlist {
 		return idToReturn;		
 	}
 	
-	public static WishlistJDBC findWishlistById(Integer id) {
-		WishlistJDBC wishlist = null;
+	public static Collection<WishlistJDBC> findWishlistById(Integer id) {
+		Collection<WishlistJDBC> listWishlists = null;
 		try{
+			listWishlists = new ArrayList<WishlistJDBC>();
 			Connection connect = Connect.getInstance().getConnection();
 			
 			PreparedStatement instruction = connect.prepareCall(queryGetWishlistById);
@@ -68,13 +69,13 @@ public class WishlistJDBC extends Wishlist {
 			ResultSet rs = instruction.executeQuery();
 			
 			while(rs.next()){
-				wishlist = new WishlistJDBC(rs.getInt(1), rs.getString(2), rs.getInt(3));
+				listWishlists.add(new WishlistJDBC(rs.getInt(1), rs.getString(2), rs.getInt(3)));
 			}	
 		}
 		catch(SQLException e){
 			e.printStackTrace();
 		}
-		return wishlist;
+		return listWishlists;
 	}
 	
 	public static Collection<WishlistJDBC> findAllWishlists() {
