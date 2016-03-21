@@ -153,6 +153,7 @@ public class MainFrame extends JFrame implements AbstractView {
 					// List of own diary entrys
 				}
 			});
+			
 		}
 
 		if (this.personFacade.isAdministrator(idPerson)) { // Si c'est un admin
@@ -172,29 +173,33 @@ public class MainFrame extends JFrame implements AbstractView {
 					System.out.println("own activity "); // TRACE
 					// List of own activity
 				}
-			});
+			});		
+		
 		}
 
-		JButton btnMyNotifications = new JButton("My notifications");
-		sl_sidePanel.putConstraint(SpringLayout.WEST, btnMyNotifications, 10,
+		JButton btnMyComments = new JButton("My comments");
+		sl_sidePanel.putConstraint(SpringLayout.WEST, btnMyComments, 10,
 				SpringLayout.WEST, sidePanel);
-		sl_sidePanel.putConstraint(SpringLayout.EAST, btnMyNotifications, -10,
+		sl_sidePanel.putConstraint(SpringLayout.EAST, btnMyComments, -10,
 				SpringLayout.EAST, sidePanel);
-		sidePanel.add(btnMyNotifications);
-		btnMyNotifications.addActionListener(new ActionListener() {
+		sidePanel.add(btnMyComments);
+		btnMyComments.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("own notif "); // TRACE
-				//  List of own notifications
+				System.out.println("own comments "); // TRACE
+				contentPanel.removeAll(); // Les 4 lignes sont le "squelette" de ce qu'il
+				contentPanel.add(new CommentPanel()); // faut faire pour
+				contentPanel.revalidate();  // pour charger un panel
+				contentPanel.repaint(); // dans la home page 
 			}
 		});
 
 		JButton btnLogoff = new JButton("Log Out");
-		sl_sidePanel.putConstraint(SpringLayout.NORTH, btnMyNotifications, -40,
+		sl_sidePanel.putConstraint(SpringLayout.NORTH, btnMyComments, -40,
 				SpringLayout.NORTH, btnLogoff);
 		sl_sidePanel.putConstraint(SpringLayout.SOUTH, btnLogoff, -10,
 				SpringLayout.SOUTH, sidePanel);
-		sl_sidePanel.putConstraint(SpringLayout.SOUTH, btnMyNotifications, -10,
+		sl_sidePanel.putConstraint(SpringLayout.SOUTH, btnMyComments, -10,
 				SpringLayout.NORTH, btnLogoff);
 		sl_sidePanel.putConstraint(SpringLayout.NORTH, btnLogoff, -40,
 				SpringLayout.SOUTH, sidePanel);
@@ -285,10 +290,6 @@ public class MainFrame extends JFrame implements AbstractView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Goals "); // TRACE
-				contentPanel.removeAll(); // Les 4 lignes sont le "squelette" de ce qu'il
-				contentPanel.add(new CreatePersonPanel()); // faut faire pour
-				contentPanel.revalidate();  // pour charger un panel
-				contentPanel.repaint(); // dans la home page 
 				// Liste de tous les goals
 			}
 		});
@@ -326,8 +327,15 @@ public class MainFrame extends JFrame implements AbstractView {
 			btnUsers.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
 					System.out.println("List of users "); // TRACE
-					// List of users of our app
+					contentPanel.removeAll(); // Les 4 lignes sont le "squelette" de ce qu'il
+					contentPanel.add(new ListPersonsPanel()); // faut faire pour
+					contentPanel.revalidate();  // pour charger un panel
+					contentPanel.repaint(); // dans la home page 
+=======
+					System.out.println("List of users A"); // TRACE
+>>>>>>> branch 'master' of https://github.com/Gaetitan/Goldfish
 				}
 			});
 
@@ -407,7 +415,7 @@ public class MainFrame extends JFrame implements AbstractView {
 		btnCart.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("My cart "); // TRACE
+				System.out.println("My cart"); // TRACE
 				// Create or update new cart
 			}
 		});
