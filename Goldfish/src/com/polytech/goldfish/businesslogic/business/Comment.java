@@ -11,13 +11,15 @@ public class Comment {
 
 	// Attributes
 	private Integer id;
+	private Integer idConcerned;
 	private String text;
 	private Date date;
 	
 	// Constructors
-	public Comment(Integer id, String text,Date date) {
+	public Comment(Integer id, Integer idConcerned, String text,Date date) {
 		super();
 		this.id = id;
+		this.idConcerned = idConcerned;
 		this.text = text;
 		this.date = date;
 	}
@@ -47,12 +49,12 @@ public class Comment {
 		this.date = date;
 	}
 
-	public String getConcerned() {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer getConcerned() {
+		return idConcerned;
 	}
-
 	
-	// Other methods
-	
+	public void setConcerned(Integer concerned) {
+		this.idConcerned = concerned;
+	}
+		
 }

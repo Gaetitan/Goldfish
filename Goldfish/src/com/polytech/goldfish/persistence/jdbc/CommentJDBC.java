@@ -20,12 +20,16 @@ public class CommentJDBC extends Comment{
 	private static final String queryDeleteCommentById = "DELETE FROM comment WHERE idcomment = ?;";
 	private static final String queryInsertComment = "INSERT INTO comment (text, date) VALUES(?,?);";
 	private static final String queryGetAllComments = "SELECT * FROM comment;";
-	private static final String queryUpdateComment = "UPDATE comment SET text = ?, date = ? WHERE idcomment = ?;";
-
+	private static final String queryUpdateComment = "UPDATE comment SET text = ?, date = ? WHERE idcomment = ?;";	
+	private static final String querySelectConcernedUserToUser = "SELECT idpersonconcernuser FROM commentusertouser WHERE idcomment = ?;";
+	private static final String querySelectConcernedUserToSeller = "SELECT idpersonconcernseller FROM commentusertoseller WHERE idcomment = ?;";
+	private static final String querySelectConcernedSellerToUser = "SELECT idpersonconcernuser FROM commentsellertouser WHERE idcomment = ?;";
+	private static final String querySelectConcernedSellerToSelle = "SELECT idpersonconcernseller FROM commentsellertoseller WHERE idcomment = ?;";
 	// Constructors
-	public CommentJDBC(Integer id, String text, Date date) {
-		super(id, text, date);
+	public CommentJDBC(Integer id, Integer idConcerned, String text, Date date) {
+		super(id, idConcerned, text, date);
 	}
+
 
 	public static Integer createComment(String text, Integer poster, Integer concernedPerson) {
 		Integer idToReturn = null;
@@ -82,16 +86,22 @@ public class CommentJDBC extends Comment{
 
 	public static Collection<CommentJDBC> findAllComments() {
 		Collection<CommentJDBC> listComments = null;
+		Integer idConcerned = null;
 		try{
 			listComments = new ArrayList<CommentJDBC>();
-
+			idConcerned = 25;
 			Connection connect = Connect.getInstance().getConnection();
 
 			PreparedStatement instruction = connect.prepareCall(queryGetAllComments);
 			ResultSet rs = instruction.executeQuery();
 
 			while(rs.next()){
-				listComments.add(new CommentJDBC(rs.getInt(1), rs.getString(2), rs.getDate(3)));
+				PreparedStatement instructionConcern = connect.prepareCall(querySelectConcernedUserToUser);
+				instructionConcern.setInt(1, rs.getInt(1));
+				ResultSet ConcernRS = instructionConcern.executeQuery();
+				while(ConcernRS.next()){
+					listComments.add(new CommentJDBC(rs.getInt(1), ConcernRS.getInt(1), rs.getString(2), rs.getDate(3)));
+				}
 			}	
 		}
 		catch(SQLException e){

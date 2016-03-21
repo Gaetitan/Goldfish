@@ -131,13 +131,13 @@ public class CommentPanel extends JPanel{
 			textFieldSubject.setBounds(126, 34, 350, 28);
 			textFieldSubject.setColumns(10);
 			panel.add(textFieldSubject);
-			textFieldSubject.setText(ac.getConcerned());
+			textFieldSubject.setText((ac.getConcerned()).toString());
 
-			JTextPane textPaneNotif = new JTextPane();
-			textPaneNotif.setEditable(false);
-			textPaneNotif.setBounds(10, 72, 420, 52);
-			panel.add(textPaneNotif);
-			textPaneNotif.setText(ac.getText());
+			JTextPane textPaneComment = new JTextPane();
+			textPaneComment.setEditable(false);
+			textPaneComment.setBounds(10, 72, 420, 52);
+			panel.add(textPaneComment);
+			textPaneComment.setText(ac.getText());
 
 			panel.add(Box.createRigidArea(new Dimension(0, 5)));
 		}
