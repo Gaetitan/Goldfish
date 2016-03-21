@@ -44,10 +44,5 @@ public abstract class ShoppingCartFactory {
 	 */
 	public abstract Collection <ShoppingCart> getAllShoppingCarts();
 	
-	/**
-	 * This method calculates the price of a ShoppingCart
-	 * @return the price of a ShoppingCart
-	 */
-	public abstract Float calculatePrice(Integer id);
-
+	
 }

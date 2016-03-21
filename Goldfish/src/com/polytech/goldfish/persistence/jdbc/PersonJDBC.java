@@ -97,7 +97,7 @@ public class PersonJDBC extends Person {
 				instruction.setBytes(5, Passwords.hash(password.toCharArray(), salt));
 				instruction.setBytes(6, salt);
 				
-				// Insert Person in databse
+				// Insert Person in database
 				int affectedRows = instruction.executeUpdate();
 				connect.commit();
 				
@@ -145,11 +145,8 @@ public class PersonJDBC extends Person {
 	 * @param password
 	 * @return the updated Person's id
 	 */
-<<<<<<< HEAD
-	public static Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String password) {
-=======
+
 	public static Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String password){
->>>>>>> refs/remotes/origin/master
 		Integer idToReturn = null;
 		try{
 			Connection connect = Connect.getInstance().getConnection();

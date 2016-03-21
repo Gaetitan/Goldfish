@@ -24,7 +24,7 @@ public class ShoppingCartJDBC extends ShoppingCart{
 	private static final String queryUpdateOne = "UPDATE shoppingCart WHERE idshoppingCart = ?;";
 	private static final String queryGetAllShoppingCarts = "SELECT * FROM shoppingCart;";
 	private static final String queryDeleteOne = "DELETE FROM shoppingCart WHERE idshoppingCart = ?;";
-	private static final String queryGetAllProductsFromShoppingCart = "SELECT * FROM ShoppingCartContainsProduct WHERE idshoppingCart = ?;";
+	//private static final String queryGetAllProductsFromShoppingCart = "SELECT * FROM ShoppingCartContainsProduct WHERE idshoppingCart = ?;";
 	
 	// Constructors
 	public ShoppingCartJDBC(Integer id) {
@@ -181,66 +181,4 @@ public class ShoppingCartJDBC extends ShoppingCart{
 		
 		return listShoppingCarts;
 	}
-	
-	/**
-	 * This method gets all the products contained in a shoppingCart
-	 * @param id
-	 * @return the products contained in a shoppingCart
-	 */
-	public static ArrayList findAllProductsInShoppingCart(Integer id) {
-		ArrayList listProductsInShoppingCart = null;
-		try{
-			listProductsInShoppingCart = new ArrayList();
-			
-			Connection connect = Connect.getInstance().getConnection();
-			
-			PreparedStatement instruction = connect.prepareCall(queryGetAllProductsFromShoppingCart);
-			ResultSet rs = instruction.executeQuery();
-			
-			while(rs.next()){
-				listProductsInShoppingCart.add((rs.getInt(1)));
-			}	
-		}
-		catch(SQLException e){
-			e.printStackTrace();
-		}
-		
-		return listProductsInShoppingCart;
-	}
-	
-	/**
-	 * This method calculates the price of a shoppingCart
-	 * @param id
-	 * @return the price of a shoppingCart
-	 */
-	public static Float calculatePrice(Integer id) {
-		Float priceToReturn = null;
-		try{
-			Connection connect = Connect.getInstance().getConnection();
-			
-			PreparedStatement instruction = connect.prepareStatement(queryGetPriceFromShoppingCart, Statement.RETURN_GENERATED_KEYS);
-			instruction.setInt(1, id);
-			int affectedRows = instruction.executeUpdate();
-			connect.commit();
-			
-			if(affectedRows == 0){
-				throw new SQLException("Getting price from a shopping cart failed, no rows affected.");
-			}
-			
-			try(ResultSet generatedKeys = instruction.getGeneratedKeys()){
-				if(generatedKeys.next()){
-					priceToReturn = generatedKeys.getFloat(1);
-				}
-				else{
-					throw new SQLException("Getting price from a shopping cart failed, no ID obtained.");
-				}
-			}
-		}
-		catch(SQLException e){
-			e.printStackTrace();
-		}
-		return priceToReturn;
-	}
-
-
 }

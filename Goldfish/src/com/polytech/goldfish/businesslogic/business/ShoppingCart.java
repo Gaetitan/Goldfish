@@ -24,4 +24,9 @@ public class ShoppingCart {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	public Float calculatePrice(Collection<Float>){
+		
+	}
+
 }

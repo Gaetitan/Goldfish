@@ -39,9 +39,5 @@ public class ShoppingCartFacade {
 	public Collection<ShoppingCart> findAllShoppingCarts(){
 		return this.shoppingCartManager.findAllShoppingCarts();
 	}
-	
-	public Float calculatePrice(Integer id) throws GoldfishException {
-		return this.shoppingCartManager.calculatePrice(id);
-	}
 
 }
