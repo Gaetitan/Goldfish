@@ -5,10 +5,12 @@
 package com.polytech.goldfish.userinterface;
 
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.util.Collection;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -139,7 +141,15 @@ public class CommentPanel extends JPanel{
 			panel.add(textPaneComment);
 			textPaneComment.setText(ac.getText());
 
+			JPanel panelButton = new JPanel();
+			panel.add(panelButton);
+			panelButton.setLayout(new GridLayout(1, 0, 0, 0));
+			
+			JButton btnOk = new JButton("New comment");
+			panelButton.add(btnOk);
+			
 			panel.add(Box.createRigidArea(new Dimension(0, 5)));
+			
 		}
 	}
 

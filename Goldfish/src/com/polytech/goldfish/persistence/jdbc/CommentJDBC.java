@@ -32,14 +32,14 @@ public class CommentJDBC extends Comment{
 
 	public static Integer createComment(String text, Integer poster, Integer concernedPerson) {
 		Integer idToReturn = null;
-		Date dNow = new Date();
-		SimpleDateFormat ft = new SimpleDateFormat ("E yyyy.MM.dd 'at' hh:mm:ss a zzz");
 
+	    java.util.Date utilDate = new java.util.Date();
+	    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 		try{
 			Connection connect = Connect.getInstance().getConnection();
 			PreparedStatement instruction = connect.prepareStatement(queryInsertComment, Statement.RETURN_GENERATED_KEYS);
 			instruction.setString(1, text);
-			instruction.setString(2, ft.format(dNow));
+			instruction.setDate(2, sqlDate);
 
 
 			// Insert Comment in databse
