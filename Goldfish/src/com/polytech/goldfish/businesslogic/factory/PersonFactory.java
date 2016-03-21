@@ -3,6 +3,7 @@ package com.polytech.goldfish.businesslogic.factory;
 import java.util.Collection;
 
 import com.polytech.goldfish.businesslogic.business.Person;
+import com.polytech.goldfish.util.GoldfishException;
 
 
 /**
@@ -39,8 +40,9 @@ public abstract class PersonFactory {
 	 * @param email
 	 * @param password
 	 * @return the Person's id
+	 * @throws GoldfishException
 	 */
-	public abstract Integer createPerson(String surname, String name, String phone_number, String email, String password);
+	public abstract Integer createPerson(Object typePerson, String surname, String name, String phone_number, String email, String password, String street, Integer street_number, Integer zip_code, String city) throws GoldfishException;
 
 	
 	/**
@@ -62,4 +64,16 @@ public abstract class PersonFactory {
 	 */
 	public abstract Collection <Person> getAllPersons();
 
+	
+	/**
+	 * This method determines if a Person is a user
+	 * @return true if the Person is a User, false otherwise
+	 */
+	public abstract boolean isUser(Integer idPerson);
+	
+	/**
+	 * This method determines if a Person is an Administrator
+	 * @return true if the Person is an Administrator, false otherwise
+	 */
+	public abstract boolean isAdministrator(Integer idPerson);
 }

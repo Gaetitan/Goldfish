@@ -48,5 +48,10 @@ public class ShoppingCartFactoryJDBC extends ShoppingCartFactory {
 		// Return the new list
 		return listShoppingCarts;
 	}
+	
+	@Override
+	public Float calculatePrice(Integer id) {
+		return ShoppingCartJDBC.calculatePrice(id); 
+	}
 
 }

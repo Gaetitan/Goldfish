@@ -1,7 +1,7 @@
 package com.polytech.goldfish.util;
 
 /**
- * This class handles the errors
+ * This class handles the application errors
  * 
  * @author Gaëtan FRANÇOIS
  *

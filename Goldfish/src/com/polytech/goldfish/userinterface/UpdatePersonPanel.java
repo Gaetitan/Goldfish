@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -131,37 +132,27 @@ public class UpdatePersonPanel extends JPanel {
 		panelButton.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		JButton btnOk = new JButton("OK");
-		/*btnOk.addActionListener(
+		btnOk.addActionListener(
 					new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							Integer id;
-							try {
+							if(!(tfSurname.getText().isEmpty() || tfName.getText().isEmpty() || tfPhoneNumber.getText().isEmpty() || tfEmail.getText().isEmpty() || tfPassword.getText().isEmpty() 
+									|| tfStreet.getText().isEmpty() || tfStreetNumber.getText().isEmpty() || tfZipCode.getText().isEmpty() || tfCity.getText().isEmpty())){	
 								id = personFacade.updatePerson(5, tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText());
 								JOptionPane.showMessageDialog(null, personFacade.findPersonById(id).getSurname() + " " + personFacade.findPersonById(id).getName() + " has been created.",
-										"Person created.",JOptionPane.INFORMATION_MESSAGE);
-							} catch (GoldfishException blankFields) {
-								JOptionPane.showMessageDialog(null, blankFields.toString(),
-										"Blank fields.",JOptionPane.INFORMATION_MESSAGE);
+											"Person created.",JOptionPane.INFORMATION_MESSAGE);
+								reinitPanel();
 							}
-							
+							else {
+								JOptionPane.showMessageDialog(null, "Please fill all the fields.",
+										"Blank fields.",JOptionPane.ERROR_MESSAGE);
+							}
 						}
 					}
 				);
-		 */
-		panelButton.add(btnOk);
-		
-		JButton btnCancel = new JButton("Cancel");
-		btnCancel.addActionListener(
-					new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							reinitPanel();
-						}
-					}
-				);
-
-		panelButton.add(btnCancel);
+		 
+		//panelButton.add(btnOk);
 	}
 	
 	public void reinitPanel(){
@@ -174,6 +165,5 @@ public class UpdatePersonPanel extends JPanel {
 		tfStreetNumber.setText("");
 		tfSurname.setText("");
 		tfZipCode.setText("");
-		//this.setVisible(false);
 	}
 }
