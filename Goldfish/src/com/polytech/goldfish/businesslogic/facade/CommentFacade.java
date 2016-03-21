@@ -18,19 +18,19 @@ public class CommentFacade {
 		CommentFacade.commentManager = new CommentManager();
 	}
 	
-	public static Integer createComment(String text, Integer poster, Integer concernedPerson) throws GoldfishException{
+	public Integer createComment(String text, Integer poster, Integer concernedPerson) throws GoldfishException{
 		return commentManager.createComment(text, poster, concernedPerson);
 	}
 	
-	public static Integer updateComment(Integer id, String newText) throws GoldfishException{
+	public Integer updateComment(Integer id, String newText) throws GoldfishException{
 		return commentManager.updateComment(id, newText);
 	}
 	
-	public static Integer deleteComment(Integer id) throws GoldfishException{
+	public Integer deleteComment(Integer id) throws GoldfishException{
 		return commentManager.deleteComment(id);
 	}
 	
-	public static Collection<Comment> findAllComments(){
+	public Collection<Comment> findAllComments(){
 		return commentManager.findAllComments();
 	}
 }

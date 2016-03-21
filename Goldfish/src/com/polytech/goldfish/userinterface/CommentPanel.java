@@ -28,6 +28,8 @@ import com.polytech.goldfish.businesslogic.facade.CommentFacade;
  */
 public class CommentPanel extends JPanel{
 	
+	int noComment = 1;
+	private final CommentFacade commentFacade ; 
 	/** The list notif. */
 	private final JPanel listComment = new JPanel();
 	
@@ -42,6 +44,7 @@ public class CommentPanel extends JPanel{
 
 	/** The text field date. */
 	private JTextField textFieldDate;
+	private JTextField textFieldNoComment;
 	
 	/** The text field subject. */
 	private JTextField textFieldSubject;
@@ -50,6 +53,7 @@ public class CommentPanel extends JPanel{
 	 * Instantiates a new notifications ui.
 	 */
 	public CommentPanel() {
+		commentFacade = new CommentFacade();
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		JScrollPane scrollPane = new JScrollPane();
@@ -68,7 +72,10 @@ public class CommentPanel extends JPanel{
 		scrollPane.setViewportView(listComment);
 		listComment.setLayout(new BoxLayout(listComment, BoxLayout.Y_AXIS));
 
-		listComments = CommentFacade.findAllComments();
+		listComments = commentFacade.findAllComments();
+		if(!(listComments.isEmpty())){
+			noComment = 0;
+		}
 
 		display();
 	}
@@ -79,6 +86,21 @@ public class CommentPanel extends JPanel{
 	 * @see Views.AbstractView#display()
 	 */
 	public void display() {
+		if(noComment == 1){
+			JPanel panel = new JPanel();
+			panel.setBorder(UIManager.getBorder("Tree.editorBorder"));
+			panel.setPreferredSize(new Dimension(400, 130));
+			panel.setBounds(6, 47, 432, 62);
+			listComment.add(panel);
+			panel.setLayout(null);
+			
+			textFieldNoComment = new JTextField();
+			textFieldNoComment.setEditable(false);
+			textFieldNoComment.setBounds(126, 5, 350, 28);
+			panel.add(textFieldNoComment);
+			textFieldNoComment.setColumns(10);
+			textFieldNoComment.setText("You have no comments.");
+		}
 		for (Comment ac : listComments) {
 			JPanel panel = new JPanel();
 			panel.setBorder(UIManager.getBorder("Tree.editorBorder"));

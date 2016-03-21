@@ -15,7 +15,7 @@ import com.polytech.goldfish.util.Passwords;
 
 /**
  * Persistence class for a Person
- * @author Gaëtan FRANÇOIS
+ * @author Gaï¿½tan FRANï¿½OIS
  *
  */
 public class PersonJDBC extends Person {
@@ -244,7 +244,7 @@ public class PersonJDBC extends Person {
 			
 			while(rs.next()){
 				listPersons.add(new PersonJDBC(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
-			}	
+			}
 		}
 		catch(SQLException e){
 			e.printStackTrace();
