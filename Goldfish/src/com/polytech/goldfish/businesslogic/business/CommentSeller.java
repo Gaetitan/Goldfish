@@ -4,14 +4,14 @@ import java.sql.Date;
 
 /**
  * Business class CommentSeller
- * @author Gaëtan FRANÇOIS
+ * @author Gaï¿½tan FRANï¿½OIS
  *
  */
 public class CommentSeller extends Comment {
 
 	// Constructors
-	public CommentSeller(Integer id, String text, Date date) {
-		super(id, text, date);
+	public CommentSeller(Integer id, String nameConcerned, String text, Date date) {
+		super(id, nameConcerned, text, date);
 	}
 
 }

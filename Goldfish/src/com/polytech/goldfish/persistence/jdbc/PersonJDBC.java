@@ -15,7 +15,7 @@ import com.polytech.goldfish.util.Passwords;
 
 /**
  * Persistence class for a Person
- * @author Gaëtan FRANÇOIS
+ * @author Gaï¿½tan FRANï¿½OIS
  *
  */
 public class PersonJDBC extends Person {
@@ -149,7 +149,11 @@ public class PersonJDBC extends Person {
 	 * @param password
 	 * @return the updated Person's id
 	 */
+<<<<<<< HEAD
+	public static Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String password) {
+=======
 	public static Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String password){
+>>>>>>> refs/remotes/origin/master
 		Integer idToReturn = null;
 		try{
 			Connection connect = Connect.getInstance().getConnection();
@@ -165,7 +169,7 @@ public class PersonJDBC extends Person {
 			connect.commit();
 			
 			if(affectedRows == 0){
-				throw new SQLException("Creating person failed, no rows affected.");
+				throw new SQLException("Updating a person failed, no rows affected.");
 			}
 			
 			try(ResultSet generatedKeys = instruction.getGeneratedKeys()){
@@ -173,7 +177,7 @@ public class PersonJDBC extends Person {
 					idToReturn = generatedKeys.getInt(1);
 				}
 				else{
-					throw new SQLException("Creating person failed, no ID obtained.");
+					throw new SQLException("Updating person failed, no ID obtained.");
 				}
 			}
 		}
@@ -248,7 +252,7 @@ public class PersonJDBC extends Person {
 			
 			while(rs.next()){
 				listPersons.add(new PersonJDBC(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
-			}	
+			}
 		}
 		catch(SQLException e){
 			e.printStackTrace();
