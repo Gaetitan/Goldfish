@@ -10,8 +10,8 @@ import java.sql.Date;
 public class CommentUser extends Comment {
 
 	// Constructors
-	public CommentUser(Integer id, Integer idConcerned, String text, Date date) {
-		super(id, idConcerned, text, date);
+	public CommentUser(Integer id, String nameConcerned, String text, Date date) {
+		super(id, nameConcerned, text, date);
 	}
 	
 	// Other methods
