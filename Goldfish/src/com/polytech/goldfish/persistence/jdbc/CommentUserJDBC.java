@@ -9,8 +9,8 @@ import com.polytech.goldfish.util.Connect;
 
 public class CommentUserJDBC{
 	// Queries
-	private static final String queryInsertOneUserToUser = "INSERT INTO commentusertouser (idcomment, idconcerneduser, idposteruser) VALUES(?,?,?);";
-	private static final String queryInsertOneUserToSeller = "INSERT INTO commentusertoseller (idcomment, idconcernedseller, idposteruser) VALUES(?,?,?);";
+	private static final String queryInsertOneUserToUser = "INSERT INTO commentusertouser (idcomment, idpersonconcernuser, idpersonpostuser) VALUES(?,?,?);";
+	private static final String queryInsertOneUserToSeller = "INSERT INTO commentusertoseller (idcomment, idpersonconcernseller, idpersonpostuser) VALUES(?,?,?);";
 	private static final String queryDeleteOneUserToUser = "DELETE FROM commentusertouser WHERE idcomment = ?;";
 	private static final String queryDeleteOneUserToSeller = "DELETE FROM commentusertouser WHERE idcomment = ?;";
 
@@ -22,7 +22,7 @@ public class CommentUserJDBC{
 			PreparedStatement instruction = connect.prepareStatement(queryInsertOneUserToUser, Statement.RETURN_GENERATED_KEYS);
 			instruction.setInt(1, idComment);
 			instruction.setInt(2, idconcerneduser);
-			instruction.setInt(2, idposteruser);
+			instruction.setInt(3, idposteruser);
 			int affectedRows = instruction.executeUpdate();
 			connect.commit();
 			
@@ -49,7 +49,7 @@ public class CommentUserJDBC{
 			PreparedStatement instruction = connect.prepareStatement(queryInsertOneUserToSeller, Statement.RETURN_GENERATED_KEYS);
 			instruction.setInt(1, idComment);
 			instruction.setInt(2, idconcernedseller);
-			instruction.setInt(2, idposteruser);
+			instruction.setInt(3, idposteruser);
 			int affectedRows = instruction.executeUpdate();
 			connect.commit();
 			

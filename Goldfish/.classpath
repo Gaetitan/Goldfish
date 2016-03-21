@@ -1,17 +1,5 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Pierre/Downloads/postgresql-9.4.1208.jre6.jar"/>
+	<classpathentry kind="lib" path="/Users/RedaM/Downloads/postgresql-9.4.1208.jre6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/Users/RedaM/Downloads/MCSE_ZenLounge-master/lib/ext/postgresql-9.4-1200.jdbc41.jar"/>
-	<classpathentry kind="output" path="bin"/>
-</classpath>
->>>>>>> refs/remotes/origin/master
