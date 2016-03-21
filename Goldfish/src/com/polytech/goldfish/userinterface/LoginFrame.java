@@ -93,7 +93,13 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
 		getContentPane().add(lblLogo);
 
 		setVisible(true);
+<<<<<<< HEAD
 		
+=======
+
+		textFieldLogin.setText("maachi.reda@gmail.com");
+		passwordFieldPassword.setText("0651278982Aa");
+>>>>>>> branch 'master' of https://github.com/Gaetitan/Goldfish
 		// btnLogin.doClick();
 
 		setResizable(false);

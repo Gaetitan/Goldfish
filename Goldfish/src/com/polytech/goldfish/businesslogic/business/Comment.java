@@ -1,23 +1,25 @@
 package com.polytech.goldfish.businesslogic.business;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Business class Comment
- * @author Gaëtan FRANÇOIS
+ * @author Gaï¿½tan FRANï¿½OIS
  *
  */
 public class Comment {
 
 	// Attributes
 	private Integer id;
+	private String nameConcerned;
 	private String text;
 	private Date date;
 	
 	// Constructors
-	public Comment(Integer id, String text, Date date) {
+	public Comment(Integer id, String nameConcerned, String text,Date date) {
 		super();
 		this.id = id;
+		this.nameConcerned = nameConcerned;
 		this.text = text;
 		this.date = date;
 	}
@@ -46,7 +48,13 @@ public class Comment {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
+	public String getConcerned() {
+		return nameConcerned;
+	}
 	
-	// Other methods
-	
+	public void setConcerned(String concerned) {
+		this.nameConcerned = concerned;
+	}
+		
 }
