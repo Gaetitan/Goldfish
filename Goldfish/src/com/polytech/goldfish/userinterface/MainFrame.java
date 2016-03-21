@@ -94,6 +94,10 @@ public class MainFrame extends JFrame implements AbstractView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("account "); // TRACE
+				contentPanel.removeAll(); // Les 4 lignes sont le "squelette" de ce qu'il
+				contentPanel.add(new UpdatePersonPanel()); // faut faire pour
+				contentPanel.revalidate();  // pour charger un panel
+				contentPanel.repaint(); // dans la home page 
 				// Update user pop up or window
 			}
 		});
@@ -111,12 +115,16 @@ public class MainFrame extends JFrame implements AbstractView {
 		btnMyOrders.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("own orders "); // TRACE
-				// List of own orders pop up
+				/*System.out.println("own orders "); // TRACE
+				contentPanel.removeAll(); // Les 4 lignes sont le "squelette" de ce qu'il
+				contentPanel.add(new CommentPanel()); // faut faire pour
+				contentPanel.revalidate();  // pour charger un panel
+				contentPanel.repaint(); // dans la home page 
+				// List of own orders pop up*/
 			}
 		});
 
-		if (this.personFacade.isUser(idPerson)) { // C'est un user clasique
+		if (this.personFacade.isUser(idPerson)) { // C'est un user classique
 
 			JButton btnMyProducts = new JButton("My products");
 			sl_sidePanel.putConstraint(SpringLayout.NORTH, btnMyProducts, 10,
@@ -132,6 +140,10 @@ public class MainFrame extends JFrame implements AbstractView {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					System.out.println("own product "); // TRACE
+					contentPanel.removeAll(); // Les 4 lignes sont le "squelette" de ce qu'il
+					contentPanel.add(new ListProductsPanel()); // faut faire pour
+					contentPanel.revalidate();  // pour charger un panel
+					contentPanel.repaint(); // dans la home page 
 					// List of own product
 				}
 			});
@@ -157,7 +169,7 @@ public class MainFrame extends JFrame implements AbstractView {
 		}
 
 		if (this.personFacade.isAdministrator(idPerson)) { // Si c'est un admin
-			JButton btnMyActivities = new JButton("My activities");
+			JButton btnMyActivities = new JButton("Create activity category");
 			sl_sidePanel.putConstraint(SpringLayout.NORTH, btnMyActivities, 10,
 					SpringLayout.SOUTH, btnMyAccount);
 			sl_sidePanel.putConstraint(SpringLayout.WEST, btnMyActivities, 10,
@@ -171,6 +183,10 @@ public class MainFrame extends JFrame implements AbstractView {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					System.out.println("own activity "); // TRACE
+					contentPanel.removeAll(); // Les 4 lignes sont le "squelette" de ce qu'il
+					contentPanel.add(new CreateActivityCategoryPanel()); // faut faire pour
+					contentPanel.revalidate();  // pour charger un panel
+					contentPanel.repaint(); // dans la home page 
 					// List of own activity
 				}
 			});		
