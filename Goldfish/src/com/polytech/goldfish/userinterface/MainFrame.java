@@ -328,7 +328,7 @@ public class MainFrame extends JFrame implements AbstractView {
 		});
 		menuPanel.add(btnShop);
 		
-		if (this.personFacade.isUser(idPerson)) { // C'est un user classique
+		/*if (this.personFacade.isUser(idPerson)) { // C'est un user classique
 			
 			JButton btnMyWish = new JButton("WishList");
 			sl_sidePanel.putConstraint(SpringLayout.NORTH, btnMyWish, 10,
@@ -351,7 +351,7 @@ public class MainFrame extends JFrame implements AbstractView {
 				}
 			});
 			menuPanel.add(btnMyWish);
-			}
+			}*/
 
 		if (this.personFacade.isAdministrator(idPerson)) {
 
