@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import com.polytech.goldfish.businesslogic.facade.AddressFacade;
 import com.polytech.goldfish.businesslogic.facade.PersonFacade;
 
 public class UpdatePersonPanel extends JPanel {
@@ -20,6 +21,7 @@ public class UpdatePersonPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private final PersonFacade personFacade;
+	private final AddressFacade addressFacade;
 
 	private final JTextField tfName;
 	private final JTextField tfSurname;
@@ -34,8 +36,9 @@ public class UpdatePersonPanel extends JPanel {
 	/**
 	 * Constructor of class PanelCratePerson
 	 */
-	public UpdatePersonPanel() {
+	public UpdatePersonPanel(final Integer idPerson) {
 		personFacade = new PersonFacade();
+		addressFacade = new AddressFacade();
 		
 		JPanel mainPanel = new JPanel();
 		this.add(mainPanel);
@@ -45,7 +48,7 @@ public class UpdatePersonPanel extends JPanel {
 		mainPanel.add(panelNorth, BorderLayout.NORTH);
 		panelNorth.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel lblWelcome = new JLabel("Add a new person");
+		JLabel lblWelcome = new JLabel("My information");
 		panelNorth.add(lblWelcome);
 		
 		JPanel panelCenter = new JPanel();
@@ -93,34 +96,39 @@ public class UpdatePersonPanel extends JPanel {
 		
 		tfSurname = new JTextField();
 		tfSurname.setColumns(20);
-		//tfSurname.setText(personFacade.findPersonById(5).getSurname());
+		tfSurname.setText(personFacade.findPersonById(idPerson).getSurname());
 		panelTextInfo.add(tfSurname);
 		
 		tfName = new JTextField();
-		//tfName.setText(personFacade.findPersonById(5).getName());
+		tfName.setText(personFacade.findPersonById(idPerson).getName());
 		panelTextInfo.add(tfName);
 
 		tfPhoneNumber = new JTextField();
-		//tfPhoneNumber.setText(personFacade.findPersonById(5).getPhone_number());
+		tfPhoneNumber.setText(personFacade.findPersonById(idPerson).getPhone_number());
 		panelTextInfo.add(tfPhoneNumber);
 		
 		tfEmail = new JTextField();
-		//tfEmail.setText(personFacade.findPersonById(5).getEmail());
+		tfEmail.setText(personFacade.findPersonById(idPerson).getEmail());
 		panelTextInfo.add(tfEmail);
 	
 		tfPassword = new JPasswordField();
+		tfPassword.setText(personFacade.findPersonById(idPerson).getPassword());
 		panelTextInfo.add(tfPassword);
 		
 		tfStreetNumber = new JTextField();
+		tfStreetNumber.setText(addressFacade.findAddressOfAPerson(idPerson).getStreet_number().toString());
 		panelTextInfo.add(tfStreetNumber);
 		
 		tfStreet = new JTextField();
+		tfStreet.setText(addressFacade.findAddressOfAPerson(idPerson).getStreet());
 		panelTextInfo.add(tfStreet);
 		
 		tfZipCode = new JTextField();
+		tfZipCode.setText(addressFacade.findAddressOfAPerson(idPerson).getZip_code().toString());
 		panelTextInfo.add(tfZipCode);
 		
 		tfCity = new JTextField();
+		tfCity.setText(addressFacade.findAddressOfAPerson(idPerson).getCity());
 		panelTextInfo.add(tfCity);
 		
 		JPanel panelSouth = new JPanel();
@@ -139,7 +147,7 @@ public class UpdatePersonPanel extends JPanel {
 							Integer id;
 							if(!(tfSurname.getText().isEmpty() || tfName.getText().isEmpty() || tfPhoneNumber.getText().isEmpty() || tfEmail.getText().isEmpty() || tfPassword.getText().isEmpty() 
 									|| tfStreet.getText().isEmpty() || tfStreetNumber.getText().isEmpty() || tfZipCode.getText().isEmpty() || tfCity.getText().isEmpty())){	
-								id = personFacade.updatePerson(5, tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText());
+								id = personFacade.updatePerson(idPerson, tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText());
 								JOptionPane.showMessageDialog(null, personFacade.findPersonById(id).getSurname() + " " + personFacade.findPersonById(id).getName() + " has been created.",
 											"Person created.",JOptionPane.INFORMATION_MESSAGE);
 								reinitPanel();

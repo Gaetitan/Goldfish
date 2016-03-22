@@ -52,7 +52,7 @@ public class MainFrame extends JFrame implements AbstractView {
 	/**
 	 * Instantiates a new home ui.
 	 */
-	public MainFrame(Integer idPerson) {
+	public MainFrame(final Integer idPerson) {
 		personFacade = new PersonFacade();
 
 		// creation of the window
@@ -100,7 +100,7 @@ public class MainFrame extends JFrame implements AbstractView {
 				System.out.println("account "); // TRACE
 				contentPanel.removeAll(); // Les 4 lignes sont le "squelette" de
 											// ce qu'il
-				contentPanel.add(new UpdatePersonPanel()); // faut faire pour
+				contentPanel.add(new UpdatePersonPanel(idPerson)); // faut faire pour
 				contentPanel.revalidate(); // pour charger un panel
 				contentPanel.repaint(); // dans la home page
 				// Update user pop up or window

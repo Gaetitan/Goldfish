@@ -19,6 +19,7 @@ public class AddressJDBC extends Address{
 	// Queries
 	private static final String queryGetAddressById = "SELECT * FROM address WHERE idaddress = ?;";
 	private static final String queryInsertOne = "INSERT INTO address (street, numstreet, postalcode, city) VALUES(?,?,?,?);";
+	private static final String queryGetAddressOfAPerson = "SELECT * FROM address a, haveaddress h, person p WHERE a.idaddress = h.id address AND h.idperson = a.idperson AND idperson = ?;";
 	
 	// Constructors
 	public AddressJDBC(Integer id, String street, Integer street_number, Integer zip_code,
@@ -89,5 +90,29 @@ public class AddressJDBC extends Address{
 			e.printStackTrace();
 		}
 		return idToReturn;
+	}
+	
+	/**
+	 * This methods finds an Address in the database thanks to its id
+	 * @param id
+	 * @return the Address which has the looked for id
+	 */
+	public static AddressJDBC findAddressOfAPerson(Integer idPerson) {
+		AddressJDBC address = null;
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareCall(queryGetAddressById);
+			instruction.setInt(1, idPerson);
+			ResultSet rs = instruction.executeQuery();
+			
+			while(rs.next()){
+				address = new AddressJDBC(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5));
+			}	
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		return address;
 	}
 }
