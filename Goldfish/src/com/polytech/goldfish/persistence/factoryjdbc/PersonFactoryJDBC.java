@@ -34,15 +34,18 @@ public class PersonFactoryJDBC extends PersonFactory {
 
 	@Override
 	public Collection<Person> getAllPersons() {
-		// Creation of a collection of Person
+		// Getting all the Persons in the database
+		Collection<PersonJDBC> listPersonsJDBC = PersonJDBC.findAllPersons();
+		
+		// Creation of a collection of Persons
 		Collection<Person> listPersons = new ArrayList<Person>();
 		
-		// Put the PersonJDBC as Person in a new list
-		for(Person person : PersonJDBC.findAllPersons()) {
+		// Put the PersonJDBC as Person in a the collection of Persons
+		for(Person person : listPersonsJDBC) {
 			listPersons.add(person);
 		}
 
-		// Return the new list
+		// Return the collection of Persons
 		return listPersons;
 	}
 
