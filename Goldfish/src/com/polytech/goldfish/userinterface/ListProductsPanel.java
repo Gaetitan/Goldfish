@@ -8,6 +8,11 @@ import com.polytech.goldfish.businesslogic.facade.ProductFacade;
 
 public class ListProductsPanel extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private final ProductFacade productFacade;
 	
 	private final ProductTableModel myTableModel;

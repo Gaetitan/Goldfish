@@ -87,7 +87,7 @@ public class CreateWishlistPanel extends JPanel{
 						public void actionPerformed(ActionEvent e) {
 							int id;
 							id = wishlistFacade.createWishlist(tfName.getText(), Integer.parseInt(tfQuantity.getText()));
-							JOptionPane.showMessageDialog(null, wishlistFacade.findWishlistById(id).getName() + " has been created.",
+							JOptionPane.showMessageDialog(null, tfName.getText() + " has been created.",
 									"Wishlist created.",JOptionPane.INFORMATION_MESSAGE);
 						}
 					}

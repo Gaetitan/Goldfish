@@ -17,7 +17,7 @@ public class WishlistFacade {
 		return this.WishlistManager.createWishlist(name, quantity);
 	}
 
-	public Wishlist findWishlistById(Integer id){
+	public Collection<Wishlist> findWishlistById(Integer id){
 		return this.WishlistManager.findWishlistById(id);
 	}
 	
