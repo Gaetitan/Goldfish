@@ -38,10 +38,11 @@ public class ActivityCategoryFactoryJDBC extends ActivityCategoryFactory  {
 	@Override
 	public Collection<ActivityCategory> getAllActivitiesCategories() {
 		// Creation of a collection of ActivitiesCategories
+		Collection<ActivityCategoryJDBC> listActivitiesCategoriesJDBC = ActivityCategoryJDBC.findAllActivitiesCategories();
 		Collection<ActivityCategory> listActivitiesCategories = new ArrayList<ActivityCategory>();
 		
 		// Put the ActivityCategoryJDBC as ActivityCategory in a new list
-		for(ActivityCategory activityCategory : ActivityCategoryJDBC.findAllActivitiesCategories()) {
+		for(ActivityCategory activityCategory : listActivitiesCategoriesJDBC) {
 			listActivitiesCategories.add(activityCategory);
 		}
 

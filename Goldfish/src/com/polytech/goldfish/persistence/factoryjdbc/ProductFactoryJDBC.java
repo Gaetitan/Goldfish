@@ -22,10 +22,11 @@ public class ProductFactoryJDBC extends ProductFactory{
 	@Override
 	public Collection<Product> getAllProducts() {
 		// Creation of a collection of Person
+		Collection<ProductJDBC> listProductsJDBC = ProductJDBC.findAllProducts();
 		Collection<Product> listProducts = new ArrayList<Product>();
 		
 		// Put the PersonJDBC as Person in a new list
-		for(Product product : ProductJDBC.findAllProducts()) {
+		for(Product product : listProductsJDBC ) {
 			listProducts.add(product);
 		}
 

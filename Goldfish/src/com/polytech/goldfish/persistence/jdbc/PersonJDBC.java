@@ -25,7 +25,7 @@ public class PersonJDBC extends Person {
 	private static final String queryGetPersonById = "SELECT * FROM person WHERE idperson = ?;";
 	private static final String queryInsertOne = "INSERT INTO person (surname, name, phonenumber, email, password, salt) VALUES(?,?,?,?,?,?);";
 	private static final String queryGetAllPersons = "SELECT * FROM person;";
-	private static final String queryUpdateOne = "UPDATE person SET surname = ?, name = ?, phonenumber = ?, email = ?, password = ? WHERE idperson = ?;";
+	private static final String queryUpdateOne = "UPDATE person SET surname = ?, name = ?, phonenumber = ?, email = ?, password = ?, salt = ? WHERE idperson = ?;";
 	private static final String queryGetUserById = "SELECT * FROM \"user\" u, person p WHERE u.idperson=p.idperson AND p.idperson = ?;";
 	private static final String queryGetAdministratorById = "SELECT * FROM admin a, person p WHERE a.idperson=p.idperson AND p.idperson = ?;";
 	
@@ -147,7 +147,10 @@ public class PersonJDBC extends Person {
 	 */
 
 	public static Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String password){
-		Integer idToReturn = null;
+		
+		// salt to mix with password
+		byte[] salt = Passwords.getNextSalt();
+				
 		try{
 			Connection connect = Connect.getInstance().getConnection();
 			
@@ -156,8 +159,9 @@ public class PersonJDBC extends Person {
 			instruction.setString(2, name);
 			instruction.setString(3, phone_number);
 			instruction.setString(4, email);
-			instruction.setString(5, password);
-			instruction.setInt(6, id);
+			instruction.setBytes(5, Passwords.hash(password.toCharArray(), salt));
+			instruction.setBytes(6, salt);
+			instruction.setInt(7, id);
 			int affectedRows = instruction.executeUpdate();
 			connect.commit();
 			
@@ -165,19 +169,11 @@ public class PersonJDBC extends Person {
 				throw new SQLException("Updating a person failed, no rows affected.");
 			}
 			
-			try(ResultSet generatedKeys = instruction.getGeneratedKeys()){
-				if(generatedKeys.next()){
-					idToReturn = generatedKeys.getInt(1);
-				}
-				else{
-					throw new SQLException("Updating person failed, no ID obtained.");
-				}
-			}
 		}
 		catch(SQLException e){
 			e.printStackTrace();
 		}
-		return idToReturn;
+		return id;
 	}
 	
 	/**

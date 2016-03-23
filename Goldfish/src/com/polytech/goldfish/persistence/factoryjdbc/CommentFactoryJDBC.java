@@ -23,10 +23,11 @@ public class CommentFactoryJDBC extends CommentFactory {
 	@Override
 	public Collection<Comment> getAllComments() {
 		// Creation of a collection of Comments
+		Collection<CommentJDBC> listCommentsJDBC = CommentJDBC.findAllComments();
 		Collection<Comment> listComments = new ArrayList<Comment>();
 		
 		// Put the CommentJDBC as Comment in a new list
-		for(Comment comment : CommentJDBC.findAllComments()) {
+		for(Comment comment : listCommentsJDBC) {
 			listComments.add(comment);
 		}
 

@@ -21,15 +21,13 @@ public class ProductCategoryFactoryJDBC extends ProductCategoryFactory{
 	
 	@Override
 	public Collection<ProductCategory> getAllProductCategories() {
-		// Creation of a collection of Person
+		Collection<ProductCategoryJDBC> listProductCategoriesJDBC = ProductCategoryJDBC.findAllProductCategories();
 		Collection<ProductCategory> listProductCategories = new ArrayList<ProductCategory>();
 		
-		// Put the PersonJDBC as Person in a new list
-		for(ProductCategory ProductCategory : ProductCategoryJDBC.findAllProductCategories()) {
+		for(ProductCategory ProductCategory : listProductCategoriesJDBC ) {
 			listProductCategories.add(ProductCategory);
 		}
 
-		// Return the new list
 		return listProductCategories;
 	}
 

@@ -112,7 +112,7 @@ public class UpdatePersonPanel extends JPanel {
 		panelTextInfo.add(tfEmail);
 	
 		tfPassword = new JPasswordField();
-		tfPassword.setText(personFacade.findPersonById(idPerson).getPassword());
+		tfPassword.setToolTipText("Type a new password if you want to change it, type the old one otherwise.");
 		panelTextInfo.add(tfPassword);
 		
 		tfStreetNumber = new JTextField();
@@ -139,18 +139,17 @@ public class UpdatePersonPanel extends JPanel {
 		panelSouth.add(panelButton);
 		panelButton.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		JButton btnOk = new JButton("OK");
+		JButton btnOk = new JButton("Update my information");
 		btnOk.addActionListener(
 					new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							Integer id;
+							Integer id = null;
 							if(!(tfSurname.getText().isEmpty() || tfName.getText().isEmpty() || tfPhoneNumber.getText().isEmpty() || tfEmail.getText().isEmpty() || tfPassword.getText().isEmpty() 
 									|| tfStreet.getText().isEmpty() || tfStreetNumber.getText().isEmpty() || tfZipCode.getText().isEmpty() || tfCity.getText().isEmpty())){	
 								id = personFacade.updatePerson(idPerson, tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText());
-								JOptionPane.showMessageDialog(null, personFacade.findPersonById(id).getSurname() + " " + personFacade.findPersonById(id).getName() + " has been created.",
-											"Person created.",JOptionPane.INFORMATION_MESSAGE);
-								reinitPanel();
+								JOptionPane.showMessageDialog(null, personFacade.findPersonById(id).getSurname() + " " + personFacade.findPersonById(id).getName() + ", your information has been updated.",
+											"Information updated.",JOptionPane.INFORMATION_MESSAGE);
 							}
 							else {
 								JOptionPane.showMessageDialog(null, "Please fill all the fields.",
@@ -160,7 +159,7 @@ public class UpdatePersonPanel extends JPanel {
 					}
 				);
 		 
-		//panelButton.add(btnOk);
+		panelButton.add(btnOk);
 	}
 	
 	public void reinitPanel(){

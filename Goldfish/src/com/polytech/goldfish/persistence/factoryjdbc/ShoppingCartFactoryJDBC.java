@@ -38,10 +38,11 @@ public class ShoppingCartFactoryJDBC extends ShoppingCartFactory {
 	@Override
 	public Collection<ShoppingCart> getAllShoppingCarts() {
 		// Creation of a collection of ShoppingCarts
+		Collection<ShoppingCartJDBC> listShoppingCartsJDBC = ShoppingCartJDBC.findAllShoppingCarts();
 		Collection<ShoppingCart> listShoppingCarts = new ArrayList<ShoppingCart>();
 		
 		// Put the ShoppingCartJDBC as ShoppingCart in a new list
-		for(ShoppingCart shoppingCart : ShoppingCartJDBC.findAllShoppingCarts()) {
+		for(ShoppingCart shoppingCart : listShoppingCartsJDBC ) {
 			listShoppingCarts.add(shoppingCart);
 		}
 
