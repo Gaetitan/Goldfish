@@ -323,10 +323,9 @@ public class MainFrame extends JFrame implements AbstractView {
 				System.out.println("List of users "); // TRACE
 				contentPanel.removeAll(); // Les 4 lignes sont le
 											// "squelette" de ce qu'il
-				contentPanel.add(new ListPersonsPanel()); // faut faire pour
+				contentPanel.add(new CreatePersonPanel()); // faut faire pour
 				contentPanel.revalidate(); // pour charger un panel
 				contentPanel.repaint(); // dans la home page
-				System.out.println("List of users A"); // TRACE
 			}
 		});
 

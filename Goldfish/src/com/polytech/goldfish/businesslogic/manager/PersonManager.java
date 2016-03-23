@@ -78,8 +78,29 @@ public class PersonManager {
 	}
 	
 	public Integer updatePerson(Integer id, String surname, String name, String phone_number,
-			String email, String password) {
-		return this.factory.updatePerson(id, surname, name, phone_number, email, password);
+			String email, String password, String street, String street_number, String zip_code, String city) throws GoldfishException {
+		try{
+			this.login(email, password);
+			if(!checkEmail(email)) {
+				throw new GoldfishException("Please enter a valid email.");
+			}
+			else if(!checkTel(phone_number)){
+				throw new GoldfishException("Please enter a valid phone number.");
+			}
+			else if(!checkNumber(street_number)){
+				throw new GoldfishException("Please enter a valid street number.");
+			}
+			else if(!checkZipCode(zip_code)){
+				throw new GoldfishException("Please enter a valid zip code.");
+			}
+			else {
+				return this.factory.updatePerson(id, surname, name, phone_number, email, street, Integer.parseInt(street_number), Integer.parseInt(zip_code), city);
+	
+			}
+		}
+		catch (GoldfishException e1){
+			throw new GoldfishException("Invalid password.");
+		}
 	}
 	
 	public Person findPersonById(Integer id){

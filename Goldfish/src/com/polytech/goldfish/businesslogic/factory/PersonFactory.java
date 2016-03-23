@@ -45,17 +45,21 @@ public abstract class PersonFactory {
 	public abstract Integer createPerson(Object typePerson, String surname, String name, String phone_number, String email, String password, String street, Integer street_number, Integer zip_code, String city) throws GoldfishException;
 
 	
+
 	/**
 	 * This method updates a Person
-	 * 
+	 * @param id
 	 * @param surname
 	 * @param name
 	 * @param phone_number
 	 * @param email
-	 * @param password
-	 * @return the Person's id
+	 * @param street
+	 * @param street_number
+	 * @param zip_code
+	 * @param city
+	 * @return the updated Person
 	 */
-	public abstract Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String password);
+	public abstract Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String street, Integer street_number, Integer zip_code, String city);
 
 	/**
 	 * This methods gets all existing Persons

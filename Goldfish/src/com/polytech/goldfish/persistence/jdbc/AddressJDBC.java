@@ -20,6 +20,7 @@ public class AddressJDBC extends Address{
 	private static final String queryGetAddressById = "SELECT * FROM address WHERE idaddress = ?;";
 	private static final String queryInsertOne = "INSERT INTO address (street, numstreet, postalcode, city) VALUES(?,?,?,?);";
 	private static final String queryGetAddressOfAPerson = "SELECT * FROM address a, haveaddress h, person p WHERE a.idaddress = h.id address AND h.idperson = a.idperson AND idperson = ?;";
+	private static final String queryUpdateOne = "UPDATE address SET street = ?, numstreet = ?, postalcode = ?, city = ? WHERE idaddress = ?;";
 	
 	// Constructors
 	public AddressJDBC(Integer id, String street, Integer street_number, Integer zip_code,
@@ -114,5 +115,29 @@ public class AddressJDBC extends Address{
 			e.printStackTrace();
 		}
 		return address;
+	}
+	
+	public static Integer updateAddress(Integer id, String street, Integer street_number, Integer zip_code, String city){
+		
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareStatement(queryUpdateOne, Statement.RETURN_GENERATED_KEYS);
+			instruction.setString(1, street);
+			instruction.setInt(2, street_number);
+			instruction.setInt(3, zip_code);
+			instruction.setString(4, city);
+			instruction.setInt(5, id);
+			int affectedRows = instruction.executeUpdate();
+			connect.commit();
+			
+			if(affectedRows == 0){
+				throw new SQLException("Updating a person failed, no rows affected.");
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		return id;
 	}
 }

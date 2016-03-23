@@ -25,7 +25,7 @@ public class PersonJDBC extends Person {
 	private static final String queryGetPersonById = "SELECT * FROM person WHERE idperson = ?;";
 	private static final String queryInsertOne = "INSERT INTO person (surname, name, phonenumber, email, password, salt) VALUES(?,?,?,?,?,?);";
 	private static final String queryGetAllPersons = "SELECT * FROM person;";
-	private static final String queryUpdateOne = "UPDATE person SET surname = ?, name = ?, phonenumber = ?, email = ?, password = ?, salt = ? WHERE idperson = ?;";
+	private static final String queryUpdateOne = "UPDATE person SET surname = ?, name = ?, phonenumber = ?, email = ? WHERE idperson = ?;";
 	private static final String queryGetUserById = "SELECT * FROM \"user\" u, person p WHERE u.idperson=p.idperson AND p.idperson = ?;";
 	private static final String queryGetAdministratorById = "SELECT * FROM admin a, person p WHERE a.idperson=p.idperson AND p.idperson = ?;";
 	
@@ -145,11 +145,7 @@ public class PersonJDBC extends Person {
 	 * @param password
 	 * @return the updated Person's id
 	 */
-
-	public static Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String password){
-		
-		// salt to mix with password
-		byte[] salt = Passwords.getNextSalt();
+	public static Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String street, Integer street_number, Integer zip_code, String city){
 				
 		try{
 			Connection connect = Connect.getInstance().getConnection();
@@ -159,15 +155,15 @@ public class PersonJDBC extends Person {
 			instruction.setString(2, name);
 			instruction.setString(3, phone_number);
 			instruction.setString(4, email);
-			instruction.setBytes(5, Passwords.hash(password.toCharArray(), salt));
-			instruction.setBytes(6, salt);
-			instruction.setInt(7, id);
+			instruction.setInt(5, id);
 			int affectedRows = instruction.executeUpdate();
 			connect.commit();
 			
 			if(affectedRows == 0){
 				throw new SQLException("Updating a person failed, no rows affected.");
 			}
+			
+			AddressJDBC.updateAddress(AddressJDBC.findAddressOfAPerson(id).getId(), street, street_number, zip_code, city);
 			
 		}
 		catch(SQLException e){

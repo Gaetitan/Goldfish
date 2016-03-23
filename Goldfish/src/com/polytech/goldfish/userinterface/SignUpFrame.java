@@ -72,7 +72,7 @@ public class SignUpFrame extends JFrame implements ActionListener, KeyListener {
 		mainPanel.add(panelNorth, BorderLayout.NORTH);
 		panelNorth.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel lblWelcome = new JLabel("Add a new person");
+		JLabel lblWelcome = new JLabel("Register as a new user.");
 		panelNorth.add(lblWelcome);
 		
 		JPanel panelCenter = new JPanel();

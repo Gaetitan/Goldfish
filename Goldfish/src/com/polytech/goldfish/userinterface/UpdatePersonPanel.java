@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import com.polytech.goldfish.businesslogic.facade.AddressFacade;
 import com.polytech.goldfish.businesslogic.facade.PersonFacade;
+import com.polytech.goldfish.util.GoldfishException;
 
 public class UpdatePersonPanel extends JPanel {
 
@@ -75,9 +76,6 @@ public class UpdatePersonPanel extends JPanel {
 		JLabel lblEmail = new JLabel("Email:");
 		panelLabelInfo.add(lblEmail);
 		
-		JLabel lblPassword = new JLabel("Password:");
-		panelLabelInfo.add(lblPassword);
-		
 		JLabel lblStreetNumber = new JLabel("Street number:");
 		panelLabelInfo.add(lblStreetNumber);
 		
@@ -89,6 +87,9 @@ public class UpdatePersonPanel extends JPanel {
 		
 		JLabel lblCity = new JLabel("City:");
 		panelLabelInfo.add(lblCity);
+		
+		JLabel lblPassword = new JLabel("Type your password to validate:");
+		panelLabelInfo.add(lblPassword);
 		
 		JPanel panelTextInfo = new JPanel();
 		panelInfo.add(panelTextInfo, BorderLayout.CENTER);
@@ -110,10 +111,6 @@ public class UpdatePersonPanel extends JPanel {
 		tfEmail = new JTextField();
 		tfEmail.setText(personFacade.findPersonById(idPerson).getEmail());
 		panelTextInfo.add(tfEmail);
-	
-		tfPassword = new JPasswordField();
-		tfPassword.setToolTipText("Type a new password if you want to change it, type the old one otherwise.");
-		panelTextInfo.add(tfPassword);
 		
 		tfStreetNumber = new JTextField();
 		tfStreetNumber.setText(addressFacade.findAddressOfAPerson(idPerson).getStreet_number().toString());
@@ -131,6 +128,9 @@ public class UpdatePersonPanel extends JPanel {
 		tfCity.setText(addressFacade.findAddressOfAPerson(idPerson).getCity());
 		panelTextInfo.add(tfCity);
 		
+		tfPassword = new JPasswordField();
+		panelTextInfo.add(tfPassword);
+		
 		JPanel panelSouth = new JPanel();
 		mainPanel.add(panelSouth, BorderLayout.SOUTH);
 		panelSouth.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -147,9 +147,15 @@ public class UpdatePersonPanel extends JPanel {
 							Integer id = null;
 							if(!(tfSurname.getText().isEmpty() || tfName.getText().isEmpty() || tfPhoneNumber.getText().isEmpty() || tfEmail.getText().isEmpty() || tfPassword.getText().isEmpty() 
 									|| tfStreet.getText().isEmpty() || tfStreetNumber.getText().isEmpty() || tfZipCode.getText().isEmpty() || tfCity.getText().isEmpty())){	
-								id = personFacade.updatePerson(idPerson, tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText());
-								JOptionPane.showMessageDialog(null, personFacade.findPersonById(id).getSurname() + " " + personFacade.findPersonById(id).getName() + ", your information has been updated.",
+								try {
+									id = personFacade.updatePerson(idPerson, tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText(), tfStreet.getText(), tfStreetNumber.getText(), tfZipCode.getText(), tfCity.getText());
+									JOptionPane.showMessageDialog(null, personFacade.findPersonById(id).getSurname() + " " + personFacade.findPersonById(id).getName() + ", your information has been updated.",
 											"Information updated.",JOptionPane.INFORMATION_MESSAGE);
+								} 
+								catch (GoldfishException e1) {
+									JOptionPane.showMessageDialog(null, e1.toString(),
+											"Error.",JOptionPane.ERROR_MESSAGE);
+								}
 							}
 							else {
 								JOptionPane.showMessageDialog(null, "Please fill all the fields.",
