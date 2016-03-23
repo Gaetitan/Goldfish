@@ -75,7 +75,8 @@ public class PersonJDBC extends Person {
 	 * @return the id the new Person
 	 * @throws GoldfishException 
 	 */
-	public static Integer createPerson(Object typePerson, String surname, String name, String phone_number, String email, String password, String street, Integer street_number, Integer zip_code, String city) throws GoldfishException {
+	public static Integer createPerson(Object typePerson, String surname, String name, String phone_number, String email, String password, String street, Integer street_number, Integer zip_code, String city,
+			String shopname, String description, Integer siret, String activitydomain, String webaddress) throws GoldfishException {
 		Integer idToReturn = null;
 		
 		// salt to mix with password
@@ -124,6 +125,9 @@ public class PersonJDBC extends Person {
 						break;
 					case "User":
 						UserJDBC.createUser(idToReturn);
+						break;
+					case "Seller":
+						SellerJDBC.createSeller(idToReturn, shopname, description, siret, activitydomain, webaddress);
 						break;
 					default:
 						throw new GoldfishException("Cannot determine type of person.");

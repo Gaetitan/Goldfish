@@ -118,10 +118,7 @@ public class CreatePersonPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(cbTypePerson.getSelectedItem().equals(
-						"Seller"));
 				if (cbTypePerson.getSelectedItem().equals("Seller")) {
-					System.out.println("coucou");
 					panelLabelInfo.add(lblShopname);
 					panelLabelInfo.add(lblDescription);
 					panelLabelInfo.add(lblSiret);
@@ -319,5 +316,10 @@ public class CreatePersonPanel extends JPanel {
 		tfStreetNumber.setText("");
 		tfSurname.setText("");
 		tfZipCode.setText("");
+		tfShopname.setText("");
+		tfDescription.setText("");
+		tfSiret.setText("");
+		tfDescription.setText("");
+		tfWebaddress.setText("");
 	}
 }
