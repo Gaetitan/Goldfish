@@ -93,8 +93,8 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
 		getContentPane().add(lblLogo);
 
 		setVisible(true);
-		textFieldLogin.setText("maachi.reda@gmail.com");
-		passwordFieldPassword.setText("0651278982Aa");
+		textFieldLogin.setText("gaetan@goldfish.com");
+		passwordFieldPassword.setText("el manager");
 		
 		// btnLogin.doClick();
 

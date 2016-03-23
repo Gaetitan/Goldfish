@@ -59,7 +59,7 @@ public class MainFrame extends JFrame implements AbstractView {
 		window = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Goldfish");
-		setSize(new Dimension(1024, 500));
+		setSize(new Dimension(1024, 600));
 
 		// dimensions
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
