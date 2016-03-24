@@ -351,7 +351,11 @@ public class MainFrame extends JFrame implements AbstractView {
 			 System.out.println("Wishlist "); // TRACE
 				contentPanel.removeAll(); // Les 4 lignes sont le
 											// "squelette" de ce qu'il
-				contentPanel.add(new ListWishlistPanel(idPerson)); // faut faire pour
+				if (personFacade.isAdministrator(idPerson)){
+				contentPanel.add(new ListWishlistPanel());}
+				else{
+					contentPanel.add(new ListWishlistPanel(idPerson));// faut faire pour
+				}
 				contentPanel.revalidate(); // pour charger un panel
 				contentPanel.repaint(); // dans la home page
 			 
