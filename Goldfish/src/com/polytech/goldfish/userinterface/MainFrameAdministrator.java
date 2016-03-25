@@ -19,8 +19,6 @@ import javax.swing.border.LineBorder;
 import org.w3c.dom.views.AbstractView;
 import org.w3c.dom.views.DocumentView;
 
-import com.polytech.goldfish.businesslogic.facade.PersonFacade;
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class HomeUI.
@@ -37,8 +35,6 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private final PersonFacade personFacade;
 
 	/** The content panel. */
 	private JPanel contentPanel;
@@ -61,7 +57,6 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 	 * @param idPerson
 	 */
 	public MainFrameAdministrator(final Integer idPerson) {
-		personFacade = new PersonFacade();
 
 		// creation of the window
 		window = this;
@@ -132,11 +127,11 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 		// Create Person
 		JButton btnCreatePerson = new JButton("Create person");
 		sl_sidePanel.putConstraint(SpringLayout.NORTH, btnCreatePerson, 50,
-				SpringLayout.SOUTH, btnMyAccount);
+				SpringLayout.NORTH, sidePanel);
 		sl_sidePanel.putConstraint(SpringLayout.WEST, btnCreatePerson, 10,
 				SpringLayout.WEST, sidePanel);
 		sl_sidePanel.putConstraint(SpringLayout.SOUTH, btnCreatePerson, 80,
-				SpringLayout.SOUTH, btnMyAccount);
+				SpringLayout.NORTH, sidePanel);
 		sl_sidePanel.putConstraint(SpringLayout.EAST, btnCreatePerson, -10,
 				SpringLayout.EAST, sidePanel);
 		btnCreatePerson.addActionListener(new ActionListener() {
@@ -153,15 +148,15 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 		JButton btnCreateActivityCategory = new JButton(
 				"Create activity category");
 		sl_sidePanel.putConstraint(SpringLayout.NORTH,
-				btnCreateActivityCategory, 10, SpringLayout.SOUTH,
-				btnCreatePerson);
+				btnCreateActivityCategory, 90, SpringLayout.NORTH,
+				sidePanel);
 		sl_sidePanel.putConstraint(SpringLayout.WEST,
 				btnCreateActivityCategory, 10, SpringLayout.WEST, sidePanel);
 		sl_sidePanel.putConstraint(SpringLayout.EAST,
 				btnCreateActivityCategory, -10, SpringLayout.EAST, sidePanel);
 		sl_sidePanel.putConstraint(SpringLayout.SOUTH,
-				btnCreateActivityCategory, 40, SpringLayout.SOUTH,
-				btnCreatePerson);
+				btnCreateActivityCategory, 120, SpringLayout.NORTH,
+				sidePanel);
 		btnCreateActivityCategory.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -177,15 +172,15 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 		// Create product category
 		JButton btnCreateProductCategory = new JButton(
 				"Create product category");
-		sl_menuPanel.putConstraint(SpringLayout.NORTH,
-				btnCreateProductCategory, 10, SpringLayout.SOUTH,
-				btnCreateActivityCategory);
-		sl_menuPanel.putConstraint(SpringLayout.WEST, btnCreateProductCategory,
+		sl_sidePanel.putConstraint(SpringLayout.NORTH,
+				btnCreateProductCategory, 130, SpringLayout.NORTH,
+				sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.WEST, btnCreateProductCategory,
 				10, SpringLayout.WEST, sidePanel);
-		sl_menuPanel.putConstraint(SpringLayout.SOUTH,
-				btnCreateProductCategory, 40, SpringLayout.SOUTH,
-				btnCreateActivityCategory);
-		sl_menuPanel.putConstraint(SpringLayout.EAST, btnCreateProductCategory,
+		sl_sidePanel.putConstraint(SpringLayout.SOUTH,
+				btnCreateProductCategory, 160, SpringLayout.NORTH,
+				sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.EAST, btnCreateProductCategory,
 				-10, SpringLayout.EAST, sidePanel);
 		btnCreateProductCategory.addActionListener(new ActionListener() {
 			@Override
@@ -223,8 +218,8 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 				SpringLayout.NORTH, menuPanel);
 		sl_menuPanel.putConstraint(SpringLayout.WEST, btnHome, 10,
 				SpringLayout.WEST, menuPanel);
-		sl_menuPanel.putConstraint(SpringLayout.SOUTH, btnHome, 40,
-				SpringLayout.NORTH, menuPanel);
+		sl_menuPanel.putConstraint(SpringLayout.SOUTH, btnHome, -10,
+				SpringLayout.SOUTH, menuPanel);
 		sl_menuPanel.putConstraint(SpringLayout.EAST, btnHome, 110,
 				SpringLayout.WEST, menuPanel);
 		btnHome.addActionListener(new ActionListener() {
@@ -236,14 +231,14 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 
 		// List persons
 		JButton btnListPersons = new JButton("Persons");
-		sl_sidePanel.putConstraint(SpringLayout.NORTH, btnListPersons, 10,
+		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnListPersons, 10,
+				SpringLayout.NORTH, menuPanel);
+		sl_menuPanel.putConstraint(SpringLayout.WEST, btnListPersons, 120,
+				SpringLayout.WEST, menuPanel);
+		sl_menuPanel.putConstraint(SpringLayout.SOUTH, btnListPersons, -10,
 				SpringLayout.SOUTH, menuPanel);
-		sl_sidePanel.putConstraint(SpringLayout.WEST, btnListPersons, 10,
-				SpringLayout.WEST, btnHome);
-		sl_sidePanel.putConstraint(SpringLayout.SOUTH, btnListPersons, 40,
-				SpringLayout.SOUTH, menuPanel);
-		sl_sidePanel.putConstraint(SpringLayout.EAST, btnListPersons, -10,
-				SpringLayout.EAST, btnHome);
+		sl_menuPanel.putConstraint(SpringLayout.EAST, btnListPersons, 220,
+				SpringLayout.WEST, menuPanel);
 		btnListPersons.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -257,15 +252,15 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 
 		// List of activities categories
 		JButton btnListActivityCategory = new JButton(
-				"List of activities categories");
+				"Activities categories");
 		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnListActivityCategory,
 				10, SpringLayout.NORTH, menuPanel);
 		sl_menuPanel.putConstraint(SpringLayout.WEST, btnListActivityCategory,
-				10, SpringLayout.EAST, btnListPersons);
+				230, SpringLayout.WEST, menuPanel);
 		sl_menuPanel.putConstraint(SpringLayout.SOUTH, btnListActivityCategory,
-				40, SpringLayout.NORTH, menuPanel);
+				-10, SpringLayout.SOUTH, menuPanel);
 		sl_menuPanel.putConstraint(SpringLayout.EAST, btnListActivityCategory,
-				110, SpringLayout.EAST, btnListPersons);
+				380, SpringLayout.WEST, menuPanel);
 		btnListActivityCategory.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -278,11 +273,11 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnListCategoryProducts,
 				10, SpringLayout.NORTH, menuPanel);
 		sl_menuPanel.putConstraint(SpringLayout.WEST, btnListCategoryProducts,
-				10, SpringLayout.EAST, btnListActivityCategory);
+				390, SpringLayout.WEST, menuPanel);
 		sl_menuPanel.putConstraint(SpringLayout.SOUTH, btnListCategoryProducts,
-				40, SpringLayout.NORTH, menuPanel);
+				-10, SpringLayout.SOUTH, menuPanel);
 		sl_menuPanel.putConstraint(SpringLayout.EAST, btnListCategoryProducts,
-				110, SpringLayout.EAST, btnListActivityCategory);
+				540, SpringLayout.WEST, menuPanel);
 		btnListCategoryProducts.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -292,14 +287,14 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 
 		// Manage comments
 		JButton btnManageComments = new JButton("Manage comments");
-		sl_sidePanel.putConstraint(SpringLayout.NORTH, btnManageComments, -40,
+		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnManageComments, 10,
 				SpringLayout.NORTH, menuPanel);
-		sl_sidePanel.putConstraint(SpringLayout.SOUTH, btnManageComments, -10,
-				SpringLayout.EAST, btnListCategoryProducts);
-		sl_sidePanel.putConstraint(SpringLayout.WEST, btnManageComments, 10,
-				SpringLayout.NORTH, menuPanel);
-		sl_sidePanel.putConstraint(SpringLayout.EAST, btnManageComments, -10,
-				SpringLayout.EAST, btnListCategoryProducts);
+		sl_menuPanel.putConstraint(SpringLayout.SOUTH, btnManageComments, -10,
+				SpringLayout.SOUTH, menuPanel);
+		sl_menuPanel.putConstraint(SpringLayout.WEST, btnManageComments, 550,
+				SpringLayout.WEST, menuPanel);
+		sl_menuPanel.putConstraint(SpringLayout.EAST, btnManageComments, 700,
+				SpringLayout.WEST, menuPanel);
 		btnManageComments.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

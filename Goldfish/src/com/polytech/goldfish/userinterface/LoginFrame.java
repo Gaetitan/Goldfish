@@ -130,10 +130,10 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
 				if(personFacade.isAdministrator(idPerson)){
 					new MainFrameAdministrator(idPerson);
 				}
-				/*else if(personFacade.isUser(idPerson)){
+				else if(personFacade.isUser(idPerson)){
 					new MainFrameUser(idPerson);
 				}
-				else if(personFacade.isSeller(idPerson)){
+				/*else if(personFacade.isSeller(idPerson)){
 					new MainFrameSeller(idPerson);
 				}*/
 			}
