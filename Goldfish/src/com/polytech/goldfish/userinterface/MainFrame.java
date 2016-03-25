@@ -33,6 +33,11 @@ import com.polytech.goldfish.businesslogic.facade.PersonFacade;
  */
 public class MainFrame extends JFrame implements AbstractView {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private final PersonFacade personFacade;
 
 	/** The content panel. */
@@ -311,7 +316,7 @@ public class MainFrame extends JFrame implements AbstractView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("activities 2 "); // TRACE
-				// Activitys window or pop up
+				// Activities window or pop up
 			}
 		});
 
@@ -368,21 +373,34 @@ public class MainFrame extends JFrame implements AbstractView {
 			}
 		});
 
-		/*
-		 * JButton btnWish = new JButton("wishList");
-		 * sl_menuPanel.putConstraint(SpringLayout.NORTH, btnWish, 10,
-		 * SpringLayout.NORTH, menuPanel);
-		 * sl_menuPanel.putConstraint(SpringLayout.WEST, btnWish, 10,
-		 * SpringLayout.EAST, btnUsers);
-		 * sl_menuPanel.putConstraint(SpringLayout.SOUTH, btnWish, 40,
-		 * SpringLayout.NORTH, menuPanel);
-		 * sl_menuPanel.putConstraint(SpringLayout.EAST, btnWish, 110,
-		 * SpringLayout.EAST, btnUsers); btnWish.addActionListener(new
-		 * ActionListener() {
-		 * 
-		 * @Override public void actionPerformed(ActionEvent e) { // } });
-		 * menuPanel.add(btnWish);
-		 */
+		
+		 JButton btnWish = new JButton("wishList");
+		 sl_menuPanel.putConstraint(SpringLayout.NORTH, btnWish, 10,
+		 SpringLayout.NORTH, menuPanel);
+		 sl_menuPanel.putConstraint(SpringLayout.WEST, btnWish, 10,
+		 SpringLayout.EAST, btnUsers);
+		 sl_menuPanel.putConstraint(SpringLayout.SOUTH, btnWish, 40,
+		 SpringLayout.NORTH, menuPanel);
+		 sl_menuPanel.putConstraint(SpringLayout.EAST, btnWish, 110,
+		 SpringLayout.EAST, btnUsers); btnWish.addActionListener(new
+		 ActionListener() {
+		 
+		 @Override public void actionPerformed(ActionEvent e) { 
+			 
+			 System.out.println("Wishlist "); // TRACE
+				contentPanel.removeAll(); // Les 4 lignes sont le
+											// "squelette" de ce qu'il
+				if (personFacade.isAdministrator(idPerson)){
+				contentPanel.add(new ListWishlistPanel());}
+				else{
+					contentPanel.add(new ListWishlistPanel(idPerson));// faut faire pour
+				}
+				contentPanel.revalidate(); // pour charger un panel
+				contentPanel.repaint(); // dans la home page
+			 
+		 } });
+		 menuPanel.add(btnWish);
+		 
 
 		// Categories
 		JButton btnCategories = new JButton("My categories");
@@ -398,7 +416,7 @@ public class MainFrame extends JFrame implements AbstractView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("My categories "); // TRACE
-				// Categorys of the person
+				// Categories of the person
 			}
 		});
 

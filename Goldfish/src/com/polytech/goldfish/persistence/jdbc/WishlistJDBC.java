@@ -14,7 +14,7 @@ import com.polytech.goldfish.util.Connect;
 public class WishlistJDBC extends Wishlist {
 
 	// Queries
-	private static final String queryGetWishlistById = "SELECT w.idwishlist, cp.name, wc.quantity  FROM WishListContainsCatProduct wc, user u, whishlit w, categoryproduct cp WHERE u.idPerson = ? AND u.idperson = w.idperson AND w.idwishlist = wc.idwishlist AND wc.idcatProduct = cp.idcatProduct;";
+	private static final String queryGetWishlistById = "SELECT w.idwishlist, cp.name, wc.quantity  FROM WishListContainsCatProduct wc, \"user\" u, wishlist w, categoryproduct cp WHERE u.idperson = ? AND u.idperson = w.idperson AND w.idwishlist = wc.idwishlist AND wc.idcatProduct = cp.idcatProduct;";
 	private static final String queryInsertOne = "INSERT INTO Wishlist (name, quantity) VALUES(?,?);";
 	private static final String queryUpdateOne = "UPDATE WishListContainsCatProduct SET IDCatProduct = (SELECT IDCatProduct FROM categoryProduct WHERE name = ?), quantity = ? WHERE idWishlist = ?;";
 	private static final String queryGetAllWishlists = "SELECT wc.idWishlist, cp.name, wc.quantity FROM WishListContainsCatProduct wc, categoryProduct cp WHERE wc.IDCatProduct = cp.IDCatProduct;";
