@@ -5,7 +5,7 @@ import java.sql.Time;
 
 /**
  * Business class DiaryEntry
- * @author Gaëtan FRANÇOIS
+ * @author Gaï¿½tan FRANï¿½OIS
  *
  */
 public class DiaryEntry {
