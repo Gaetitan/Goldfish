@@ -72,7 +72,7 @@ public class PersonManager {
 		else if(!checkZipCode(zip_code)){
 			throw new GoldfishException("Please enter a valid zip code.");
 		}
-		else if(!checkNumber(siret)){
+		else if(typePerson.toString().equals("Seller") && !checkNumber(siret)){
 			throw new GoldfishException("Please enter a valid SIRET.");
 		}
 		else {

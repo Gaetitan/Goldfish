@@ -36,7 +36,7 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
 
 	private final PersonFacade personFacade;
 
-	private MainFrame mainFrame;
+	private MainFrameAdministrator mainFrame;
 
 	/** The password field password. */
 	private final JPasswordField passwordFieldPassword;
@@ -113,8 +113,8 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
 				&& textFieldLogin.getText().length() > 0
 				&& passwordFieldPassword.getPassword().length > 0) {
 			try {
-				personFacade.login(textFieldLogin.getText(),
-						passwordFieldPassword.getText());
+				Integer idPerson = personFacade.login(textFieldLogin.getText(),
+						passwordFieldPassword.getText()).getId();
 				JOptionPane.showMessageDialog(
 						null,
 						"Welcome "
@@ -127,7 +127,15 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
 										.getName() + "!", "Welcome aboard!",
 						JOptionPane.INFORMATION_MESSAGE);
 				dispose();
-				new MainFrame(personFacade.login(textFieldLogin.getText(), passwordFieldPassword.getText()).getId());
+				if(personFacade.isAdministrator(idPerson)){
+					new MainFrameAdministrator(idPerson);
+				}
+				/*else if(personFacade.isUser(idPerson)){
+					new MainFrameUser(idPerson);
+				}
+				else if(personFacade.isSeller(idPerson)){
+					new MainFrameSeller(idPerson);
+				}*/
 			}
 			catch (GoldfishException e1) {
 				JOptionPane.showMessageDialog(null, e1.toString(),
