@@ -100,7 +100,8 @@ public class MainFrame extends JFrame implements AbstractView {
 				System.out.println("account "); // TRACE
 				contentPanel.removeAll(); // Les 4 lignes sont le "squelette" de
 											// ce qu'il
-				contentPanel.add(new UpdatePersonPanel(idPerson)); // faut faire pour
+				contentPanel.add(new UpdatePersonPanel(idPerson)); // faut faire
+																	// pour
 				contentPanel.revalidate(); // pour charger un panel
 				contentPanel.repaint(); // dans la home page
 				// Update user pop up or window
@@ -124,6 +125,27 @@ public class MainFrame extends JFrame implements AbstractView {
 			}
 		});
 
+		// Create Person
+		JButton btnCreatePerson = new JButton("Create person");
+		sl_sidePanel.putConstraint(SpringLayout.NORTH, btnCreatePerson, 50,
+				SpringLayout.SOUTH, btnMyAccount);
+		sl_sidePanel.putConstraint(SpringLayout.WEST, btnCreatePerson, 10,
+				SpringLayout.WEST, sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.SOUTH, btnCreatePerson, 80,
+				SpringLayout.SOUTH, btnMyAccount);
+		sl_sidePanel.putConstraint(SpringLayout.EAST, btnCreatePerson, -10,
+				SpringLayout.EAST, sidePanel);
+		btnCreatePerson.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				contentPanel.removeAll(); // Les 4 lignes sont le "squelette" de
+				// ce qu'il
+				contentPanel.add(new CreatePersonPanel()); // faut faire pour
+				contentPanel.revalidate(); // pour charger un panel
+				contentPanel.repaint(); // dans la home page
+			}
+		});
+
 		// My products
 		JButton btnMyProducts = new JButton("My products");
 		sl_sidePanel.putConstraint(SpringLayout.NORTH, btnMyProducts, 10,
@@ -139,6 +161,28 @@ public class MainFrame extends JFrame implements AbstractView {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("own product "); // TRACE
 				// List of own product
+			}
+		});
+
+		// List persons
+		JButton btnListPersons = new JButton("List all persons");
+		sl_sidePanel.putConstraint(SpringLayout.NORTH, btnListPersons, 10,
+				SpringLayout.SOUTH, btnMyOrders);
+		sl_sidePanel.putConstraint(SpringLayout.WEST, btnListPersons, 10,
+				SpringLayout.WEST, sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.SOUTH, btnListPersons, 40,
+				SpringLayout.SOUTH, btnMyOrders);
+		sl_sidePanel.putConstraint(SpringLayout.EAST, btnListPersons, -10,
+				SpringLayout.EAST, sidePanel);
+		btnListPersons.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("list persons"); // TRACE
+				contentPanel.removeAll(); // Les 4 lignes sont le "squelette" de
+				// ce qu'il
+				contentPanel.add(new ListPersonsPanel()); // faut faire pour
+				contentPanel.revalidate(); // pour charger un panel
+				contentPanel.repaint(); // dans la home page
 			}
 		});
 
@@ -321,11 +365,6 @@ public class MainFrame extends JFrame implements AbstractView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("List of users "); // TRACE
-				contentPanel.removeAll(); // Les 4 lignes sont le
-											// "squelette" de ce qu'il
-				contentPanel.add(new CreatePersonPanel()); // faut faire pour
-				contentPanel.revalidate(); // pour charger un panel
-				contentPanel.repaint(); // dans la home page
 			}
 		});
 
@@ -398,7 +437,7 @@ public class MainFrame extends JFrame implements AbstractView {
 				// Create or update new cart
 			}
 		});
-		
+
 		contentPanel = new JPanel();
 		getContentPane().add(contentPanel);
 
@@ -407,33 +446,39 @@ public class MainFrame extends JFrame implements AbstractView {
 		setVisible(true);
 
 		// Adding the buttons to the panels
-		sidePanel.add(btnMyAccount);
-		sidePanel.add(btnMyOrders);
-
 		if (this.personFacade.isUser(idPerson)) {
+			sidePanel.add(btnMyAccount);
+			sidePanel.add(btnMyOrders);
 			sidePanel.add(btnMyProducts);
 			sidePanel.add(btnMyDiary);
-		}
-
-		if (this.personFacade.isAdministrator(idPerson)) {
 			sidePanel.add(btnMyActivities);
-		}
-
-		sidePanel.add(btnMyComments);
-
-		menuPanel.add(btnHome);
-		menuPanel.add(btnActivities);
-		menuPanel.add(btnGoals);
-		menuPanel.add(btnShop);
-
-		if (this.personFacade.isAdministrator(idPerson)) {
+			sidePanel.add(btnMyComments);
+			menuPanel.add(btnHome);
+			menuPanel.add(btnActivities);
+			menuPanel.add(btnGoals);
+			menuPanel.add(btnShop);
 			menuPanel.add(btnUsers);
 			sidePanel.add(btnCategories);
 			sidePanel.add(btnManageOrders);
+			menuPanel.add(btnCart);
 		}
-		
-		menuPanel.add(btnCart);
 
+		if (this.personFacade.isAdministrator(idPerson)) {
+			sidePanel.add(btnMyAccount);
+			sidePanel.add(btnCreatePerson);
+			sidePanel.add(btnListPersons);
+			sidePanel.add(btnMyDiary);
+			sidePanel.add(btnMyActivities);
+			sidePanel.add(btnMyComments);
+			menuPanel.add(btnHome);
+			menuPanel.add(btnActivities);
+			menuPanel.add(btnGoals);
+			menuPanel.add(btnShop);
+			menuPanel.add(btnUsers);
+			sidePanel.add(btnCategories);
+			sidePanel.add(btnManageOrders);
+			menuPanel.add(btnCart);
+		}
 	}
 
 	/**
