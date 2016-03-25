@@ -67,6 +67,9 @@ public class ActivityJDBC extends Activity {
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return idToReturn;	
 	}
 	
@@ -104,6 +107,9 @@ public class ActivityJDBC extends Activity {
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return idToReturn;
 	}
 	
@@ -138,6 +144,9 @@ public class ActivityJDBC extends Activity {
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return idToReturn;
 	}
 	
@@ -161,6 +170,9 @@ public class ActivityJDBC extends Activity {
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}
 		return activity;
 	}
@@ -186,6 +198,9 @@ public class ActivityJDBC extends Activity {
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}
 		
 		return listActivities;

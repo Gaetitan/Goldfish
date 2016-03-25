@@ -54,6 +54,9 @@ public class ProductCategoryJDBC extends ProductCategory {
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return idToReturn;		
 	}
 	
@@ -72,6 +75,9 @@ public class ProductCategoryJDBC extends ProductCategory {
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}
 		return productCategory;
 	}
@@ -92,6 +98,9 @@ public class ProductCategoryJDBC extends ProductCategory {
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}
 		
 		return listProductCategorys;
@@ -125,6 +134,9 @@ public class ProductCategoryJDBC extends ProductCategory {
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return idToReturn;
 	}
 	
@@ -153,6 +165,9 @@ public class ProductCategoryJDBC extends ProductCategory {
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}
 		return idToReturn;
 	}

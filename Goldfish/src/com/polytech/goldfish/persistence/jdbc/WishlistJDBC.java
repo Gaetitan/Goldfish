@@ -55,6 +55,9 @@ public class WishlistJDBC extends Wishlist {
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return idToReturn;		
 	}
 	
@@ -75,6 +78,9 @@ public class WishlistJDBC extends Wishlist {
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return listWishlists;
 	}
 	
@@ -94,6 +100,9 @@ public class WishlistJDBC extends Wishlist {
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}
 		
 		return listWishlists;
@@ -128,6 +137,9 @@ public class WishlistJDBC extends Wishlist {
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return idToReturn;
 	}
 	
@@ -156,6 +168,9 @@ public class WishlistJDBC extends Wishlist {
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}
 		return idToReturn;
 	}

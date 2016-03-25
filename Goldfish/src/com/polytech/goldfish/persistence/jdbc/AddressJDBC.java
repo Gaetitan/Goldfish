@@ -50,6 +50,9 @@ public class AddressJDBC extends Address{
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return address;
 	}
 	
@@ -90,6 +93,9 @@ public class AddressJDBC extends Address{
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return idToReturn;
 	}
 	
@@ -114,6 +120,9 @@ public class AddressJDBC extends Address{
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return address;
 	}
 	
@@ -137,6 +146,9 @@ public class AddressJDBC extends Address{
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}
 		return id;
 	}

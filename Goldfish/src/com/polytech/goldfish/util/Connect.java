@@ -52,4 +52,13 @@ public class Connect {
 		return connection;
 	}
 	
+	public void closeConnection(){
+		try {
+			this.getConnection().close();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

@@ -43,6 +43,9 @@ public class HaveAddressJDBC {
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}	
 		
 		return bool;

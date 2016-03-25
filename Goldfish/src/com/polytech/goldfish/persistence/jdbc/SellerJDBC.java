@@ -63,6 +63,9 @@ public class SellerJDBC extends Seller {
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return idToReturn;	
 	}
 }

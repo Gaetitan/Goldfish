@@ -17,7 +17,7 @@ import com.polytech.goldfish.util.Connect;
  *
  */
 public class ActivityCategoryJDBC extends ActivityCategory{
-
+	
 	// Queries
 	private static final String queryGetActivityCategoryById = "SELECT * FROM activityCategory WHERE idactivityCategory = ?;";
 	private static final String queryInsertOne = "INSERT INTO activityCategory (name, shortDescription, detailledDescription) VALUES(?,?,?);";
@@ -69,6 +69,9 @@ public class ActivityCategoryJDBC extends ActivityCategory{
 			catch(SQLException e){
 				e.printStackTrace();
 			}
+			finally{
+				Connect.getInstance().closeConnection();
+			}
 			return idToReturn;	
 		}
 		
@@ -108,6 +111,9 @@ public class ActivityCategoryJDBC extends ActivityCategory{
 			catch(SQLException e){
 				e.printStackTrace();
 			}
+			finally{
+				Connect.getInstance().closeConnection();
+			}
 			return idToReturn;
 		}
 		
@@ -142,6 +148,9 @@ public class ActivityCategoryJDBC extends ActivityCategory{
 			catch(SQLException e){
 				e.printStackTrace();
 			}
+			finally{
+				Connect.getInstance().closeConnection();
+			}
 			return idToReturn;
 		}
 		
@@ -165,6 +174,9 @@ public class ActivityCategoryJDBC extends ActivityCategory{
 			}
 			catch(SQLException e){
 				e.printStackTrace();
+			}
+			finally{
+				Connect.getInstance().closeConnection();
 			}
 			return activityCategory;
 		}
@@ -190,6 +202,9 @@ public class ActivityCategoryJDBC extends ActivityCategory{
 			}
 			catch(SQLException e){
 				e.printStackTrace();
+			}
+			finally{
+				Connect.getInstance().closeConnection();
 			}
 			
 			return listActivitiesCategories;

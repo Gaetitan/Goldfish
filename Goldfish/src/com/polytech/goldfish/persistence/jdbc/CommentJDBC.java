@@ -80,6 +80,9 @@ public class CommentJDBC extends Comment{
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return idToReturn;
 	}
 
@@ -128,6 +131,9 @@ public class CommentJDBC extends Comment{
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 
 		return listComments;
 	}
@@ -161,6 +167,9 @@ public class CommentJDBC extends Comment{
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}
 		return idToReturn;
 	}
@@ -196,6 +205,9 @@ public class CommentJDBC extends Comment{
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}
 		return idToReturn;
 	}

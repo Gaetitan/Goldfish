@@ -54,6 +54,9 @@ public class AdministratorJDBC extends Administrator {
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return idToReturn;	
 	}
 

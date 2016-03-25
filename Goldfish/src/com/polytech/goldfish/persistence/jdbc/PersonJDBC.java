@@ -60,6 +60,9 @@ public class PersonJDBC extends Person {
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return person;
 	}
 	
@@ -137,6 +140,9 @@ public class PersonJDBC extends Person {
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return idToReturn;
 	}
 	
@@ -173,6 +179,9 @@ public class PersonJDBC extends Person {
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return id;
 	}
 	
@@ -196,6 +205,9 @@ public class PersonJDBC extends Person {
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}
 		return person;
 	}
@@ -221,6 +233,9 @@ public class PersonJDBC extends Person {
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return person;
 	}
 	
@@ -245,6 +260,9 @@ public class PersonJDBC extends Person {
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}
 		
 		return listPersons;
@@ -274,6 +292,9 @@ public class PersonJDBC extends Person {
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		
 		return bool;
 	}
@@ -301,6 +322,9 @@ public class PersonJDBC extends Person {
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}
 		
 		return bool;

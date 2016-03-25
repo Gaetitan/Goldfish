@@ -62,6 +62,9 @@ public class ShoppingCartJDBC extends ShoppingCart{
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return idToReturn;	
 	}
 	
@@ -94,6 +97,9 @@ public class ShoppingCartJDBC extends ShoppingCart{
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}
 		return idToReturn;
 	}
@@ -129,6 +135,9 @@ public class ShoppingCartJDBC extends ShoppingCart{
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 		return idToReturn;
 	}
 	
@@ -152,6 +161,9 @@ public class ShoppingCartJDBC extends ShoppingCart{
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}
 		return shoppingCart;
 	}
@@ -177,6 +189,9 @@ public class ShoppingCartJDBC extends ShoppingCart{
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}
 		
 		return listShoppingCarts;

@@ -37,6 +37,9 @@ public class CommentSellerJDBC{
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}	
 		
 		return bool;
@@ -64,6 +67,9 @@ public class CommentSellerJDBC{
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}	
 		
 		return bool;
@@ -90,6 +96,9 @@ public class CommentSellerJDBC{
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}	
 		
 		return bool;
@@ -115,6 +124,9 @@ public class CommentSellerJDBC{
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
 		}	
 		
 		return bool;
