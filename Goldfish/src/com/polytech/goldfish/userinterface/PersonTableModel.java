@@ -18,7 +18,7 @@ public class PersonTableModel extends AbstractTableModel {
 	public PersonTableModel(Collection <Person> data){
 		this.data = data;
 	}
-	
+
 	// Inherited methods
 	@Override
 	public int getRowCount() {

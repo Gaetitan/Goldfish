@@ -51,4 +51,8 @@ public class PersonFacade {
 	public boolean isAdministrator(Integer idPerson) {
 		return this.personManager.isAdministrator(idPerson);
 	}
+	
+	public Person findPersonByEmail(String email){
+		return this.personManager.findPersonByEmail(email);
+	}
 }

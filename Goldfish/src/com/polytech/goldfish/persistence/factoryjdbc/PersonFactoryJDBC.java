@@ -67,4 +67,9 @@ public class PersonFactoryJDBC extends PersonFactory {
 		return PersonJDBC.isAdministrator(idPerson);
 	}
 
+	@Override
+	public Person getPersonByEmail(String email) {
+		return PersonJDBC.findPersonByEmail(email);
+	}
+
 }

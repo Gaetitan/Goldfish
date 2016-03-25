@@ -25,12 +25,18 @@ public abstract class PersonFactory {
 	public abstract Person getPersonByLogin(String email, String password);
 	
 	/**
-	 * This methods gets a Person thanks to its id
+	 * This method gets a Person thanks to its id
 	 * @param id
 	 * @return a Person
 	 */
 	public abstract Person getPersonById(Integer id);
 	
+	/**
+	 * This method gets a Person thanks to its email address
+	 * @param email
+	 * @return a Person
+	 */
+	public abstract Person getPersonByEmail(String email);
 	/**
 	 * This method creates a new Person
 	 * 
