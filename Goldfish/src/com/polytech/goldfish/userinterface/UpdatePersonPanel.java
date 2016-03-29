@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import com.polytech.goldfish.businesslogic.facade.AddressFacade;
 import com.polytech.goldfish.businesslogic.facade.PersonFacade;
+import com.polytech.goldfish.businesslogic.facade.SellerFacade;
 import com.polytech.goldfish.util.GoldfishException;
 
 public class UpdatePersonPanel extends JPanel {
@@ -23,6 +24,7 @@ public class UpdatePersonPanel extends JPanel {
 
 	private final PersonFacade personFacade;
 	private final AddressFacade addressFacade;
+	private final SellerFacade sellerFacade;
 
 	private final JTextField tfName;
 	private final JTextField tfSurname;
@@ -46,6 +48,7 @@ public class UpdatePersonPanel extends JPanel {
 	public UpdatePersonPanel(final Integer idPerson) {
 		personFacade = new PersonFacade();
 		addressFacade = new AddressFacade();
+		sellerFacade = new SellerFacade();
 		
 		JPanel mainPanel = new JPanel();
 		this.add(mainPanel);
@@ -149,10 +152,15 @@ public class UpdatePersonPanel extends JPanel {
 			panelLabelInfo.add(lblWebaddress);
 
 			tfShopname = new JTextField();
+			tfShopname.setText(sellerFacade.getSellerById(idPerson).getShop_name());
 			tfDescription = new JTextField();
+			tfDescription.setText(sellerFacade.getSellerById(idPerson).getDescription());
 			tfSiret = new JTextField();
+			tfSiret.setText(sellerFacade.getSellerById(idPerson).getSiret().toString());
 			tfActivitydomain = new JTextField();
+			tfActivitydomain.setText(sellerFacade.getSellerById(idPerson).getActivity_domain());
 			tfWebaddress = new JTextField();
+			tfWebaddress.setText(sellerFacade.getSellerById(idPerson).getWeb_adress());
 			
 			panelTextInfo.add(tfShopname);
 			panelTextInfo.add(tfDescription);

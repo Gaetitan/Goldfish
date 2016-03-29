@@ -19,15 +19,19 @@ public class SellerJDBC extends Seller {
 	// Queries
 	private static final String queryInsertOne = "INSERT INTO seller (idperson, shopname, description, siret, activitydomain, webaddress) VALUES(?,?,?,?,?,?);";
 	private static final String queryUpdateOne = "UPDATE seller SET shopname = ?, description = ?, siret = ?, activitydomain = ?, webaddress = ? WHERE idperson = ?;";
-	
+	private static final String queryGetSellerById = "SELECT * FROM seller WHERE idperson = ?;";
 	
 	// Constructors
 	public SellerJDBC(Integer id, String name, String surname,
 			String phone_number, String email, String password,
-			String shop_name, String description, String siret,
+			String shop_name, String description, Integer siret,
 			String activity_domain, String web_adress) {
 		super(id, name, surname, phone_number, email, password, shop_name, description,
 				siret, activity_domain, web_adress);
+	}
+	
+	public SellerJDBC(String shop_name, String description, Integer siret, String activity_domain, String web_adress){
+		super(shop_name, description, siret, activity_domain, web_adress);
 	}
 	
 	// Other methods
@@ -100,7 +104,7 @@ public class SellerJDBC extends Seller {
 			instruction.setInt(3, siret);
 			instruction.setString(4, activitydomain);
 			instruction.setString(5, webaddress);
-			instruction.setInt(5, id);
+			instruction.setInt(6, id);
 			int affectedRows = instruction.executeUpdate();
 			connect.commit();
 			
@@ -116,5 +120,32 @@ public class SellerJDBC extends Seller {
 			Connect.getInstance().closeConnection();
 		}
 		return id;
+	}
+	
+	/**
+	 * This method finds a Seller thanks to its id
+	 * @param id the Seller's id
+	 * @return a Seller
+	 */
+	public static SellerJDBC findPersonById(Integer id) {
+		SellerJDBC seller = null;
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareCall(queryGetSellerById);
+			instruction.setInt(1, id);
+			ResultSet rs = instruction.executeQuery();
+			
+			while(rs.next()){
+				seller = new SellerJDBC(rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6));
+			}	
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
+		return seller;
 	}
 }
