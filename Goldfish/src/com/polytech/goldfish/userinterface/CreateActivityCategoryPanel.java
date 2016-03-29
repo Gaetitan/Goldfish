@@ -96,7 +96,7 @@ public class CreateActivityCategoryPanel  extends JPanel {
 							Integer idActivityCategory = null;
 							try {
 								idActivityCategory = activityCategoryFacade.createActivityCategory(tfName.getText(), tfShortDescription.getText(), tfDetailledDescription.getText());
-								JOptionPane.showMessageDialog(null,"The activity category" + activityCategoryFacade.findActivityCategoryById(idActivityCategory).getName() + " has been created.",
+								JOptionPane.showMessageDialog(null,"The activity category " + activityCategoryFacade.findActivityCategoryById(idActivityCategory).getName() + " has been created.",
 										"Activity category created.",JOptionPane.INFORMATION_MESSAGE);
 							} catch (GoldfishException blankFields) {
 								JOptionPane.showMessageDialog(null, blankFields.toString(),
