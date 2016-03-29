@@ -179,6 +179,23 @@ public class MainFrameUser extends JFrame implements AbstractView {
 				contentPanel.repaint();
 			}
 		});
+
+		// Create Diary Entry
+		JButton btnCreateDiaryEntry = new JButton("Create diary entry");
+		sl_sidePanel.putConstraint(SpringLayout.NORTH,btnCreateDiaryEntry, 130, SpringLayout.NORTH,sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.WEST, btnCreateDiaryEntry,10, SpringLayout.WEST, sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.SOUTH,btnCreateDiaryEntry, 160, SpringLayout.NORTH,sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.EAST, btnCreateDiaryEntry,-10, SpringLayout.EAST, sidePanel);
+		btnCreateDiaryEntry.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Create Diary Entry"); // TRACE
+				contentPanel.removeAll();
+				contentPanel.add(new CreateDiaryEntryPanel());
+				contentPanel.revalidate();
+				contentPanel.repaint();
+			}
+		});
 		
 		// delete activity
 				JButton btnUpdateActivity = new JButton("Delete activity");
@@ -331,6 +348,7 @@ public class MainFrameUser extends JFrame implements AbstractView {
 		sidePanel.add(btnMyAccount);
 		sidePanel.add(btnCreateActivityCategory);
 		sidePanel.add(btnCreateWishlist);
+		sidePanel.add(btnCreateDiaryEntry);
 		sidePanel.add(btnUpdateActivity);
 		sidePanel.add(btnLogout);
 
