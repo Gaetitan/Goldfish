@@ -280,7 +280,7 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 
 		// MENU PANEL
 
-		// Home
+		// Wishlists
 		JButton btnListWishlist = new JButton("Wishlists");
 		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnListWishlist, 10,
 				SpringLayout.NORTH, menuPanel);

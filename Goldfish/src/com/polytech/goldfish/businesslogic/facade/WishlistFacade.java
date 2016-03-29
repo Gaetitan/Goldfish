@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import com.polytech.goldfish.businesslogic.business.Wishlist;
 import com.polytech.goldfish.businesslogic.manager.WishlistManager;
+import com.polytech.goldfish.util.GoldfishException;
 
 public class WishlistFacade {
 
@@ -17,7 +18,11 @@ public class WishlistFacade {
 		return this.WishlistManager.createWishlist(name, quantity);
 	}
 
-	public Collection<Wishlist> findWishlistById(Integer id){
+	public Collection<Wishlist> findWishlistByIdPerson(Integer id){
+		return this.WishlistManager.findWishlistByIdPerson(id);
+	}
+	
+	public Wishlist findWishlistById(Integer id){
 		return this.WishlistManager.findWishlistById(id);
 	}
 	
@@ -25,11 +30,11 @@ public class WishlistFacade {
 		return this.WishlistManager.findAllWishlists();
 	}
 	
-	public int updateWishlist(Integer id, String name, Integer quantity){
+	public int updateWishlist(Integer id, String name, Integer quantity)throws GoldfishException{
 		return this.WishlistManager.updateWishlist(id,name,quantity);
 	}
 	
-	public int deleteWishlist(Integer id){
+	public int deleteWishlist(Integer id) throws GoldfishException{
 		return this.WishlistManager.deleteWishlist(id);
 	}
 

@@ -168,6 +168,7 @@ public class UpdateProductFrame extends JFrame{
 	
 	public void reinitPanel(){
 		tfName.setText("");
+		tfDescription.setText("");
 		tfPassword.setText("");
 	}
 }
