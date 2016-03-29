@@ -17,7 +17,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-import com.polytech.goldfish.businesslogic.facade.ProductCategoryFacade;
+import com.polytech.goldfish.businesslogic.facade.ProductFacade;
 import com.polytech.goldfish.util.GoldfishException;
 
 
@@ -26,19 +26,20 @@ import com.polytech.goldfish.util.GoldfishException;
  * 
  * @author
  */
-public class UpdateProductCategoryFrame extends JFrame{
+public class UpdateProductFrame extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	
-	private final ProductCategoryFacade productCategoryFacade;
+	private final ProductFacade productFacade;
 
 	private final JTextField tfName;
+	private final JTextField tfDescription;
 	private final JPasswordField tfPassword;
 	
 	/**
 	 * Instantiates a new frame to sign up.
 	 */
-	public UpdateProductCategoryFrame(final Integer idProductCategory) {
+	public UpdateProductFrame(final Integer idProduct) {
 		
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setTitle("Sign up");
@@ -53,7 +54,7 @@ public class UpdateProductCategoryFrame extends JFrame{
 		
 		setResizable(false);
 
-		productCategoryFacade = new ProductCategoryFacade();
+		productFacade = new ProductFacade();
 		
 		JPanel mainPanel = new JPanel();
 		this.add(mainPanel);
@@ -89,8 +90,12 @@ public class UpdateProductCategoryFrame extends JFrame{
 		panelTextInfo.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		tfName = new JTextField();
-		tfName.setText(productCategoryFacade.findProductCategoryById(idProductCategory).getName());
+		tfName.setText(productFacade.findProductById(idProduct).getName());
 		panelTextInfo.add(tfName);
+		
+		tfDescription = new JTextField();
+		tfDescription.setText(productFacade.findProductById(idProduct).getDescription());
+		panelTextInfo.add(tfDescription);
 
 		tfPassword = new JPasswordField();
 		panelTextInfo.add(tfPassword);
@@ -101,7 +106,7 @@ public class UpdateProductCategoryFrame extends JFrame{
 		
 		JPanel panelButton = new JPanel();
 		panelSouth.add(panelButton);
-		panelButton.setLayout(new GridLayout(2, 0, 0, 0));
+		panelButton.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		JButton btnOk = new JButton("Update my information");
 		btnOk.addActionListener(
@@ -111,8 +116,8 @@ public class UpdateProductCategoryFrame extends JFrame{
 							Integer id = null;
 							if(!(tfName.getText().isEmpty())){	
 								try {
-									id = productCategoryFacade.updateProductCategory(idProductCategory, tfName.getText());
-									JOptionPane.showMessageDialog(null, productCategoryFacade.findProductCategoryById(id).getName() + ", your information has been updated.",
+									id = productFacade.updateProduct(idProduct, tfName.getText(),tfDescription.getText());
+									JOptionPane.showMessageDialog(null, productFacade.findProductById(id).getName() + ", your information has been updated.",
 											"Information updated.",JOptionPane.INFORMATION_MESSAGE);
 								} 
 								catch (GoldfishException e1) {
@@ -130,39 +135,13 @@ public class UpdateProductCategoryFrame extends JFrame{
 		 
 		panelButton.add(btnOk);
 		
-		JButton btnDel = new JButton("Delete this Product Category");
-		btnDel.addActionListener(
-					new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							Integer id = null;
-							if(!(tfName.getText().isEmpty())){	
-								try {
-									id = productCategoryFacade.deleteProductCategory(idProductCategory);
-									JOptionPane.showMessageDialog(null, "Product Category has been deleted.",
-											"Information updated.",JOptionPane.INFORMATION_MESSAGE);
-								} 
-								catch (GoldfishException e1) {
-									JOptionPane.showMessageDialog(null, e1.toString(),
-											"Error.",JOptionPane.ERROR_MESSAGE);
-								}
-							}
-							else {
-								JOptionPane.showMessageDialog(null, "Please fill all the fields.",
-										"Blank fields.",JOptionPane.ERROR_MESSAGE);
-							}
-						}
-					}
-				);
-		 
-		panelButton.add(btnDel);
-		
 		setContentPane(mainPanel);
 		setVisible(true);
 	}
 	
 	public void reinitPanel(){
 		tfName.setText("");
+		tfPassword.setText("");
 	}
 }
 

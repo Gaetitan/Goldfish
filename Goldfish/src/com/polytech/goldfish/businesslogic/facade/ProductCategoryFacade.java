@@ -30,7 +30,7 @@ public class ProductCategoryFacade {
 		return this.ProductCategoryManager.updateProductCategory(id,name);
 	}
 	
-	public int deleteProductCategory(Integer id){
+	public int deleteProductCategory(Integer id)throws GoldfishException{
 		return this.ProductCategoryManager.deleteProductCategory(id);
 	}
 
