@@ -323,8 +323,7 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 		});
 
 		// List of activities categories
-		JButton btnListActivityCategory = new JButton(
-				"Activities categories");
+		JButton btnListActivityCategory = new JButton("Activities categories");
 		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnListActivityCategory,
 				10, SpringLayout.NORTH, menuPanel);
 		sl_menuPanel.putConstraint(SpringLayout.WEST, btnListActivityCategory,
