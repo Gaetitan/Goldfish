@@ -56,9 +56,9 @@ public class UpdatePersonFrame extends JFrame {
 	public UpdatePersonFrame(final Integer idAdministrator, final Integer idPerson) {
 
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Sign up");
+		setTitle("Update/Delete a person.");
 
-		getContentPane().setPreferredSize(new Dimension(300, 500));
+		getContentPane().setPreferredSize(new Dimension(350, 375));
 		getContentPane().setLayout(null);
 		pack();
 
