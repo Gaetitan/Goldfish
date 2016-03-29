@@ -182,9 +182,9 @@ public class MainFrameUser extends JFrame implements AbstractView {
 
 		// Create Diary Entry
 		JButton btnCreateDiaryEntry = new JButton("Create diary entry");
-		sl_sidePanel.putConstraint(SpringLayout.NORTH,btnCreateDiaryEntry, 130, SpringLayout.NORTH,sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.NORTH,btnCreateDiaryEntry, 210, SpringLayout.NORTH,sidePanel);
 		sl_sidePanel.putConstraint(SpringLayout.WEST, btnCreateDiaryEntry,10, SpringLayout.WEST, sidePanel);
-		sl_sidePanel.putConstraint(SpringLayout.SOUTH,btnCreateDiaryEntry, 160, SpringLayout.NORTH,sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.SOUTH,btnCreateDiaryEntry, 240, SpringLayout.NORTH,sidePanel);
 		sl_sidePanel.putConstraint(SpringLayout.EAST, btnCreateDiaryEntry,-10, SpringLayout.EAST, sidePanel);
 		btnCreateDiaryEntry.addActionListener(new ActionListener() {
 			@Override
