@@ -11,7 +11,7 @@ public class HaveAddressJDBC {
 
 	// Queries
 	private static final String queryInsertOne = "INSERT INTO haveaddress (idperson, idaddress) VALUES(?,?);";
-	
+	private static final String queryDeleteOneFromPerson = "DELETE FROM haveaddress WHERE idPerson = ?;";
 	
 	// Constructors
 
@@ -40,6 +40,34 @@ public class HaveAddressJDBC {
 				bool = true;
 			}
 			
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}	
+		
+		return bool;
+	}
+	
+	
+	public static boolean deleteOneFromPerson(Integer idPerson) {
+		boolean bool = false;
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareStatement(queryDeleteOneFromPerson);
+			instruction.setInt(1, idPerson);
+			int affectedRows = instruction.executeUpdate();
+			
+			if(affectedRows == 0){
+				throw new SQLException("Deleting connection between person and address failed, no rows affected.");
+			}
+			else {
+				bool = true;
+			}
+			connect.commit();
 		}
 		catch(SQLException e){
 			e.printStackTrace();

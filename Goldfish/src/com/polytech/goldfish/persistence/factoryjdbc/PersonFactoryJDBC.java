@@ -78,4 +78,15 @@ public class PersonFactoryJDBC extends PersonFactory {
 		return PersonJDBC.isSeller(idPerson);
 	}
 
+	@Override
+	public boolean verifyPasswordById(Integer idPerson, String password) {
+		return PersonJDBC.verifyPasswordById(idPerson, password);
+	}
+
+	@Override
+	public boolean deletePerson(Integer idPerson) {
+		return PersonJDBC.deletePerson(idPerson);
+		
+	}
+
 }

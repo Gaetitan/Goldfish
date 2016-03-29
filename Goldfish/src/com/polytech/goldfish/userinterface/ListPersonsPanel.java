@@ -20,7 +20,7 @@ public class ListPersonsPanel extends JPanel {
 	private final JTable myTable;
 	private final JScrollPane myScrollPane;
 	
-	public ListPersonsPanel(){
+	public ListPersonsPanel(final Integer idAdministrator){
 	
 		personFacade = new PersonFacade();
 		
@@ -58,8 +58,7 @@ public class ListPersonsPanel extends JPanel {
 				if(e.getClickCount() == 2){	//double click
 					JTable target = (JTable) e.getSource();
 					int row = target.getSelectedRow();
-					System.out.println(personFacade.findPersonByEmail(myTableModel.getValueAt(row, 3).toString()).getId() + " " + personFacade.findPersonByEmail(myTableModel.getValueAt(row, 3).toString()).getEmail());
-					new UpdatePersonFrame(personFacade.findPersonByEmail(myTableModel.getValueAt(row, 3).toString()).getId());
+					new UpdatePersonFrame(idAdministrator, personFacade.findPersonByEmail(myTableModel.getValueAt(row, 3).toString()).getId());
 				}
 			}
 		});

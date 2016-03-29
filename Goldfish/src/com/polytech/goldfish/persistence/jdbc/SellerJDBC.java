@@ -20,6 +20,7 @@ public class SellerJDBC extends Seller {
 	private static final String queryInsertOne = "INSERT INTO seller (idperson, shopname, description, siret, activitydomain, webaddress) VALUES(?,?,?,?,?,?);";
 	private static final String queryUpdateOne = "UPDATE seller SET shopname = ?, description = ?, siret = ?, activitydomain = ?, webaddress = ? WHERE idperson = ?;";
 	private static final String queryGetSellerById = "SELECT * FROM seller WHERE idperson = ?;";
+	private static final String queryDeleteOne = "DELETE FROM seller WHERE idperson = ?;";
 	
 	// Constructors
 	public SellerJDBC(Integer id, String name, String surname,
@@ -147,5 +148,28 @@ public class SellerJDBC extends Seller {
 			Connect.getInstance().closeConnection();
 		}
 		return seller;
+	}
+
+	public static void deleteOne(Integer idPerson) {
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+
+			PreparedStatement instruction = connect.prepareStatement(queryDeleteOne);
+			instruction.setInt(1, idPerson);
+
+			int affectedRows = instruction.executeUpdate();
+				
+			if(affectedRows == 0){
+				throw new SQLException("Deleting seller failed, no rows affected.");
+			}
+			
+			connect.commit();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 	}
 }

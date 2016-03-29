@@ -103,4 +103,19 @@ public abstract class PersonFactory {
 	 * @return true if the Person is a Seller, false otherwise
 	 */
 	public abstract boolean isSeller(Integer idPerson);
+	
+	/**
+	 * This method checks a Person's password
+	 * @param idPerson
+	 * @param password
+	 * @return true if the couple id/password is good, false otherwise
+	 */
+	public abstract boolean verifyPasswordById(Integer idPerson, String password);
+	
+	/**
+	 * This method deletes a Person
+	 * @param idPerson the Person's id
+	 * @return 
+	 */
+	public abstract boolean deletePerson(Integer idPerson);
 }

@@ -61,4 +61,12 @@ public class PersonFacade {
 	public Person findPersonByEmail(String email){
 		return this.personManager.findPersonByEmail(email);
 	}
+	
+	public boolean verifyPasswordById(Integer idPerson, String password) throws GoldfishException{
+		return this.personManager.verifyPasswordById(idPerson, password);
+	}
+	
+	public boolean deletePerson(Integer idPerson){
+		return this.personManager.deletePerson(idPerson);
+	}
 }

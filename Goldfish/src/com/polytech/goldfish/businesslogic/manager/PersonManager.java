@@ -92,7 +92,6 @@ public class PersonManager {
 			String email, String password, String street, String street_number, String zip_code, String city,
 			String shopname, String description, String siret, String activitydomain, String webaddress) throws GoldfishException {
 		try{
-			this.login(email, password);
 			if(!checkEmail(email)) {
 				throw new GoldfishException("Please enter a valid email.");
 			}
@@ -146,5 +145,18 @@ public class PersonManager {
 	
 	public Person findPersonByEmail(String email){
 		return this.factory.getPersonByEmail(email);
+	}
+	
+	public boolean verifyPasswordById(Integer idPerson, String password) throws GoldfishException{
+		if (!this.factory.verifyPasswordById(idPerson, password)) {
+			throw new GoldfishException("The written password is invalid.");
+		}
+		else{
+			return this.factory.verifyPasswordById(idPerson, password);
+		}
+	}
+	
+	public boolean deletePerson(Integer idPerson){
+		return this.factory.deletePerson(idPerson);
 	}
 }
