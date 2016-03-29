@@ -12,7 +12,7 @@ public class ProductCategoryTableModel extends AbstractTableModel {
 			private static final long serialVersionUID = 1L;
 			
 			private final Collection <ProductCategory> data;
-			private final String[] columnNames = {"Name"};
+			private final String[] columnNames = {"ID","Name"};
 			
 			// Constructor
 			public ProductCategoryTableModel(Collection <ProductCategory> data){
@@ -37,7 +37,8 @@ public class ProductCategoryTableModel extends AbstractTableModel {
 			public Object getValueAt(int rowIndex, int columnIndex) {
 				ProductCategory ProductCategory = (ProductCategory) data.toArray()[rowIndex];
 				switch(columnIndex){
-					case 0 : return ProductCategory.getName();
+					case 0 : return ProductCategory.getId();
+					case 1 : return ProductCategory.getName();
 					default : throw new IllegalArgumentException("Unknown column " + columnIndex);
 				}
 			}

@@ -21,5 +21,5 @@ public abstract class DiaryFactory {
 
 	public abstract Collection<DiaryEntry> getAllEntrys();
 
-	public abstract Collection<DiaryEntry> findEntryByPersonId(Integer idPerson) throws GoldfishException;
+	public abstract Collection<DiaryEntry> findEntryByPersonId(Integer idPerson);
 }

@@ -19,7 +19,7 @@ public class DiaryEntry {
 	 * True : the DiaryEntry is visible by anyone
 	 * False : the DiaryEntry is visible only by its user
 	 */
-	private final boolean visibility;
+	private boolean visibility;
 
 	// Constructors
 	public DiaryEntry(Integer id, Integer idPerson, String name, Date date, Time time, boolean visibility) {
@@ -73,8 +73,12 @@ public class DiaryEntry {
 		this.time = time;
 	}
 
-	public boolean isVisibility() {
+	public boolean getVisibility() {
 		return visibility;
+	}
+	
+	public void setVisibility(boolean visibility) {
+		this.visibility = visibility;
 	}
 
 	// Other methods

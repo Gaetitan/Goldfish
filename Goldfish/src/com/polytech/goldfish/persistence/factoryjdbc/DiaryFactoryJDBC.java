@@ -46,7 +46,7 @@ public class DiaryFactoryJDBC extends DiaryFactory {
 	}
 
 	@Override
-	public Collection<DiaryEntry> findEntryByPersonId(Integer idPerson) throws GoldfishException{
+	public Collection<DiaryEntry> findEntryByPersonId(Integer idPerson){
 		// Creation of a collection of Diarys
 		Collection<DiaryEntryJDBC> listDiarysJDBC = DiaryEntryJDBC.findEntryByPersonId(idPerson);
 		Collection<DiaryEntry> listDiarys = new ArrayList<DiaryEntry>();

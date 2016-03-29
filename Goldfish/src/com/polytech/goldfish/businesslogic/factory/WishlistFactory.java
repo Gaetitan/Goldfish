@@ -6,7 +6,9 @@ import com.polytech.goldfish.businesslogic.business.Wishlist;
 
 public abstract class WishlistFactory {
 
-	public abstract Collection <Wishlist> getWishlistById(Integer id);
+	public abstract Collection <Wishlist> getWishlistByIdPerson(Integer id);
+	
+	public abstract Wishlist getWishlistById(Integer id);
 	
 	public abstract int createWishlist(String name,Integer quantity);
 	

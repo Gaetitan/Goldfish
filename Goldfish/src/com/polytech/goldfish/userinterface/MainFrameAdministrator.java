@@ -119,7 +119,7 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 				setDefaultContent();
 			}
 		});
-		
+
 		// Home
 		JButton btnMyAccount = new JButton("My account");
 		sl_sidePanel.putConstraint(SpringLayout.NORTH, btnMyAccount, 50,
@@ -206,31 +206,56 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 				contentPanel.repaint();
 			}
 		});
-		
+
 		// Delete activity category
-				JButton btnDeleteActivityCategory = new JButton(
-						"Delete activity category");
-				sl_sidePanel.putConstraint(SpringLayout.NORTH,
-						btnDeleteActivityCategory, 250, SpringLayout.NORTH,
-						sidePanel);
-				sl_sidePanel.putConstraint(SpringLayout.WEST, btnDeleteActivityCategory,
-						10, SpringLayout.WEST, sidePanel);
-				sl_sidePanel.putConstraint(SpringLayout.SOUTH,
-						btnDeleteActivityCategory, 290, SpringLayout.NORTH,
-						sidePanel);
-				sl_sidePanel.putConstraint(SpringLayout.EAST, btnDeleteActivityCategory,
-						-10, SpringLayout.EAST, sidePanel);
-				btnDeleteActivityCategory.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						System.out.println("Delete activity category"); // TRACE
-						contentPanel.removeAll();
-						contentPanel.add(new DeleteActivityCategoryPanel());
-						contentPanel.revalidate();
-						contentPanel.repaint();
-					}
-				});
-				
+		JButton btnDeleteActivityCategory = new JButton(
+				"Delete activity category");
+		sl_sidePanel.putConstraint(SpringLayout.NORTH,
+				btnDeleteActivityCategory, 250, SpringLayout.NORTH,
+				sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.WEST, btnDeleteActivityCategory,
+				10, SpringLayout.WEST, sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.SOUTH,
+				btnDeleteActivityCategory, 290, SpringLayout.NORTH,
+				sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.EAST, btnDeleteActivityCategory,
+				-10, SpringLayout.EAST, sidePanel);
+		btnDeleteActivityCategory.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Delete activity category"); // TRACE
+				contentPanel.removeAll();
+				contentPanel.add(new DeleteActivityCategoryPanel());
+				contentPanel.revalidate();
+				contentPanel.repaint();
+			}
+		});
+
+		// List of diary entrys
+		JButton btnListDiaryEntry = new JButton(
+				"List diary entry");
+		sl_sidePanel.putConstraint(SpringLayout.NORTH,
+				btnListDiaryEntry, 300, SpringLayout.NORTH,
+				sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.WEST, btnListDiaryEntry,
+				10, SpringLayout.WEST, sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.SOUTH,
+				btnListDiaryEntry, 340, SpringLayout.NORTH,
+				sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.EAST, btnListDiaryEntry,
+				-10, SpringLayout.EAST, sidePanel);
+		btnListDiaryEntry.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("List of diary entrys"); // TRACE
+				contentPanel.removeAll();
+				contentPanel.add(new ListDiaryEntrysPanel());
+				contentPanel.revalidate();
+				contentPanel.repaint();
+			}
+		});
+
+
 
 		// logout
 		JButton btnLogout = new JButton("Log out");
@@ -255,7 +280,7 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 
 		// MENU PANEL
 
-		// Home
+		// Wishlists
 		JButton btnListWishlist = new JButton("Wishlists");
 		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnListWishlist, 10,
 				SpringLayout.NORTH, menuPanel);
@@ -298,8 +323,7 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 		});
 
 		// List of activities categories
-		JButton btnListActivityCategory = new JButton(
-				"Activities categories");
+		JButton btnListActivityCategory = new JButton("Activities categories");
 		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnListActivityCategory,
 				10, SpringLayout.NORTH, menuPanel);
 		sl_menuPanel.putConstraint(SpringLayout.WEST, btnListActivityCategory,
@@ -372,6 +396,7 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 		sidePanel.add(btnCreateActivityCategory);
 		sidePanel.add(btnCreateProductCategory);
 		sidePanel.add(btnDeleteActivityCategory);
+		sidePanel.add(btnListDiaryEntry);
 		sidePanel.add(btnLogout);
 
 		menuPanel.add(btnListWishlist);
@@ -379,7 +404,7 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 		menuPanel.add(btnListActivityCategory);
 		menuPanel.add(btnListCategoryProducts);
 		menuPanel.add(btnManageComments);
-		
+
 	}
 
 	/**

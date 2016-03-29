@@ -30,7 +30,7 @@ public class DiaryFacade {
 		return diaryManager.deleteEntry(id);
 	}
 	
-	public Collection<DiaryEntry> findEntryByPersonId(Integer idPerson) throws GoldfishException{
+	public Collection<DiaryEntry> findEntryByPersonId(Integer idPerson){
 		return diaryManager.findEntryByPersonId(idPerson);
 	}
 	

@@ -18,7 +18,11 @@ public class WishlistManager {
 		return this.factory.createWishlist(name, quantity);
 	}
 
-	public Collection<Wishlist> findWishlistById(Integer id){
+	public Collection<Wishlist> findWishlistByIdPerson(Integer id){
+		return this.factory.getWishlistByIdPerson(id);
+	}
+	
+	public Wishlist findWishlistById(Integer id){
 		return this.factory.getWishlistById(id);
 	}
 	
