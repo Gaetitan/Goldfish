@@ -1,6 +1,5 @@
 package com.polytech.goldfish.businesslogic.facade;
 
-import java.sql.Date;
 import java.util.Collection;
 
 import com.polytech.goldfish.businesslogic.business.Goal;
@@ -19,11 +18,11 @@ public class GoalFacade {
 		GoalFacade.goalManager = new GoalManager();
 	}
 
-	public Integer createGoal(Integer idPerson, String name, String description, Date deadline) throws GoldfishException{
+	public Integer createGoal(String idPerson, String name, String description, String deadline) throws GoldfishException{
 		return goalManager.createGoal(idPerson, name, description, deadline);
 	}
 
-	public Integer updateGoal(String newName, String newDescription, Date newDeadline) throws GoldfishException {
+	public Integer updateGoal(String newName, String newDescription, String newDeadline) throws GoldfishException {
 		return goalManager.updateGoal(newName, newDescription, newDeadline);
 	}
 
