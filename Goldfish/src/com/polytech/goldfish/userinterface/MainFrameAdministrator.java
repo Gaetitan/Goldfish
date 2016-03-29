@@ -162,8 +162,7 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 		});
 
 		// Create activity category
-		JButton btnCreateActivityCategory = new JButton(
-				"Create activity category");
+		JButton btnCreateActivityCategory = new JButton("Create activity category");
 		sl_sidePanel.putConstraint(SpringLayout.NORTH,
 				btnCreateActivityCategory, 150, SpringLayout.NORTH,
 				sidePanel);
@@ -182,13 +181,11 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 				contentPanel.add(new CreateActivityCategoryPanel());
 				contentPanel.revalidate();
 				contentPanel.repaint();
-				// List of own activity
 			}
 		});
 
 		// Create product category
-		JButton btnCreateProductCategory = new JButton(
-				"Create product category");
+		JButton btnCreateProductCategory = new JButton("Create product category");
 		sl_sidePanel.putConstraint(SpringLayout.NORTH,
 				btnCreateProductCategory, 200, SpringLayout.NORTH,
 				sidePanel);
@@ -203,6 +200,10 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Create product category"); // TRACE
+				contentPanel.removeAll();
+				contentPanel.add(new CreateProductCategoryPanel());
+				contentPanel.revalidate();
+				contentPanel.repaint();
 			}
 		});
 		
@@ -332,6 +333,10 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Product categories"); // TRACE
+				contentPanel.removeAll();
+				contentPanel.add(new ListProductsCategoriesPanel());
+				contentPanel.revalidate();
+				contentPanel.repaint();
 			}
 		});
 

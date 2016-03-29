@@ -14,11 +14,11 @@ import com.polytech.goldfish.util.Connect;
 public class ProductCategoryJDBC extends ProductCategory {
 
 	// Queries
-	private static final String queryGetProductCategoryById = "SELECT * FROM ProductCategory WHERE idProductCategory = ?;";
-	private static final String queryInsertOne = "INSERT INTO ProductCategory (name) VALUES(?);";
-	private static final String queryUpdateOne = "UPDATE ProductCategory SET name = ? WHERE idProductCategory = ?;";
-	private static final String queryGetAllProductCategories = "SELECT * FROM ProductCategory;";
-	private static final String queryDeleteOne ="DELETE FROM ProductCategory WHERE idProductCategory = ?;";
+	private static final String queryGetProductCategoryById = "SELECT * FROM CategoryProduct WHERE idCatProduct = ?;";
+	private static final String queryInsertOne = "INSERT INTO CategoryProduct (name) VALUES(?);";
+	private static final String queryUpdateOne = "UPDATE CategoryProduct SET name = ? WHERE idCatProduct = ?;";
+	private static final String queryGetAllProductCategories = "SELECT * FROM CategoryProduct;";
+	private static final String queryDeleteOne ="DELETE FROM CategoryProduct WHERE idCatProduct = ?;";
 	
 	
 	// Constructors

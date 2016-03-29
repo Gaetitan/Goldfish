@@ -4,7 +4,7 @@ import java.sql.Date;
 
 /**
  * Business class Goal
- * @author Gaëtan FRANÇOIS
+ * @author Gaï¿½tan FRANï¿½OIS
  *
  */
 public class Goal {
@@ -15,7 +15,7 @@ public class Goal {
 	private String description;
 	private Date deadline;
 	private Date date_creation;
-	
+
 	// Constructors
 	public Goal(Integer id, String name, String description, Date deadline,
 			Date date_creation) {
@@ -35,7 +35,7 @@ public class Goal {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
@@ -67,7 +67,7 @@ public class Goal {
 	public void setDate_creation(Date date_creation) {
 		this.date_creation = date_creation;
 	}
-	
+
 	// Other methods
-	
+
 }

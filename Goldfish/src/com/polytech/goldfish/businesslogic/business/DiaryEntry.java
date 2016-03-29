@@ -4,14 +4,14 @@ import java.sql.Date;
 import java.sql.Time;
 
 /**
- * Business class DiaryEntry
- * @author Ga�tan FRAN�OIS
+ * @author RedaM
  *
  */
 public class DiaryEntry {
 
 	// Attributes
 	private Integer id;
+	private Integer idPerson;
 	private String name;
 	private Date date;
 	private Time time;
@@ -20,18 +20,18 @@ public class DiaryEntry {
 	 * False : the DiaryEntry is visible only by its user
 	 */
 	private final boolean visibility;
-	
+
 	// Constructors
-	public DiaryEntry(Integer id, String name, Date date, Time time,
-			boolean visibility) {
+	public DiaryEntry(Integer id, Integer idPerson, String name, Date date, Time time, boolean visibility) {
 		super();
 		this.id = id;
+		this.idPerson = idPerson;
 		this.name = name;
 		this.date = date;
 		this.time = time;
 		this.visibility = visibility;
 	}
-	
+
 	// Getters & setters
 	public Integer getId() {
 		return id;
@@ -39,6 +39,14 @@ public class DiaryEntry {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getIdPerson() {
+		return idPerson;
+	}
+
+	public void setIdPerson(Integer idPerson) {
+		this.idPerson = idPerson;
 	}
 
 	public String getName() {
@@ -68,6 +76,6 @@ public class DiaryEntry {
 	public boolean isVisibility() {
 		return visibility;
 	}
-	
+
 	// Other methods
 }
