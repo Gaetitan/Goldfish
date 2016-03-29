@@ -106,7 +106,7 @@ public class UpdateProductFrame extends JFrame{
 		
 		JPanel panelButton = new JPanel();
 		panelSouth.add(panelButton);
-		panelButton.setLayout(new GridLayout(1, 0, 0, 0));
+		panelButton.setLayout(new GridLayout(2, 0, 0, 0));
 		
 		JButton btnOk = new JButton("Update my information");
 		btnOk.addActionListener(
@@ -134,6 +134,33 @@ public class UpdateProductFrame extends JFrame{
 				);
 		 
 		panelButton.add(btnOk);
+		
+		JButton btnDel = new JButton("Delete this Product Category");
+		btnDel.addActionListener(
+					new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							Integer id = null;
+							if(!(tfName.getText().isEmpty())){	
+								try {
+									id = productFacade.deleteProduct(idProduct);
+									JOptionPane.showMessageDialog(null, "Product has been deleted.",
+											"Information updated.",JOptionPane.INFORMATION_MESSAGE);
+								} 
+								catch (GoldfishException e1) {
+									JOptionPane.showMessageDialog(null, e1.toString(),
+											"Error.",JOptionPane.ERROR_MESSAGE);
+								}
+							}
+							else {
+								JOptionPane.showMessageDialog(null, "Please fill all the fields.",
+										"Blank fields.",JOptionPane.ERROR_MESSAGE);
+							}
+						}
+					}
+				);
+		 
+		panelButton.add(btnDel);
 		
 		setContentPane(mainPanel);
 		setVisible(true);

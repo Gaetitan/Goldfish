@@ -30,7 +30,7 @@ public class ProductFacade {
 		return this.productManager.updateProduct(id,name,description);
 	}
 	
-	public int deleteProduct(Integer id){
+	public int deleteProduct(Integer id)throws GoldfishException{
 		return this.productManager.deleteProduct(id);
 	}
 
