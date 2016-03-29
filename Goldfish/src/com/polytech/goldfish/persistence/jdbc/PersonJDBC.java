@@ -28,6 +28,7 @@ public class PersonJDBC extends Person {
 	private static final String queryUpdateOne = "UPDATE person SET surname = ?, name = ?, phonenumber = ?, email = ? WHERE idperson = ?;";
 	private static final String queryGetUserById = "SELECT * FROM \"user\" u, person p WHERE u.idperson=p.idperson AND p.idperson = ?;";
 	private static final String queryGetAdministratorById = "SELECT * FROM admin a, person p WHERE a.idperson=p.idperson AND p.idperson = ?;";
+	private static final String queryGetSellerById = "SELECT * FROM seller s, person p WHERE s.idperson=p.idperson AND p.idperson = ?;";
 	
 	// Constructors
 	public PersonJDBC(Integer id, String surname, String name, String phone_number, String email, String password) {
@@ -312,6 +313,37 @@ public class PersonJDBC extends Person {
 			Connection connect = Connect.getInstance().getConnection();
 			
 			PreparedStatement instruction = connect.prepareCall(queryGetAdministratorById);
+			instruction.setInt(1, idPerson);
+			ResultSet rs = instruction.executeQuery();
+			while(rs.next()){
+				myId = rs.getInt(1);
+			}	
+			bool = myId != (null);
+			
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
+		
+		return bool;
+	}
+	
+	/**
+	 * This method checks if a Person is a Seller
+	 * @param idPerson
+	 * @return true if the Person is a Seller, false otherwise
+	 */
+	public static boolean isSeller(Integer idPerson){
+		Integer myId = null;
+		boolean bool = false;
+		
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareCall(queryGetSellerById);
 			instruction.setInt(1, idPerson);
 			ResultSet rs = instruction.executeQuery();
 			while(rs.next()){

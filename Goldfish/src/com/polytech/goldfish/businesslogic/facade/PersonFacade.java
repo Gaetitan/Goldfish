@@ -52,6 +52,10 @@ public class PersonFacade {
 		return this.personManager.isAdministrator(idPerson);
 	}
 	
+	public boolean isSeller(Integer idPerson) {
+		return this.personManager.isSeller(idPerson);
+	}
+	
 	public Person findPersonByEmail(String email){
 		return this.personManager.findPersonByEmail(email);
 	}

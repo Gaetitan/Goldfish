@@ -226,7 +226,7 @@ public class ActivityJDBC extends Activity {
 			ResultSet rs = instruction.executeQuery();
 			
 			while(rs.next()){
-				listActivities.add(new ActivityJDBC(rs.getInt(1), rs.getString(2), rs.getString(3)));
+				listActivities.add(new ActivityJDBC(rs.getInt(1), rs.getString(3), rs.getString(4)));
 
 			}	
 		}

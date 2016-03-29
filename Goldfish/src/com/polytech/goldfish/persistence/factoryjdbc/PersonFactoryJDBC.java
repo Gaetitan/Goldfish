@@ -72,4 +72,9 @@ public class PersonFactoryJDBC extends PersonFactory {
 		return PersonJDBC.findPersonByEmail(email);
 	}
 
+	@Override
+	public boolean isSeller(Integer idPerson) {
+		return PersonJDBC.isSeller(idPerson);
+	}
+
 }

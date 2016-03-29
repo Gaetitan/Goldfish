@@ -130,6 +130,10 @@ public class PersonManager {
 		return this.factory.isAdministrator(idPerson);
 	}
 	
+	public boolean isSeller(Integer idPerson) {
+		return this.factory.isSeller(idPerson);
+	}
+	
 	public Person findPersonByEmail(String email){
 		return this.factory.getPersonByEmail(email);
 	}

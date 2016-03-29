@@ -97,4 +97,10 @@ public abstract class PersonFactory {
 	 * @return true if the Person is an Administrator, false otherwise
 	 */
 	public abstract boolean isAdministrator(Integer idPerson);
+	
+	/**
+	 * This method determines if a Person is a Seller
+	 * @return true if the Person is a Seller, false otherwise
+	 */
+	public abstract boolean isSeller(Integer idPerson);
 }
