@@ -133,7 +133,7 @@ public class MainFrameUser extends JFrame implements AbstractView {
 		btnMyAccount.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Administrator account"); // TRACE
+				System.out.println("User account"); // TRACE
 				contentPanel.removeAll();
 				contentPanel.add(new UpdatePersonPanel(idPerson));
 				contentPanel.revalidate();
@@ -179,6 +179,23 @@ public class MainFrameUser extends JFrame implements AbstractView {
 				contentPanel.repaint();
 			}
 		});
+		
+		// delete activity
+				JButton btnUpdateActivity = new JButton("Delete activity");
+				sl_sidePanel.putConstraint(SpringLayout.NORTH,btnUpdateActivity, 170, SpringLayout.NORTH,sidePanel);
+				sl_sidePanel.putConstraint(SpringLayout.WEST, btnUpdateActivity,10, SpringLayout.WEST, sidePanel);
+				sl_sidePanel.putConstraint(SpringLayout.SOUTH,btnUpdateActivity, 200, SpringLayout.NORTH,sidePanel);
+				sl_sidePanel.putConstraint(SpringLayout.EAST, btnUpdateActivity,-10, SpringLayout.EAST, sidePanel);
+				btnUpdateActivity.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						System.out.println("Delete activity"); // TRACE
+						contentPanel.removeAll();
+						contentPanel.add(new DeleteActivityPanel());
+						contentPanel.revalidate();
+						contentPanel.repaint();
+					}
+				});
 
 		// logout
 		JButton btnLogout = new JButton("Log out");
@@ -239,31 +256,35 @@ public class MainFrameUser extends JFrame implements AbstractView {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("list persons"); // TRACE
 				contentPanel.removeAll();
-				contentPanel.add(new ListActivitiesPanel());
+				contentPanel.add(new ListMyActivitiesPanel());
 				contentPanel.revalidate();
 				contentPanel.repaint();
 			}
 		});
 
-		/*// List of activities categories
-		JButton btnListActivityCategory = new JButton(
-				"Activities categories");
-		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnListActivityCategory,
+		// My Shopping Cart
+		JButton btnMyShoppingCart = new JButton(
+				"My Shopping Cart");
+		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnMyShoppingCart,
 				10, SpringLayout.NORTH, menuPanel);
-		sl_menuPanel.putConstraint(SpringLayout.WEST, btnListActivityCategory,
-				230, SpringLayout.WEST, menuPanel);
-		sl_menuPanel.putConstraint(SpringLayout.SOUTH, btnListActivityCategory,
+		sl_menuPanel.putConstraint(SpringLayout.WEST, btnMyShoppingCart,
+				270, SpringLayout.WEST, menuPanel);
+		sl_menuPanel.putConstraint(SpringLayout.SOUTH, btnMyShoppingCart,
 				-10, SpringLayout.SOUTH, menuPanel);
-		sl_menuPanel.putConstraint(SpringLayout.EAST, btnListActivityCategory,
-				380, SpringLayout.WEST, menuPanel);
-		btnListActivityCategory.addActionListener(new ActionListener() {
+		sl_menuPanel.putConstraint(SpringLayout.EAST, btnMyShoppingCart,
+				410, SpringLayout.WEST, menuPanel);
+		btnMyShoppingCart.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("List of activities categories"); // TRACE
+				System.out.println("My Shopping Cart"); // TRACE
+				contentPanel.removeAll();
+				contentPanel.add(new ShoppingCartPanel());
+				contentPanel.revalidate();
+				contentPanel.repaint();
 			}
 		});
 
-		// List of product categories
+		/*// List of product categories
 		JButton btnListCategoryProducts = new JButton("Products categories");
 		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnListCategoryProducts,
 				10, SpringLayout.NORTH, menuPanel);
@@ -310,12 +331,13 @@ public class MainFrameUser extends JFrame implements AbstractView {
 		sidePanel.add(btnMyAccount);
 		sidePanel.add(btnCreateActivityCategory);
 		sidePanel.add(btnCreateWishlist);
+		sidePanel.add(btnUpdateActivity);
 		sidePanel.add(btnLogout);
 
 		menuPanel.add(btnListWishlist);
 		menuPanel.add(btnListActivities);
-		/*menuPanel.add(btnListActivityCategory);
-		menuPanel.add(btnListCategoryProducts);
+		menuPanel.add(btnMyShoppingCart);
+		/*menuPanel.add(btnListCategoryProducts);
 		menuPanel.add(btnManageComments);*/
 		
 	}

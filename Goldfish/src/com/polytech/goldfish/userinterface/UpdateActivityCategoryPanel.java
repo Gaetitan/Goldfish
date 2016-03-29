@@ -8,10 +8,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.polytech.goldfish.businesslogic.facade.ActivityCategoryFacade;
+import com.polytech.goldfish.util.GoldfishException;
 
 public class UpdateActivityCategoryPanel extends JPanel  {
 	
@@ -67,15 +69,15 @@ public class UpdateActivityCategoryPanel extends JPanel  {
 		
 		tfName = new JTextField();
 		tfName.setColumns(20);
-		//tfName.setText(activityCategoryFacade.findActivityCategoryById(5).getName());
+		tfName.setText(activityCategoryFacade.findActivityCategoryById(1).getName());
 		panelTextInfo.add(tfName);
 		
 		tfShortDescription = new JTextField();
-		//tfShortDescription.setText(activityCategoryFacade.findActivityCategoryById(5).getShortDescription());
+		tfShortDescription.setText(activityCategoryFacade.findActivityCategoryById(1).getShort_description());
 		panelTextInfo.add(tfShortDescription);
 		
 		tfDetailledDescription = new JTextField();
-		//tfDetailledDescription.setText(activityCategoryFacade.findActivityCategoryById(5).getDetailledDescription());
+		tfDetailledDescription.setText(activityCategoryFacade.findActivityCategoryById(1).getDetailed_description());
 		panelTextInfo.add(tfDetailledDescription);
 		
 		JPanel panelSouth = new JPanel();
@@ -87,14 +89,14 @@ public class UpdateActivityCategoryPanel extends JPanel  {
 		panelButton.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		JButton btnOk = new JButton("OK");
-		/*btnOk.addActionListener(
+		btnOk.addActionListener(
 					new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							Integer id;
 							try {
-								id = activityCategoryFacade.updateActivityCategory(5, tfName.getText(), tfShortDescription.getText(), tfDetailledDescription.getText());
-								JOptionPane.showMessageDialog(null,"The activity category " + activityCategoryFacade.findActivityCategoryById(id).getName() + " " + " has been updated.",
+								id = activityCategoryFacade.updateActivityCategory(1, tfName.getText(), tfShortDescription.getText(), tfDetailledDescription.getText());
+								JOptionPane.showMessageDialog(null,"The activity category " + activityCategoryFacade.findActivityCategoryById(id).getName() + " has been updated.",
 										"Activity category updated.",JOptionPane.INFORMATION_MESSAGE);
 							} catch (GoldfishException blankFields) {
 								JOptionPane.showMessageDialog(null, blankFields.toString(),
@@ -104,7 +106,7 @@ public class UpdateActivityCategoryPanel extends JPanel  {
 						}
 					}
 				);
-		 */
+		 
 		panelButton.add(btnOk);
 		
 		JButton btnCancel = new JButton("Cancel");

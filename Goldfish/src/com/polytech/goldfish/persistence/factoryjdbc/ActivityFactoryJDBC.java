@@ -15,9 +15,11 @@ import com.polytech.goldfish.persistence.jdbc.ActivityJDBC;
  */
 public class ActivityFactoryJDBC extends ActivityFactory {
 	
+	private static final Integer Integer = null;
+
 	@Override
-	public Integer createActivity(String name, String description) {
-		return ActivityJDBC.createActivity(name, description);
+	public Integer createActivity(String name, String description, Integer id) {
+		return ActivityJDBC.createActivity(name, description, id);
 	}
 
 	@Override
@@ -39,6 +41,21 @@ public class ActivityFactoryJDBC extends ActivityFactory {
 	public Collection<Activity> getAllActivities() {
 		// Creation of a collection of Activities
 		Collection<ActivityJDBC> listActivitiesJDBC = ActivityJDBC.findAllActivities();
+		Collection<Activity> listActivities = new ArrayList<Activity>();
+		
+		// Put the ActivityJDBC as Activity in a new list
+		for(Activity activity : listActivitiesJDBC) {
+			listActivities.add(activity);
+		}
+
+		// Return the new list
+		return listActivities;
+	}
+	
+	@Override
+	public Collection<Activity> getAllActivitiesOfAnUser(Integer id) {
+		// Creation of a collection of Activities
+		Collection<ActivityJDBC> listActivitiesJDBC = ActivityJDBC.findAllActivitiesOfAnUser(id);
 		Collection<Activity> listActivities = new ArrayList<Activity>();
 		
 		// Put the ActivityJDBC as Activity in a new list

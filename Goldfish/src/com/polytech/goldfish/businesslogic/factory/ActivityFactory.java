@@ -26,7 +26,7 @@ public abstract class ActivityFactory {
 	 * @param name
 	 * @param description
 	 */
-	public abstract Integer createActivity(String name, String description);
+	public abstract Integer createActivity(String name, String description, Integer id);
 	
 	/**
 	 * This method updates an Activity
@@ -51,5 +51,12 @@ public abstract class ActivityFactory {
 	 * @return all existing Activities
 	 */
 	public abstract Collection <Activity> getAllActivities();
+	
+	/**
+	 * This methods gets all existing Activities of an user
+	 * 
+	 * @return all existing Activities of an user
+	 */
+	public abstract Collection <Activity> getAllActivitiesOfAnUser(Integer id);
 
 }

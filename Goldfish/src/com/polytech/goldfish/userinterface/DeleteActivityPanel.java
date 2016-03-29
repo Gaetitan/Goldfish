@@ -12,27 +12,23 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.polytech.goldfish.businesslogic.facade.ActivityCategoryFacade;
+import com.polytech.goldfish.businesslogic.facade.ActivityFacade;
 import com.polytech.goldfish.util.GoldfishException;
 
-public class CreateActivityCategoryPanel  extends JPanel {
-
-	/**
-	 * 
-	 */
+public class DeleteActivityPanel extends JPanel {
+	
 	private static final long serialVersionUID = 1L;
 
-	private final ActivityCategoryFacade activityCategoryFacade;
-	
+	private final ActivityFacade activityFacade;
+
 	private final JTextField tfName;
-	private final JTextField tfShortDescription;
-	private final JTextField tfDetailledDescription;
+	private final JTextField tfDescription;
 	
 	/**
-	 * Constructor of class PanelCreateActivityCategory
+	 * Constructor of class PanelDeleteActivity
 	 */
-	public CreateActivityCategoryPanel() {
-		activityCategoryFacade = new ActivityCategoryFacade();
+	public DeleteActivityPanel() {
+		activityFacade = new ActivityFacade();
 		
 		JPanel mainPanel = new JPanel();
 		this.add(mainPanel);
@@ -42,7 +38,7 @@ public class CreateActivityCategoryPanel  extends JPanel {
 		mainPanel.add(panelNorth, BorderLayout.NORTH);
 		panelNorth.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel lblWelcome = new JLabel("Add a new activity category");
+		JLabel lblWelcome = new JLabel("Delete an activity");
 		panelNorth.add(lblWelcome);
 		
 		JPanel panelCenter = new JPanel();
@@ -56,15 +52,12 @@ public class CreateActivityCategoryPanel  extends JPanel {
 		JPanel panelLabelInfo = new JPanel();
 		panelInfo.add(panelLabelInfo, BorderLayout.WEST);
 		panelLabelInfo.setLayout(new GridLayout(0, 1, 0, 0));
-		
+				
 		JLabel lblName = new JLabel("Name:");
 		panelLabelInfo.add(lblName);
 		
-		JLabel lblShortDescription = new JLabel("Short Description:");
-		panelLabelInfo.add(lblShortDescription);
-		
-		JLabel lblDetailledDescription = new JLabel("Detailled Description:");
-		panelLabelInfo.add(lblDetailledDescription);
+		JLabel lblDescription = new JLabel("Description:");
+		panelLabelInfo.add(lblDescription);
 		
 		JPanel panelTextInfo = new JPanel();
 		panelInfo.add(panelTextInfo, BorderLayout.CENTER);
@@ -72,13 +65,12 @@ public class CreateActivityCategoryPanel  extends JPanel {
 		
 		tfName = new JTextField();
 		tfName.setColumns(20);
+		//tfName.setText(activityFacade.findActivityById(8).getName());
 		panelTextInfo.add(tfName);
 		
-		tfShortDescription = new JTextField();
-		panelTextInfo.add(tfShortDescription);
-		
-		tfDetailledDescription = new JTextField();
-		panelTextInfo.add(tfDetailledDescription);
+		tfDescription = new JTextField();
+		//tfDescription.setText(activityFacade.findActivityById(8).getDescription());
+		panelTextInfo.add(tfDescription);
 		
 		JPanel panelSouth = new JPanel();
 		mainPanel.add(panelSouth, BorderLayout.SOUTH);
@@ -93,11 +85,11 @@ public class CreateActivityCategoryPanel  extends JPanel {
 					new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							Integer idActivityCategory = null;
+							Integer id;
 							try {
-								idActivityCategory = activityCategoryFacade.createActivityCategory(tfName.getText(), tfShortDescription.getText(), tfDetailledDescription.getText());
-								JOptionPane.showMessageDialog(null,"The activity category " + activityCategoryFacade.findActivityCategoryById(idActivityCategory).getName() + " has been created.",
-										"Activity category created.",JOptionPane.INFORMATION_MESSAGE);
+								id = activityFacade.deleteActivity(8);
+								JOptionPane.showMessageDialog(null,"The activity has been deleted.",
+										"Activity deleted.",JOptionPane.INFORMATION_MESSAGE);
 							} catch (GoldfishException blankFields) {
 								JOptionPane.showMessageDialog(null, blankFields.toString(),
 										"Blank fields.",JOptionPane.INFORMATION_MESSAGE);
@@ -106,7 +98,7 @@ public class CreateActivityCategoryPanel  extends JPanel {
 						}
 					}
 				);
-
+		 
 		panelButton.add(btnOk);
 		
 		JButton btnCancel = new JButton("Cancel");
@@ -124,8 +116,8 @@ public class CreateActivityCategoryPanel  extends JPanel {
 	
 	public void reinitPanel(){
 		tfName.setText("");
-		tfShortDescription.setText("");
-		tfDetailledDescription.setText("");
+		tfDescription.setText("");
 		//this.setVisible(false);
 	}
+
 }

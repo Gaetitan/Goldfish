@@ -20,11 +20,15 @@ public class ShoppingCartJDBC extends ShoppingCart{
 
 	// Queries
 	private static final String queryGetShoppingCartById = "SELECT * FROM shoppingCart WHERE idshoppingCart = ?;";
-	private static final String queryInsertOne = "INSERT INTO shoppingCart;";
+	private static final String queryInsertOne = "INSERT INTO shoppingCart (idperson) VALUES (?);";
 	private static final String queryUpdateOne = "UPDATE shoppingCart WHERE idshoppingCart = ?;";
 	private static final String queryGetAllShoppingCarts = "SELECT * FROM shoppingCart;";
 	private static final String queryDeleteOne = "DELETE FROM shoppingCart WHERE idshoppingCart = ?;";
-	//private static final String queryGetAllProductsFromShoppingCart = "SELECT * FROM ShoppingCartContainsProduct WHERE idshoppingCart = ?;";
+	private static final String queryAddProduct = "INSERT INTO shoppingCartcontainsproduct (idshoppingcart, idproduct, quantity) VALUES (?,?,?);";
+	private static final String queryChangeQuantityProduct = "UPDATE shoppingCartcontainsproduct SET quantity = ? WHERE idshoppingCart = ? AND idproduct = ?;";
+	private static final String queryDeleteProduct = "DELETE FROM shoppingCartcontainsproduct WHERE idshoppingCart = ? AND idproduct = ?;";
+	private static final String queryEmptyShoppingCart = "DELETE FROM shoppingCartcontainsproduct WHERE idshoppingCart = ?;";
+	private static final String queryGetAllProductsFromShoppingCart = "SELECT * FROM ShoppingCartContainsProduct WHERE idshoppingCart = ?;";
 	
 	// Constructors
 	public ShoppingCartJDBC(Integer id) {
@@ -37,12 +41,13 @@ public class ShoppingCartJDBC extends ShoppingCart{
 	 * @return 
 	 * @return the new ShoppingCart
 	 */
-	public static Integer createShoppingCart() {
+	public static Integer createShoppingCart(Integer id) {
 		Integer idToReturn = null;
 		try{
 			Connection connect = Connect.getInstance().getConnection();
 			
 			PreparedStatement instruction = connect.prepareStatement(queryInsertOne, Statement.RETURN_GENERATED_KEYS);
+			instruction.setInt(1, id);
 			int affectedRows = instruction.executeUpdate();
 			connect.commit();
 			
@@ -195,5 +200,148 @@ public class ShoppingCartJDBC extends ShoppingCart{
 		}
 		
 		return listShoppingCarts;
+	}
+	
+	/**
+	 * This method adds a product into a ShoppingCart
+	 * @return the ShoppingCart's id
+	 */
+	public static Integer addProductShoppingCart(Integer idshoppingcart, Integer idproduct, Integer quantity) {
+		Integer idToReturn = idshoppingcart;
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareStatement(queryAddProduct, Statement.RETURN_GENERATED_KEYS);
+			instruction.setInt(1, idshoppingcart);
+			instruction.setInt(2, idproduct);
+			instruction.setInt(3, quantity);
+			int affectedRows = instruction.executeUpdate();
+			connect.commit();
+			
+			if(affectedRows == 0){
+				throw new SQLException("Addind a product to the ShoppingCart failed, no rows affected.");
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
+		return idToReturn;
+	}
+	
+	/**
+	 * This method modifies the quantity of a product into a ShoppingCart
+	 * @return the ShoppingCart's id
+	 */
+	public static Integer modifyQuantityProductShoppingCart(Integer idshoppingcart, Integer idproduct, Integer quantity) {
+		Integer idToReturn = idshoppingcart;
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareStatement(queryChangeQuantityProduct, Statement.RETURN_GENERATED_KEYS);
+			instruction.setInt(1, quantity);
+			instruction.setInt(2, idshoppingcart);
+			instruction.setInt(3, idproduct);
+			int affectedRows = instruction.executeUpdate();
+			connect.commit();
+			
+			if(affectedRows == 0){
+				throw new SQLException("Modifying the quantity of the product in the ShoppingCart failed, no rows affected.");
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
+		return idToReturn;
+	}
+	
+	/**
+	 * This method deletes a product from a ShoppingCart
+	 * @return the ShoppingCart's id
+	 */
+	public static Integer deleteProductShoppingCart(Integer idshoppingcart, Integer idproduct) {
+		Integer idToReturn = idshoppingcart;
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareStatement(queryDeleteProduct, Statement.RETURN_GENERATED_KEYS);
+			instruction.setInt(1, idshoppingcart);
+			instruction.setInt(2, idproduct);
+			int affectedRows = instruction.executeUpdate();
+			connect.commit();
+			
+			if(affectedRows == 0){
+				throw new SQLException("Deleting the product from the ShoppingCart failed, no rows affected.");
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
+		return idToReturn;
+	}
+	
+	/**
+	 * This method empties a ShoppingCart
+	 * @return the ShoppingCart's id
+	 */
+	public static Integer emptyShoppingCart(Integer idshoppingcart) {
+		Integer idToReturn = idshoppingcart;
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareStatement(queryEmptyShoppingCart, Statement.RETURN_GENERATED_KEYS);
+			instruction.setInt(1, idshoppingcart);
+			int affectedRows = instruction.executeUpdate();
+			connect.commit();
+			
+			if(affectedRows == 0){
+				throw new SQLException("Emptying the ShoppingCart failed, no rows affected.");
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
+		return idToReturn;
+	}
+	
+	/**
+	 * This methods gets all products in a shoppingcart
+	 * 
+	 * @return all products from a shoppingcart
+	 */
+	public static Collection<ProductJDBC> findAllProductsOfAShoppingCart(Integer idshoppingcart) {
+		Collection<ProductJDBC> listProducts = null;
+		try{
+			listProducts = new ArrayList<ProductJDBC>();
+			
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareCall(queryGetAllProductsFromShoppingCart);
+			instruction.setInt(1, idshoppingcart);
+			ResultSet rs = instruction.executeQuery();
+			
+			while(rs.next()){
+				listProducts.add(new ProductJDBC(rs.getInt(1),rs.getString(2),rs.getString(3)));
+			}	
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
+		
+		return listProducts;
 	}
 }

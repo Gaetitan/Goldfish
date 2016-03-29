@@ -3,8 +3,10 @@ package com.polytech.goldfish.persistence.factoryjdbc;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.polytech.goldfish.businesslogic.business.Product;
 import com.polytech.goldfish.businesslogic.business.ShoppingCart;
 import com.polytech.goldfish.businesslogic.factory.ShoppingCartFactory;
+import com.polytech.goldfish.persistence.jdbc.ProductJDBC;
 import com.polytech.goldfish.persistence.jdbc.ShoppingCartJDBC;
 
 /**
@@ -16,8 +18,8 @@ import com.polytech.goldfish.persistence.jdbc.ShoppingCartJDBC;
 public class ShoppingCartFactoryJDBC extends ShoppingCartFactory {
 	
 	@Override
-	public Integer createShoppingCart() {
-		return ShoppingCartJDBC.createShoppingCart();
+	public Integer createShoppingCart(Integer id) {
+		return ShoppingCartJDBC.createShoppingCart(id);
 	}
 
 	@Override
@@ -49,5 +51,40 @@ public class ShoppingCartFactoryJDBC extends ShoppingCartFactory {
 		// Return the new list
 		return listShoppingCarts;
 	}
+	
+	@Override
+	public Integer addProductShoppingCart(Integer idshoppingcart, Integer idproduct, Integer quantity) {
+		return ShoppingCartJDBC.addProductShoppingCart(idshoppingcart, idproduct, quantity);
+	}
+	
+	@Override
+	public Integer modifyQuantityProductShoppingCart(Integer idshoppingcart, Integer idproduct, Integer quantity) {
+		return ShoppingCartJDBC.modifyQuantityProductShoppingCart(idshoppingcart, idproduct, quantity);
+	}
+	
+	@Override
+	public Integer deleteProductShoppingCart(Integer idshoppingcart, Integer idproduct) {
+		return ShoppingCartJDBC.deleteProductShoppingCart(idshoppingcart, idproduct);
+	}
+	
+	@Override
+	public Integer emptyShoppingCart(Integer idshoppingcart) {
+		return ShoppingCartJDBC.emptyShoppingCart(idshoppingcart);
+	}
+	
+	@Override
+	public Collection<Product> findAllProductsOfAShoppingCart(Integer idshoppingcart) {
+		// Creation of a collection of products
+		Collection<ProductJDBC> listProductsJDBC = ShoppingCartJDBC.findAllProductsOfAShoppingCart(idshoppingcart);
+		Collection<Product> listProducts = new ArrayList<Product>();
+		
+		// Put the ProductJDBC as product in a new list
+		for(Product product : listProductsJDBC ) {
+			listProducts.add(product);
+		}
+		// Return the new list
+		return listProducts;
+	}
+	
 
 }

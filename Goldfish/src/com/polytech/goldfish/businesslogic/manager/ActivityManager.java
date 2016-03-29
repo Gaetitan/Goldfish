@@ -15,18 +15,19 @@ import com.polytech.goldfish.util.GoldfishException;
  */
 public class ActivityManager {
 	
+	private static final Integer Integer = null;
 	private final ActivityFactory factory;
 	
 	public ActivityManager(){
 		this.factory = new ActivityFactoryJDBC();
 	}
 	
-	public Integer createActivity(String name, String description) throws GoldfishException {
+	public Integer createActivity(String name, String description, Integer id) throws GoldfishException {
 		if(name.isEmpty() || description.isEmpty()) {
 			throw new GoldfishException("Please fill all the fields.");
 		}
 		else {
-			return this.factory.createActivity(name, description);
+			return this.factory.createActivity(name, description, id);
 		}
 		
 	}
@@ -50,5 +51,9 @@ public class ActivityManager {
 	
 	public Collection<Activity> findAllActivities(){
 		return this.factory.getAllActivities();
+	}
+	
+	public Collection<Activity> findAllActivitiesOfAnUser(Integer id){
+		return this.factory.getAllActivitiesOfAnUser(id);
 	}
 }

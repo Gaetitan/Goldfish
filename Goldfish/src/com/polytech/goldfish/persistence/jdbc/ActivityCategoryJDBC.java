@@ -19,11 +19,11 @@ import com.polytech.goldfish.util.Connect;
 public class ActivityCategoryJDBC extends ActivityCategory{
 	
 	// Queries
-	private static final String queryGetActivityCategoryById = "SELECT * FROM activityCategory WHERE idactivityCategory = ?;";
-	private static final String queryInsertOne = "INSERT INTO activityCategory (name, shortDescription, detailledDescription) VALUES(?,?,?);";
-	private static final String queryUpdateOne = "UPDATE activityCategory SET name = ?, shortDescription = ?, detailledDescription = ? WHERE idactivityCategory = ?;";
-	private static final String queryGetAllActivitiesCategories = "SELECT * FROM activityCategory;";
-	private static final String queryDeleteOne = "DELETE FROM activityCategory WHERE idactivityCategory = ?;";
+	private static final String queryGetActivityCategoryById = "SELECT * FROM categoryactivity WHERE idCatActivity = ?;";
+	private static final String queryInsertOne = "INSERT INTO categoryactivity (name, shortDescription, LongDescription) VALUES(?,?,?);";
+	private static final String queryUpdateOne = "UPDATE categoryactivity SET name = ?, shortDescription = ?, LongDescription = ? WHERE idCatActivity = ?;";
+	private static final String queryGetAllActivitiesCategories = "SELECT * FROM categoryactivity;";
+	private static final String queryDeleteOne = "DELETE FROM categoryactivity WHERE idCatActivity = ?;";
 	
 	// Constructors
 	public ActivityCategoryJDBC(Integer id, String name,

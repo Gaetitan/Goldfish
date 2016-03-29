@@ -14,14 +14,15 @@ import com.polytech.goldfish.util.GoldfishException;
  */
 public class ActivityFacade {
 	
+	private static final Integer Integer = null;
 	private final ActivityManager activityManager;
 	
 	public ActivityFacade(){
 		this.activityManager = new ActivityManager();
 	}
 	
-	public Integer createActivity(String name, String description) throws GoldfishException {
-		return this.activityManager.createActivity(name, description);
+	public Integer createActivity(String name, String description, Integer id) throws GoldfishException {
+		return this.activityManager.createActivity(name, description, id);
 	}
 	
 	public Integer updateActivity(Integer id, String name, String description) throws GoldfishException {
@@ -38,6 +39,10 @@ public class ActivityFacade {
 	
 	public Collection<Activity> findAllActivities(){
 		return this.activityManager.findAllActivities();
+	}
+	
+	public Collection<Activity> findAllActivitiesOfAnUser(Integer id){
+		return this.activityManager.findAllActivitiesOfAnUser(id);
 	}
 	
 	

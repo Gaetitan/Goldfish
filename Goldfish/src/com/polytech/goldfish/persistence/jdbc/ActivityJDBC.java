@@ -20,9 +20,10 @@ public class ActivityJDBC extends Activity {
 
 	// Queries
 	private static final String queryGetActivityById = "SELECT * FROM activity WHERE idactivity = ?;";
-	private static final String queryInsertOne = "INSERT INTO activity (name, description) VALUES(?,?);";
+	private static final String queryInsertOne = "INSERT INTO activity (name, description, idperson) VALUES(?,?,?);";
 	private static final String queryUpdateOne = "UPDATE activity SET name = ?, description = ? WHERE idactivity = ?;";
 	private static final String queryGetAllActivities = "SELECT * FROM activity;";
+	private static final String queryGetAllActivitiesOfAnUser = "SELECT * FROM activity where idperson = ?;";
 	private static final String queryDeleteOne = "DELETE FROM activity WHERE idactivity = ?;";
 	
 	// Constructors
@@ -38,9 +39,9 @@ public class ActivityJDBC extends Activity {
 	 * @param name
 	 * @param description
 	 * @return 
-	 * @return the new activity
+	 * @return the id of the new activity
 	 */
-	public static Integer createActivity(String name, String description) {
+	public static Integer createActivity(String name, String description, Integer id) {
 		Integer idToReturn = null;
 		try{
 			Connection connect = Connect.getInstance().getConnection();
@@ -48,6 +49,7 @@ public class ActivityJDBC extends Activity {
 			PreparedStatement instruction = connect.prepareStatement(queryInsertOne, Statement.RETURN_GENERATED_KEYS);
 			instruction.setString(1, name);
 			instruction.setString(2, description);
+			instruction.setInt(3, id);
 			int affectedRows = instruction.executeUpdate();
 			connect.commit();
 			
@@ -194,6 +196,38 @@ public class ActivityJDBC extends Activity {
 			
 			while(rs.next()){
 				listActivities.add(new ActivityJDBC(rs.getInt(1), rs.getString(2), rs.getString(3)));
+
+			}	
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
+		
+		return listActivities;
+	}
+	
+	/**
+	 * This methods get all Activities of an user in the database
+	 * 
+	 * @return all Activities of an user in the database
+	 */
+	public static Collection<ActivityJDBC> findAllActivitiesOfAnUser(Integer id) {
+		Collection<ActivityJDBC> listActivities = null;
+		try{
+			listActivities = new ArrayList<ActivityJDBC>();
+			
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareCall(queryGetAllActivitiesOfAnUser);
+			instruction.setInt(1, id);
+			ResultSet rs = instruction.executeQuery();
+			
+			while(rs.next()){
+				listActivities.add(new ActivityJDBC(rs.getInt(1), rs.getString(2), rs.getString(3)));
+
 			}	
 		}
 		catch(SQLException e){

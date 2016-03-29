@@ -2,6 +2,7 @@ package com.polytech.goldfish.businesslogic.facade;
 
 import java.util.Collection;
 
+import com.polytech.goldfish.businesslogic.business.Product;
 import com.polytech.goldfish.businesslogic.business.ShoppingCart;
 import com.polytech.goldfish.businesslogic.manager.ShoppingCartManager;
 import com.polytech.goldfish.util.GoldfishException;
@@ -20,8 +21,8 @@ public class ShoppingCartFacade {
 		this.shoppingCartManager = new ShoppingCartManager();
 	}
 	
-	public Integer createShoppingCart() throws GoldfishException {
-		return this.shoppingCartManager.createShoppingCart();
+	public Integer createShoppingCart(Integer id) throws GoldfishException {
+		return this.shoppingCartManager.createShoppingCart(id);
 	}
 	
 	public Integer updateShoppingCart(Integer id) throws GoldfishException {
@@ -38,6 +39,26 @@ public class ShoppingCartFacade {
 	
 	public Collection<ShoppingCart> findAllShoppingCarts(){
 		return this.shoppingCartManager.findAllShoppingCarts();
+	}
+	
+	public Integer addProductShoppingCart(Integer idshoppingcart, Integer idproduct, Integer quantity){
+		return this.shoppingCartManager.addProductShoppingCart(idshoppingcart, idproduct, quantity);
+	}
+	
+	public Integer modifyQuantityProductShoppingCart(Integer idshoppingcart, Integer idproduct, Integer quantity){
+		return this.shoppingCartManager.modifyQuantityProductShoppingCart(idshoppingcart, idproduct, quantity);
+	}
+	
+	public Integer deleteProductShoppingCart(Integer idshoppingcart, Integer idproduct){
+		return this.shoppingCartManager.deleteProductShoppingCart(idshoppingcart, idproduct);
+	}
+	
+	public Integer emptyShoppingCart(Integer idshoppingcart){
+		return this.shoppingCartManager.emptyShoppingCart(idshoppingcart);
+	}
+	
+	public Collection<Product> findAllProductsOfAShoppingCart(Integer idshoppingcart){
+		return this.shoppingCartManager.findAllProductsOfAShoppingCart(idshoppingcart);
 	}
 
 }
