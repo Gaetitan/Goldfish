@@ -133,9 +133,9 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
 				else if(personFacade.isUser(idPerson)){
 					new MainFrameUser(idPerson);
 				}
-				/*else if(personFacade.isSeller(idPerson)){
-					new MainFrameSeller(idPerson);
-				}*/
+				else if(personFacade.isSeller(idPerson)){
+					new MainFrameUser(idPerson);
+				}
 			}
 			catch (GoldfishException e1) {
 				JOptionPane.showMessageDialog(null, e1.toString(),

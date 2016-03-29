@@ -53,8 +53,9 @@ public class PersonFactoryJDBC extends PersonFactory {
 
 	@Override
 	public Integer updatePerson(Integer id, String surname, String name, String phone_number,
-			String email, String street, Integer street_number, Integer zip_code, String city) {
-		return PersonJDBC.updatePerson(id, surname, name, phone_number, email, street, street_number, zip_code, city);
+			String email, String street, Integer street_number, Integer zip_code, String city,
+			String shopname, String description, Integer siret, String activitydomain, String webaddress) {
+		return PersonJDBC.updatePerson(id, surname, name, phone_number, email, street, street_number, zip_code, city, shopname, description, siret, activitydomain, webaddress);
 	}
 
 	@Override

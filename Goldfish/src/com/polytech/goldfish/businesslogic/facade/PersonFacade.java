@@ -32,8 +32,10 @@ public class PersonFacade {
 	}
 	
 	public Integer updatePerson(Integer id, String surname, String name, String phone_number,
-			String email, String password,String street, String street_number, String zip_code, String city) throws GoldfishException {
-		return this.personManager.updatePerson(id, surname, name, phone_number, email, password, street, street_number, zip_code, city);
+			String email, String password,String street, String street_number, String zip_code, String city,
+			String shopname, String description, String siret, String activitydomain, String webaddress) throws GoldfishException {
+		return this.personManager.updatePerson(id, surname, name, phone_number, email, password, street, street_number, zip_code, city,
+				shopname, description, siret, activitydomain, webaddress);
 	}
 	
 	public Person findPersonById(Integer id){

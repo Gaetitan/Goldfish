@@ -18,6 +18,7 @@ public class SellerJDBC extends Seller {
 
 	// Queries
 	private static final String queryInsertOne = "INSERT INTO seller (idperson, shopname, description, siret, activitydomain, webaddress) VALUES(?,?,?,?,?,?);";
+	private static final String queryUpdateOne = "UPDATE seller SET shopname = ?, description = ?, siret = ?, activitydomain = ?, webaddress = ? WHERE idperson = ?;";
 	
 	
 	// Constructors
@@ -67,5 +68,53 @@ public class SellerJDBC extends Seller {
 			Connect.getInstance().closeConnection();
 		}
 		return idToReturn;	
+	}
+	
+	/**
+	 * This method updates a seller
+	 * 
+	 * @param id
+	 * @param surname
+	 * @param name
+	 * @param phone_number
+	 * @param email
+	 * @param street
+	 * @param street_number
+	 * @param zip_code
+	 * @param city
+	 * @param shopname
+	 * @param description
+	 * @param siret
+	 * @param activitydomain
+	 * @param webaddress
+	 * @return the updated Seller's id
+	 */
+	public static Integer updateSeller(Integer id, String shopname, String description, Integer siret, String activitydomain, String webaddress){
+				
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareStatement(queryUpdateOne, Statement.RETURN_GENERATED_KEYS);
+			instruction.setString(1, shopname);
+			instruction.setString(2, description);
+			instruction.setInt(3, siret);
+			instruction.setString(4, activitydomain);
+			instruction.setString(5, webaddress);
+			instruction.setInt(5, id);
+			int affectedRows = instruction.executeUpdate();
+			connect.commit();
+			
+			if(affectedRows == 0){
+				throw new SQLException("Updating a seller failed, no rows affected.");
+			}
+
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
+		return id;
 	}
 }

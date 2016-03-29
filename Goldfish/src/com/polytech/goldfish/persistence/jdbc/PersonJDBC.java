@@ -156,7 +156,8 @@ public class PersonJDBC extends Person {
 	 * @param password
 	 * @return the updated Person's id
 	 */
-	public static Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String street, Integer street_number, Integer zip_code, String city){
+	public static Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String street, Integer street_number, Integer zip_code, String city,
+			String shopname, String description, Integer siret, String activitydomain, String webaddress){
 				
 		try{
 			Connection connect = Connect.getInstance().getConnection();
@@ -176,6 +177,9 @@ public class PersonJDBC extends Person {
 			
 			AddressJDBC.updateAddress(AddressJDBC.findAddressOfAPerson(id).getId(), street, street_number, zip_code, city);
 			
+			if(shopname != null){
+				SellerJDBC.updateSeller(id, shopname, description, siret, activitydomain, webaddress);
+			}
 		}
 		catch(SQLException e){
 			e.printStackTrace();

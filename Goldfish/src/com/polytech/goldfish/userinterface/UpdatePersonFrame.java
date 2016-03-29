@@ -172,7 +172,7 @@ public class UpdatePersonFrame extends JFrame{
 							if(!(tfSurname.getText().isEmpty() || tfName.getText().isEmpty() || tfPhoneNumber.getText().isEmpty() || tfEmail.getText().isEmpty() || tfPassword.getText().isEmpty() 
 									|| tfStreet.getText().isEmpty() || tfStreetNumber.getText().isEmpty() || tfZipCode.getText().isEmpty() || tfCity.getText().isEmpty())){	
 								try {
-									id = personFacade.updatePerson(idPerson, tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText(), tfStreet.getText(), tfStreetNumber.getText(), tfZipCode.getText(), tfCity.getText());
+									id = personFacade.updatePerson(idPerson, tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText(), tfStreet.getText(), tfStreetNumber.getText(), tfZipCode.getText(), tfCity.getText(), null, null, null, null, null);
 									JOptionPane.showMessageDialog(null, personFacade.findPersonById(id).getSurname() + " " + personFacade.findPersonById(id).getName() + ", your information has been updated.",
 											"Information updated.",JOptionPane.INFORMATION_MESSAGE);
 								} 

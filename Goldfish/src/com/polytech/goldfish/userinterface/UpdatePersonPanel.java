@@ -33,6 +33,12 @@ public class UpdatePersonPanel extends JPanel {
 	private final JTextField tfStreet;
 	private final JTextField tfZipCode;
 	private final JTextField tfCity;
+
+	private JTextField tfShopname;
+	private JTextField tfDescription;
+	private JTextField tfSiret;
+	private JTextField tfActivitydomain;
+	private JTextField tfWebaddress;
 	
 	/**
 	 * Constructor of class PanelCratePerson
@@ -89,7 +95,12 @@ public class UpdatePersonPanel extends JPanel {
 		panelLabelInfo.add(lblCity);
 		
 		JLabel lblPassword = new JLabel("Type your password to validate:");
-		panelLabelInfo.add(lblPassword);
+		
+		final JLabel lblShopname = new JLabel("Shopname:");
+		final JLabel lblDescription = new JLabel("Description:");
+		final JLabel lblSiret = new JLabel("SIRET:");
+		final JLabel lblActivitydomain = new JLabel("Activity domain:");
+		final JLabel lblWebaddress = new JLabel("Web address:");
 		
 		JPanel panelTextInfo = new JPanel();
 		panelInfo.add(panelTextInfo, BorderLayout.CENTER);
@@ -129,6 +140,29 @@ public class UpdatePersonPanel extends JPanel {
 		panelTextInfo.add(tfCity);
 		
 		tfPassword = new JPasswordField();
+		
+		if (personFacade.isSeller(idPerson)) {
+			panelLabelInfo.add(lblShopname);
+			panelLabelInfo.add(lblDescription);
+			panelLabelInfo.add(lblSiret);
+			panelLabelInfo.add(lblActivitydomain);
+			panelLabelInfo.add(lblWebaddress);
+
+			tfShopname = new JTextField();
+			tfDescription = new JTextField();
+			tfSiret = new JTextField();
+			tfActivitydomain = new JTextField();
+			tfWebaddress = new JTextField();
+			
+			panelTextInfo.add(tfShopname);
+			panelTextInfo.add(tfDescription);
+			panelTextInfo.add(tfSiret);
+			panelTextInfo.add(tfActivitydomain);
+			panelTextInfo.add(tfWebaddress);
+		}
+		
+		// Password
+		panelLabelInfo.add(lblPassword);
 		panelTextInfo.add(tfPassword);
 		
 		JPanel panelSouth = new JPanel();
@@ -145,21 +179,54 @@ public class UpdatePersonPanel extends JPanel {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							Integer id = null;
-							if(!(tfSurname.getText().isEmpty() || tfName.getText().isEmpty() || tfPhoneNumber.getText().isEmpty() || tfEmail.getText().isEmpty() || tfPassword.getText().isEmpty() 
-									|| tfStreet.getText().isEmpty() || tfStreetNumber.getText().isEmpty() || tfZipCode.getText().isEmpty() || tfCity.getText().isEmpty())){	
-								try {
-									id = personFacade.updatePerson(idPerson, tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText(), tfStreet.getText(), tfStreetNumber.getText(), tfZipCode.getText(), tfCity.getText());
-									JOptionPane.showMessageDialog(null, personFacade.findPersonById(id).getSurname() + " " + personFacade.findPersonById(id).getName() + ", your information has been updated.",
-											"Information updated.",JOptionPane.INFORMATION_MESSAGE);
-								} 
-								catch (GoldfishException e1) {
-									JOptionPane.showMessageDialog(null, e1.toString(),
-											"Error.",JOptionPane.ERROR_MESSAGE);
+							if (personFacade.isSeller(idPerson)) {
+								if (!(tfSurname.getText().isEmpty()
+										|| tfName.getText().isEmpty()
+										|| tfPhoneNumber.getText().isEmpty()
+										|| tfEmail.getText().isEmpty()
+										|| tfPassword.getText().isEmpty()
+										|| tfStreet.getText().isEmpty()
+										|| tfStreetNumber.getText().isEmpty()
+										|| tfZipCode.getText().isEmpty()
+										|| tfCity.getText().isEmpty()
+										|| tfShopname.getText().isEmpty()
+										|| tfDescription.getText().isEmpty()
+										|| tfSiret.getText().isEmpty()
+										|| tfActivitydomain.getText().isEmpty()
+										|| tfWebaddress.getText().isEmpty())) {
+									try {
+										id = personFacade.updatePerson(idPerson, tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText(), tfStreet.getText(), tfStreetNumber.getText(), tfZipCode.getText(), tfCity.getText(), tfShopname.getText(), tfDescription.getText(), tfSiret.getText(), tfActivitydomain.getText(), tfWebaddress.getText());
+										JOptionPane.showMessageDialog(null, personFacade.findPersonById(id).getSurname() + " " + personFacade.findPersonById(id).getName() + ", your information has been updated.",
+												"Information updated.",JOptionPane.INFORMATION_MESSAGE);
+									} 
+									catch (GoldfishException e1) {
+										JOptionPane.showMessageDialog(null, e1.toString(),
+												"Error.",JOptionPane.ERROR_MESSAGE);
+									}
+								}
+								else {
+									JOptionPane.showMessageDialog(null,
+											"Please fill all the fields.", "Blank fields.",
+											JOptionPane.ERROR_MESSAGE);
 								}
 							}
-							else {
-								JOptionPane.showMessageDialog(null, "Please fill all the fields.",
-										"Blank fields.",JOptionPane.ERROR_MESSAGE);
+							else{
+								if(!(tfSurname.getText().isEmpty() || tfName.getText().isEmpty() || tfPhoneNumber.getText().isEmpty() || tfEmail.getText().isEmpty() || tfPassword.getText().isEmpty() 
+										|| tfStreet.getText().isEmpty() || tfStreetNumber.getText().isEmpty() || tfZipCode.getText().isEmpty() || tfCity.getText().isEmpty())){	
+									try {
+										id = personFacade.updatePerson(idPerson, tfSurname.getText(), tfName.getText(), tfPhoneNumber.getText(), tfEmail.getText(), tfPassword.getText(), tfStreet.getText(), tfStreetNumber.getText(), tfZipCode.getText(), tfCity.getText(), null, null, null, null, null);
+										JOptionPane.showMessageDialog(null, personFacade.findPersonById(id).getSurname() + " " + personFacade.findPersonById(id).getName() + ", your information has been updated.",
+												"Information updated.",JOptionPane.INFORMATION_MESSAGE);
+									} 
+									catch (GoldfishException e1) {
+										JOptionPane.showMessageDialog(null, e1.toString(),
+												"Error.",JOptionPane.ERROR_MESSAGE);
+									}
+								}
+								else {
+									JOptionPane.showMessageDialog(null, "Please fill all the fields.",
+											"Blank fields.",JOptionPane.ERROR_MESSAGE);
+								}
 							}
 						}
 					}

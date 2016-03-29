@@ -76,7 +76,7 @@ public abstract class PersonFactory {
 	 * @param city
 	 * @return the updated Person
 	 */
-	public abstract Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String street, Integer street_number, Integer zip_code, String city);
+	public abstract Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String street, Integer street_number, Integer zip_code, String city, String shopname, String description, Integer siret, String activitydomain, String webaddress);
 
 	/**
 	 * This methods gets all existing Persons
