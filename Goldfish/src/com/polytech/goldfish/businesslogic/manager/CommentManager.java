@@ -13,18 +13,40 @@ import com.polytech.goldfish.util.GoldfishException;
 
 public class CommentManager {
 	
+	/**
+	 * <p>
+	 * 	A commentFactory object
+	 * </p>
+	 */
 	private final CommentFactory factory;
 	
+	/**
+	 * <p>
+	 * Does check if a string contains only numbers
+	 * </p>
+	 * @param number
+	 * @return true or false
+	 */
 	boolean checkNumber(String number){
 		Pattern p = Pattern.compile("\\d+");
 		Matcher m = p.matcher(number);
 		return m.matches();
 	}
-	
+
 	public CommentManager(){
 		this.factory = new CommentFactoryJDBC();
 	}
 	
+	/**
+	 * <p>
+	 * Does all the fonctional checking then create a comment
+	 * </p>
+	 * @param text
+	 * @param poster
+	 * @param concernedPerson
+	 * @return
+	 * @throws GoldfishException
+	 */
 	public Integer createComment(String text, Integer poster, String concernedPerson) throws GoldfishException{
 		if(text.isEmpty() || text == ""){
 			throw new GoldfishException("Comment cannot be empty.");
@@ -40,6 +62,15 @@ public class CommentManager {
 		}
 	}
 
+	/**
+	 * <p>
+	 * Does all the fonctional checking then update a comment
+	 * </p>
+	 * @param id
+	 * @param newText
+	 * @return
+	 * @throws GoldfishException
+	 */
 	public Integer updateComment(Integer id, String newText) throws GoldfishException{
 		if(newText.isEmpty() || newText == ""){
 			throw new GoldfishException("Comment cannot be empty.");
@@ -49,18 +80,44 @@ public class CommentManager {
 		}
 	}
 
-	public Integer deleteComment(Integer id) throws GoldfishException{
+	/**
+	 * <p>
+	 * Delete a comment
+	 * </p>
+	 * @param id
+	 * @return
+	 * @throws GoldfishException
+	 */
+	public Boolean deleteComment(Integer id) throws GoldfishException{
 		return this.factory.deleteComment(id);
 	}
 
+	/**
+	 * @return
+	 */
 	public Collection<Comment> findAllComments(){
 		return this.factory.getAllComments();
 	}
 
+	/**
+	 * <p>
+	 * Find a comment by Id
+	 * </p>
+	 * @param idComment
+	 * @return
+	 */
 	public Comment findCommentById(Integer idComment) {
 		return this.factory.findCommentById(idComment);
 	}
 
+	/**
+	 * <p>
+	 * Tell if a comment was written by a certain User
+	 * </p>
+	 * @param idComment
+	 * @param idUser
+	 * @return true or false
+	 */
 	public boolean ownComment(Integer idComment, Integer idUser) {
 		return this.factory.ownComment(idComment, idUser);
 	}

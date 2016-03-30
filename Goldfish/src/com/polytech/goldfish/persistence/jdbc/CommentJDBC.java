@@ -14,6 +14,10 @@ import com.polytech.goldfish.util.Connect;
 import com.polytech.goldfish.util.GoldfishException;
 
 
+/**
+ * @author RedaM
+ *
+ */
 public class CommentJDBC extends Comment{	
 	// Queries
 	private static final String queryDeleteCommentById = "DELETE FROM comment WHERE idcomment = ?;";
@@ -28,6 +32,18 @@ public class CommentJDBC extends Comment{
 	}
 
 
+	/**
+	 * <p>
+	 * Open a connection to the database, Create a comment in the database
+	 * then close the connection
+	 * </p>
+	 * @param text
+	 * @param poster
+	 * @param concernedPerson
+	 * @return the id of the newly created comment
+	 * @throws GoldfishException if person does not exists or if the comment is adressed to and admin
+	 * @throws SQLException if an sql error occured
+	 */
 	public static Integer createComment(String text, Integer poster, Integer concernedPerson) throws GoldfishException {
 		Integer idToReturn = null;
 		if(PersonJDBC.isAdministrator(concernedPerson)){
@@ -74,6 +90,15 @@ public class CommentJDBC extends Comment{
 		return idToReturn;
 	}
 
+	/**
+	 * <p>
+	 * Open a connection to the database
+	 * Fetch all the comments from the database
+	 * the close the connection
+	 * </p>
+	 * @return a collection of comments
+	 * @throws SQLException if an sql error occured
+	 */
 	public static Collection<CommentJDBC> findAllComments() {
 		Collection<CommentJDBC> listComments = null;
 		try{
@@ -99,6 +124,16 @@ public class CommentJDBC extends Comment{
 		return listComments;
 	}
 
+	/**
+	 * <p>
+	 * Open a connection to the database, then update a comment in the database (newText and newDate)
+	 * the close the connection
+	 * </p>
+	 * @param id
+	 * @param newText
+	 * @return the id of the newly created comment
+	 * @throws SQLException if an sql error occured
+	 */
 	public static Integer updateComment(Integer id, String newText) {
 		Date dNow = new Date();
 		java.util.Date utilDate = new java.util.Date();
@@ -136,8 +171,17 @@ public class CommentJDBC extends Comment{
 		return idToReturn;
 	}
 
-	public static Integer deleteCommet(Integer id) {
-		Integer idToReturn = null;
+	/**
+	 * <p>
+	 * Open a connection to the database, delete a comment in the database
+	 * the close the connection
+	 * </p>
+	 * @param id
+	 * @return true if the deletion has been done, false otherwise
+	 * @throws SQLException if an sql error occured
+	 */
+	public static Boolean deleteComment(Integer id) {
+		Boolean deleted = false;
 		try{
 			Connection connect = Connect.getInstance().getConnection();
 
@@ -145,18 +189,10 @@ public class CommentJDBC extends Comment{
 			instruction.setInt(1, id);
 			int affectedRows = instruction.executeUpdate();
 			connect.commit();
+			deleted = true;
 
 			if(affectedRows == 0){
 				throw new SQLException("Deleting comment failed, no rows deleted.");
-			}
-
-			try(ResultSet generatedKeys = instruction.getGeneratedKeys()){
-				if(generatedKeys.next()){
-					idToReturn = generatedKeys.getInt(1);
-				}
-				else{
-					throw new SQLException("Deleteting comment failed, no ID obtained.");
-				}
 			}
 		}
 		catch(SQLException e){
@@ -165,8 +201,18 @@ public class CommentJDBC extends Comment{
 		finally{
 			Connect.getInstance().closeConnection();
 		}
-		return idToReturn;
+		return deleted;
 	}
+	
+	/**
+	 * <p>
+	 * Open a connection to the database, fetch a comment in the database
+	 * the close the connection
+	 * </p>
+	 * @param idComment
+	 * @return the comment
+	 * @throws SQLException if an sql error occured
+	 */
 	public static Comment findCommentById(Integer idComment) {
 		CommentJDBC comment = null;
 		try{
@@ -192,6 +238,15 @@ public class CommentJDBC extends Comment{
 	}
 
 
+	/**
+	 * <p>
+	 *  Does open a connection to the database, then tell if a person has comment a certain comment
+	 * 	and close the connection
+	 * </p>
+	 * @param idComment
+	 * @param idPerson
+	 * @return true or false
+	 */
 	public static boolean ownComment(Integer idComment, Integer idPerson) {
 		boolean effectiveOwnComment = false;
 		try{

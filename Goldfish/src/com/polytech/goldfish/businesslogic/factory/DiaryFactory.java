@@ -17,7 +17,7 @@ public abstract class DiaryFactory {
 
 	public abstract Integer updateEntry(Integer id, String newName, boolean newVisibility) throws GoldfishException;
 
-	public abstract Integer deleteEntry(Integer id);
+	public abstract boolean deleteEntry(Integer id);
 
 	public abstract Collection<DiaryEntry> getAllEntrys();
 

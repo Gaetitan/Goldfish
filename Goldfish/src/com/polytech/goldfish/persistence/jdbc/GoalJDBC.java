@@ -20,7 +20,7 @@ public class GoalJDBC extends Goal {
 	
 	// Queries
 	private static final String queryDeleteGoalById = "DELETE FROM Goal WHERE idgoal = ?;";
-	private static final String queryInsertGoal = "INSERT INTO Goal (name, description, deadline, date_creation) VALUES(?,?,?,?);";
+	private static final String queryInsertGoal = "INSERT INTO Goal (name, description, deadline, creationdata) VALUES(?,?,?,?);";
 	private static final String queryGetAllGoals = "SELECT * FROM Goal;";
 	private static final String queryUpdateGoal = "UPDATE Goal SET name = ?, description = ?, deadline = ?, creationdata = ? WHERE idgoal = ?;";
 	
@@ -30,7 +30,16 @@ public class GoalJDBC extends Goal {
 		super(id, name, description, deadline, date_creation);
 	}
 
-	public static Integer updateGoal(String newName, String newDescription, Date newDeadline) {
+	/**
+	 * <p>
+	 * Does update a goal in the the database thanks to the ID of goal
+	 * </p>
+	 * @param id
+	 * @param newName
+	 * @param newVisibility
+	 * @return the id on the entry 
+	 */
+	public static Integer updateGoal(Integer idGoal, String newName, String newDescription, Date newDeadline) {
 		Integer idToReturn = null;
 
 		java.util.Date utilDate = new java.util.Date();
@@ -42,6 +51,7 @@ public class GoalJDBC extends Goal {
 			instruction.setString(2, newDescription);
 			instruction.setDate(3, sqlDate);
 			instruction.setDate(4, newDeadline);
+			instruction.setInt(5, idGoal);
 
 			// Update Entry in databse
 			int affectedRows = instruction.executeUpdate();
@@ -66,7 +76,13 @@ public class GoalJDBC extends Goal {
 		}
 		return idToReturn;
 	}
-
+	
+	/**
+	 * <p>
+	 * Does find all the goals in the database
+	 * </p>
+	 * @return a collection of goals
+	 */	
 	public static Collection<GoalJDBC> findAllGoals() {
 		Collection<GoalJDBC> listGoals = null;
 		try{
@@ -91,6 +107,15 @@ public class GoalJDBC extends Goal {
 		return listGoals;
 	}
 
+	/**
+	 * <p>
+	 * Does insert a goal in the database
+	 * </p>
+	 * @param name
+	 * @param description
+	 * @param deadline
+	 * @return the id of the newly created goal
+	 */
 	public static Integer createGoal(String name, String description, Date deadline) {
 		Integer idToReturn = null;
 
@@ -125,8 +150,15 @@ public class GoalJDBC extends Goal {
 		return idToReturn;
 	}
 
-	public static Integer deleteGoal(Integer id) {
-		Integer idToReturn = null;
+	/**
+	 * <p>
+	 * Does delete a goal in the database
+	 * </p>
+	 * @param id
+	 * @return true if the deletion has been done, false otherwise
+	 */
+	public static boolean deleteGoal(Integer id) {
+		boolean deleted = false;
 
 		try{
 			Connection connect = Connect.getInstance().getConnection();
@@ -136,16 +168,10 @@ public class GoalJDBC extends Goal {
 			// Delete Entry from databse
 			int affectedRows = instruction.executeUpdate();
 			connect.commit();
+			deleted = true;
+			
 			if(affectedRows == 0){
 				throw new SQLException("Deleting goal failed, no rows affected.");
-			}	
-			try(ResultSet generatedKeys = instruction.getGeneratedKeys()){
-				if(generatedKeys.next()){
-					idToReturn = generatedKeys.getInt(1);
-				}
-				else{
-					throw new SQLException("Deleting goal failed, no ID obtained.");
-				}
 			}
 		}
 		catch(SQLException e){
@@ -154,7 +180,7 @@ public class GoalJDBC extends Goal {
 		finally{
 			Connect.getInstance().closeConnection();
 		}
-		return idToReturn;
+		return deleted;
 	}
 	
 	// Other methods
