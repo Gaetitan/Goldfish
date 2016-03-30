@@ -31,11 +31,19 @@ public class DiaryEntryJDBC extends DiaryEntry {
 		super(id, idPerson, name, date, time, visibility);
 	}
 	
-	public DiaryEntryJDBC(){
-		super();
-	}
+	
 	
 	// Other methods
+	
+	/**
+	 * <p>
+	 * Does insert an entry in the database
+	 * </p>
+	 * @param idPerson
+	 * @param name
+	 * @param visibility
+	 * @return the id of the newly created entry
+	 */
 	public static Integer createEntry(Integer idPerson, String name, Boolean visibility) {
 		Integer idToReturn = null;
 
@@ -72,6 +80,13 @@ public class DiaryEntryJDBC extends DiaryEntry {
 		return idToReturn;
 	}
 
+	/**
+	 * <p>
+	 * Find entrys of a person thanks to his id
+	 * </p>
+	 * @param idPerson
+	 * @return a collection of entrys
+	 */
 	public static Collection<DiaryEntryJDBC> findEntryByPersonId(Integer idPerson){
 		Collection<DiaryEntryJDBC> listEntrysPerson = null;
 		try{
@@ -96,6 +111,13 @@ public class DiaryEntryJDBC extends DiaryEntry {
 
 		return listEntrysPerson;
 	}
+	
+	/**
+	 * <p>
+	 * Does find all the entrys in the database
+	 * </p>
+	 * @return a collection of entrys
+	 */
 	public static Collection<DiaryEntryJDBC> findAllEntrys() {
 		Collection<DiaryEntryJDBC> listEntrys = null;
 		try{
@@ -120,6 +142,15 @@ public class DiaryEntryJDBC extends DiaryEntry {
 		return listEntrys;
 	}
 
+	/**
+	 * <p>
+	 * Does update an entry in the the database thanks to the ID of entry
+	 * </p>
+	 * @param id
+	 * @param newName
+	 * @param newVisibility
+	 * @return the id on the entry 
+	 */
 	public static Integer updateEntry(Integer id, String newName, Boolean newVisibility) {
 		Integer idToReturn = null;
 
@@ -159,8 +190,15 @@ public class DiaryEntryJDBC extends DiaryEntry {
 		return idToReturn;
 	}
 
-	public static Integer deleteEntry(Integer id) {
-		Integer idToReturn = null;
+	/**
+	 * <p>
+	 * Does delete an entry in the database
+	 * </p>
+	 * @param id
+	 * @return true if the deletion has been done, false otherwise
+	 */
+	public static boolean deleteEntry(Integer id) {
+		boolean deleted = false;
 
 		try{
 			Connection connect = Connect.getInstance().getConnection();
@@ -170,21 +208,14 @@ public class DiaryEntryJDBC extends DiaryEntry {
 			// Delete Entry from databse
 			int affectedRows = instruction.executeUpdate();
 			connect.commit();
+			deleted = true;
 			if(affectedRows == 0){
 				throw new SQLException("Deleting entry failed, no rows affected.");
-			}	
-			try(ResultSet generatedKeys = instruction.getGeneratedKeys()){
-				if(generatedKeys.next()){
-					idToReturn = generatedKeys.getInt(1);
-				}
-				else{
-					throw new SQLException("Deleting entry failed, no ID obtained.");
-				}
 			}
 		}
 		catch(SQLException e){
 			e.printStackTrace();
 		}
-		return idToReturn;
+		return deleted;
 	}
 }

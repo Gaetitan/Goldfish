@@ -41,7 +41,7 @@ public class DiaryFactoryJDBC extends DiaryFactory {
 	}
 
 	@Override
-	public Integer deleteEntry(Integer id) {
+	public boolean deleteEntry(Integer id) {
 		return DiaryEntryJDBC.deleteEntry(id);
 	}
 

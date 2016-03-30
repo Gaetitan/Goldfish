@@ -22,11 +22,11 @@ public class GoalFacade {
 		return goalManager.createGoal(idPerson, name, description, deadline);
 	}
 
-	public Integer updateGoal(String newName, String newDescription, String newDeadline) throws GoldfishException {
-		return goalManager.updateGoal(newName, newDescription, newDeadline);
+	public Integer updateGoal(Integer idGoal, String newName, String newDescription, String newDeadline) throws GoldfishException {
+		return goalManager.updateGoal(idGoal, newName, newDescription, newDeadline);
 	}
 
-	public Integer deleteGoal(Integer id) throws GoldfishException{
+	public boolean deleteGoal(Integer id) throws GoldfishException{
 		return goalManager.deleteGoal(id);
 	}
 

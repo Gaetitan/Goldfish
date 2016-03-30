@@ -26,7 +26,7 @@ public class DiaryFacade {
 		return diaryManager.updateEntry(id, newName, newVisibility);
 	}
 	
-	public Integer deleteEntry(Integer id) throws GoldfishException{
+	public boolean deleteEntry(Integer id) throws GoldfishException{
 		return diaryManager.deleteEntry(id);
 	}
 	

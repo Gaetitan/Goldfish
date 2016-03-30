@@ -41,8 +41,8 @@ public class CommentFactoryJDBC extends CommentFactory {
 	}
 
 	@Override
-	public Integer deleteComment(Integer id) throws GoldfishException {
-		return CommentJDBC.deleteCommet(id);
+	public Boolean deleteComment(Integer id) throws GoldfishException {
+		return CommentJDBC.deleteComment(id);
 	}
 
 	@Override

@@ -17,7 +17,7 @@ public abstract class CommentFactory {
 
 	public abstract Integer updateComment(Integer id, String newText) throws GoldfishException;
 
-	public abstract Integer deleteComment(Integer id) throws GoldfishException;
+	public abstract Boolean deleteComment(Integer id) throws GoldfishException;
 
 	public abstract Collection<Comment> getAllComments();
 

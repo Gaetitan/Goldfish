@@ -39,7 +39,7 @@ public class DiaryManager {
 		}
 	}
 
-	public Integer deleteEntry(Integer id){
+	public boolean deleteEntry(Integer id){
 		return this.factory.deleteEntry(id);
 	}
 
