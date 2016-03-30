@@ -50,6 +50,11 @@ public class CommentFactoryJDBC extends CommentFactory {
 		return CommentJDBC.findCommentById(idComment);
 	}
 
+	@Override
+	public boolean ownComment(Integer idComment, Integer idUser) {
+		return CommentJDBC.ownComment(idComment, idUser);
+	}
+
 
 
 }

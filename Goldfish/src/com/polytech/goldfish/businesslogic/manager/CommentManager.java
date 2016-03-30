@@ -60,4 +60,8 @@ public class CommentManager {
 	public Comment findCommentById(Integer idComment) {
 		return this.factory.findCommentById(idComment);
 	}
+
+	public boolean ownComment(Integer idComment, Integer idUser) {
+		return this.factory.ownComment(idComment, idUser);
+	}
 }

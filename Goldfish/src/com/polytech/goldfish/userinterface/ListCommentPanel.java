@@ -20,7 +20,7 @@ public class ListCommentPanel extends JPanel {
 	private final JTable myTable;
 	private final JScrollPane myScrollPane;
 
-	public ListCommentPanel(final Integer IsUser){
+	public ListCommentPanel(final Integer IsUser, final Integer idUser){
 
 		commentFacade = new CommentFacade();
 		
@@ -61,7 +61,7 @@ public class ListCommentPanel extends JPanel {
 				if(e.getClickCount() == 2){	//double click
 					JTable target = (JTable) e.getSource();
 					int row = target.getSelectedRow();
-					new UpdateCommentFrame((Integer) myTableModel.getValueAt(row, 0));
+					new UpdateCommentFrame((Integer) myTableModel.getValueAt(row, 0), idUser);
 				}
 			}
 		});

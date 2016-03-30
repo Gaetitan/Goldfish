@@ -22,4 +22,6 @@ public abstract class CommentFactory {
 	public abstract Collection<Comment> getAllComments();
 
 	public abstract Comment findCommentById(Integer idComment);
+
+	public abstract boolean ownComment(Integer idComment, Integer idUser);
 }

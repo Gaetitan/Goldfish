@@ -21,6 +21,7 @@ public class CommentJDBC extends Comment{
 	private static final String queryInsertComment = "INSERT INTO comment (text, date, idpersonposter, idconcernedperson) VALUES(?,?,?,?);";
 	private static final String queryGetAllComments = "SELECT * FROM comment;";
 	private static final String queryUpdateComment = "UPDATE comment SET text = ?, date = ? WHERE idcomment = ?;";	
+	private static final String queryOwnComment = "SELECT idcomment FROM comment WHERE idpersonposter = ?;";	
 	// Constructors
 	public CommentJDBC(Integer id, String nameConcerned, String poster, String text, Date date) {
 		super(id, nameConcerned, poster, text, date);
@@ -188,5 +189,27 @@ public class CommentJDBC extends Comment{
 			Connect.getInstance().closeConnection();
 		}
 		return comment;
+	}
+
+
+	public static boolean ownComment(Integer idComment, Integer idPerson) {
+		boolean effectiveOwnComment = false;
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+
+			PreparedStatement instruction = connect.prepareCall(queryOwnComment);
+			instruction.setInt(1, idPerson);
+			ResultSet rs = instruction.executeQuery();
+			if(rs.next()){
+				effectiveOwnComment = true;
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
+		return effectiveOwnComment;
 	}
 }

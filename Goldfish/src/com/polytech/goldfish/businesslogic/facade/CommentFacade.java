@@ -37,4 +37,8 @@ public class CommentFacade {
 	public Comment findCommentById(Integer idComment) {
 		return commentManager.findCommentById(idComment);
 	}
+	
+	public boolean ownComment(Integer idComment, Integer idUser) {
+		return commentManager.ownComment(idComment, idUser);
+	}
 }
