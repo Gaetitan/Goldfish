@@ -14,22 +14,22 @@ public class ListCommentPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String Integer = null;
-
 	private final CommentFacade commentFacade;
 
 	private final CommentTableModel myTableModel;
 	private final JTable myTable;
 	private final JScrollPane myScrollPane;
 
-	public ListCommentPanel(){
+	public ListCommentPanel(final Integer IsUser){
 
 		commentFacade = new CommentFacade();
+		
 		myTableModel = new CommentTableModel(commentFacade.findAllComments());
 		myTable = new JTable(myTableModel);
 		myTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		myTable.removeColumn(myTable.getColumnModel().getColumn(0));
-		
+		if(IsUser == 1){
+			myTable.removeColumn(myTable.getColumnModel().getColumn(0));
+		}
 		myTable.addMouseListener(new MouseListener() {
 
 			@Override
@@ -61,7 +61,7 @@ public class ListCommentPanel extends JPanel {
 				if(e.getClickCount() == 2){	//double click
 					JTable target = (JTable) e.getSource();
 					int row = target.getSelectedRow();
-					new UpdateCommentPanel((Integer)myTableModel.getValueAt(row, 0));
+					new UpdateCommentFrame((Integer) myTableModel.getValueAt(row, 0));
 				}
 			}
 		});
@@ -70,5 +70,4 @@ public class ListCommentPanel extends JPanel {
 		this.add(myScrollPane);
 
 	}
-
 }

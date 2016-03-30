@@ -15,8 +15,8 @@ public class CommentTableModel extends AbstractTableModel {
 	private final String[] columnNames = {"ID comment", "Concerned", "Text", "Date"};
 
 	// Constructor
-	public CommentTableModel(Collection<Comment> collection){
-		this.data = collection;
+	public CommentTableModel(Collection<Comment> data){
+		this.data = data;
 	}
 
 	// Inherited methods
@@ -30,6 +30,7 @@ public class CommentTableModel extends AbstractTableModel {
 
 	@Override
 	public int getColumnCount() {
+		//System.out.println(columnNames.length); // TRACE
 		return columnNames.length;
 	}
 

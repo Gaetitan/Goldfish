@@ -357,7 +357,7 @@ public class MainFrameUser extends JFrame implements AbstractView {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("See comments"); // TRACE
 				contentPanel.removeAll();
-				contentPanel.add(new ListCommentPanel());
+				contentPanel.add(new ListCommentPanel(1));
 				contentPanel.revalidate();
 				contentPanel.repaint();
 			}

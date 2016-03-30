@@ -1,8 +1,10 @@
 package com.polytech.goldfish.userinterface;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,68 +14,87 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 
 import com.polytech.goldfish.businesslogic.facade.CommentFacade;
 import com.polytech.goldfish.util.GoldfishException;
 
-public class UpdateCommentPanel extends JFrame  {
-	
+/**
+ * Class for a frame used to sign up
+ * 
+ * @author Ga�tan FRAN�OIS
+ */
+public class UpdateCommentFrame extends JFrame {
+
 	private static final long serialVersionUID = 1L;
 
 	private final CommentFacade commentFacade;
 
 	private final JTextField tfText;
-	//private final JTextField tfConcernedPerson;
-	
+
 	/**
-	 * Constructor of class PanelUpdateActivityCategory
+	 * Instantiates a new frame to update or delete a comment
 	 */
-	public UpdateCommentPanel(final Integer idComment) {
+	public UpdateCommentFrame(final Integer idComment) {
+
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		setTitle("Update/Delete a comment.");
+
+		getContentPane().setPreferredSize(new Dimension(350, 375));
+		getContentPane().setLayout(null);
+		pack();
+
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height
+				/ 2 - this.getSize().height / 2);
+
+		setResizable(false);
+
 		commentFacade = new CommentFacade();
-		
+
 		JPanel mainPanel = new JPanel();
 		this.add(mainPanel);
 		mainPanel.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panelNorth = new JPanel();
 		mainPanel.add(panelNorth, BorderLayout.NORTH);
 		panelNorth.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		JLabel lblWelcome = new JLabel("Update a comment");
+
+		JLabel lblWelcome = new JLabel("Comment");
 		panelNorth.add(lblWelcome);
-		
+
 		JPanel panelCenter = new JPanel();
 		mainPanel.add(panelCenter, BorderLayout.CENTER);
 		panelCenter.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panelInfo = new JPanel();
 		panelCenter.add(panelInfo, BorderLayout.NORTH);
 		panelInfo.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panelLabelInfo = new JPanel();
 		panelInfo.add(panelLabelInfo, BorderLayout.WEST);
 		panelLabelInfo.setLayout(new GridLayout(0, 1, 0, 0));
-				
-		JLabel lblName = new JLabel("New text of comment:");
-		panelLabelInfo.add(lblName);
-		
+
+		JLabel lblNewText = new JLabel("New text of comment:");
+		panelLabelInfo.add(lblNewText);
+
 		JPanel panelTextInfo = new JPanel();
 		panelInfo.add(panelTextInfo, BorderLayout.CENTER);
 		panelTextInfo.setLayout(new GridLayout(0, 1, 0, 0));
-		
+
 		tfText = new JTextField();
 		tfText.setColumns(20);
-		//tfText.setText(commentFacade.findCommentById(idComment).getText());
+		tfText.setText(commentFacade.findCommentById(idComment).getText());
 		panelTextInfo.add(tfText);
-		
+
 		JPanel panelSouth = new JPanel();
 		mainPanel.add(panelSouth, BorderLayout.SOUTH);
 		panelSouth.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
+
 		JPanel panelButton = new JPanel();
 		panelSouth.add(panelButton);
 		panelButton.setLayout(new GridLayout(1, 0, 0, 0));
-		
+
 		JButton btnOk = new JButton("OK");
 		btnOk.addActionListener(
 					new ActionListener() {
@@ -94,22 +115,33 @@ public class UpdateCommentPanel extends JFrame  {
 				);
 		 
 		panelButton.add(btnOk);
-		
-		JButton btnCancel = new JButton("Cancel");
-		btnCancel.addActionListener(
-					new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							reinitPanel();
-						}
-					}
-				);
 
-		panelButton.add(btnCancel);
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Integer id = null;
+				try {
+					commentFacade.deleteComment(idComment);
+					JOptionPane.showMessageDialog(null, "This comment has been deleted.",
+							"comment deleted.",
+							JOptionPane.INFORMATION_MESSAGE);
+					dispose();
+				}
+				catch (GoldfishException e1) {
+					JOptionPane.showMessageDialog(null, e1.toString(),
+							"Error.", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+
+		panelButton.add(btnDelete);
+
+		setContentPane(mainPanel);
+		setVisible(true);
 	}
-	
-	public void reinitPanel(){
+
+	public void reinitPanel() {
 		tfText.setText("");
 	}
-
 }
