@@ -31,8 +31,12 @@ public class ActivityCategoryJDBC extends ActivityCategory{
 		super(id, name, shortDescription, detailledDescription);
 	}
 	
-	// Other methods
+	public ActivityCategoryJDBC(){
+		super();
+	}
 	
+	// Other methods
+
 		/**
 		 * This methods inserts an ActivityCategory in the database
 		 * @param name

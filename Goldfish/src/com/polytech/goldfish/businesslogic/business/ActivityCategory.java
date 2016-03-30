@@ -23,6 +23,8 @@ public class ActivityCategory {
 		this.detailed_description = detailed_description;
 	}
 	
+	public ActivityCategory() {}
+
 	// Getters & setters
 	public Integer getId() {
 		return id;

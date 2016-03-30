@@ -18,6 +18,8 @@ public class ProductCategory {
 		this.name = name;
 	}
 
+	public ProductCategory() {}
+
 	// Getters & setters
 	public Integer getId() {
 		return id;

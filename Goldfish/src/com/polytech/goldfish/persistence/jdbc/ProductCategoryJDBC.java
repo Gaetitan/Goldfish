@@ -27,6 +27,10 @@ public class ProductCategoryJDBC extends ProductCategory {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public ProductCategoryJDBC() {
+		super();
+	}
+
 	// Other methods
 	public static int createProductCategory(String name) {
 		int idToReturn = -1;
