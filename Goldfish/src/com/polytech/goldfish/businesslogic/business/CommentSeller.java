@@ -11,7 +11,7 @@ public class CommentSeller extends Comment {
 
 	// Constructors
 	public CommentSeller(Integer id, String nameConcerned, String text, Date date) {
-		super(id, nameConcerned, text, date);
+		super(id, nameConcerned, nameConcerned, text, date);
 	}
 
 }

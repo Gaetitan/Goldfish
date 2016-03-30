@@ -11,15 +11,17 @@ public class Comment {
 
 	// Attributes
 	private Integer id;
-	private String nameConcerned;
+	private String concerned;
+	private String poster;
 	private String text;
 	private Date date;
 	
 	// Constructors
-	public Comment(Integer id, String nameConcerned, String text,Date date) {
+	public Comment(Integer id, String concerned, String poster, String text,Date date) {
 		super();
 		this.id = id;
-		this.nameConcerned = nameConcerned;
+		this.concerned = concerned;
+		this.poster = poster;
 		this.text = text;
 		this.date = date;
 	}
@@ -50,11 +52,20 @@ public class Comment {
 	}
 
 	public String getConcerned() {
-		return nameConcerned;
+		return concerned;
 	}
 	
 	public void setConcerned(String concerned) {
-		this.nameConcerned = concerned;
+		this.concerned = concerned;
+	}
+
+
+	public String getPoster() {
+		return poster;
+	}
+	
+	public void setPoster(String poster) {
+		this.poster = poster;
 	}
 		
 }
