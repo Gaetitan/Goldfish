@@ -20,6 +20,10 @@ public class Activity {
 		this.description = description;
 	}
 	
+	public Activity() {
+		
+	}
+	
 	// Getters & setters
 	public Integer getId() {
 		return id;

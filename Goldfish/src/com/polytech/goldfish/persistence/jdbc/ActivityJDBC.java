@@ -32,6 +32,10 @@ public class ActivityJDBC extends Activity {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public ActivityJDBC(){
+		super();	
+	}
+	
 	// Other methods
 	
 	/**
