@@ -36,7 +36,7 @@ public class UpdateCommentFrame extends JFrame {
 	 * Instantiates a new frame to update or delete a comment
 	 */
 
-	public UpdateCommentFrame(final Integer idComment, final Integer idUser) {
+	public UpdateCommentFrame(final Integer idComment) {
 
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setTitle("Update/Delete a comment.");

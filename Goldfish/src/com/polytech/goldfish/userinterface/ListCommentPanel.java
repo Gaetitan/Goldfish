@@ -9,25 +9,28 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 import com.polytech.goldfish.businesslogic.facade.CommentFacade;
+import com.polytech.goldfish.businesslogic.facade.PersonFacade;
 
 public class ListCommentPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
 	private final CommentFacade commentFacade;
+	private final PersonFacade personFacade;
 
 	private final CommentTableModel myTableModel;
 	private final JTable myTable;
 	private final JScrollPane myScrollPane;
 
-	public ListCommentPanel(final Integer IsUser, final Integer idUser){
+	public ListCommentPanel(final Integer idPerson){
 
 		commentFacade = new CommentFacade();
+		personFacade = new PersonFacade();
 		
 		myTableModel = new CommentTableModel(commentFacade.findAllComments());
 		myTable = new JTable(myTableModel);
 		myTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		if(IsUser == 1){
+		if(personFacade.isUser(idPerson)){
 			myTable.removeColumn(myTable.getColumnModel().getColumn(0));
 		}
 		myTable.addMouseListener(new MouseListener() {
@@ -61,7 +64,7 @@ public class ListCommentPanel extends JPanel {
 				if(e.getClickCount() == 2){	//double click
 					JTable target = (JTable) e.getSource();
 					int row = target.getSelectedRow();
-					new UpdateCommentFrame((Integer) myTableModel.getValueAt(row, 0), idUser);
+					new UpdateCommentFrame((Integer) myTableModel.getValueAt(row, 0));
 				}
 			}
 		});
