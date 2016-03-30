@@ -18,6 +18,7 @@ public class UserJDBC extends User {
 
 	// Queries
 	private static final String queryInsertOne = "INSERT INTO \"user\" (idperson) VALUES(?);";
+	private static final String queryDeleteOne = "DELETE FROM \"user\" WHERE idperson = ?;";
 	
 	// Constructors
 	public UserJDBC(Integer id, String name, String surname,
@@ -60,4 +61,27 @@ public class UserJDBC extends User {
 		return idToReturn;	
 	}
 
+	public static void deleteOne(Integer idPerson) {
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+
+			PreparedStatement instruction = connect.prepareStatement(queryDeleteOne);
+			instruction.setInt(1, idPerson);
+
+			int affectedRows = instruction.executeUpdate();
+				
+			if(affectedRows == 0){
+				throw new SQLException("Deleting user failed, no rows affected.");
+			}
+			
+			connect.commit();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
+	}
+	
 }

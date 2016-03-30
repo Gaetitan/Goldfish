@@ -1,5 +1,6 @@
 package com.polytech.goldfish.userinterface;
 
+<<<<<<< HEAD
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -175,3 +176,8 @@ public class UpdateWishlistFrame extends JFrame{
 		tfPassword.setText("");
 	}
 }
+=======
+public class UpdateWishlistFrame {
+
+}
+>>>>>>> branch 'master' of https://github.com/Gaetitan/Goldfish

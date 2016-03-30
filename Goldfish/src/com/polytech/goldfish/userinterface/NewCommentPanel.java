@@ -23,12 +23,11 @@ public class NewCommentPanel extends JPanel {
 
 	private final JTextField tfConcernedID;
 	private final JTextField tfText;
-	private final JTextField tfYourID;
 
 	/**
 	 * Constructor of class PanelCratePerson
 	 */
-	public NewCommentPanel() {
+	public NewCommentPanel(final Integer idPerson) {
 		commentFacade = new CommentFacade();
 
 		JPanel mainPanel = new JPanel();
@@ -60,9 +59,6 @@ public class NewCommentPanel extends JPanel {
 		JLabel lblComment = new JLabel("Comment:");
 		panelLabelInfo.add(lblComment);
 
-		JLabel lblId = new JLabel("Your ID:");
-		panelLabelInfo.add(lblId);
-
 		JPanel panelTextInfo = new JPanel();
 		panelInfo.add(panelTextInfo, BorderLayout.CENTER);
 		panelTextInfo.setLayout(new GridLayout(0, 1, 0, 0));
@@ -73,9 +69,6 @@ public class NewCommentPanel extends JPanel {
 
 		tfText = new JTextField();
 		panelTextInfo.add(tfText);
-
-		tfYourID = new JTextField();
-		panelTextInfo.add(tfYourID);
 
 
 		JPanel panelSouth = new JPanel();
@@ -93,9 +86,9 @@ public class NewCommentPanel extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						Integer id;
-						if(!(tfConcernedID.getText().isEmpty() || tfText.getText().isEmpty() || tfYourID.getText().isEmpty())){	
+						if(!(tfConcernedID.getText().isEmpty() || tfText.getText().isEmpty() )){	
 							try {
-								id = commentFacade.createComment(tfText.getText(), Integer.parseInt(tfConcernedID.getText()) , Integer.parseInt(tfYourID.getText()));
+								id = commentFacade.createComment(tfText.getText(), Integer.parseInt(tfConcernedID.getText()) , idPerson);
 							} catch (NumberFormatException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
@@ -120,6 +113,5 @@ public class NewCommentPanel extends JPanel {
 	public void reinitPanel(){
 		tfConcernedID.setText("");
 		tfText.setText("");
-		tfYourID.setText("");
 	}
 }

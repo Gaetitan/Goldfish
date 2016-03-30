@@ -28,7 +28,7 @@ public class UpdateActivityCategoryPanel extends JPanel  {
 	/**
 	 * Constructor of class PanelUpdateActivityCategory
 	 */
-	public UpdateActivityCategoryPanel() {
+	public UpdateActivityCategoryPanel(final Integer idActivityCategory) {
 		activityCategoryFacade = new ActivityCategoryFacade();
 		
 		JPanel mainPanel = new JPanel();
@@ -69,15 +69,15 @@ public class UpdateActivityCategoryPanel extends JPanel  {
 		
 		tfName = new JTextField();
 		tfName.setColumns(20);
-		tfName.setText(activityCategoryFacade.findActivityCategoryById(1).getName());
+		tfName.setText(activityCategoryFacade.findActivityCategoryById(idActivityCategory).getName());
 		panelTextInfo.add(tfName);
 		
 		tfShortDescription = new JTextField();
-		tfShortDescription.setText(activityCategoryFacade.findActivityCategoryById(1).getShort_description());
+		tfShortDescription.setText(activityCategoryFacade.findActivityCategoryById(idActivityCategory).getShort_description());
 		panelTextInfo.add(tfShortDescription);
 		
 		tfDetailledDescription = new JTextField();
-		tfDetailledDescription.setText(activityCategoryFacade.findActivityCategoryById(1).getDetailed_description());
+		tfDetailledDescription.setText(activityCategoryFacade.findActivityCategoryById(idActivityCategory).getDetailed_description());
 		panelTextInfo.add(tfDetailledDescription);
 		
 		JPanel panelSouth = new JPanel();
@@ -95,8 +95,8 @@ public class UpdateActivityCategoryPanel extends JPanel  {
 						public void actionPerformed(ActionEvent e) {
 							Integer id;
 							try {
-								id = activityCategoryFacade.updateActivityCategory(1, tfName.getText(), tfShortDescription.getText(), tfDetailledDescription.getText());
-								JOptionPane.showMessageDialog(null,"The activity category " + activityCategoryFacade.findActivityCategoryById(id).getName() + " has been updated.",
+								id = activityCategoryFacade.updateActivityCategory(idActivityCategory, tfName.getText(), tfShortDescription.getText(), tfDetailledDescription.getText());
+								JOptionPane.showMessageDialog(null,"The activity category " + activityCategoryFacade.findActivityCategoryById(idActivityCategory).getName() + " has been updated.",
 										"Activity category updated.",JOptionPane.INFORMATION_MESSAGE);
 							} catch (GoldfishException blankFields) {
 								JOptionPane.showMessageDialog(null, blankFields.toString(),

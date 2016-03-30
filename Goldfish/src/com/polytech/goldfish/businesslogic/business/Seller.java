@@ -10,11 +10,11 @@ public class Seller extends Person {
 	// Attributes
 	private String shop_name;
 	private String description;
-	private String siret;
+	private Integer siret;
 	private String activity_domain;
 	private String web_adress;
 
-	//Constuctors	
+	//Constructors
 	public Seller(Integer id, String name, String surname, String phone_number,
 			String email, String password) {
 		super(id, name, surname, phone_number, email, password);
@@ -22,9 +22,18 @@ public class Seller extends Person {
 	
 	public Seller(Integer id, String name, String surname, String phone_number,
 			String email, String password, String shop_name,
-			String description, String siret, String activity_domain,
+			String description, Integer siret, String activity_domain,
 			String web_adress) {
 		super(id, name, surname, phone_number, email, password);
+		this.shop_name = shop_name;
+		this.description = description;
+		this.siret = siret;
+		this.activity_domain = activity_domain;
+		this.web_adress = web_adress;
+	}
+	
+	public Seller(String shop_name, String description, Integer siret, String activity_domain, String web_adress){
+		super();
 		this.shop_name = shop_name;
 		this.description = description;
 		this.siret = siret;
@@ -49,11 +58,11 @@ public class Seller extends Person {
 		this.description = description;
 	}
 
-	public String getSiret() {
+	public Integer getSiret() {
 		return siret;
 	}
 
-	public void setSiret(String siret) {
+	public void setSiret(Integer siret) {
 		this.siret = siret;
 	}
 

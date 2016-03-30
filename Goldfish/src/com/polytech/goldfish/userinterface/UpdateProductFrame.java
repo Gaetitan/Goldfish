@@ -22,7 +22,7 @@ import com.polytech.goldfish.util.GoldfishException;
 
 
 /**
- * Class for a frame used to sign up
+ * Class for a frame used to update a product
  * 
  * @author
  */
@@ -42,7 +42,7 @@ public class UpdateProductFrame extends JFrame{
 	public UpdateProductFrame(final Integer idProduct) {
 		
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Sign up");
+		setTitle("Update Product");
 
 		getContentPane().setPreferredSize(new Dimension(300, 250));
 		getContentPane().setLayout(null);
@@ -82,6 +82,8 @@ public class UpdateProductFrame extends JFrame{
 		JLabel lblName = new JLabel("Name:");
 		panelLabelInfo.add(lblName);
 		
+		JLabel lblDescription = new JLabel("Description:");
+		panelLabelInfo.add(lblDescription);		
 		JLabel lblPassword = new JLabel("Type your password to validate:");
 		panelLabelInfo.add(lblPassword);
 		
@@ -108,7 +110,7 @@ public class UpdateProductFrame extends JFrame{
 		panelSouth.add(panelButton);
 		panelButton.setLayout(new GridLayout(2, 0, 0, 0));
 		
-		JButton btnOk = new JButton("Update my information");
+		JButton btnOk = new JButton("Update Product");
 		btnOk.addActionListener(
 					new ActionListener() {
 						@Override
@@ -135,7 +137,7 @@ public class UpdateProductFrame extends JFrame{
 		 
 		panelButton.add(btnOk);
 		
-		JButton btnDel = new JButton("Delete this Product Category");
+		JButton btnDel = new JButton("Delete this Product");
 		btnDel.addActionListener(
 					new ActionListener() {
 						@Override

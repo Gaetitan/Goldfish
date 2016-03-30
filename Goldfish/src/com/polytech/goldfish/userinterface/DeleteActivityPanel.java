@@ -10,7 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import com.polytech.goldfish.businesslogic.facade.ActivityFacade;
 import com.polytech.goldfish.util.GoldfishException;
@@ -20,14 +19,11 @@ public class DeleteActivityPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private final ActivityFacade activityFacade;
-
-	private final JTextField tfName;
-	private final JTextField tfDescription;
 	
 	/**
 	 * Constructor of class PanelDeleteActivity
 	 */
-	public DeleteActivityPanel() {
+	public DeleteActivityPanel(final Integer idActivity) {
 		activityFacade = new ActivityFacade();
 		
 		JPanel mainPanel = new JPanel();
@@ -53,24 +49,12 @@ public class DeleteActivityPanel extends JPanel {
 		panelInfo.add(panelLabelInfo, BorderLayout.WEST);
 		panelLabelInfo.setLayout(new GridLayout(0, 1, 0, 0));
 				
-		JLabel lblName = new JLabel("Name:");
+		JLabel lblName = new JLabel("Do you really want to delete the activity " + activityFacade.findActivityById(idActivity).getName() + " ?");
 		panelLabelInfo.add(lblName);
-		
-		JLabel lblDescription = new JLabel("Description:");
-		panelLabelInfo.add(lblDescription);
 		
 		JPanel panelTextInfo = new JPanel();
 		panelInfo.add(panelTextInfo, BorderLayout.CENTER);
 		panelTextInfo.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		tfName = new JTextField();
-		tfName.setColumns(20);
-		//tfName.setText(activityFacade.findActivityById(8).getName());
-		panelTextInfo.add(tfName);
-		
-		tfDescription = new JTextField();
-		//tfDescription.setText(activityFacade.findActivityById(8).getDescription());
-		panelTextInfo.add(tfDescription);
 		
 		JPanel panelSouth = new JPanel();
 		mainPanel.add(panelSouth, BorderLayout.SOUTH);
@@ -80,14 +64,14 @@ public class DeleteActivityPanel extends JPanel {
 		panelSouth.add(panelButton);
 		panelButton.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		JButton btnOk = new JButton("OK");
+		JButton btnOk = new JButton("YES");
 		btnOk.addActionListener(
 					new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							Integer id;
 							try {
-								id = activityFacade.deleteActivity(8);
+								id = activityFacade.deleteActivity(idActivity);
 								JOptionPane.showMessageDialog(null,"The activity has been deleted.",
 										"Activity deleted.",JOptionPane.INFORMATION_MESSAGE);
 							} catch (GoldfishException blankFields) {
@@ -101,7 +85,7 @@ public class DeleteActivityPanel extends JPanel {
 		 
 		panelButton.add(btnOk);
 		
-		JButton btnCancel = new JButton("Cancel");
+		JButton btnCancel = new JButton("NO");
 		btnCancel.addActionListener(
 					new ActionListener() {
 						@Override
@@ -115,8 +99,6 @@ public class DeleteActivityPanel extends JPanel {
 	}
 	
 	public void reinitPanel(){
-		tfName.setText("");
-		tfDescription.setText("");
 		//this.setVisible(false);
 	}
 

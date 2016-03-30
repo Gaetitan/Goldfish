@@ -28,6 +28,8 @@ public class Person {
 		this.password = password;
 	}
 
+	public Person() {}
+
 	// Getters & setters
 	public Integer getId() {
 		return id;

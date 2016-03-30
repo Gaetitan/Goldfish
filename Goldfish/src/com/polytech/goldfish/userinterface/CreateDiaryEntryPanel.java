@@ -30,7 +30,7 @@ public class CreateDiaryEntryPanel extends JPanel{
 	/**
 	 * Constructor of class PanelCreateWishlist
 	 */
-	public CreateDiaryEntryPanel() {
+	public CreateDiaryEntryPanel(final Integer idPerson) {
 		diaryEntryFacade = new DiaryFacade();
 		
 		JPanel mainPanel = new JPanel();
@@ -86,7 +86,7 @@ public class CreateDiaryEntryPanel extends JPanel{
 						public void actionPerformed(ActionEvent e) {
 							int id;
 							try {
-								id = diaryEntryFacade.createEntry(1, tfName.getText(), visibilityCheckBox.isSelected());
+								id = diaryEntryFacade.createEntry(idPerson, tfName.getText(), visibilityCheckBox.isSelected());
 								JOptionPane.showMessageDialog(null, tfName.getText() + " has been created.",
 										"Entry created.",JOptionPane.INFORMATION_MESSAGE);
 							} catch (GoldfishException e1) {

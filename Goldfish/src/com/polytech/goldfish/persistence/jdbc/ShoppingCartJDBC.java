@@ -28,7 +28,7 @@ public class ShoppingCartJDBC extends ShoppingCart{
 	private static final String queryChangeQuantityProduct = "UPDATE shoppingCartcontainsproduct SET quantity = ? WHERE idshoppingCart = ? AND idproduct = ?;";
 	private static final String queryDeleteProduct = "DELETE FROM shoppingCartcontainsproduct WHERE idshoppingCart = ? AND idproduct = ?;";
 	private static final String queryEmptyShoppingCart = "DELETE FROM shoppingCartcontainsproduct WHERE idshoppingCart = ?;";
-	private static final String queryGetAllProductsFromShoppingCart = "SELECT * FROM ShoppingCartContainsProduct WHERE idshoppingCart = ?;";
+	private static final String queryGetAllProductsFromShoppingCart = "SELECT * FROM ShoppingCartContainsProduct,product WHERE idshoppingCart = ? and shoppingcartcontainsproduct.idproduct = product.idproduct;";
 	
 	// Constructors
 	public ShoppingCartJDBC(Integer id) {
@@ -332,7 +332,7 @@ public class ShoppingCartJDBC extends ShoppingCart{
 			ResultSet rs = instruction.executeQuery();
 			
 			while(rs.next()){
-				listProducts.add(new ProductJDBC(rs.getInt(1),rs.getString(2),rs.getString(3)));
+				listProducts.add(new ProductJDBC(rs.getInt(3),rs.getString(5),rs.getString(6)));
 			}	
 		}
 		catch(SQLException e){

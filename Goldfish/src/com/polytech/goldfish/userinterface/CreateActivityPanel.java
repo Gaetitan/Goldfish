@@ -25,7 +25,7 @@ public class CreateActivityPanel extends JPanel {
 	/**
 	 * Constructor of class PanelCreateActivity
 	 */
-	public CreateActivityPanel() {
+	public CreateActivityPanel(final Integer idPerson) {
 		activityFacade = new ActivityFacade();
 		
 		JPanel mainPanel = new JPanel();
@@ -83,7 +83,7 @@ public class CreateActivityPanel extends JPanel {
 						public void actionPerformed(ActionEvent e) {
 							Integer idActivity = null;
 							try {
-								idActivity = activityFacade.createActivity(tfName.getText(), tfDescription.getText(), 1);
+								idActivity = activityFacade.createActivity(tfName.getText(), tfDescription.getText(), idPerson);
 								JOptionPane.showMessageDialog(null,"The activity " + activityFacade.findActivityById(idActivity).getName() + " has been created.",
 										"Activity created.",JOptionPane.INFORMATION_MESSAGE);
 							} catch (GoldfishException blankFields) {

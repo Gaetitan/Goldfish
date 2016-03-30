@@ -10,7 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import com.polytech.goldfish.businesslogic.facade.ActivityCategoryFacade;
 import com.polytech.goldfish.util.GoldfishException;
@@ -20,15 +19,11 @@ public class DeleteActivityCategoryPanel extends JPanel  {
 	private static final long serialVersionUID = 1L;
 
 	private final ActivityCategoryFacade activityCategoryFacade;
-
-	private final JTextField tfName;
-	private final JTextField tfShortDescription;
-	private final JTextField tfDetailledDescription;
 	
 	/**
 	 * Constructor of class PanelDeleteActivityCategory
 	 */
-	public DeleteActivityCategoryPanel() {
+	public DeleteActivityCategoryPanel(final Integer idActivityCategory) {
 		activityCategoryFacade = new ActivityCategoryFacade();
 		
 		JPanel mainPanel = new JPanel();
@@ -54,31 +49,12 @@ public class DeleteActivityCategoryPanel extends JPanel  {
 		panelInfo.add(panelLabelInfo, BorderLayout.WEST);
 		panelLabelInfo.setLayout(new GridLayout(0, 1, 0, 0));
 				
-		JLabel lblName = new JLabel("Name:");
+		JLabel lblName = new JLabel("Do you really want to delete the category " + activityCategoryFacade.findActivityCategoryById(idActivityCategory).getName() + " ?");
 		panelLabelInfo.add(lblName);
-		
-		JLabel lblShortDescription = new JLabel("Short Description:");
-		panelLabelInfo.add(lblShortDescription);
-		
-		JLabel lblDetailledDescription = new JLabel("Detailled Description:");
-		panelLabelInfo.add(lblDetailledDescription);
 		
 		JPanel panelTextInfo = new JPanel();
 		panelInfo.add(panelTextInfo, BorderLayout.CENTER);
 		panelTextInfo.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		tfName = new JTextField();
-		tfName.setColumns(20);
-		tfName.setText(activityCategoryFacade.findActivityCategoryById(1).getName());
-		panelTextInfo.add(tfName);
-		
-		tfShortDescription = new JTextField();
-		tfShortDescription.setText(activityCategoryFacade.findActivityCategoryById(1).getShort_description());
-		panelTextInfo.add(tfShortDescription);
-		
-		tfDetailledDescription = new JTextField();
-		tfDetailledDescription.setText(activityCategoryFacade.findActivityCategoryById(1).getDetailed_description());
-		panelTextInfo.add(tfDetailledDescription);
 		
 		JPanel panelSouth = new JPanel();
 		mainPanel.add(panelSouth, BorderLayout.SOUTH);
@@ -88,14 +64,14 @@ public class DeleteActivityCategoryPanel extends JPanel  {
 		panelSouth.add(panelButton);
 		panelButton.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		JButton btnOk = new JButton("OK");
+		JButton btnOk = new JButton("YES");
 		btnOk.addActionListener(
 					new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							Integer id;
 							try {
-								id = activityCategoryFacade.deleteActivityCategory(1);
+								id = activityCategoryFacade.deleteActivityCategory(idActivityCategory);
 								JOptionPane.showMessageDialog(null,"The activity category has been deleted.",
 										"Activity category deleted.",JOptionPane.INFORMATION_MESSAGE);
 							} catch (GoldfishException blankFields) {
@@ -109,7 +85,7 @@ public class DeleteActivityCategoryPanel extends JPanel  {
 		 
 		panelButton.add(btnOk);
 		
-		JButton btnCancel = new JButton("Cancel");
+		JButton btnCancel = new JButton("NO");
 		btnCancel.addActionListener(
 					new ActionListener() {
 						@Override
@@ -123,9 +99,6 @@ public class DeleteActivityCategoryPanel extends JPanel  {
 	}
 	
 	public void reinitPanel(){
-		tfName.setText("");
-		tfShortDescription.setText("");
-		tfDetailledDescription.setText("");
 		//this.setVisible(false);
 	}
 

@@ -41,7 +41,7 @@ public class UpdateProductCategoryFrame extends JFrame{
 	public UpdateProductCategoryFrame(final Integer idProductCategory) {
 		
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Sign up");
+		setTitle("Update Product Category");
 
 		getContentPane().setPreferredSize(new Dimension(300, 250));
 		getContentPane().setLayout(null);
@@ -63,7 +63,7 @@ public class UpdateProductCategoryFrame extends JFrame{
 		mainPanel.add(panelNorth, BorderLayout.NORTH);
 		panelNorth.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel lblWelcome = new JLabel("My information");
+		JLabel lblWelcome = new JLabel("Product Category");
 		panelNorth.add(lblWelcome);
 		
 		JPanel panelCenter = new JPanel();
@@ -163,6 +163,7 @@ public class UpdateProductCategoryFrame extends JFrame{
 	
 	public void reinitPanel(){
 		tfName.setText("");
+		tfPassword.setText("");
 	}
 }
 
