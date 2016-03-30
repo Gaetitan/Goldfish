@@ -86,7 +86,7 @@ public class NewCommentPanel extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						Integer id;
-						if(!(tfConcernedID.getText().isEmpty() || tfText.getText().isEmpty() || tfYourID.getText().isEmpty())){	
+						if(!(tfConcernedID.getText().isEmpty() || tfText.getText().isEmpty() )){	
 							try {
 								id = commentFacade.createComment(tfText.getText(), Integer.parseInt(tfConcernedID.getText()) , idPerson);
 							} catch (NumberFormatException e1) {
@@ -113,6 +113,5 @@ public class NewCommentPanel extends JPanel {
 	public void reinitPanel(){
 		tfConcernedID.setText("");
 		tfText.setText("");
-		tfYourID.setText("");
 	}
 }

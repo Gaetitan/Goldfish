@@ -191,7 +191,7 @@ public class MainFrameUser extends JFrame implements AbstractView {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Create Diary Entry"); // TRACE
 				contentPanel.removeAll();
-				contentPanel.add(new CreateDiaryEntryPanel());
+				contentPanel.add(new CreateDiaryEntryPanel(idPerson));
 				contentPanel.revalidate();
 				contentPanel.repaint();
 			}
@@ -217,9 +217,9 @@ public class MainFrameUser extends JFrame implements AbstractView {
 
 		// Create comment
 		JButton btnCreateComment = new JButton("Create comment");
-		sl_sidePanel.putConstraint(SpringLayout.NORTH,btnCreateComment, 250, SpringLayout.NORTH,sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.NORTH,btnCreateComment, 290, SpringLayout.NORTH,sidePanel);
 		sl_sidePanel.putConstraint(SpringLayout.WEST, btnCreateComment,10, SpringLayout.WEST, sidePanel);
-		sl_sidePanel.putConstraint(SpringLayout.SOUTH,btnCreateComment, 280, SpringLayout.NORTH,sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.SOUTH,btnCreateComment, 320, SpringLayout.NORTH,sidePanel);
 		sl_sidePanel.putConstraint(SpringLayout.EAST, btnCreateComment,-10, SpringLayout.EAST, sidePanel);
 		btnCreateComment.addActionListener(new ActionListener() {
 			@Override
@@ -319,6 +319,29 @@ public class MainFrameUser extends JFrame implements AbstractView {
 			}
 		});
 
+
+		// My entrys
+		JButton btnMyEntrys = new JButton(
+				"My entrys");
+		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnMyEntrys,
+				10, SpringLayout.NORTH, menuPanel);
+		sl_menuPanel.putConstraint(SpringLayout.WEST, btnMyEntrys,
+				430, SpringLayout.WEST, menuPanel);
+		sl_menuPanel.putConstraint(SpringLayout.SOUTH, btnMyEntrys,
+				-10, SpringLayout.SOUTH, menuPanel);
+		sl_menuPanel.putConstraint(SpringLayout.EAST, btnMyEntrys,
+				570, SpringLayout.WEST, menuPanel);
+		btnMyEntrys.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("My entrys"); // TRACE
+				contentPanel.removeAll();
+				contentPanel.add(new ListMyEntrysPanel(idPerson));
+				contentPanel.revalidate();
+				contentPanel.repaint();
+			}
+		});
+
 		/*// List of product categories
 		JButton btnListCategoryProducts = new JButton("Products categories");
 		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnListCategoryProducts,
@@ -368,13 +391,14 @@ public class MainFrameUser extends JFrame implements AbstractView {
 		sidePanel.add(btnCreateWishlist);
 		sidePanel.add(btnCreateDiaryEntry);
 		sidePanel.add(btnCreateGoal);
+		sidePanel.add(btnCreateComment);
 		sidePanel.add(btnLogout);
 
 		menuPanel.add(btnListWishlist);
 		menuPanel.add(btnListActivities);
 		menuPanel.add(btnMyShoppingCart);
-		/*menuPanel.add(btnListCategoryProducts);
-		menuPanel.add(btnManageComments);*/
+		menuPanel.add(btnMyEntrys);
+		/*menuPanel.add(btnManageComments);*/
 		
 	}
 
