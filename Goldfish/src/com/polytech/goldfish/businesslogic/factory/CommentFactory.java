@@ -20,4 +20,6 @@ public abstract class CommentFactory {
 	public abstract Integer deleteComment(Integer id) throws GoldfishException;
 
 	public abstract Collection<Comment> getAllComments();
+
+	public abstract Comment findCommentById(Integer idComment);
 }

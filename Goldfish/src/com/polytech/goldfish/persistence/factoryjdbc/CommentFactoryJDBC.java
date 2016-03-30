@@ -45,6 +45,11 @@ public class CommentFactoryJDBC extends CommentFactory {
 		return CommentJDBC.deleteCommet(id);
 	}
 
+	@Override
+	public Comment findCommentById(Integer idComment) {
+		return CommentJDBC.findCommentById(idComment);
+	}
+
 
 
 }

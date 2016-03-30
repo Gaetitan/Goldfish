@@ -56,4 +56,8 @@ public class CommentManager {
 	public Collection<Comment> findAllComments(){
 		return this.factory.getAllComments();
 	}
+
+	public Comment findCommentById(Integer idComment) {
+		return this.factory.findCommentById(idComment);
+	}
 }
