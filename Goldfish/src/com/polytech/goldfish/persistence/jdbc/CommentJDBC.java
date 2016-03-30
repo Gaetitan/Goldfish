@@ -176,9 +176,9 @@ public class CommentJDBC extends Comment{
 			ResultSet rs = instruction.executeQuery();
 
 			while(rs.next()){
-				String posterName = (PersonJDBC.findPersonById(rs.getInt(4))).getName();
-				String concernedName = (PersonJDBC.findPersonById(rs.getInt(5))).getName();
-				comment = new CommentJDBC(rs.getInt(1), concernedName, posterName, rs.getString(2), rs.getDate(3));
+				//String posterName = (PersonJDBC.findPersonById(rs.getInt(4))).getName();
+				//String concernedName = (PersonJDBC.findPersonById(rs.getInt(5))).getName();
+				comment = new CommentJDBC(rs.getInt(1), "Unknown", "Unknown", rs.getString(2), rs.getDate(3));
 			}	
 		}
 		catch(SQLException e){
