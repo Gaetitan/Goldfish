@@ -31,9 +31,7 @@ public class DiaryEntryJDBC extends DiaryEntry {
 		super(id, idPerson, name, date, time, visibility);
 	}
 	
-	public DiaryEntryJDBC(){
-		super();
-	}
+	
 	
 	// Other methods
 	

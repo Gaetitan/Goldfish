@@ -14,12 +14,12 @@ import com.polytech.goldfish.util.GoldfishException;
  */
 public abstract class GoalFactory {
 
-	public abstract Integer updateGoal(String newName, String newDescription, Date newDeadline) throws GoldfishException;
+	public abstract Integer updateGoal(Integer idGoal, String newName, String newDescription, Date newDeadline) throws GoldfishException;
 
 	public abstract Collection<Goal> getAllGoals();
 
 	public abstract Integer createGoal(Integer idPerson, String name, String description, Date deadline);
 
-	public abstract Integer deleteGoal(Integer id);
+	public abstract boolean deleteGoal(Integer id);
 
 }

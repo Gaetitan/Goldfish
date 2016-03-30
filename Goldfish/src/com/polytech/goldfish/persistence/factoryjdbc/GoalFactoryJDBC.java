@@ -37,12 +37,12 @@ public class GoalFactoryJDBC extends GoalFactory {
 	}
 
 	@Override
-	public Integer updateGoal(String newName, String newDescription, Date newDeadline) throws GoldfishException {
-		return GoalJDBC.updateGoal(newName, newDescription, newDeadline);
+	public Integer updateGoal(Integer idGoal, String newName, String newDescription, Date newDeadline) throws GoldfishException {
+		return GoalJDBC.updateGoal(idGoal, newName, newDescription, newDeadline);
 	}
 
 	@Override
-	public Integer deleteGoal(Integer id) {
+	public boolean deleteGoal(Integer id) {
 		return GoalJDBC.deleteGoal(id);
 	}
 

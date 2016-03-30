@@ -54,7 +54,7 @@ public class GoalManager {
 		}
 	}
 
-	public Integer updateGoal(String newName, String newDescription, String newDeadline) throws GoldfishException{
+	public Integer updateGoal(Integer idGoal, String newName, String newDescription, String newDeadline) throws GoldfishException{
 		if(newName.isEmpty() || newName == "" || newDescription.isEmpty() || newDescription == ""){
 			throw new GoldfishException("Goal name nor description can be empty.");
 		}
@@ -63,11 +63,11 @@ public class GoalManager {
 		}
 		else{
 			Date newDeadlineParsed = java.sql.Date.valueOf(newDeadline);
-			return this.factory.updateGoal(newName, newDescription, newDeadlineParsed);	
+			return this.factory.updateGoal(idGoal, newName, newDescription, newDeadlineParsed);	
 		}
 	}
 
-	public Integer deleteGoal(Integer id){
+	public boolean deleteGoal(Integer id){
 		return this.factory.deleteGoal(id);
 	}
 
