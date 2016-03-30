@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -101,14 +100,15 @@ public class CommentJDBC extends Comment{
 
 	public static Integer updateComment(Integer id, String newText) {
 		Date dNow = new Date();
-		SimpleDateFormat ft = new SimpleDateFormat ("E yyyy.MM.dd 'at' hh:mm:ss a zzz");
+		java.util.Date utilDate = new java.util.Date();
+		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 		Integer idToReturn = null;
 		try{
 			Connection connect = Connect.getInstance().getConnection();
 
 			PreparedStatement instruction = connect.prepareStatement(queryUpdateComment, Statement.RETURN_GENERATED_KEYS);
 			instruction.setString(1, newText);
-			instruction.setString(2, ft.format(dNow));
+			instruction.setDate(2, sqlDate);
 			instruction.setInt(3, id);
 			int affectedRows = instruction.executeUpdate();
 			connect.commit();

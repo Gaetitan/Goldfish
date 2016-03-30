@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
 
 import com.polytech.goldfish.businesslogic.facade.CommentFacade;
@@ -30,7 +30,7 @@ public class UpdateCommentFrame extends JFrame {
 
 	private final CommentFacade commentFacade;
 
-	private final JTextField tfText;
+	private final JTextArea tfText;
 
 	/**
 	 * Instantiates a new frame to update or delete a comment
@@ -40,7 +40,7 @@ public class UpdateCommentFrame extends JFrame {
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setTitle("Update/Delete a comment.");
 
-		getContentPane().setPreferredSize(new Dimension(350, 375));
+		getContentPane().setPreferredSize(new Dimension(500, 200));
 		getContentPane().setLayout(null);
 		pack();
 
@@ -82,7 +82,7 @@ public class UpdateCommentFrame extends JFrame {
 		panelInfo.add(panelTextInfo, BorderLayout.CENTER);
 		panelTextInfo.setLayout(new GridLayout(0, 1, 0, 0));
 
-		tfText = new JTextField();
+		tfText = new JTextArea(5, 20);
 		tfText.setColumns(20);
 		tfText.setText(commentFacade.findCommentById(idComment).getText());
 		panelTextInfo.add(tfText);
