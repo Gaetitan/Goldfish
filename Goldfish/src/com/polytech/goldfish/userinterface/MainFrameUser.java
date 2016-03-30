@@ -198,7 +198,7 @@ public class MainFrameUser extends JFrame implements AbstractView {
 		});
 
 		// Create Goal
-		JButton btnCreateGoal = new JButton("Create diary entry");
+		JButton btnCreateGoal = new JButton("Create goal");
 		sl_sidePanel.putConstraint(SpringLayout.NORTH,btnCreateGoal, 250, SpringLayout.NORTH,sidePanel);
 		sl_sidePanel.putConstraint(SpringLayout.WEST, btnCreateGoal,10, SpringLayout.WEST, sidePanel);
 		sl_sidePanel.putConstraint(SpringLayout.SOUTH,btnCreateGoal, 280, SpringLayout.NORTH,sidePanel);
@@ -209,6 +209,24 @@ public class MainFrameUser extends JFrame implements AbstractView {
 				System.out.println("Create Goal"); // TRACE
 				contentPanel.removeAll();
 				contentPanel.add(new CreateGoalPanel());
+				contentPanel.revalidate();
+				contentPanel.repaint();
+			}
+		});
+
+
+		// Create comment
+		JButton btnCreateComment = new JButton("Create comment");
+		sl_sidePanel.putConstraint(SpringLayout.NORTH,btnCreateComment, 250, SpringLayout.NORTH,sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.WEST, btnCreateComment,10, SpringLayout.WEST, sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.SOUTH,btnCreateComment, 280, SpringLayout.NORTH,sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.EAST, btnCreateComment,-10, SpringLayout.EAST, sidePanel);
+		btnCreateComment.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Create comment"); // TRACE
+				contentPanel.removeAll();
+				contentPanel.add(new NewCommentPanel(idPerson));
 				contentPanel.revalidate();
 				contentPanel.repaint();
 			}
