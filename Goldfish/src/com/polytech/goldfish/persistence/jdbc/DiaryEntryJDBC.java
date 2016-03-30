@@ -30,7 +30,12 @@ public class DiaryEntryJDBC extends DiaryEntry {
 	public DiaryEntryJDBC(Integer id, Integer idPerson, String name, Date date, Time time, boolean visibility) {
 		super(id, idPerson, name, date, time, visibility);
 	}
-
+	
+	public DiaryEntryJDBC(){
+		super();
+	}
+	
+	// Other methods
 	public static Integer createEntry(Integer idPerson, String name, Boolean visibility) {
 		Integer idToReturn = null;
 

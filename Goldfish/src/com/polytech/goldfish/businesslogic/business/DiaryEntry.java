@@ -31,6 +31,10 @@ public class DiaryEntry {
 		this.time = time;
 		this.visibility = visibility;
 	}
+	
+	public DiaryEntry(){
+		
+	}
 
 	// Getters & setters
 	public Integer getId() {
