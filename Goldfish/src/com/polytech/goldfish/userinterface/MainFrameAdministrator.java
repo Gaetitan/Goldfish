@@ -328,7 +328,10 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Manage comments"); // TRACE
-				// TODO
+				contentPanel.removeAll();
+				contentPanel.add(new ListCommentPanel());
+				contentPanel.revalidate();
+				contentPanel.repaint();
 			}
 		});
 

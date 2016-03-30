@@ -18,6 +18,7 @@ import com.polytech.goldfish.util.GoldfishException;
 public class CommentJDBC extends Comment{	
 	// Queries
 	private static final String queryDeleteCommentById = "DELETE FROM comment WHERE idcomment = ?;";
+	private static final String querySelectCommentById = "SELECT * FROM comment WHERE idcomment = ?;";
 	private static final String queryInsertComment = "INSERT INTO comment (text, date) VALUES(?,?);";
 	private static final String queryGetAllComments = "SELECT * FROM comment;";
 	private static final String queryUpdateComment = "UPDATE comment SET text = ?, date = ? WHERE idcomment = ?;";	
@@ -39,8 +40,8 @@ public class CommentJDBC extends Comment{
 		else if(PersonJDBC.findPersonById(concernedPerson) == null){
 			throw new GoldfishException("Concerned person does not exist");
 		}
-	    java.util.Date utilDate = new java.util.Date();
-	    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+		java.util.Date utilDate = new java.util.Date();
+		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 		try{
 			Connection connect = Connect.getInstance().getConnection();
 			PreparedStatement instruction = connect.prepareStatement(queryInsertComment, Statement.RETURN_GENERATED_KEYS);
@@ -105,20 +106,20 @@ public class CommentJDBC extends Comment{
 				PreparedStatement instructionConcernUTOU = connect.prepareCall(querySelectConcernedUserToUser);
 				instructionConcernUTOU.setInt(1, rs.getInt(1));
 				ResultSet ConcernUTOU = instructionConcernUTOU.executeQuery();
-				
+
 				PreparedStatement instructionConcernUTOS = connect.prepareCall(querySelectConcernedUserToSeller);
 				instructionConcernUTOS.setInt(1, rs.getInt(1));
 				ResultSet ConcernUTOS = instructionConcernUTOS.executeQuery();
-				
+
 				PreparedStatement instructionConcernSTOU = connect.prepareCall(querySelectConcernedSellerToUser);
 				instructionConcernSTOU.setInt(1, rs.getInt(1));
 				ResultSet ConcernSTOU = instructionConcernSTOU.executeQuery();
-				
+
 				PreparedStatement instructionConcernSTOS = connect.prepareCall(querySelectConcernedSellerToSeller);
 				instructionConcernSTOS.setInt(1, rs.getInt(1));
 				ResultSet ConcernSTOS = instructionConcernSTOS.executeQuery();
-				
-				
+
+
 				while(ConcernUTOU.next()){
 					listComments.add(new CommentJDBC(rs.getInt(1), (PersonJDBC.findPersonById(ConcernUTOU.getInt(1))).getName(), rs.getString(2), rs.getDate(3)));
 				}
@@ -131,7 +132,7 @@ public class CommentJDBC extends Comment{
 				while(ConcernSTOS.next()){
 					listComments.add(new CommentJDBC(rs.getInt(1), (PersonJDBC.findPersonById(ConcernSTOS.getInt(1))).getName(), rs.getString(2), rs.getDate(3)));
 				}
-				
+
 			}	
 		}
 		catch(SQLException e){
@@ -216,5 +217,69 @@ public class CommentJDBC extends Comment{
 			Connect.getInstance().closeConnection();
 		}
 		return idToReturn;
+	}
+
+	public static Integer findPoster(Integer idComment){
+		int idPoster = 0;
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+
+			PreparedStatement instructionConcernUTOU = connect.prepareCall(querySelectConcernedUserToUser);
+			instructionConcernUTOU.setInt(1, idComment);
+			ResultSet ConcernUTOU = instructionConcernUTOU.executeQuery();
+
+			PreparedStatement instructionConcernUTOS = connect.prepareCall(querySelectConcernedUserToSeller);
+			instructionConcernUTOS.setInt(1, idComment);
+			ResultSet ConcernUTOS = instructionConcernUTOS.executeQuery();
+
+			PreparedStatement instructionConcernSTOU = connect.prepareCall(querySelectConcernedSellerToUser);
+			instructionConcernSTOU.setInt(1, idComment);
+			ResultSet ConcernSTOU = instructionConcernSTOU.executeQuery();
+
+			PreparedStatement instructionConcernSTOS = connect.prepareCall(querySelectConcernedSellerToSeller);
+			instructionConcernSTOS.setInt(1, idComment);
+			ResultSet ConcernSTOS = instructionConcernSTOS.executeQuery();
+			
+			while(ConcernUTOU.next()){
+				idPoster = ConcernUTOU.getInt(1);
+			}
+			while(ConcernUTOS.next()){
+				idPoster = ConcernUTOS.getInt(1);
+			}
+			while(ConcernSTOU.next()){
+				idPoster = ConcernSTOU.getInt(1);
+			}
+			while(ConcernSTOS.next()){
+				idPoster = ConcernSTOS.getInt(1);
+			}}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+			finally{
+				Connect.getInstance().closeConnection();
+			}
+			return idPoster;
+	}
+	public static Comment findCommentById(Integer idComment) {
+		CommentJDBC comment = null;
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+
+			PreparedStatement instruction = connect.prepareCall(querySelectCommentById);
+			instruction.setInt(1, idComment);
+			ResultSet rs = instruction.executeQuery();
+
+			while(rs.next()){
+				String posterName = (PersonJDBC.findPersonById(findPoster(idComment)).getName());
+				comment = new CommentJDBC(rs.getInt(1), posterName, rs.getString(2), rs.getDate(3));
+			}	
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
+		return comment;
 	}
 }

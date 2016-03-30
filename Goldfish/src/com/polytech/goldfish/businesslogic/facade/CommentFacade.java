@@ -33,4 +33,8 @@ public class CommentFacade {
 	public Collection<Comment> findAllComments(){
 		return commentManager.findAllComments();
 	}
+
+	public Comment findCommentById(Integer idComment) {
+		return commentManager.findCommentById(idComment);
+	}
 }
