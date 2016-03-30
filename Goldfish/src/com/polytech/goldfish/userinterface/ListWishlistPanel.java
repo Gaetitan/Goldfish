@@ -60,7 +60,7 @@ public class ListWishlistPanel extends JPanel{
 					JTable target = (JTable) e.getSource();
 					int row = target.getSelectedRow();
 					//System.out.println(productCategoryFacade.findProductCategoryById(myTableModel.getValueAt(row, 0)) + " " + productCategoryFacade.findproductCategoryByEmail(myTableModel.getValueAt(row, 3).toString()).getEmail());
-					new UpdateWishlistFrame(Integer.parseInt((myTableModel.getValueAt(row, 0)).toString()));
+					//new UpdateWishlistFrame(Integer.parseInt((myTableModel.getValueAt(row, 0)).toString()));
 				}
 			}
 		});
@@ -108,7 +108,7 @@ public class ListWishlistPanel extends JPanel{
 					JTable target = (JTable) e.getSource();
 					int row = target.getSelectedRow();
 					//System.out.println(productCategoryFacade.findProductCategoryById(myTableModel.getValueAt(row, 0)) + " " + productCategoryFacade.findproductCategoryByEmail(myTableModel.getValueAt(row, 3).toString()).getEmail());
-					new UpdateWishlistFrame(Integer.parseInt((myTableModel.getValueAt(row, 0)).toString()));
+					//new UpdateWishlistFrame(Integer.parseInt((myTableModel.getValueAt(row, 0)).toString()));
 				}
 			}
 		});
