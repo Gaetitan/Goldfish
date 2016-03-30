@@ -15,12 +15,17 @@ public class WishlistFactoryJDBC extends WishlistFactory{
 	}
 
 	@Override
-	public Collection<Wishlist> getWishlistById(Integer id) {
+	public Wishlist getWishlistById(Integer id) {
+		return WishlistJDBC.findWishlistById(id);
+	}
+	
+	@Override
+	public Collection<Wishlist> getWishlistByIdPerson(Integer id) {
 		// Creation of a collection of Wishlist
 		Collection<Wishlist> listWishlists = new ArrayList<Wishlist>();
 				
 		// Put the PersonJDBC as Wishlist in a new list
-		for(Wishlist wishlist : WishlistJDBC.findWishlistById(id)) {
+		for(Wishlist wishlist : WishlistJDBC.findWishlistByIdPerson(id)) {
 			listWishlists.add(wishlist);
 		}
 

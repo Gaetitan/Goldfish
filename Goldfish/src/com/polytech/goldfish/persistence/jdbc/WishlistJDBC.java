@@ -14,7 +14,8 @@ import com.polytech.goldfish.util.Connect;
 public class WishlistJDBC extends Wishlist {
 
 	// Queries
-	private static final String queryGetWishlistById = "SELECT w.idwishlist, cp.name, wc.quantity  FROM WishListContainsCatProduct wc, \"user\" u, wishlist w, categoryproduct cp WHERE u.idperson = ? AND u.idperson = w.idperson AND w.idwishlist = wc.idwishlist AND wc.idcatProduct = cp.idcatProduct;";
+	private static final String queryGetWishlistByIdPerson = "SELECT w.idwishlist, cp.name, wc.quantity  FROM WishListContainsCatProduct wc, \"user\" u, wishlist w, categoryproduct cp WHERE u.idperson = ? AND u.idperson = w.idperson AND w.idwishlist = wc.idwishlist AND wc.idcatProduct = cp.idcatProduct;";
+	private static final String queryGetWishlistById = "SELECT *  FROM WishListContainsCatProduct WHERE idWishlist = ?;";
 	private static final String queryInsertOne = "INSERT INTO Wishlist (name, quantity) VALUES(?,?);";
 	private static final String queryUpdateOne = "UPDATE WishListContainsCatProduct SET IDCatProduct = (SELECT IDCatProduct FROM categoryProduct WHERE name = ?), quantity = ? WHERE idWishlist = ?;";
 	private static final String queryGetAllWishlists = "SELECT wc.idWishlist, cp.name, wc.quantity FROM WishListContainsCatProduct wc, categoryProduct cp WHERE wc.IDCatProduct = cp.IDCatProduct;";
@@ -61,13 +62,13 @@ public class WishlistJDBC extends Wishlist {
 		return idToReturn;		
 	}
 	
-	public static Collection<WishlistJDBC> findWishlistById(Integer id) {
+	public static Collection<WishlistJDBC> findWishlistByIdPerson(Integer id) {
 		Collection<WishlistJDBC> listWishlists = null;
 		try{
 			listWishlists = new ArrayList<WishlistJDBC>();
 			Connection connect = Connect.getInstance().getConnection();
 			
-			PreparedStatement instruction = connect.prepareCall(queryGetWishlistById);
+			PreparedStatement instruction = connect.prepareCall(queryGetWishlistByIdPerson);
 			instruction.setInt(1, id);
 			ResultSet rs = instruction.executeQuery();
 			
@@ -82,6 +83,29 @@ public class WishlistJDBC extends Wishlist {
 			Connect.getInstance().closeConnection();
 		}
 		return listWishlists;
+	}
+	
+	public static WishlistJDBC findWishlistById(Integer id) {
+		WishlistJDBC wishlist = null;
+		try{
+	
+			Connection connect = Connect.getInstance().getConnection();
+			
+			PreparedStatement instruction = connect.prepareCall(queryGetWishlistById);
+			instruction.setInt(1, id);
+			ResultSet rs = instruction.executeQuery();
+			
+			while(rs.next()){
+				wishlist = new WishlistJDBC(rs.getInt(1), rs.getString(2), rs.getInt(3));
+			}	
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
+		return wishlist;
 	}
 	
 	public static Collection<WishlistJDBC> findAllWishlists() {

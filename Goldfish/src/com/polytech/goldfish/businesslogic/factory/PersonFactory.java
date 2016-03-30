@@ -76,7 +76,7 @@ public abstract class PersonFactory {
 	 * @param city
 	 * @return the updated Person
 	 */
-	public abstract Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String street, Integer street_number, Integer zip_code, String city);
+	public abstract Integer updatePerson(Integer id, String surname, String name, String phone_number, String email, String street, Integer street_number, Integer zip_code, String city, String shopname, String description, Integer siret, String activitydomain, String webaddress);
 
 	/**
 	 * This methods gets all existing Persons
@@ -97,4 +97,25 @@ public abstract class PersonFactory {
 	 * @return true if the Person is an Administrator, false otherwise
 	 */
 	public abstract boolean isAdministrator(Integer idPerson);
+	
+	/**
+	 * This method determines if a Person is a Seller
+	 * @return true if the Person is a Seller, false otherwise
+	 */
+	public abstract boolean isSeller(Integer idPerson);
+	
+	/**
+	 * This method checks a Person's password
+	 * @param idPerson
+	 * @param password
+	 * @return true if the couple id/password is good, false otherwise
+	 */
+	public abstract boolean verifyPasswordById(Integer idPerson, String password);
+	
+	/**
+	 * This method deletes a Person
+	 * @param idPerson the Person's id
+	 * @return 
+	 */
+	public abstract boolean deletePerson(Integer idPerson);
 }

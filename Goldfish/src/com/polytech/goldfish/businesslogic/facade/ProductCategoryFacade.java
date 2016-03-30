@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import com.polytech.goldfish.businesslogic.business.ProductCategory;
 import com.polytech.goldfish.businesslogic.manager.ProductCategoryManager;
+import com.polytech.goldfish.util.GoldfishException;
 
 public class ProductCategoryFacade {
 
@@ -25,11 +26,11 @@ public class ProductCategoryFacade {
 		return this.ProductCategoryManager.findAllProductCategories();
 	}
 	
-	public int updateProductCategory(Integer id, String name){
+	public int updateProductCategory(Integer id, String name)throws GoldfishException{
 		return this.ProductCategoryManager.updateProductCategory(id,name);
 	}
 	
-	public int deleteProductCategory(Integer id){
+	public int deleteProductCategory(Integer id)throws GoldfishException{
 		return this.ProductCategoryManager.deleteProductCategory(id);
 	}
 

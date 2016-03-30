@@ -180,6 +180,40 @@ public class MainFrameUser extends JFrame implements AbstractView {
 			}
 		});
 
+		// Create Diary Entry
+		JButton btnCreateDiaryEntry = new JButton("Create diary entry");
+		sl_sidePanel.putConstraint(SpringLayout.NORTH,btnCreateDiaryEntry, 210, SpringLayout.NORTH,sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.WEST, btnCreateDiaryEntry,10, SpringLayout.WEST, sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.SOUTH,btnCreateDiaryEntry, 240, SpringLayout.NORTH,sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.EAST, btnCreateDiaryEntry,-10, SpringLayout.EAST, sidePanel);
+		btnCreateDiaryEntry.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Create Diary Entry"); // TRACE
+				contentPanel.removeAll();
+				contentPanel.add(new CreateDiaryEntryPanel());
+				contentPanel.revalidate();
+				contentPanel.repaint();
+			}
+		});
+
+		// Create Goal
+		JButton btnCreateGoal = new JButton("Create diary entry");
+		sl_sidePanel.putConstraint(SpringLayout.NORTH,btnCreateGoal, 250, SpringLayout.NORTH,sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.WEST, btnCreateGoal,10, SpringLayout.WEST, sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.SOUTH,btnCreateGoal, 280, SpringLayout.NORTH,sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.EAST, btnCreateGoal,-10, SpringLayout.EAST, sidePanel);
+		btnCreateGoal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Create Goal"); // TRACE
+				contentPanel.removeAll();
+				contentPanel.add(new CreateGoalPanel());
+				contentPanel.revalidate();
+				contentPanel.repaint();
+			}
+		});
+
 		// logout
 		JButton btnLogout = new JButton("Log out");
 		sl_sidePanel.putConstraint(SpringLayout.SOUTH, btnLogout, -10,
@@ -314,6 +348,8 @@ public class MainFrameUser extends JFrame implements AbstractView {
 		sidePanel.add(btnMyAccount);
 		sidePanel.add(btnCreateActivityCategory);
 		sidePanel.add(btnCreateWishlist);
+		sidePanel.add(btnCreateDiaryEntry);
+		sidePanel.add(btnCreateGoal);
 		sidePanel.add(btnLogout);
 
 		menuPanel.add(btnListWishlist);

@@ -14,7 +14,7 @@ public class WishlistTableModel extends AbstractTableModel{
 	private static final long serialVersionUID = 1L;
 	
 	private final Collection <Wishlist> data;
-	private final String[] columnNames = {"Name", "Quantity"};
+	private final String[] columnNames = {"ID","Name", "Quantity"};
 	
 	// Constructor
 	public WishlistTableModel(Collection<Wishlist> data){
@@ -39,8 +39,9 @@ public class WishlistTableModel extends AbstractTableModel{
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		Wishlist wishlist = (Wishlist) data.toArray()[rowIndex];
 		switch(columnIndex){
-			case 0 : return wishlist.getName();
-			case 1 : return wishlist.getQuantity();
+			case 0 : return wishlist.getId();
+			case 1 : return wishlist.getName();
+			case 2 : return wishlist.getQuantity();
 			default : throw new IllegalArgumentException("Unknown column " + columnIndex);
 		}
 	}

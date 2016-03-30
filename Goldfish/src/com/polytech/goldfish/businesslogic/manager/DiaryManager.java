@@ -16,7 +16,6 @@ import com.polytech.goldfish.util.GoldfishException;
 public class DiaryManager {
 
 	private final DiaryFactory factory;
-	private PersonManager person;
 
 	public DiaryManager(){
 		this.factory = new DiaryFactoryJDBC();
@@ -48,10 +47,7 @@ public class DiaryManager {
 		return this.factory.getAllEntrys();
 	}
 
-	public Collection<DiaryEntry> findEntryByPersonId(Integer idPerson) throws GoldfishException{
-		if(person.findPersonById(idPerson) == null){
-			throw new GoldfishException("A person must exist.");
-		}
+	public Collection<DiaryEntry> findEntryByPersonId(Integer idPerson){
 		return this.factory.findEntryByPersonId(idPerson);
 	}
 }

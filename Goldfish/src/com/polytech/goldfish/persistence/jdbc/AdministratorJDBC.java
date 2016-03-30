@@ -18,6 +18,7 @@ public class AdministratorJDBC extends Administrator {
 
 	// Queries
 	private static final String queryInsertOne = "INSERT INTO admin (idperson) VALUES(?);";
+	private static final String queryDeleteOne = "DELETE FROM admin WHERE idperson = ?;";
 	
 	// Constructors
 	public AdministratorJDBC(Integer id, String name, String surname,
@@ -58,6 +59,29 @@ public class AdministratorJDBC extends Administrator {
 			Connect.getInstance().closeConnection();
 		}
 		return idToReturn;	
+	}
+
+	public static void deleteOne(Integer idPerson) {
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+
+			PreparedStatement instruction = connect.prepareStatement(queryDeleteOne);
+			instruction.setInt(1, idPerson);
+
+			int affectedRows = instruction.executeUpdate();
+				
+			if(affectedRows == 0){
+				throw new SQLException("Deleting administrator failed, no rows affected.");
+			}
+			
+			connect.commit();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
 	}
 
 }

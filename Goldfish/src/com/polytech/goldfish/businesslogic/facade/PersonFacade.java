@@ -32,8 +32,10 @@ public class PersonFacade {
 	}
 	
 	public Integer updatePerson(Integer id, String surname, String name, String phone_number,
-			String email, String password,String street, String street_number, String zip_code, String city) throws GoldfishException {
-		return this.personManager.updatePerson(id, surname, name, phone_number, email, password, street, street_number, zip_code, city);
+			String email, String password,String street, String street_number, String zip_code, String city,
+			String shopname, String description, String siret, String activitydomain, String webaddress) throws GoldfishException {
+		return this.personManager.updatePerson(id, surname, name, phone_number, email, password, street, street_number, zip_code, city,
+				shopname, description, siret, activitydomain, webaddress);
 	}
 	
 	public Person findPersonById(Integer id){
@@ -52,7 +54,19 @@ public class PersonFacade {
 		return this.personManager.isAdministrator(idPerson);
 	}
 	
+	public boolean isSeller(Integer idPerson) {
+		return this.personManager.isSeller(idPerson);
+	}
+	
 	public Person findPersonByEmail(String email){
 		return this.personManager.findPersonByEmail(email);
+	}
+	
+	public boolean verifyPasswordById(Integer idPerson, String password) throws GoldfishException{
+		return this.personManager.verifyPasswordById(idPerson, password);
+	}
+	
+	public boolean deletePerson(Integer idPerson){
+		return this.personManager.deletePerson(idPerson);
 	}
 }
