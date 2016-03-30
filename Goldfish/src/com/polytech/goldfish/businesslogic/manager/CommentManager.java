@@ -1,6 +1,8 @@
 package com.polytech.goldfish.businesslogic.manager;
 
 import java.util.Collection;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.polytech.goldfish.businesslogic.business.Comment;
 import com.polytech.goldfish.businesslogic.factory.CommentFactory;
@@ -13,16 +15,28 @@ public class CommentManager {
 	
 	private final CommentFactory factory;
 	
+	boolean checkNumber(String number){
+		Pattern p = Pattern.compile("\\d+");
+		Matcher m = p.matcher(number);
+		return m.matches();
+	}
+	
 	public CommentManager(){
 		this.factory = new CommentFactoryJDBC();
 	}
 	
-	public Integer createComment(String text, Integer poster, Integer concernedPerson) throws GoldfishException{
+	public Integer createComment(String text, Integer poster, String concernedPerson) throws GoldfishException{
 		if(text.isEmpty() || text == ""){
 			throw new GoldfishException("Comment cannot be empty.");
 		}
+		else if(concernedPerson.isEmpty() || concernedPerson == ""){
+			throw new GoldfishException("You must specify a concerned person.");
+		}
+		else if(!checkNumber(concernedPerson)){
+			throw new GoldfishException("Please entre a valid ID for concerned person.");
+		}
 		else{
-			return this.factory.createComment(text, poster, concernedPerson);	
+			return this.factory.createComment(text, poster, Integer.parseInt(concernedPerson));	
 		}
 	}
 

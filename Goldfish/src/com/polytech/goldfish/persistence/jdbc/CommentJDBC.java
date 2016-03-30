@@ -12,6 +12,7 @@ import java.util.Date;
 
 import com.polytech.goldfish.businesslogic.business.Comment;
 import com.polytech.goldfish.util.Connect;
+import com.polytech.goldfish.util.GoldfishException;
 
 
 public class CommentJDBC extends Comment{	
@@ -30,9 +31,14 @@ public class CommentJDBC extends Comment{
 	}
 
 
-	public static Integer createComment(String text, Integer poster, Integer concernedPerson) {
+	public static Integer createComment(String text, Integer poster, Integer concernedPerson) throws GoldfishException {
 		Integer idToReturn = null;
-
+		if(PersonJDBC.isAdministrator(concernedPerson)){
+			throw new GoldfishException("You can't comment to an administrator");
+		}
+		else if(PersonJDBC.findPersonById(concernedPerson) == null){
+			throw new GoldfishException("Concerned person does not exist");
+		}
 	    java.util.Date utilDate = new java.util.Date();
 	    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 		try{

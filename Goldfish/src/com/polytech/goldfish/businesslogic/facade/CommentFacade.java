@@ -18,7 +18,7 @@ public class CommentFacade {
 		CommentFacade.commentManager = new CommentManager();
 	}
 	
-	public Integer createComment(String text, Integer poster, Integer concernedPerson) throws GoldfishException{
+	public Integer createComment(String text, Integer poster, String concernedPerson) throws GoldfishException{
 		return commentManager.createComment(text, poster, concernedPerson);
 	}
 	

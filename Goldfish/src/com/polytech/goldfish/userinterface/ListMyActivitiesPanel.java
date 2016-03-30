@@ -60,7 +60,7 @@ public class ListMyActivitiesPanel extends JPanel{
 				if(e.getClickCount() == 2){	//double click
 					JTable target = (JTable) e.getSource();
 					int row = target.getSelectedRow();
-					new UpdateActivityFrame((Integer)myTableModel.getValueAt(row, 0));
+					//new UpdateActivityFrame((Integer)myTableModel.getValueAt(row, 0));
 				}
 			}
 		});
