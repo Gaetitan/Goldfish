@@ -22,7 +22,7 @@ import com.polytech.goldfish.util.GoldfishException;
 
 
 /**
- * Class for a frame used to sign up
+ * Class for a frame used to update a product
  * 
  * @author
  */
