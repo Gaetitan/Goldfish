@@ -12,7 +12,7 @@ public class ShoppingCartTableModel extends AbstractTableModel {
 			private static final long serialVersionUID = 1L;
 			
 			private final Collection <Product> data;
-			private final String[] columnNames = {"Name", "Description", "Quantity"};
+			private final String[] columnNames = {"Id", "Name", "Description", "Quantity"};
 			
 			// Constructor
 			public ShoppingCartTableModel(Collection <Product> data){
@@ -37,9 +37,10 @@ public class ShoppingCartTableModel extends AbstractTableModel {
 			public Object getValueAt(int rowIndex, int columnIndex) {
 				Product product = (Product) data.toArray()[rowIndex];
 				switch(columnIndex){
-					case 0 : return product.getName();
-					case 1 : return product.getDescription();
-					case 2 : return product.getId();
+					case 0 : return product.getId();
+					case 1 : return product.getName();
+					case 2 : return product.getDescription();
+					case 3 : return product.getId();
 					default : throw new IllegalArgumentException("Unknown column " + columnIndex);
 				}
 			}

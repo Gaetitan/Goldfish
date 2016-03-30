@@ -287,7 +287,7 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("List of activities categories"); // TRACE
 				contentPanel.removeAll();
-				contentPanel.add(new ListActivitiesCategoriesPanel());
+				contentPanel.add(new ListActivitiesCategoriesPanel(idPerson));
 				contentPanel.revalidate();
 				contentPanel.repaint();
 			}
@@ -329,7 +329,7 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Manage comments"); // TRACE
 				contentPanel.removeAll();
-				contentPanel.add(new ListCommentPanel(idPerson));
+				contentPanel.add(new ListCommentPanel(0));
 				contentPanel.revalidate();
 				contentPanel.repaint();
 			}

@@ -28,6 +28,11 @@ public class ShoppingCartFactoryJDBC extends ShoppingCartFactory {
 	}
 	
 	@Override
+	public ShoppingCart findShoppingCartOfAnUser(Integer id) {
+		return ShoppingCartJDBC.findShoppingCartOfAnUser(id);
+	}
+	
+	@Override
 	public Integer updateShoppingCart(Integer id) {
 		return ShoppingCartJDBC.updateShoppingCart(id);
 	}

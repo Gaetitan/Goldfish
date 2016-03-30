@@ -30,7 +30,6 @@ public class ListMyActivitiesPanel extends JPanel{
 		myTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		myTable.removeColumn(myTable.getColumnModel().getColumn(0));
 		myTable.addMouseListener(new MouseListener() {
-
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
@@ -60,7 +59,7 @@ public class ListMyActivitiesPanel extends JPanel{
 				if(e.getClickCount() == 2){	//double click
 					JTable target = (JTable) e.getSource();
 					int row = target.getSelectedRow();
-					//new UpdateActivityFrame((Integer)myTableModel.getValueAt(row, 0));
+					new UpdateActivityCategoryFrame((Integer)myTableModel.getValueAt(row, 0), idPerson);
 				}
 			}
 		});

@@ -19,6 +19,7 @@ import com.polytech.goldfish.util.Connect;
 public class ShoppingCartJDBC extends ShoppingCart{
 
 	// Queries
+	private static final String queryGetShoppingCartOfAnUser = "SELECT * FROM shoppingCart WHERE idPerson = ?;";
 	private static final String queryGetShoppingCartById = "SELECT * FROM shoppingCart WHERE idshoppingCart = ?;";
 	private static final String queryInsertOne = "INSERT INTO shoppingCart (idperson) VALUES (?);";
 	private static final String queryUpdateOne = "UPDATE shoppingCart WHERE idshoppingCart = ?;";
@@ -157,6 +158,32 @@ public class ShoppingCartJDBC extends ShoppingCart{
 			Connection connect = Connect.getInstance().getConnection();
 			
 			PreparedStatement instruction = connect.prepareCall(queryGetShoppingCartById);
+			instruction.setInt(1, id);
+			ResultSet rs = instruction.executeQuery();
+			
+			while(rs.next()){
+				shoppingCart = new ShoppingCartJDBC(rs.getInt(1));
+			}	
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
+		return shoppingCart;
+	}
+	
+	/**
+	 * This method finds a ShoppingCart thanks to the id owner
+	 * @param the id of the owner
+	 * @return a ShoppingCart
+	 */
+	public static ShoppingCartJDBC findShoppingCartOfAnUser(Integer id) {
+		ShoppingCartJDBC shoppingCart = null;
+		try{
+			Connection connect = Connect.getInstance().getConnection();
+			PreparedStatement instruction = connect.prepareCall(queryGetShoppingCartOfAnUser);
 			instruction.setInt(1, id);
 			ResultSet rs = instruction.executeQuery();
 			

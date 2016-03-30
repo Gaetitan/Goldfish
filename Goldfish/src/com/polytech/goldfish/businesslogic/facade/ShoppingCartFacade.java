@@ -37,6 +37,10 @@ public class ShoppingCartFacade {
 		return this.shoppingCartManager.findShoppingCartById(id);
 	}
 	
+	public ShoppingCart findShoppingCartOfAnUser(Integer id){
+		return this.shoppingCartManager.findShoppingCartOfAnUser(id);
+	}
+	
 	public Collection<ShoppingCart> findAllShoppingCarts(){
 		return this.shoppingCartManager.findAllShoppingCarts();
 	}
