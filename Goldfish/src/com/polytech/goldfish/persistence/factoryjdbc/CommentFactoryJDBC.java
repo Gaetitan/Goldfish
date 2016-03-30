@@ -16,7 +16,7 @@ import com.polytech.goldfish.util.GoldfishException;
 public class CommentFactoryJDBC extends CommentFactory {
 
 	@Override
-	public Integer createComment(String text, Integer poster, Integer concernedPerson) {
+	public Integer createComment(String text, Integer poster, Integer concernedPerson) throws GoldfishException {
 		return CommentJDBC.createComment(text, poster, concernedPerson);
 	}
 
