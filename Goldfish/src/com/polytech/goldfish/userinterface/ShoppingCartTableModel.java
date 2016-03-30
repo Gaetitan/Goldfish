@@ -39,7 +39,7 @@ public class ShoppingCartTableModel extends AbstractTableModel {
 				switch(columnIndex){
 					case 0 : return product.getName();
 					case 1 : return product.getDescription();
-					case 2 : return product.getDescription();
+					case 2 : return product.getId();
 					default : throw new IllegalArgumentException("Unknown column " + columnIndex);
 				}
 			}

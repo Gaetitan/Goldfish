@@ -207,31 +207,6 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 			}
 		});
 		
-		// Delete activity category
-				JButton btnDeleteActivityCategory = new JButton(
-						"Delete activity category");
-				sl_sidePanel.putConstraint(SpringLayout.NORTH,
-						btnDeleteActivityCategory, 250, SpringLayout.NORTH,
-						sidePanel);
-				sl_sidePanel.putConstraint(SpringLayout.WEST, btnDeleteActivityCategory,
-						10, SpringLayout.WEST, sidePanel);
-				sl_sidePanel.putConstraint(SpringLayout.SOUTH,
-						btnDeleteActivityCategory, 290, SpringLayout.NORTH,
-						sidePanel);
-				sl_sidePanel.putConstraint(SpringLayout.EAST, btnDeleteActivityCategory,
-						-10, SpringLayout.EAST, sidePanel);
-				btnDeleteActivityCategory.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						System.out.println("Delete activity category"); // TRACE
-						contentPanel.removeAll();
-						contentPanel.add(new DeleteActivityCategoryPanel());
-						contentPanel.revalidate();
-						contentPanel.repaint();
-					}
-				});
-				
-
 		// logout
 		JButton btnLogout = new JButton("Log out");
 		sl_sidePanel.putConstraint(SpringLayout.SOUTH, btnLogout, -10,
@@ -371,7 +346,6 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 		sidePanel.add(btnCreatePerson);
 		sidePanel.add(btnCreateActivityCategory);
 		sidePanel.add(btnCreateProductCategory);
-		sidePanel.add(btnDeleteActivityCategory);
 		sidePanel.add(btnLogout);
 
 		menuPanel.add(btnListWishlist);

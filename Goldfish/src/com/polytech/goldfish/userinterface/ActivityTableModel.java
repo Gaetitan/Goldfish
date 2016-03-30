@@ -12,7 +12,7 @@ public class ActivityTableModel  extends AbstractTableModel {
 		private static final long serialVersionUID = 1L;
 		
 		private final Collection <Activity> data;
-		private final String[] columnNames = {"Name", "Description"};
+		private final String[] columnNames = {"Id", "Name", "Description"};
 		
 		// Constructor
 		public ActivityTableModel(Collection <Activity> data){
@@ -37,8 +37,9 @@ public class ActivityTableModel  extends AbstractTableModel {
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			Activity activity = (Activity) data.toArray()[rowIndex];
 			switch(columnIndex){
-				case 0 : return activity.getName();
-				case 1 : return activity.getDescription();
+				case 0 : return activity.getId();
+				case 1 : return activity.getName();
+				case 2 : return activity.getDescription();
 				default : throw new IllegalArgumentException("Unknown column " + columnIndex);
 			}
 		}

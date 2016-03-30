@@ -8,10 +8,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.polytech.goldfish.businesslogic.facade.ActivityFacade;
+import com.polytech.goldfish.util.GoldfishException;
 
 public class UpdateActivityPanel extends JPanel {
 	
@@ -25,7 +27,7 @@ public class UpdateActivityPanel extends JPanel {
 	/**
 	 * Constructor of class PanelUpdateActivity
 	 */
-	public UpdateActivityPanel() {
+	public UpdateActivityPanel(final Integer idActivity) {
 		activityFacade = new ActivityFacade();
 		
 		JPanel mainPanel = new JPanel();
@@ -63,11 +65,11 @@ public class UpdateActivityPanel extends JPanel {
 		
 		tfName = new JTextField();
 		tfName.setColumns(20);
-		//tfName.setText(activityFacade.findActivityById(5).getName());
+		tfName.setText(activityFacade.findActivityById(idActivity).getName());
 		panelTextInfo.add(tfName);
 		
 		tfDescription = new JTextField();
-		//tfDescription.setText(activityFacade.findActivityById(5).getDescription());
+		tfDescription.setText(activityFacade.findActivityById(idActivity).getDescription());
 		panelTextInfo.add(tfDescription);
 		
 		JPanel panelSouth = new JPanel();
@@ -79,14 +81,14 @@ public class UpdateActivityPanel extends JPanel {
 		panelButton.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		JButton btnOk = new JButton("OK");
-		/*btnOk.addActionListener(
+		btnOk.addActionListener(
 					new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							Integer id;
 							try {
-								id = activityFacade.updateActivity(5, tfName.getText(), tfDescription.getText());
-								JOptionPane.showMessageDialog(null,"The activity " + activityFacade.findActivityById(id).getName() + " " + " has been updated.",
+								id = activityFacade.updateActivity(idActivity, tfName.getText(), tfDescription.getText());
+								JOptionPane.showMessageDialog(null,"The activity " + activityFacade.findActivityById(idActivity).getName() + " " + " has been updated.",
 										"Activity updated.",JOptionPane.INFORMATION_MESSAGE);
 							} catch (GoldfishException blankFields) {
 								JOptionPane.showMessageDialog(null, blankFields.toString(),
@@ -96,7 +98,7 @@ public class UpdateActivityPanel extends JPanel {
 						}
 					}
 				);
-		 */
+		 
 		panelButton.add(btnOk);
 		
 		JButton btnCancel = new JButton("Cancel");

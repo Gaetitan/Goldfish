@@ -156,7 +156,7 @@ public class MainFrameUser extends JFrame implements AbstractView {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Create activity"); // TRACE
 				contentPanel.removeAll();
-				contentPanel.add(new CreateActivityPanel());
+				contentPanel.add(new CreateActivityPanel(idPerson));
 				contentPanel.revalidate();
 				contentPanel.repaint();
 				// Create activity
@@ -179,23 +179,6 @@ public class MainFrameUser extends JFrame implements AbstractView {
 				contentPanel.repaint();
 			}
 		});
-		
-		// delete activity
-				JButton btnUpdateActivity = new JButton("Delete activity");
-				sl_sidePanel.putConstraint(SpringLayout.NORTH,btnUpdateActivity, 170, SpringLayout.NORTH,sidePanel);
-				sl_sidePanel.putConstraint(SpringLayout.WEST, btnUpdateActivity,10, SpringLayout.WEST, sidePanel);
-				sl_sidePanel.putConstraint(SpringLayout.SOUTH,btnUpdateActivity, 200, SpringLayout.NORTH,sidePanel);
-				sl_sidePanel.putConstraint(SpringLayout.EAST, btnUpdateActivity,-10, SpringLayout.EAST, sidePanel);
-				btnUpdateActivity.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						System.out.println("Delete activity"); // TRACE
-						contentPanel.removeAll();
-						contentPanel.add(new DeleteActivityPanel());
-						contentPanel.revalidate();
-						contentPanel.repaint();
-					}
-				});
 
 		// logout
 		JButton btnLogout = new JButton("Log out");
@@ -256,7 +239,7 @@ public class MainFrameUser extends JFrame implements AbstractView {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("list persons"); // TRACE
 				contentPanel.removeAll();
-				contentPanel.add(new ListMyActivitiesPanel());
+				contentPanel.add(new ListMyActivitiesPanel(idPerson));
 				contentPanel.revalidate();
 				contentPanel.repaint();
 			}
@@ -331,7 +314,6 @@ public class MainFrameUser extends JFrame implements AbstractView {
 		sidePanel.add(btnMyAccount);
 		sidePanel.add(btnCreateActivityCategory);
 		sidePanel.add(btnCreateWishlist);
-		sidePanel.add(btnUpdateActivity);
 		sidePanel.add(btnLogout);
 
 		menuPanel.add(btnListWishlist);
