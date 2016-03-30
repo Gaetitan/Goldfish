@@ -37,9 +37,10 @@ public class ActivityCategoryTableModel extends AbstractTableModel {
 			public Object getValueAt(int rowIndex, int columnIndex) {
 				ActivityCategory activityCategory = (ActivityCategory) data.toArray()[rowIndex];
 				switch(columnIndex){
-					case 0 : return activityCategory.getName();
-					case 1 : return activityCategory.getShort_description();
-					case 2 : return activityCategory.getDetailed_description();
+					case 0: return activityCategory.getId();
+					case 1 : return activityCategory.getName();
+					case 2 : return activityCategory.getShort_description();
+					case 3 : return activityCategory.getDetailed_description();
 					default : throw new IllegalArgumentException("Unknown column " + columnIndex);
 				}
 			}

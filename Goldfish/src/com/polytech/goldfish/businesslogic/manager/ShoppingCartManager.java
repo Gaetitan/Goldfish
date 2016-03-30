@@ -34,6 +34,10 @@ public class ShoppingCartManager {
 		return this.factory.deleteShoppingCart(id);
 	}
 	
+	public ShoppingCart findShoppingCartOfAnUser(Integer id){
+		return this.factory.findShoppingCartOfAnUser(id);
+	}
+	
 	public ShoppingCart findShoppingCartById(Integer id){
 		return this.factory.getShoppingCartById(id);
 	}

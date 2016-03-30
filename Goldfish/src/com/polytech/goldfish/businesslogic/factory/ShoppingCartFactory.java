@@ -22,6 +22,13 @@ public abstract class ShoppingCartFactory {
 	public abstract ShoppingCart getShoppingCartById(Integer id);
 	
 	/**
+	 * This methods gets a ShoppingCart thanks to the id owner
+	 * @param idUser
+	 * @return an ShoppingCart
+	 */
+	public abstract ShoppingCart findShoppingCartOfAnUser(Integer id);
+	
+	/**
 	 * This method creates a new ShoppingCart
 	 */
 	public abstract Integer createShoppingCart(Integer id);

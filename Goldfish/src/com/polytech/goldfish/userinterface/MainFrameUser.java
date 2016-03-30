@@ -313,7 +313,7 @@ public class MainFrameUser extends JFrame implements AbstractView {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("My Shopping Cart"); // TRACE
 				contentPanel.removeAll();
-				contentPanel.add(new ShoppingCartPanel());
+				contentPanel.add(new ShoppingCartPanel(idPerson));
 				contentPanel.revalidate();
 				contentPanel.repaint();
 			}
