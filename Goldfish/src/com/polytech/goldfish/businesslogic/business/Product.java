@@ -19,6 +19,10 @@ public class Product {
 		this.name = name;
 		this.description = description;
 	}
+	
+	public Product(){
+		
+	}
 
 	// Getters & setters
 	public Integer getId() {
