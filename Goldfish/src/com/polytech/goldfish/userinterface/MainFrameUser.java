@@ -342,23 +342,28 @@ public class MainFrameUser extends JFrame implements AbstractView {
 			}
 		});
 
-		/*// List of product categories
-		JButton btnListCategoryProducts = new JButton("Products categories");
-		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnListCategoryProducts,
+		// List of comments
+		JButton btnComments = new JButton("Comments");
+		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnComments,
 				10, SpringLayout.NORTH, menuPanel);
-		sl_menuPanel.putConstraint(SpringLayout.WEST, btnListCategoryProducts,
-				390, SpringLayout.WEST, menuPanel);
-		sl_menuPanel.putConstraint(SpringLayout.SOUTH, btnListCategoryProducts,
+		sl_menuPanel.putConstraint(SpringLayout.WEST, btnComments,
+				590, SpringLayout.WEST, menuPanel);
+		sl_menuPanel.putConstraint(SpringLayout.SOUTH, btnComments,
 				-10, SpringLayout.SOUTH, menuPanel);
-		sl_menuPanel.putConstraint(SpringLayout.EAST, btnListCategoryProducts,
-				540, SpringLayout.WEST, menuPanel);
-		btnListCategoryProducts.addActionListener(new ActionListener() {
+		sl_menuPanel.putConstraint(SpringLayout.EAST, btnComments,
+				730, SpringLayout.WEST, menuPanel);
+		btnComments.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Product categories"); // TRACE
+				System.out.println("See comments"); // TRACE
+				contentPanel.removeAll();
+				contentPanel.add(new ListCommentPanel());
+				contentPanel.revalidate();
+				contentPanel.repaint();
 			}
 		});
-
+		
+		/*
 		// Manage comments
 		JButton btnManageComments = new JButton("Manage comments");
 		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnManageComments, 10,
@@ -398,6 +403,7 @@ public class MainFrameUser extends JFrame implements AbstractView {
 		menuPanel.add(btnListActivities);
 		menuPanel.add(btnMyShoppingCart);
 		menuPanel.add(btnMyEntrys);
+		menuPanel.add(btnComments);
 		/*menuPanel.add(btnManageComments);*/
 		
 	}
