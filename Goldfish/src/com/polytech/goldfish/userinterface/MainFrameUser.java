@@ -320,9 +320,9 @@ public class MainFrameUser extends JFrame implements AbstractView {
 		});
 
 
-		// My entrys
+		// My entries
 		JButton btnMyEntrys = new JButton(
-				"My entrys");
+				"My entries");
 		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnMyEntrys,
 				10, SpringLayout.NORTH, menuPanel);
 		sl_menuPanel.putConstraint(SpringLayout.WEST, btnMyEntrys,
@@ -334,7 +334,7 @@ public class MainFrameUser extends JFrame implements AbstractView {
 		btnMyEntrys.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("My entrys"); // TRACE
+				System.out.println("My entries"); // TRACE
 				contentPanel.removeAll();
 				contentPanel.add(new ListMyEntrysPanel(idPerson));
 				contentPanel.revalidate();

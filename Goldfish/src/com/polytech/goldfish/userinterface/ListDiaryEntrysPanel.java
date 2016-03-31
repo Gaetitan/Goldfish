@@ -22,6 +22,7 @@ public class ListDiaryEntrysPanel extends JPanel {
 		
 		myTableModel = new DiaryEntryTableModel(diaryEntryFacade.findAllEntrys());
 		myTable = new JTable(myTableModel);
+		myTable.removeColumn(myTable.getColumnModel().getColumn(0));
 		myScrollPane = new JScrollPane(myTable);
 		this.add(myScrollPane);
 

@@ -37,7 +37,7 @@ public class GoalManager {
 			throw new GoldfishException("Goal name nor description can be empty.");
 		}
 		else if(!checkDeadlinde(deadline)) {
-			throw new GoldfishException("Please enter a valid deadline format: YYYY/MM/DD.");
+			throw new GoldfishException("Please enter a valid deadline format: YYYY-MM-DD.");
 		}
 		else{
 			Date deadlineParsed = java.sql.Date.valueOf(deadline);

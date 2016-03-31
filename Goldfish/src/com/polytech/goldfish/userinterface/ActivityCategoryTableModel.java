@@ -12,7 +12,7 @@ public class ActivityCategoryTableModel extends AbstractTableModel {
 			private static final long serialVersionUID = 1L;
 			
 			private final Collection <ActivityCategory> data;
-			private final String[] columnNames = {"Name", "Short Description", "Detailled Description"};
+			private final String[] columnNames = {"Id", "Name", "Short Description", "Detailled Description"};
 			
 			// Constructor
 			public ActivityCategoryTableModel(Collection <ActivityCategory> data){

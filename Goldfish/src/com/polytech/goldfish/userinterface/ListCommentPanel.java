@@ -30,9 +30,8 @@ public class ListCommentPanel extends JPanel {
 		myTableModel = new CommentTableModel(commentFacade.findAllComments());
 		myTable = new JTable(myTableModel);
 		myTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		if(personFacade.isUser(idPerson)){
-			myTable.removeColumn(myTable.getColumnModel().getColumn(0));
-		}
+		myTable.removeColumn(myTable.getColumnModel().getColumn(0));
+
 		myTable.addMouseListener(new MouseListener() {
 
 			@Override

@@ -308,7 +308,7 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Product categories"); // TRACE
 				contentPanel.removeAll();
-				contentPanel.add(new ListProductsCategoriesPanel());
+				contentPanel.add(new ListProductsCategoriesPanel(idPerson));
 				contentPanel.revalidate();
 				contentPanel.repaint();
 			}

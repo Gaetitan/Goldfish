@@ -20,7 +20,7 @@ public class ListProductsCategoriesPanel extends JPanel {
 	private final JTable myTable;
 	private final JScrollPane myScrollPane;
 	
-	public ListProductsCategoriesPanel(){
+	public ListProductsCategoriesPanel(final Integer idPerson){
 	
 		productCategoryFacade = new ProductCategoryFacade();
 		
@@ -60,7 +60,7 @@ public class ListProductsCategoriesPanel extends JPanel {
 					JTable target = (JTable) e.getSource();
 					int row = target.getSelectedRow();
 					//System.out.println(productCategoryFacade.findProductCategoryById(myTableModel.getValueAt(row, 0)) + " " + productCategoryFacade.findproductCategoryByEmail(myTableModel.getValueAt(row, 3).toString()).getEmail());
-					new UpdateProductCategoryFrame(Integer.parseInt((myTableModel.getValueAt(row, 0)).toString()));
+					new UpdateProductCategoryFrame(Integer.parseInt((myTableModel.getValueAt(row, 0)).toString()), idPerson);
 				}
 			}
 		});

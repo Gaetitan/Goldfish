@@ -17,6 +17,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+import com.polytech.goldfish.businesslogic.facade.PersonFacade;
 import com.polytech.goldfish.businesslogic.facade.ProductCategoryFacade;
 import com.polytech.goldfish.util.GoldfishException;
 
@@ -31,14 +32,14 @@ public class UpdateProductCategoryFrame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	private final ProductCategoryFacade productCategoryFacade;
-
+	private final PersonFacade personFacade;
 	private final JTextField tfName;
 	private final JPasswordField tfPassword;
 	
 	/**
 	 * Instantiates a new frame to sign up.
 	 */
-	public UpdateProductCategoryFrame(final Integer idProductCategory) {
+	public UpdateProductCategoryFrame(final Integer idProductCategory, final Integer idPerson) {
 		
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setTitle("Update Product Category");
@@ -54,6 +55,7 @@ public class UpdateProductCategoryFrame extends JFrame{
 		setResizable(false);
 
 		productCategoryFacade = new ProductCategoryFacade();
+		personFacade = new PersonFacade();
 		
 		JPanel mainPanel = new JPanel();
 		this.add(mainPanel);
@@ -109,8 +111,9 @@ public class UpdateProductCategoryFrame extends JFrame{
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							Integer id = null;
-							if(!(tfName.getText().isEmpty())){	
+							if(!(tfName.getText().isEmpty() || tfPassword.getText().isEmpty())){	
 								try {
+									personFacade.verifyPasswordById(idPerson, tfPassword.getText());
 									id = productCategoryFacade.updateProductCategory(idProductCategory, tfName.getText());
 									JOptionPane.showMessageDialog(null, productCategoryFacade.findProductCategoryById(id).getName() + ", your information has been updated.",
 											"Information updated.",JOptionPane.INFORMATION_MESSAGE);
@@ -136,8 +139,9 @@ public class UpdateProductCategoryFrame extends JFrame{
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							Integer id = null;
-							if(!(tfName.getText().isEmpty())){	
+							if(!(tfName.getText().isEmpty() || tfPassword.getText().isEmpty())){	
 								try {
+									personFacade.verifyPasswordById(idPerson, tfPassword.getText());
 									id = productCategoryFacade.deleteProductCategory(idProductCategory);
 									JOptionPane.showMessageDialog(null, "Product Category has been deleted.",
 											"Information updated.",JOptionPane.INFORMATION_MESSAGE);
