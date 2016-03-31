@@ -37,7 +37,7 @@ public class UpdateProductFrame extends JFrame{
 	private final JPasswordField tfPassword;
 	
 	/**
-	 * Instantiates a new frame to sign up.
+	 * Instantiates a new frame to update a product.
 	 */
 	public UpdateProductFrame(final Integer idProduct) {
 		
@@ -64,7 +64,7 @@ public class UpdateProductFrame extends JFrame{
 		mainPanel.add(panelNorth, BorderLayout.NORTH);
 		panelNorth.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel lblWelcome = new JLabel("My information");
+		JLabel lblWelcome = new JLabel("Update a product");
 		panelNorth.add(lblWelcome);
 		
 		JPanel panelCenter = new JPanel();
@@ -83,7 +83,8 @@ public class UpdateProductFrame extends JFrame{
 		panelLabelInfo.add(lblName);
 		
 		JLabel lblDescription = new JLabel("Description:");
-		panelLabelInfo.add(lblDescription);		
+		panelLabelInfo.add(lblDescription);
+		
 		JLabel lblPassword = new JLabel("Type your password to validate:");
 		panelLabelInfo.add(lblPassword);
 		
