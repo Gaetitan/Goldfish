@@ -23,7 +23,7 @@ public abstract class ShoppingCartFactory {
 	
 	/**
 	 * This methods gets a ShoppingCart thanks to the id owner
-	 * @param idUser
+	 * @param id
 	 * @return an ShoppingCart
 	 */
 	public abstract ShoppingCart findShoppingCartOfAnUser(Integer id);

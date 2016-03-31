@@ -1,0 +1,10 @@
+com.polytech.goldfish.businesslogic.business
+com.polytech.goldfish.businesslogic.facade
+com.polytech.goldfish.businesslogic.factory
+com.polytech.goldfish.businesslogic.manager
+com.polytech.goldfish.main
+com.polytech.goldfish.persistence.factoryjdbc
+com.polytech.goldfish.persistence.jdbc
+com.polytech.goldfish.tests
+com.polytech.goldfish.userinterface
+com.polytech.goldfish.util

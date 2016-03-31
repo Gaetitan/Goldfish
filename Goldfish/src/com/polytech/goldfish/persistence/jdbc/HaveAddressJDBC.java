@@ -19,8 +19,9 @@ public class HaveAddressJDBC {
 	// Other methods
 	/**
 	 * This methods inserts a link between a Person and an Address in the database
-	 * @param idperson
-	 * @param idaddress
+	 * @param idPerson the Person's id
+	 * @param idAddress the Address' id
+	 * @return true if  fields inserted, false otherwise
 	 */
 	public static boolean insertOne(Integer idPerson, Integer idAddress) {
 		boolean bool = false;

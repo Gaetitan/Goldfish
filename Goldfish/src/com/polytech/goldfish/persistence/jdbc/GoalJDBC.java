@@ -38,10 +38,11 @@ public class GoalJDBC extends Goal {
 	 * <p>
 	 * Does update a goal in the the database thanks to the ID of goal
 	 * </p>
-	 * @param id
+	 * @param idGoal
 	 * @param newName
-	 * @param newVisibility
-	 * @return the id on the entry 
+	 * @param newDescription
+	 * @param newDeadline
+	 * @return the entry's id
 	 */
 	public static Integer updateGoal(Integer idGoal, String newName, String newDescription, Date newDeadline) {
 		Integer idToReturn = null;

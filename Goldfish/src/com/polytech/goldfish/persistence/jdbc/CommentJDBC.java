@@ -42,7 +42,6 @@ public class CommentJDBC extends Comment{
 	 * @param concernedPerson
 	 * @return the id of the newly created comment
 	 * @throws GoldfishException if person does not exists or if the comment is adressed to and admin
-	 * @throws SQLException if an sql error occured
 	 */
 	public static Integer createComment(String text, Integer poster, String concernedPerson) throws GoldfishException {
 		Integer idToReturn = null;
@@ -99,7 +98,6 @@ public class CommentJDBC extends Comment{
 	 * the close the connection
 	 * </p>
 	 * @return a collection of comments
-	 * @throws SQLException if an sql error occured
 	 */
 	public static Collection<CommentJDBC> findAllComments() {
 		Collection<CommentJDBC> listComments = null;
@@ -135,7 +133,6 @@ public class CommentJDBC extends Comment{
 	 * @param id
 	 * @param newText
 	 * @return the id of the newly created comment
-	 * @throws SQLException if an sql error occured
 	 */
 	public static Integer updateComment(Integer id, String newText) {
 		//Date dNow = new Date();
@@ -182,7 +179,6 @@ public class CommentJDBC extends Comment{
 	 * </p>
 	 * @param id
 	 * @return true if the deletion has been done, false otherwise
-	 * @throws SQLException if an sql error occured
 	 */
 	public static Boolean deleteComment(Integer id) {
 		Boolean deleted = false;
@@ -216,7 +212,6 @@ public class CommentJDBC extends Comment{
 	 * </p>
 	 * @param idComment
 	 * @return the comment
-	 * @throws SQLException if an sql error occured
 	 */
 	public static Comment findCommentById(Integer idComment) {
 		CommentJDBC comment = null;

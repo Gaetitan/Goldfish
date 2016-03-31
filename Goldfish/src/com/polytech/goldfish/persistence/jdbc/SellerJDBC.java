@@ -76,18 +76,10 @@ public class SellerJDBC extends Seller {
 		return idToReturn;	
 	}
 	
+	
 	/**
 	 * This method updates a seller
-	 * 
 	 * @param id
-	 * @param surname
-	 * @param name
-	 * @param phone_number
-	 * @param email
-	 * @param street
-	 * @param street_number
-	 * @param zip_code
-	 * @param city
 	 * @param shopname
 	 * @param description
 	 * @param siret

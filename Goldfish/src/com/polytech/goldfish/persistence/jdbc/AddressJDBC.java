@@ -103,7 +103,7 @@ public class AddressJDBC extends Address{
 	
 	/**
 	 * This methods finds an Address in the database thanks to its id
-	 * @param id
+	 * @param idPerson
 	 * @return the Address which has the looked for id
 	 */
 	public static AddressJDBC findAddressOfAPerson(Integer idPerson) {

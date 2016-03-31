@@ -180,7 +180,7 @@ public class ShoppingCartJDBC extends ShoppingCart{
 
 	/**
 	 * This method finds a ShoppingCart thanks to the id owner
-	 * @param the id of the owner
+	 * @param id the id of the owner
 	 * @return a ShoppingCart
 	 */
 	public static ShoppingCartJDBC findShoppingCartOfAnUser(Integer id) {

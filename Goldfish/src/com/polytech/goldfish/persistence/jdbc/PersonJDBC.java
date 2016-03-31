@@ -168,12 +168,20 @@ public class PersonJDBC extends Person {
 
 	/**
 	 * This method updates a Person in the database
-	 * 
+	 * @param id
 	 * @param surname
 	 * @param name
 	 * @param phone_number
 	 * @param email
-	 * @param password
+	 * @param street
+	 * @param street_number
+	 * @param zip_code
+	 * @param city
+	 * @param shopname
+	 * @param description
+	 * @param siret
+	 * @param activitydomain
+	 * @param webaddress
 	 * @return the updated Person's id
 	 */
 	public static Integer updatePerson(Integer id, String surname, String name,
