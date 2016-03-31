@@ -18,16 +18,6 @@ public class ShoppingCartManager {
 	
 	private final ShoppingCartFactory factory;
 	
-	boolean checkShopCart(Integer idShoppCart, Integer idProduct){
-		Collection<Product> products = findAllProductsOfAShoppingCart(idShoppCart);
-		for(Product product : products) {
-			if(product.getId() == idProduct){
-				return true;
-			}
-		}
-		return false;	
-	}
-	
 	public ShoppingCartManager(){
 		this.factory = new ShoppingCartFactoryJDBC();
 	}
@@ -57,12 +47,7 @@ public class ShoppingCartManager {
 	}
 	
 	public Integer addProductShoppingCart(Integer idshoppingcart, Integer idproduct, Integer quantity) throws GoldfishException{
-		if(!checkShopCart(idshoppingcart,idproduct)) {
-			throw new GoldfishException("The product is already in the shopping cart.");
-		}
-		else {
-			return this.factory.addProductShoppingCart(idshoppingcart, idproduct, quantity);
-		}
+		return this.factory.addProductShoppingCart(idshoppingcart, idproduct, quantity);
 	}
 	
 	public Integer modifyQuantityProductShoppingCart(Integer idshoppingcart, Integer idproduct, Integer quantity){
