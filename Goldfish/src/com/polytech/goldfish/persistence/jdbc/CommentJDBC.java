@@ -136,7 +136,7 @@ public class CommentJDBC extends Comment{
 	 * @throws SQLException if an sql error occured
 	 */
 	public static Integer updateComment(Integer id, String newText) {
-		Date dNow = new Date();
+		//Date dNow = new Date();
 		java.util.Date utilDate = new java.util.Date();
 		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 		Integer idToReturn = null;

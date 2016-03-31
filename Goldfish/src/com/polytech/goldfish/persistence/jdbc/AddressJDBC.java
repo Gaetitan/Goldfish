@@ -19,7 +19,7 @@ public class AddressJDBC extends Address{
 	// Queries
 	private static final String queryGetAddressById = "SELECT * FROM address WHERE idaddress = ?;";
 	private static final String queryInsertOne = "INSERT INTO address (street, numstreet, postalcode, city) VALUES(?,?,?,?);";
-	private static final String queryGetAddressOfAPerson = "SELECT * FROM address a, haveaddress h, person p WHERE a.idaddress = h.id address AND h.idperson = a.idperson AND idperson = ?;";
+	//private static final String queryGetAddressOfAPerson = "SELECT * FROM address a, haveaddress h, person p WHERE a.idaddress = h.id address AND h.idperson = a.idperson AND idperson = ?;";
 	private static final String queryUpdateOne = "UPDATE address SET street = ?, numstreet = ?, postalcode = ?, city = ? WHERE idaddress = ?;";
 	
 	// Constructors
