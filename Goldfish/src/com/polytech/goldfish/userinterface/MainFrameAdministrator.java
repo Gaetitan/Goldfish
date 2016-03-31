@@ -221,6 +221,23 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 			}
 		});
 		
+		// Create Product
+				JButton btnCreateProduct = new JButton("Create product");
+				sl_sidePanel.putConstraint(SpringLayout.NORTH,btnCreateProduct, 290, SpringLayout.NORTH,sidePanel);
+				sl_sidePanel.putConstraint(SpringLayout.WEST, btnCreateProduct,10, SpringLayout.WEST, sidePanel);
+				sl_sidePanel.putConstraint(SpringLayout.SOUTH,btnCreateProduct, 320, SpringLayout.NORTH,sidePanel);
+				sl_sidePanel.putConstraint(SpringLayout.EAST, btnCreateProduct,-10, SpringLayout.EAST, sidePanel);
+				btnCreateProduct.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						System.out.println("Create Product"); // TRACE
+						contentPanel.removeAll();
+						contentPanel.add(new CreateProductPanel());
+						contentPanel.revalidate();
+						contentPanel.repaint();
+					}
+				});
+		
 		// logout
 		JButton btnLogout = new JButton("Log out");
 		sl_sidePanel.putConstraint(SpringLayout.SOUTH, btnLogout, -10,
@@ -363,6 +380,7 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 		sidePanel.add(btnCreateActivityCategory);
 		sidePanel.add(btnCreateProductCategory);
 		sidePanel.add(btnListProducts);
+		sidePanel.add(btnCreateProduct);
 		sidePanel.add(btnLogout);
 
 		menuPanel.add(btnListWishlist);
