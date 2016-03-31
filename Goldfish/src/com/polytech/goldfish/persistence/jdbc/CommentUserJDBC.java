@@ -18,21 +18,21 @@ public class CommentUserJDBC{
 		boolean bool = false;
 		try{
 			Connection connect = Connect.getInstance().getConnection();
-			
+
 			PreparedStatement instruction = connect.prepareStatement(queryInsertOneUserToUser, Statement.RETURN_GENERATED_KEYS);
 			instruction.setInt(1, idComment);
 			instruction.setInt(2, idconcerneduser);
 			instruction.setInt(3, idposteruser);
 			int affectedRows = instruction.executeUpdate();
 			connect.commit();
-			
+
 			if(affectedRows == 0){
 				throw new SQLException("Creating connection between comment and commentUserToUser failed, no rows affected.");
 			}
 			else {
 				bool = true;
 			}
-			
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -40,29 +40,29 @@ public class CommentUserJDBC{
 		finally{
 			Connect.getInstance().closeConnection();
 		}	
-		
+
 		return bool;
 	}
-	
+
 	public static boolean queryInsertOneUserToSeller(Integer idComment, Integer idconcernedseller, Integer idposteruser) {
 		boolean bool = false;
 		try{
 			Connection connect = Connect.getInstance().getConnection();
-			
+
 			PreparedStatement instruction = connect.prepareStatement(queryInsertOneUserToSeller, Statement.RETURN_GENERATED_KEYS);
 			instruction.setInt(1, idComment);
 			instruction.setInt(2, idconcernedseller);
 			instruction.setInt(3, idposteruser);
 			int affectedRows = instruction.executeUpdate();
 			connect.commit();
-			
+
 			if(affectedRows == 0){
 				throw new SQLException("Creating connection between comment and commentUserToSeller failed, no rows affected.");
 			}
 			else {
 				bool = true;
 			}
-			
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -70,29 +70,29 @@ public class CommentUserJDBC{
 		finally{
 			Connect.getInstance().closeConnection();
 		}	
-		
+
 		return bool;
 	}
-	
 
-	
+
+
 	public static boolean queryDeleteOneUserToSeller(Integer idComment) {
 		boolean bool = false;
 		try{
 			Connection connect = Connect.getInstance().getConnection();
-			
+
 			PreparedStatement instruction = connect.prepareStatement(queryDeleteOneUserToSeller, Statement.RETURN_GENERATED_KEYS);
 			instruction.setInt(1, idComment);
 			int affectedRows = instruction.executeUpdate();
 			connect.commit();
-			
+
 			if(affectedRows == 0){
 				throw new SQLException("Deleting connection between comment and CommentUserToSeller failed, no rows deleted.");
 			}
 			else {
 				bool = true;
 			}
-			
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -100,27 +100,27 @@ public class CommentUserJDBC{
 		finally{
 			Connect.getInstance().closeConnection();
 		}	
-		
+
 		return bool;
 	}
-	
+
 	public static boolean queryDeleteOneUserToUser(Integer idComment) {
 		boolean bool = false;
 		try{
 			Connection connect = Connect.getInstance().getConnection();
-			
+
 			PreparedStatement instruction = connect.prepareStatement(queryDeleteOneUserToUser, Statement.RETURN_GENERATED_KEYS);
 			instruction.setInt(1, idComment);
 			int affectedRows = instruction.executeUpdate();
 			connect.commit();
-			
+
 			if(affectedRows == 0){
 				throw new SQLException("Deleting connection between comment and CommentUserToUser failed, no rows deleted.");
 			}
 			else {
 				bool = true;
 			}
-			
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -128,7 +128,7 @@ public class CommentUserJDBC{
 		finally{
 			Connect.getInstance().closeConnection();
 		}	
-		
+
 		return bool;
 	}
 

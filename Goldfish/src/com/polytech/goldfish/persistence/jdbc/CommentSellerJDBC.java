@@ -33,7 +33,7 @@ public class CommentSellerJDBC{
 			else {
 				bool = true;
 			}
-			
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -63,7 +63,7 @@ public class CommentSellerJDBC{
 			else {
 				bool = true;
 			}
-			
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -92,7 +92,7 @@ public class CommentSellerJDBC{
 			else {
 				bool = true;
 			}
-			
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -120,7 +120,7 @@ public class CommentSellerJDBC{
 			else {
 				bool = true;
 			}
-			
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();

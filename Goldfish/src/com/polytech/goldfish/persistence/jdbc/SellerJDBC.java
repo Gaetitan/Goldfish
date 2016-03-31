@@ -11,7 +11,7 @@ import com.polytech.goldfish.util.Connect;
 
 /**
  * Persistence class for a Seller
- * @author Gaëtan FRANÇOIS
+ * @author Gaï¿½tan FRANï¿½OIS
  *
  */
 public class SellerJDBC extends Seller {
@@ -65,6 +65,7 @@ public class SellerJDBC extends Seller {
 					throw new SQLException("Creating seller failed, no ID obtained.");
 				}
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -112,7 +113,7 @@ public class SellerJDBC extends Seller {
 			if(affectedRows == 0){
 				throw new SQLException("Updating a seller failed, no rows affected.");
 			}
-
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -139,7 +140,8 @@ public class SellerJDBC extends Seller {
 			
 			while(rs.next()){
 				seller = new SellerJDBC(rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6));
-			}	
+			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -164,6 +166,7 @@ public class SellerJDBC extends Seller {
 			}
 			
 			connect.commit();
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
