@@ -55,6 +55,7 @@ public class ProductJDBC extends Product {
 					throw new SQLException("Creating product failed, no ID obtained.");
 				}
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -77,6 +78,7 @@ public class ProductJDBC extends Product {
 			while(rs.next()){
 				product = new ProductJDBC(rs.getInt(1), rs.getString(2), rs.getString(3));
 			}	
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -100,6 +102,7 @@ public class ProductJDBC extends Product {
 			while(rs.next()){
 				listProducts.add(new ProductJDBC(rs.getInt(1), rs.getString(2), rs.getString(3)));
 			}	
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -136,6 +139,7 @@ public class ProductJDBC extends Product {
 					throw new SQLException("Updating product failed, no ID obtained.");
 				}
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -168,6 +172,7 @@ public class ProductJDBC extends Product {
 					throw new SQLException("Deleting product failed, no ID obtained.");
 				}
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();

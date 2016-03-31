@@ -191,17 +191,31 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 				sidePanel);
 		sl_sidePanel.putConstraint(SpringLayout.WEST, btnCreateProductCategory,
 				10, SpringLayout.WEST, sidePanel);
-		sl_sidePanel.putConstraint(SpringLayout.SOUTH,
-				btnCreateProductCategory, 240, SpringLayout.NORTH,
-				sidePanel);
-		sl_sidePanel.putConstraint(SpringLayout.EAST, btnCreateProductCategory,
-				-10, SpringLayout.EAST, sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.SOUTH,btnCreateProductCategory, 240, SpringLayout.NORTH,sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.EAST, btnCreateProductCategory,-10, SpringLayout.EAST, sidePanel);
 		btnCreateProductCategory.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Create product category"); // TRACE
 				contentPanel.removeAll();
 				contentPanel.add(new CreateProductCategoryPanel());
+				contentPanel.revalidate();
+				contentPanel.repaint();
+			}
+		});
+		
+		// List Products
+		JButton btnListProducts = new JButton("Products");
+		sl_sidePanel.putConstraint(SpringLayout.NORTH,btnListProducts, 250, SpringLayout.NORTH,sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.WEST, btnListProducts,10, SpringLayout.WEST, sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.SOUTH,btnListProducts, 280, SpringLayout.NORTH,sidePanel);
+		sl_sidePanel.putConstraint(SpringLayout.EAST, btnListProducts,-10, SpringLayout.EAST, sidePanel);
+		btnListProducts.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Products"); // TRACE
+				contentPanel.removeAll();
+				contentPanel.add(new ListProductsPanel(idPerson));
 				contentPanel.revalidate();
 				contentPanel.repaint();
 			}
@@ -348,6 +362,7 @@ public class MainFrameAdministrator extends JFrame implements AbstractView {
 		sidePanel.add(btnCreatePerson);
 		sidePanel.add(btnCreateActivityCategory);
 		sidePanel.add(btnCreateProductCategory);
+		sidePanel.add(btnListProducts);
 		sidePanel.add(btnLogout);
 
 		menuPanel.add(btnListWishlist);

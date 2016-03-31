@@ -11,7 +11,7 @@ import com.polytech.goldfish.util.Connect;
 
 /**
  * Persistence class for a User
- * @author Gaëtan FRANÇOIS
+ * @author Gaï¿½tan FRANï¿½OIS
  *
  */
 public class UserJDBC extends User {
@@ -19,17 +19,17 @@ public class UserJDBC extends User {
 	// Queries
 	private static final String queryInsertOne = "INSERT INTO \"user\" (idperson) VALUES(?);";
 	private static final String queryDeleteOne = "DELETE FROM \"user\" WHERE idperson = ?;";
-	
+
 	// Constructors
 	public UserJDBC(Integer id, String name, String surname,
 			String phone_number, String email, String password) {
 		super(id, name, surname, phone_number, email, password);
 	}
-	
+
 	// Other methods
 	public static Integer createUser(Integer idPerson){
 		Integer idToReturn = null;
-		
+
 		try{
 			Connection connect = Connect.getInstance().getConnection();
 
@@ -38,11 +38,11 @@ public class UserJDBC extends User {
 
 			int affectedRows = instruction.executeUpdate();
 			connect.commit();
-				
+
 			if(affectedRows == 0){
 				throw new SQLException("Creating user failed, no rows affected.");
 			}
-				
+
 			try(ResultSet generatedKeys = instruction.getGeneratedKeys()){
 				if(generatedKeys.next()){
 					idToReturn = generatedKeys.getInt(1);
@@ -51,6 +51,7 @@ public class UserJDBC extends User {
 					throw new SQLException("Creating user failed, no ID obtained.");
 				}
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -69,12 +70,13 @@ public class UserJDBC extends User {
 			instruction.setInt(1, idPerson);
 
 			int affectedRows = instruction.executeUpdate();
-				
+
 			if(affectedRows == 0){
 				throw new SQLException("Deleting user failed, no rows affected.");
 			}
-			
+
 			connect.commit();
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -83,5 +85,5 @@ public class UserJDBC extends User {
 			Connect.getInstance().closeConnection();
 		}
 	}
-	
+
 }

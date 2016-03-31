@@ -39,7 +39,7 @@ public class HaveAddressJDBC {
 			else {
 				bool = true;
 			}
-			
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -68,6 +68,7 @@ public class HaveAddressJDBC {
 				bool = true;
 			}
 			connect.commit();
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();

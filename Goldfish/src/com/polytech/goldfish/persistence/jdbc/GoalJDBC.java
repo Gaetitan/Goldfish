@@ -71,6 +71,7 @@ public class GoalJDBC extends Goal {
 					throw new SQLException("Updating entry failed, no ID obtained.");
 				}
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -100,6 +101,7 @@ public class GoalJDBC extends Goal {
 			while(rs.next()){
 				listGoals.add(new GoalJDBC(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getDate(5)));
 			}	
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -147,6 +149,7 @@ public class GoalJDBC extends Goal {
 					throw new SQLException("Creating goal failed, no ID obtained.");
 				}
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -177,6 +180,7 @@ public class GoalJDBC extends Goal {
 			if(affectedRows == 0){
 				throw new SQLException("Deleting goal failed, no rows affected.");
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();

@@ -45,7 +45,7 @@ public class ShoppingCartFacade {
 		return this.shoppingCartManager.findAllShoppingCarts();
 	}
 	
-	public Integer addProductShoppingCart(Integer idshoppingcart, Integer idproduct, Integer quantity){
+	public Integer addProductShoppingCart(Integer idshoppingcart, Integer idproduct, Integer quantity) throws GoldfishException{
 		return this.shoppingCartManager.addProductShoppingCart(idshoppingcart, idproduct, quantity);
 	}
 	

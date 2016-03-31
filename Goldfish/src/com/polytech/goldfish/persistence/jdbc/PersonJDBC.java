@@ -67,6 +67,8 @@ public class PersonJDBC extends Person {
 							rs.getString(6));
 				}
 			}
+			connect.close();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -153,6 +155,8 @@ public class PersonJDBC extends Person {
 					throw new GoldfishException(
 							"Cannot determine type of person.");
 				}
+				connect.close();
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -203,6 +207,8 @@ public class PersonJDBC extends Person {
 				SellerJDBC.updateSeller(id, shopname, description, siret,
 						activitydomain, webaddress);
 			}
+			connect.close();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -232,6 +238,8 @@ public class PersonJDBC extends Person {
 						rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getString(6));
 			}
+			connect.close();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -262,6 +270,8 @@ public class PersonJDBC extends Person {
 						rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getString(6));
 			}
+			connect.close();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -291,6 +301,8 @@ public class PersonJDBC extends Person {
 						rs.getString(3), rs.getString(4), rs.getString(5), rs
 								.getString(6)));
 			}
+			connect.close();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -321,6 +333,7 @@ public class PersonJDBC extends Person {
 				myId = rs.getInt(1);
 			}
 			bool = myId != null;
+			connect.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -352,6 +365,7 @@ public class PersonJDBC extends Person {
 				myId = rs.getInt(1);
 			}
 			bool = myId != (null);
+			connect.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -383,6 +397,7 @@ public class PersonJDBC extends Person {
 				myId = rs.getInt(1);
 			}
 			bool = myId != (null);
+			connect.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -407,6 +422,8 @@ public class PersonJDBC extends Person {
 				bool = Passwords.isExpectedPassword(password.toCharArray(),
 						rs.getBytes(7), rs.getBytes(6));
 			}
+			connect.close();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -452,6 +469,7 @@ public class PersonJDBC extends Person {
 				
 				connect.commit();
 				bool = true;
+				connect.close();
 			}
 			catch (SQLException e) {
 				e.printStackTrace();

@@ -81,6 +81,7 @@ public class CommentJDBC extends Comment{
 					throw new SQLException("Creating comment failed, no ID obtained.");
 				}
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -113,7 +114,8 @@ public class CommentJDBC extends Comment{
 				String posterName = (PersonJDBC.findPersonById(rs.getInt(4))).getName();
 				String concernedName = (PersonJDBC.findPersonById(rs.getInt(5))).getName();
 				listComments.add(new CommentJDBC(rs.getInt(1), concernedName, posterName, rs.getString(2), rs.getDate(3)));
-			}	
+			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -162,6 +164,7 @@ public class CommentJDBC extends Comment{
 					throw new SQLException("Updating comment failed, no ID obtained.");
 				}
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -195,6 +198,7 @@ public class CommentJDBC extends Comment{
 			if(affectedRows == 0){
 				throw new SQLException("Deleting comment failed, no rows deleted.");
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -259,6 +263,7 @@ public class CommentJDBC extends Comment{
 			if(rs.next()){
 				effectiveOwnComment = true;
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();

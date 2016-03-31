@@ -80,6 +80,7 @@ public class DiaryEntryJDBC extends DiaryEntry {
 					throw new SQLException("Creating entry failed, no ID obtained.");
 				}
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -108,6 +109,7 @@ public class DiaryEntryJDBC extends DiaryEntry {
 			while(rs.next()){
 				listEntrysPerson.add(new DiaryEntryJDBC(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getDate(4), rs.getTime(5), rs.getBoolean(6)));
 			}	
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -138,6 +140,7 @@ public class DiaryEntryJDBC extends DiaryEntry {
 			while(rs.next()){
 				listEntrys.add(new DiaryEntryJDBC(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getDate(4), rs.getTime(5), rs.getBoolean(6)));
 			}	
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -187,6 +190,7 @@ public class DiaryEntryJDBC extends DiaryEntry {
 					throw new SQLException("Updating entry failed, no ID obtained.");
 				}
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -219,6 +223,7 @@ public class DiaryEntryJDBC extends DiaryEntry {
 			if(affectedRows == 0){
 				throw new SQLException("Deleting entry failed, no rows affected.");
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -240,6 +245,7 @@ public class DiaryEntryJDBC extends DiaryEntry {
 
 			rs.next();
 			entryById = new DiaryEntryJDBC(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getDate(4), rs.getTime(5), rs.getBoolean(6));	
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();

@@ -13,36 +13,36 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import com.polytech.goldfish.businesslogic.facade.ProductFacade;
+import com.polytech.goldfish.businesslogic.facade.ShoppingCartFacade;
 import com.polytech.goldfish.util.GoldfishException;
 
 
 /**
- * Class for a frame used to update a product
+ * Class for a frame used to add a product to the shopping cart
  * 
  * @author
  */
-public class UpdateProductFrame extends JFrame{
+public class AddProductShoppingFrame extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	
+	private final ShoppingCartFacade shoppingCartFacade;
 	private final ProductFacade productFacade;
 
-	private final JTextField tfName;
-	private final JTextField tfDescription;
-	private final JPasswordField tfPassword;
+
+	private final JTextField tfQuantity;
 	
 	/**
-	 * Instantiates a new frame to update a product.
+	 * Instantiates a new frame to add a product to the shopping cart
 	 */
-	public UpdateProductFrame(final Integer idProduct) {
+	public AddProductShoppingFrame(final Integer idShoppingCart, final Integer idProduct) {
 		
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Update Product");
+		setTitle("Add Product");
 
 		getContentPane().setPreferredSize(new Dimension(500, 250));
 		getContentPane().setLayout(null);
@@ -54,6 +54,7 @@ public class UpdateProductFrame extends JFrame{
 		
 		setResizable(false);
 
+		shoppingCartFacade = new ShoppingCartFacade();
 		productFacade = new ProductFacade();
 		
 		JPanel mainPanel = new JPanel();
@@ -64,7 +65,7 @@ public class UpdateProductFrame extends JFrame{
 		mainPanel.add(panelNorth, BorderLayout.NORTH);
 		panelNorth.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel lblWelcome = new JLabel("Update a product");
+		JLabel lblWelcome = new JLabel("Add a product");
 		panelNorth.add(lblWelcome);
 		
 		JPanel panelCenter = new JPanel();
@@ -79,29 +80,16 @@ public class UpdateProductFrame extends JFrame{
 		panelInfo.add(panelLabelInfo, BorderLayout.WEST);
 		panelLabelInfo.setLayout(new GridLayout(0, 1, 0, 0));
 				
-		JLabel lblName = new JLabel("Name:");
-		panelLabelInfo.add(lblName);
-		
-		JLabel lblDescription = new JLabel("Description:");
-		panelLabelInfo.add(lblDescription);
-		
-		JLabel lblPassword = new JLabel("Type your password to validate:");
-		panelLabelInfo.add(lblPassword);
+		JLabel lblQuantity = new JLabel("Quantity:");
+		panelLabelInfo.add(lblQuantity);
 		
 		JPanel panelTextInfo = new JPanel();
 		panelInfo.add(panelTextInfo, BorderLayout.CENTER);
 		panelTextInfo.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		tfName = new JTextField();
-		tfName.setText(productFacade.findProductById(idProduct).getName());
-		panelTextInfo.add(tfName);
-		
-		tfDescription = new JTextField();
-		tfDescription.setText(productFacade.findProductById(idProduct).getDescription());
-		panelTextInfo.add(tfDescription);
-
-		tfPassword = new JPasswordField();
-		panelTextInfo.add(tfPassword);
+		tfQuantity = new JTextField();
+		tfQuantity.setText("");
+		panelTextInfo.add(tfQuantity);
 		
 		JPanel panelSouth = new JPanel();
 		mainPanel.add(panelSouth, BorderLayout.SOUTH);
@@ -111,17 +99,17 @@ public class UpdateProductFrame extends JFrame{
 		panelSouth.add(panelButton);
 		panelButton.setLayout(new GridLayout(2, 0, 0, 0));
 		
-		JButton btnOk = new JButton("Update Product");
+		JButton btnOk = new JButton("Add Product");
 		btnOk.addActionListener(
 					new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							Integer id = null;
-							if(!(tfName.getText().isEmpty())){	
+							if(!(tfQuantity.getText().isEmpty())){	
 								try {
-									id = productFacade.updateProduct(idProduct, tfName.getText(),tfDescription.getText());
-									JOptionPane.showMessageDialog(null, productFacade.findProductById(id).getName() + ", your information has been updated.",
-											"Information updated.",JOptionPane.INFORMATION_MESSAGE);
+									id = shoppingCartFacade.addProductShoppingCart(idShoppingCart, idProduct, Integer.parseInt(tfQuantity.getText()));
+									JOptionPane.showMessageDialog(null, productFacade.findProductById(idProduct).getName() + " has been added to your shopping cart.",
+											"Product added.",JOptionPane.INFORMATION_MESSAGE);
 								} 
 								catch (GoldfishException e1) {
 									JOptionPane.showMessageDialog(null, e1.toString(),
@@ -138,41 +126,13 @@ public class UpdateProductFrame extends JFrame{
 		 
 		panelButton.add(btnOk);
 		
-		JButton btnDel = new JButton("Delete this Product");
-		btnDel.addActionListener(
-					new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							Integer id = null;
-							if(!(tfName.getText().isEmpty())){	
-								try {
-									id = productFacade.deleteProduct(idProduct);
-									JOptionPane.showMessageDialog(null, "Product has been deleted.",
-											"Information updated.",JOptionPane.INFORMATION_MESSAGE);
-								} 
-								catch (GoldfishException e1) {
-									JOptionPane.showMessageDialog(null, e1.toString(),
-											"Error.",JOptionPane.ERROR_MESSAGE);
-								}
-							}
-							else {
-								JOptionPane.showMessageDialog(null, "Please fill all the fields.",
-										"Blank fields.",JOptionPane.ERROR_MESSAGE);
-							}
-						}
-					}
-				);
-		 
-		panelButton.add(btnDel);
 		
 		setContentPane(mainPanel);
 		setVisible(true);
 	}
 	
 	public void reinitPanel(){
-		tfName.setText("");
-		tfDescription.setText("");
-		tfPassword.setText("");
+		tfQuantity.setText("");
 	}
 }
 
