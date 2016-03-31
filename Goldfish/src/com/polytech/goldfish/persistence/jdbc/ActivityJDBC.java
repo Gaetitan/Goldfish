@@ -69,6 +69,7 @@ public class ActivityJDBC extends Activity {
 					throw new SQLException("Creating activity failed, no ID obtained.");
 				}
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -109,6 +110,7 @@ public class ActivityJDBC extends Activity {
 					throw new SQLException("Updating an activity failed, no ID obtained.");
 				}
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -146,6 +148,7 @@ public class ActivityJDBC extends Activity {
 					throw new SQLException("Deleting an activity failed, no ID obtained.");
 				}
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -172,7 +175,8 @@ public class ActivityJDBC extends Activity {
 			
 			while(rs.next()){
 				activity = new ActivityJDBC(rs.getInt(1), rs.getString(3), rs.getString(4));
-			}	
+			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -202,6 +206,7 @@ public class ActivityJDBC extends Activity {
 				listActivities.add(new ActivityJDBC(rs.getInt(1), rs.getString(3), rs.getString(4)));
 
 			}	
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -233,6 +238,7 @@ public class ActivityJDBC extends Activity {
 				listActivities.add(new ActivityJDBC(rs.getInt(1), rs.getString(3), rs.getString(4)));
 
 			}	
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();

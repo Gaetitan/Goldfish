@@ -11,7 +11,7 @@ import com.polytech.goldfish.util.Connect;
 
 /**
  * Persistence class for an Adress
- * @author Gaëtan FRANÇOIS
+ * @author Gaï¿½tan FRANï¿½OIS
  *
  */
 public class AddressJDBC extends Address{
@@ -46,6 +46,7 @@ public class AddressJDBC extends Address{
 			while(rs.next()){
 				address = new AddressJDBC(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5));
 			}	
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -89,6 +90,7 @@ public class AddressJDBC extends Address{
 					throw new SQLException("Creating address failed, no ID obtained.");
 				}
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -116,6 +118,7 @@ public class AddressJDBC extends Address{
 			while(rs.next()){
 				address = new AddressJDBC(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5));
 			}	
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -143,6 +146,7 @@ public class AddressJDBC extends Address{
 			if(affectedRows == 0){
 				throw new SQLException("Updating a person failed, no rows affected.");
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();

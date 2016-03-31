@@ -11,7 +11,7 @@ import com.polytech.goldfish.util.Connect;
 
 /**
  * Persitence class for an Administrator
- * @author Gaëtan FRANÇOIS
+ * @author Gaï¿½tan FRANï¿½OIS
  *
  */
 public class AdministratorJDBC extends Administrator {
@@ -51,6 +51,7 @@ public class AdministratorJDBC extends Administrator {
 					throw new SQLException("Creating administrator failed, no ID obtained.");
 				}
 			}
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -75,6 +76,7 @@ public class AdministratorJDBC extends Administrator {
 			}
 			
 			connect.commit();
+			connect.close();
 		}
 		catch(SQLException e){
 			e.printStackTrace();

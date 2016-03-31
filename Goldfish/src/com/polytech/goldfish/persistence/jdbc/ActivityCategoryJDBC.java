@@ -69,6 +69,7 @@ public class ActivityCategoryJDBC extends ActivityCategory{
 						throw new SQLException("Creating activityCategory failed, no ID obtained.");
 					}
 				}
+				connect.close();
 			}
 			catch(SQLException e){
 				e.printStackTrace();
@@ -111,6 +112,7 @@ public class ActivityCategoryJDBC extends ActivityCategory{
 						throw new SQLException("Updating an activityCategory failed, no ID obtained.");
 					}
 				}
+				connect.close();
 			}
 			catch(SQLException e){
 				e.printStackTrace();
@@ -148,6 +150,7 @@ public class ActivityCategoryJDBC extends ActivityCategory{
 						throw new SQLException("Deleting an activityCategory failed, no ID obtained.");
 					}
 				}
+				connect.close();
 			}
 			catch(SQLException e){
 				e.printStackTrace();
@@ -175,6 +178,7 @@ public class ActivityCategoryJDBC extends ActivityCategory{
 				while(rs.next()){
 					activityCategory = new ActivityCategoryJDBC(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
 				}	
+				connect.close();
 			}
 			catch(SQLException e){
 				e.printStackTrace();
@@ -203,6 +207,7 @@ public class ActivityCategoryJDBC extends ActivityCategory{
 				while(rs.next()){
 					listActivitiesCategories.add(new ActivityCategoryJDBC(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
 				}	
+				connect.close();
 			}
 			catch(SQLException e){
 				e.printStackTrace();
