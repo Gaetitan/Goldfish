@@ -13,7 +13,7 @@ import com.polytech.goldfish.util.GoldfishException;
  */
 public abstract class CommentFactory {
 
-	public abstract Integer createComment(String text, Integer poster, Integer concernedPerson) throws GoldfishException;
+	public abstract Integer createComment(String text, Integer poster, String concernedPerson) throws GoldfishException;
 
 	public abstract Integer updateComment(Integer id, String newText) throws GoldfishException;
 

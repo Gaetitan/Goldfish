@@ -44,12 +44,13 @@ public class CommentJDBC extends Comment{
 	 * @throws GoldfishException if person does not exists or if the comment is adressed to and admin
 	 * @throws SQLException if an sql error occured
 	 */
-	public static Integer createComment(String text, Integer poster, Integer concernedPerson) throws GoldfishException {
+	public static Integer createComment(String text, Integer poster, String concernedPerson) throws GoldfishException {
 		Integer idToReturn = null;
-		if(PersonJDBC.isAdministrator(concernedPerson)){
+		Integer idPerson = PersonJDBC.findPersonByEmail(concernedPerson).getId();
+		if(PersonJDBC.isAdministrator(idPerson)){
 			throw new GoldfishException("You can't comment to an administrator");
 		}
-		else if(PersonJDBC.findPersonById(concernedPerson) == null){
+		else if(PersonJDBC.findPersonByEmail(concernedPerson) == null){
 			throw new GoldfishException("Concerned person does not exist");
 		}
 		java.util.Date utilDate = new java.util.Date();
@@ -60,7 +61,7 @@ public class CommentJDBC extends Comment{
 			instruction.setString(1, text);
 			instruction.setDate(2, sqlDate);
 			instruction.setInt(3, poster);
-			instruction.setInt(4, concernedPerson);
+			instruction.setInt(4, idPerson);
 
 
 			// Insert Comment in databse

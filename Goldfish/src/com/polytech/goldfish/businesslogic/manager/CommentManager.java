@@ -27,7 +27,7 @@ public class CommentManager {
 	 * @param number
 	 * @return true or false
 	 */
-	boolean checkNumber(String number){
+	boolean checkMail(String number){
 		Pattern p = Pattern.compile("\\d+");
 		Matcher m = p.matcher(number);
 		return m.matches();
@@ -54,11 +54,11 @@ public class CommentManager {
 		else if(concernedPerson.isEmpty() || concernedPerson == ""){
 			throw new GoldfishException("You must specify a concerned person.");
 		}
-		else if(!checkNumber(concernedPerson)){
+		else if(!checkMail(concernedPerson)){
 			throw new GoldfishException("Please entre a valid ID for concerned person.");
 		}
 		else{
-			return this.factory.createComment(text, poster, Integer.parseInt(concernedPerson));	
+			return this.factory.createComment(text, poster, concernedPerson);	
 		}
 	}
 

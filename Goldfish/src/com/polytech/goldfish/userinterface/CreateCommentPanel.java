@@ -53,7 +53,7 @@ public class CreateCommentPanel extends JPanel {
 		panelInfo.add(panelLabelInfo, BorderLayout.WEST);
 		panelLabelInfo.setLayout(new GridLayout(0, 1, 0, 0));
 
-		JLabel lblConcernedIdPerson = new JLabel("ID of concerned person:");
+		JLabel lblConcernedIdPerson = new JLabel("Email of concerned person:");
 		panelLabelInfo.add(lblConcernedIdPerson);
 
 		JLabel lblComment = new JLabel("Comment:");
