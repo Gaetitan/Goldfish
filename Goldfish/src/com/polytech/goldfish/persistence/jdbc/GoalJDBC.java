@@ -29,6 +29,10 @@ public class GoalJDBC extends Goal {
 	public GoalJDBC(Integer id, String name, String description, Date deadline, Date date_creation) {
 		super(id, name, description, deadline, date_creation);
 	}
+	
+	public GoalJDBC(){
+		super();	
+	}
 
 	/**
 	 * <p>

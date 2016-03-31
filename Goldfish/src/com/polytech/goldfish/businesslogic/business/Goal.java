@@ -26,6 +26,10 @@ public class Goal {
 		this.deadline = deadline;
 		this.date_creation = date_creation;
 	}
+	
+	public Goal() {
+		
+	}
 
 	// Getters & setters
 	public Integer getId() {
