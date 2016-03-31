@@ -22,10 +22,10 @@ public class ShoppingCartManager {
 		Collection<Product> products = findAllProductsOfAShoppingCart(idShoppCart);
 		for(Product product : products) {
 			if(product.getId() == idProduct){
-				return false;
+				return true;
 			}
 		}
-		return true;	
+		return false;	
 	}
 	
 	public ShoppingCartManager(){
