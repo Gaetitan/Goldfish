@@ -326,11 +326,11 @@ public class MainFrameUser extends JFrame implements AbstractView {
 		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnMyEntrys,
 				10, SpringLayout.NORTH, menuPanel);
 		sl_menuPanel.putConstraint(SpringLayout.WEST, btnMyEntrys,
-				430, SpringLayout.WEST, menuPanel);
+				410, SpringLayout.WEST, menuPanel);
 		sl_menuPanel.putConstraint(SpringLayout.SOUTH, btnMyEntrys,
 				-10, SpringLayout.SOUTH, menuPanel);
 		sl_menuPanel.putConstraint(SpringLayout.EAST, btnMyEntrys,
-				570, SpringLayout.WEST, menuPanel);
+				520, SpringLayout.WEST, menuPanel);
 		btnMyEntrys.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -347,11 +347,11 @@ public class MainFrameUser extends JFrame implements AbstractView {
 		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnComments,
 				10, SpringLayout.NORTH, menuPanel);
 		sl_menuPanel.putConstraint(SpringLayout.WEST, btnComments,
-				590, SpringLayout.WEST, menuPanel);
+				530, SpringLayout.WEST, menuPanel);
 		sl_menuPanel.putConstraint(SpringLayout.SOUTH, btnComments,
 				-10, SpringLayout.SOUTH, menuPanel);
 		sl_menuPanel.putConstraint(SpringLayout.EAST, btnComments,
-				730, SpringLayout.WEST, menuPanel);
+				650, SpringLayout.WEST, menuPanel);
 		btnComments.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -363,24 +363,26 @@ public class MainFrameUser extends JFrame implements AbstractView {
 			}
 		});
 		
-		/*
-		// Manage comments
-		JButton btnManageComments = new JButton("Manage comments");
-		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnManageComments, 10,
+		
+		// List of goals
+		JButton btnGoals = new JButton("Goals");
+		sl_menuPanel.putConstraint(SpringLayout.NORTH, btnGoals, 10,
 				SpringLayout.NORTH, menuPanel);
-		sl_menuPanel.putConstraint(SpringLayout.SOUTH, btnManageComments, -10,
+		sl_menuPanel.putConstraint(SpringLayout.SOUTH, btnGoals, -10,
 				SpringLayout.SOUTH, menuPanel);
-		sl_menuPanel.putConstraint(SpringLayout.WEST, btnManageComments, 550,
+		sl_menuPanel.putConstraint(SpringLayout.WEST, btnGoals, 650,
 				SpringLayout.WEST, menuPanel);
-		sl_menuPanel.putConstraint(SpringLayout.EAST, btnManageComments, 700,
+		sl_menuPanel.putConstraint(SpringLayout.EAST, btnGoals, 780,
 				SpringLayout.WEST, menuPanel);
-		btnManageComments.addActionListener(new ActionListener() {
+		btnGoals.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Manage comments"); // TRACE
-				// TODO
-			}
-		});*/
+				System.out.println("See goals"); // TRACE
+				contentPanel.removeAll();
+				contentPanel.add(new ListGoalPanel());
+				contentPanel.revalidate();
+				contentPanel.repaint();			}
+		});
 
 		contentPanel = new JPanel();
 		getContentPane().add(contentPanel);
@@ -404,7 +406,7 @@ public class MainFrameUser extends JFrame implements AbstractView {
 		menuPanel.add(btnMyShoppingCart);
 		menuPanel.add(btnMyEntrys);
 		menuPanel.add(btnComments);
-		/*menuPanel.add(btnManageComments);*/
+		menuPanel.add(btnGoals);
 		
 	}
 

@@ -24,7 +24,6 @@ public class CreateGoalPanel  extends JPanel {
 
 	private final GoalFacade goalFacade;
 	
-	private final JTextField tfId;
 	private final JTextField tfName;
 	private final JTextField tfDescription;
 	private final JTextField tfDeadline;
@@ -75,9 +74,6 @@ public class CreateGoalPanel  extends JPanel {
 		tfName = new JTextField();
 		tfName.setColumns(20);
 		panelTextInfo.add(tfName);
-		
-		tfId = new JTextField();
-		panelTextInfo.add(tfId);
 		
 		tfDescription = new JTextField();
 		panelTextInfo.add(tfDescription);

@@ -98,7 +98,7 @@ public class GoalJDBC extends Goal {
 			ResultSet rs = instruction.executeQuery();
 
 			while(rs.next()){
-				listGoals.add(new GoalJDBC(rs.getInt(1), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getDate(6)));
+				listGoals.add(new GoalJDBC(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getDate(5)));
 			}	
 		}
 		catch(SQLException e){

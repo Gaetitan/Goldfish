@@ -4,19 +4,19 @@ import java.util.Collection;
 
 import javax.swing.table.AbstractTableModel;
 
-import com.polytech.goldfish.businesslogic.business.ActivityCategory;
+import com.polytech.goldfish.businesslogic.business.Goal;
 
 public class GoalTableModel extends AbstractTableModel {
 	
 			// Attributes
 			private static final long serialVersionUID = 1L;
 			
-			private final Collection <ActivityCategory> data;
-			private final String[] columnNames = {"Name", "Short Description", "Detailled Description"};
+			private final Collection<Goal> data;
+			private final String[] columnNames = {"Name", "Description", "Deadline"};
 			
 			// Constructor
-			public GoalTableModel(Collection <ActivityCategory> data){
-				this.data = data;
+			public GoalTableModel(Collection<Goal> collection){
+				this.data = collection;
 			}
 			
 			// Inherited methods
@@ -35,11 +35,11 @@ public class GoalTableModel extends AbstractTableModel {
 
 			@Override
 			public Object getValueAt(int rowIndex, int columnIndex) {
-				ActivityCategory activityCategory = (ActivityCategory) data.toArray()[rowIndex];
+				Goal goal = (Goal) data.toArray()[rowIndex];
 				switch(columnIndex){
-					case 0 : return activityCategory.getName();
-					case 1 : return activityCategory.getShort_description();
-					case 2 : return activityCategory.getDetailed_description();
+					case 0 : return goal.getName();
+					case 1 : return goal.getDescription();
+					case 2 : return goal.getDeadline();
 					default : throw new IllegalArgumentException("Unknown column " + columnIndex);
 				}
 			}
