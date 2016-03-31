@@ -8,7 +8,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
+import com.polytech.goldfish.businesslogic.business.ShoppingCart;
 import com.polytech.goldfish.businesslogic.facade.ProductFacade;
+import com.polytech.goldfish.businesslogic.facade.ShoppingCartFacade;
 
 public class ListProductsPanel extends JPanel{
 	
@@ -18,15 +20,17 @@ public class ListProductsPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	private final ProductFacade productFacade;
-	
+	private final ShoppingCartFacade shoppingCartFacade;
 	private final ProductTableModel myTableModel;
 	private final JTable myTable;
 	private final JScrollPane myScrollPane;
+
 	
-	public ListProductsPanel(){
+	public ListProductsPanel(final Integer idPerson){
 	
 		productFacade = new ProductFacade();
-		
+		shoppingCartFacade = new ShoppingCartFacade();
+
 		myTableModel = new ProductTableModel(productFacade.findAllProducts());
 		myTable = new JTable(myTableModel);
 		myTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -62,8 +66,9 @@ public class ListProductsPanel extends JPanel{
 				if(e.getClickCount() == 2){	//double click
 					JTable target = (JTable) e.getSource();
 					int row = target.getSelectedRow();
+					ShoppingCart shopCart = shoppingCartFacade.findShoppingCartOfAnUser(idPerson);
 					//System.out.println(productCategoryFacade.findProductCategoryById(myTableModel.getValueAt(row, 0)) + " " + productCategoryFacade.findproductCategoryByEmail(myTableModel.getValueAt(row, 3).toString()).getEmail());
-					new UpdateProductFrame(Integer.parseInt((myTableModel.getValueAt(row, 0)).toString()));
+					new AddProductShoppingFrame(shopCart.getId(),Integer.parseInt((myTableModel.getValueAt(row, 0)).toString()));
 				}
 			}
 		});
