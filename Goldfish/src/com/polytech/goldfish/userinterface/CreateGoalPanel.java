@@ -32,7 +32,7 @@ public class CreateGoalPanel  extends JPanel {
 	/**
 	 * Constructor of class PanelCreateActivityCategory
 	 */
-	public CreateGoalPanel() {
+	public CreateGoalPanel(final Integer idPerson) {
 		goalFacade = new GoalFacade();
 		
 		JPanel mainPanel = new JPanel();
@@ -57,9 +57,7 @@ public class CreateGoalPanel  extends JPanel {
 		JPanel panelLabelInfo = new JPanel();
 		panelInfo.add(panelLabelInfo, BorderLayout.WEST);
 		panelLabelInfo.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		JLabel lblId = new JLabel("Your ID:");
-		panelLabelInfo.add(lblId);
+
 		
 		JLabel lblName = new JLabel("Name:");
 		panelLabelInfo.add(lblName);
@@ -102,7 +100,7 @@ public class CreateGoalPanel  extends JPanel {
 						public void actionPerformed(ActionEvent e) {
 							Integer idActivityCategory = null;
 							try {
-								idActivityCategory = goalFacade.createGoal(tfId.getText() , tfName.getText(), tfDescription.getText(), tfDeadline.getText());
+								idActivityCategory = goalFacade.createGoal(idPerson , tfName.getText(), tfDescription.getText(), tfDeadline.getText());
 								JOptionPane.showMessageDialog(null,"The goal has been created.",
 										"Goal created.",JOptionPane.INFORMATION_MESSAGE);
 							} catch (GoldfishException blankFields) {

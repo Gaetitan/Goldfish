@@ -208,7 +208,7 @@ public class MainFrameUser extends JFrame implements AbstractView {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Create Goal"); // TRACE
 				contentPanel.removeAll();
-				contentPanel.add(new CreateGoalPanel());
+				contentPanel.add(new CreateGoalPanel(idPerson));
 				contentPanel.revalidate();
 				contentPanel.repaint();
 			}
@@ -336,7 +336,7 @@ public class MainFrameUser extends JFrame implements AbstractView {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("My entrys"); // TRACE
 				contentPanel.removeAll();
-				//contentPanel.add(new ListMyEntrysPanel(idPerson));
+				contentPanel.add(new ListMyEntrysPanel(idPerson));
 				contentPanel.revalidate();
 				contentPanel.repaint();
 			}

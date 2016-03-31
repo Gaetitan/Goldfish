@@ -22,4 +22,6 @@ public abstract class DiaryFactory {
 	public abstract Collection<DiaryEntry> getAllEntrys();
 
 	public abstract Collection<DiaryEntry> findEntryByPersonId(Integer idPerson);
+
+	public abstract DiaryEntry findEntryById(Integer idEntry);
 }

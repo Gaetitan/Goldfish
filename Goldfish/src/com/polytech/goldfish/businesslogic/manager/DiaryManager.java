@@ -50,4 +50,8 @@ public class DiaryManager {
 	public Collection<DiaryEntry> findEntryByPersonId(Integer idPerson){
 		return this.factory.findEntryByPersonId(idPerson);
 	}
+
+	public DiaryEntry findEntryById(Integer idEntry) {
+		return this.factory.findEntryById(idEntry);
+	}
 }

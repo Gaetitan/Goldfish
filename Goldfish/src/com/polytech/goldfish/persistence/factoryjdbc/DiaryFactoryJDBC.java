@@ -58,4 +58,9 @@ public class DiaryFactoryJDBC extends DiaryFactory {
 		// Return the new list
 		return listDiarys;
 	}
+
+	@Override
+	public DiaryEntry findEntryById(Integer idEntry) {
+		return DiaryEntryJDBC.findEntryById(idEntry);
+	}
 }

@@ -28,29 +28,20 @@ public class GoalManager {
 		return m.matches();
 	}
 
-	boolean checkId(String number){
-		Pattern p = Pattern.compile("\\d+");
-		Matcher m = p.matcher(number);
-		return m.matches();
-	}
-
 	public GoalManager(){
 		this.factory = new GoalFactoryJDBC();
 	}
 
-	public Integer createGoal(String idPerson, String name, String description, String deadline) throws GoldfishException {
+	public Integer createGoal(Integer idPerson, String name, String description, String deadline) throws GoldfishException {
 		if(name.isEmpty() || name == "" || description.isEmpty() || description == ""){
 			throw new GoldfishException("Goal name nor description can be empty.");
 		}
 		else if(!checkDeadlinde(deadline)) {
 			throw new GoldfishException("Please enter a valid deadline format: YYYY/MM/DD.");
 		}
-		else if(!checkId(idPerson)){
-			throw new GoldfishException("Please enter a valid ID.");
-		}
 		else{
 			Date deadlineParsed = java.sql.Date.valueOf(deadline);
-			return this.factory.createGoal(Integer.parseInt(idPerson), name, description, deadlineParsed);	
+			return this.factory.createGoal(idPerson, name, description, deadlineParsed);	
 		}
 	}
 

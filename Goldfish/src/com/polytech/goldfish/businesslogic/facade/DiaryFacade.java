@@ -37,4 +37,8 @@ public class DiaryFacade {
 	public Collection<DiaryEntry> findAllEntrys(){
 		return diaryManager.findAllEntrys();
 	}
+
+	public DiaryEntry findEntryById(Integer idEntry) {
+		return diaryManager.findEntryById(idEntry);
+	}
 }

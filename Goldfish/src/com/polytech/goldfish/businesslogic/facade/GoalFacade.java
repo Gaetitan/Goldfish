@@ -18,7 +18,7 @@ public class GoalFacade {
 		GoalFacade.goalManager = new GoalManager();
 	}
 
-	public Integer createGoal(String idPerson, String name, String description, String deadline) throws GoldfishException{
+	public Integer createGoal(Integer idPerson, String name, String description, String deadline) throws GoldfishException{
 		return goalManager.createGoal(idPerson, name, description, deadline);
 	}
 

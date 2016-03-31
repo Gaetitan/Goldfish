@@ -24,17 +24,24 @@ public class DiaryEntryJDBC extends DiaryEntry {
 	private static final String queryInsertEntry = "INSERT INTO DiaryEntry (idperson, name, date, time, visibility) VALUES(?,?,?,?,?);";
 	private static final String queryGetAllEntrys = "SELECT * FROM DiaryEntry;";
 	private static final String queryUpdateEntry = "UPDATE DiaryEntry SET name = ?, date = ?, time= ?, visibility = ? WHERE identry = ?;";
-	private static final String queryGetEntrysById = "SELECT * FROM DiaryEntry WHERE idperson = ? ;";
+	private static final String queryGetEntrysByIdPerson = "SELECT * FROM DiaryEntry WHERE idperson = ? ;";
+	private static final String queryGetEntrysByIdEntry = "SELECT * FROM DiaryEntry WHERE identry = ? ;";
 
 	// Constructors
 	public DiaryEntryJDBC(Integer id, Integer idPerson, String name, Date date, Time time, boolean visibility) {
 		super(id, idPerson, name, date, time, visibility);
 	}
-	
-	
-	
+
+
+
 	// Other methods
-	
+
+	public DiaryEntryJDBC() {
+		super();
+	}
+
+
+
 	/**
 	 * <p>
 	 * Does insert an entry in the database
@@ -94,7 +101,7 @@ public class DiaryEntryJDBC extends DiaryEntry {
 
 			Connection connect = Connect.getInstance().getConnection();
 
-			PreparedStatement instruction = connect.prepareCall(queryGetEntrysById);
+			PreparedStatement instruction = connect.prepareCall(queryGetEntrysByIdPerson);
 			instruction.setInt(1, idPerson);
 			ResultSet rs = instruction.executeQuery();
 
@@ -111,7 +118,7 @@ public class DiaryEntryJDBC extends DiaryEntry {
 
 		return listEntrysPerson;
 	}
-	
+
 	/**
 	 * <p>
 	 * Does find all the entrys in the database
@@ -217,5 +224,30 @@ public class DiaryEntryJDBC extends DiaryEntry {
 			e.printStackTrace();
 		}
 		return deleted;
+	}
+
+
+
+	public static DiaryEntry findEntryById(Integer idEntry) {
+		DiaryEntryJDBC entryById = null;
+		try{
+
+			Connection connect = Connect.getInstance().getConnection();
+
+			PreparedStatement instruction = connect.prepareCall(queryGetEntrysByIdEntry);
+			instruction.setInt(1, idEntry);
+			ResultSet rs = instruction.executeQuery();
+
+			rs.next();
+			entryById = new DiaryEntryJDBC(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getDate(4), rs.getTime(5), rs.getBoolean(6));	
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			Connect.getInstance().closeConnection();
+		}
+
+		return entryById;
 	}
 }
