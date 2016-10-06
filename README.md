@@ -1,8 +1,6 @@
 # Goldfish
 Software engineering project - IG4.
 
-This project is currently in development.
-
 Language: JAVA
 
 Architecture: 3-tier
